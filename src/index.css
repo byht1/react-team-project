@@ -1,0 +1,88 @@
+@import-normalize; /* bring in normalize.css styles */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@500&family=Manrope:wght@400;500;700&display=swap');
+
+html {
+  --accent: #f59256;
+  --background: #fdf7f2;
+  --grey: rgba(17, 17, 17, 0.6);
+  /* --link: #3091eb; */
+  --link: #181C27; /* header */
+  --button-bg: #f59256;
+  --dark-accent: #ff6101;
+
+  --white: #ffffff;
+  --black: #111111;
+
+  --shadow: 7px 4px 14px rgba(49, 21, 4, 0.07);
+  --gradient: linear-gradient(90deg, #ff634e 0%, #ffdf48 105.44%);
+  --overlay: rgba(17, 17, 17, 0.6);
+
+  --black-text: #111111;
+  --white-text: #ffffff;
+
+  --transition-bg: background-color 250ms linear;
+  --transition-color: color 250ms linear;
+  --transition-border-color: border-color 250ms linear;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Manrope', sans-serif;
+  font-weight: 500;
+  font-style: normal;
+  font-size: 16px;
+  line-height: 1.375;
+
+  background-color: var(--background);
+  color: var(--blasck-text);
+}
+
+a {
+  text-decoration: none;
+}
+
+a:focus {
+  outline: none;
+}
+
+ul {
+  list-style-type: none;
+}
+
+img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+svg {
+  fill: currentColor;
+}
+
+button {
+  display: inline-block;
+  border: none;
+  cursor: pointer;
+}
+
+section {
+  margin: 0 auto;
+}
+
+.visually-hidden {
+  position: absolute;
+  white-space: nowrap;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  border: 0;
+  padding: 0;
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  margin: -1px;
+}
