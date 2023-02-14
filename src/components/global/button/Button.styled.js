@@ -7,7 +7,6 @@ const Button = styled.button`
   align-items: center;
 
   padding: 10px 28px;
-  border: none;
   outline: none;
 
   ${p => marginProps(p)};
