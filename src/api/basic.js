@@ -5,6 +5,8 @@ import axios from 'axios';
 
 const URL = '';
 
-export const server = axios.create({
+const server = axios.create({
   baseURL: URL,
 });
+
+export default server;

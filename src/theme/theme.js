@@ -59,7 +59,7 @@ export const theme = {
     none: '0',
     inputRadius: '40px',
     buttonRadius: '40px',
-    currentAnymal: '0px 0px 40px 40px',
+    currentAnimal: '0px 0px 40px 40px',
     normal: '20px',
     round: '50%',
   },
