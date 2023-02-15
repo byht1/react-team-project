@@ -12,11 +12,11 @@ export const ContainerBox = styled.div`
   @media (min-width: 768px) {
     padding-left: 32px;
     padding-right: 32px;
-    width: 704px;
+    width: 768px;
   }
   @media (min-width: 1280px) {
     padding-left: 16px;
     padding-right: 16px;
-    width: 1248px;
+    width: 1280px;
   }
 `;
