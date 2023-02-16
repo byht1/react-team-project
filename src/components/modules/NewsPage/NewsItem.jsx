@@ -19,7 +19,7 @@ export const NewsItem = ({ title, text, day, link }) => {
             <Text weight={400} lh="heading" color="overlay">
               {day}
             </Text>
-            <a href={link}>
+            <a href={link} target="_blank" rel="noreferrer" >
               <Text color="a">
               Read more
               </Text>

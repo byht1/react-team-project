@@ -78,6 +78,18 @@ margin-top: 40px;
   }
 
 `
-export const Label = styled.label`
+export const Block = styled.div`
+position: relative;
 text-align: center;
+
+`
+export const Button = styled.button`
+position: absolute;
+top: 10px;
+right: 12px;
+width: 24px;
+height: 24px;
+border-radius: 50%;
+background: transparent;
+fill: #111111;
 `
