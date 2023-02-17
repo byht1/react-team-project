@@ -14,6 +14,7 @@ import { Home } from 'page/Home';
 import { FormSellStepTwo } from 'components/modules/Form/FormSell/FormSellStepTwo';
 import { FormBox } from 'components/modules/Form/FormBox/FormBox';
 import { FormSellStepOne } from 'components/modules/Form/FormSell/FormSellStepOne';
+import { BackDrop } from 'components/modules/Form/BackDrop';
 
 const queryClient = new QueryClient();
 
@@ -33,9 +34,9 @@ function App() {
           <Route path="user" element={<UserPage />} />
           <Route path="*" element={<Navigate to="/" />} />
           {/* <Route path="*" element={<NotFound />} /> */}
-          <Route path="addpet" element={<FormBox />}>
-            <Route index element={<FormSellStepOne />}></Route>
-            <Route path="addpetsteptwo" element={<FormSellStepTwo />}></Route>
+          <Route path="addpet" element={<BackDrop />}>
+            <Route path="step1" element={<FormSellStepOne />} />
+            <Route path="step2" element={<FormSellStepTwo />} />
           </Route>
         </Route>
       </Routes>

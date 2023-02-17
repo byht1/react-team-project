@@ -104,13 +104,11 @@ import { useFormContext } from 'react-hook-form';
 import { FormSellStepTwo } from './FormSellStepTwo';
 import { useNavigate } from 'react-router-dom';
 import { Text } from 'components/global/text';
-import { useLocation } from 'react-router-dom';
 import { InputWrap, ButtonWrap, TextTittle } from './FormSell.styled';
-
 export const FormSellStepOne = () => {
   const [open, setOpen] = useState(false);
   const { register, setValue, getValues, reset } = useFormContext();
-  const location = useLocation();
+
   const navigate = useNavigate();
   return (
     <>
@@ -131,8 +129,9 @@ export const FormSellStepOne = () => {
         <button
           type="button"
           onClick={() => {
-            setOpen(!open);
-            console.log('first');
+            // setOpen(!open);
+            // console.log('first');
+            navigate('/addpet/step2');
           }}
         >
           Next
@@ -141,7 +140,6 @@ export const FormSellStepOne = () => {
           Back
         </button>
       </ButtonWrap>
-      {open && <FormSellStepTwo />}
     </>
   );
 };

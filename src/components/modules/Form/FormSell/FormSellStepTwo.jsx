@@ -8,7 +8,7 @@ import { useNavigate } from 'react-router-dom';
 import { useLocation } from 'react-router-dom';
 
 export const FormSellStepTwo = () => {
-  //   const navigate = useNavigate();
+  const navigate = useNavigate();
   //   const location = useLocation();
 
   const [isShown, setIsShown] = useState(true);
@@ -31,10 +31,13 @@ export const FormSellStepTwo = () => {
             <textarea {...register('comments')} />
           </InputWrap>
           <ButtonWrap>
-            {/* <button type="button" onClick={() => setIsShown(false)}>
+            <button type="button" onClick={() => navigate('/addpet/step1')}>
               Back
-            </button> */}
-            <button type="submit"> Done</button>
+            </button>
+            <button type="submit" onClick={() => navigate('/')}>
+              {' '}
+              Done
+            </button>
           </ButtonWrap>
         </FormWrap>
       )}
