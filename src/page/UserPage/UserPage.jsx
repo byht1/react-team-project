@@ -1,5 +1,5 @@
-import { PetsData } from 'components/modules/PetsData';
-import { UserData } from 'components/modules/UserData';
+import { PetsData } from 'components/modules/User/PetsData';
+import { UserData } from 'components/modules/User/UserData';
 import React from 'react';
 
 const UserPage = () => {

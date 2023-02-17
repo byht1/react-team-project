@@ -28,10 +28,7 @@ export const lineHeights = Object.freeze({
 
 export const theme = {
   colors,
-  space: [
-    0, 2, 4, 8, 12, 16, 20, 24, 28, 32, 36, 40, 44, 49, 52, 56, 60, 64, 110,
-    128, 256,
-  ],
+  space: [0, 2, 4, 8, 12, 16, 20, 24, 28, 32, 36, 40, 44, 49, 52, 56, 60, 64, 110, 128, 256],
   fonts,
   fontSizes: {
     min: '12px',
