@@ -8,10 +8,8 @@ import {
   NavigationLink,
 } from './Header.styled';
 import { MobileMenu } from '../MobileMenu/MobileMenu';
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { Container } from '../Container';
-import { BiMenu } from 'react-icons/bi';
-import { IoClose } from 'react-icons/io5';
 export const Header = ({}) => {
   const [menuIsOpen, setMenuIsOpen] = useState(false);
 
