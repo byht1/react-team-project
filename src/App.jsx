@@ -10,6 +10,10 @@ import { NoticesPage } from 'page/NoticesPage';
 import { LoginPage } from 'page/LoginPage';
 import { Home } from 'page/Home';
 // import { NotFound } from 'page/NotFound';
+// import { FormSellStepOne } from 'components/modules/Form/FormSell/FormSellStepOne';
+import { FormSellStepTwo } from 'components/modules/Form/FormSell/FormSellStepTwo';
+import { FormBox } from 'components/modules/Form/FormBox/FormBox';
+import { FormSellStepOne } from 'components/modules/Form/FormSell/FormSellStepOne';
 
 const queryClient = new QueryClient();
 
@@ -29,6 +33,10 @@ function App() {
           <Route path="user" element={<UserPage />} />
           <Route path="*" element={<Navigate to="/" />} />
           {/* <Route path="*" element={<NotFound />} /> */}
+          <Route path="addpet" element={<FormBox />}>
+            <Route index element={<FormSellStepOne />}></Route>
+            <Route path="addpetsteptwo" element={<FormSellStepTwo />}></Route>
+          </Route>
         </Route>
       </Routes>
     </QueryClientProvider>

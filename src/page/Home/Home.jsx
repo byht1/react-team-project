@@ -1,13 +1,16 @@
 import React from 'react';
 
 import { Text } from 'components/global/text';
-import { ModalWindow } from 'components/modules/Form/FormSell';
+import { useNavigate } from 'react-router-dom';
 
 const Home = () => {
+  const navigate = useNavigate();
   return (
     <div>
       <Text>Home Component</Text>
-      <ModalWindow />
+      <button type="button" onClick={() => navigate('/addpet')}>
+        Button
+      </button>
     </div>
   );
 };
