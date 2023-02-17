@@ -39,7 +39,7 @@ export const Header = ({}) => {
             </NavigationLink>
             <LoginButton type="button">
               <LoginIcon />
-            </LoginButton>{' '}
+            </LoginButton>
             <MenuButton type="button" onClick={openMenu}>
               <MenuIcon />
             </MenuButton>

@@ -41,14 +41,24 @@ export const MobileMenu = ({ closeMenu }) => {
             </ButtonsBox>
           ) : (
             <ButtonsBox>
-              <LoginLink to="login">Login</LoginLink>
-              <RegisterLink to="register">Register</RegisterLink>
+              <LoginLink to="login" onClick={closeMenu}>
+                Login
+              </LoginLink>
+              <RegisterLink to="register" onClick={closeMenu}>
+                Register
+              </RegisterLink>
             </ButtonsBox>
           )}
           <LinksBox>
-            <MenuNavigationLink to="news">News</MenuNavigationLink>
-            <AccentNavigationLink to="notices">Find pet</AccentNavigationLink>
-            <MenuNavigationLink to="friends">Our friends</MenuNavigationLink>
+            <MenuNavigationLink to="news" onClick={closeMenu}>
+              News
+            </MenuNavigationLink>
+            <AccentNavigationLink to="notices" onClick={closeMenu}>
+              Find pet
+            </AccentNavigationLink>
+            <MenuNavigationLink to="friends" onClick={closeMenu}>
+              Our friends
+            </MenuNavigationLink>
           </LinksBox>
         </MenuBox>
       </Container>
