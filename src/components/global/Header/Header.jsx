@@ -10,7 +10,7 @@ import {
 import { MobileMenu } from '../MobileMenu/MobileMenu';
 import { useState } from 'react';
 import { Container } from '../Container';
-export const Header = ({}) => {
+export const Header = () => {
   const [menuIsOpen, setMenuIsOpen] = useState(false);
 
   async function openMenu() {
