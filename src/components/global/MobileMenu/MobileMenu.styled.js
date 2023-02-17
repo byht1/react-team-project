@@ -64,7 +64,7 @@ export const MobileMenuBox = styled.div`
   height: 100%;
   background-color: ${p => p.theme.colors.bg};
   position: fixed;
-  z-index: 10000;
+  z-index: 10;
 `;
 export const Box = styled.div`
   display: flex;
