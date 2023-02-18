@@ -48,19 +48,15 @@ export const Header = () => {
               <TabletBox>
                 {authorized ? (
                   <ButtonsBox>
-                    <LoginLink to="">
+                    <LoginLink to="user">
                       <AccountIcon />
                       Account
                     </LoginLink>
                   </ButtonsBox>
                 ) : (
                   <ButtonsBox>
-                    <LoginLink to="login" onClick={openMenu}>
-                      Login
-                    </LoginLink>
-                    <RegisterLink to="register" onClick={openMenu}>
-                      Registration
-                    </RegisterLink>
+                    <LoginLink to="login">Login</LoginLink>
+                    <RegisterLink to="register">Registration</RegisterLink>
                   </ButtonsBox>
                 )}
               </TabletBox>

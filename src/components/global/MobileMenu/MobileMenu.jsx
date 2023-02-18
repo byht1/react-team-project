@@ -34,7 +34,7 @@ export const MobileMenu = ({ closeMenu }) => {
         <MenuBox>
           {authorized ? (
             <ButtonsBox>
-              <LoginLink to="">
+              <LoginLink to="user">
                 <AccountIcon />
                 Account
               </LoginLink>

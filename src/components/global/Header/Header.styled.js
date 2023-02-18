@@ -187,4 +187,9 @@ export const AccountIcon = styled(RiAccountPinCircleFill)`
   width: 20px;
   height: 20px;
   margin-right: 12px;
+  @media (min-width: 768px) {
+    width: 30px;
+    height: 30px;
+    margin-right: 12px;
+  }
 `;
