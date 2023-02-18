@@ -21,13 +21,6 @@ export const MobileBox = styled.div`
   margin-left: auto;
   justify-content: center;
   align-items: center;
-  /* @media (min-width: 768px) {
-    display: flex;
-    margin-bottom: 0;
-    margin-left: auto;
-    justify-content: center;
-    align-items: center;
-  } */
 
   @media (min-width: 1280px) {
     display: none;
@@ -142,7 +135,9 @@ export const LoginLink = styled(NavLink)`
   line-height: 19px;
   letter-spacing: 0.04em;
   margin-right: 18px;
-  &:active {
+  &:active,
+  &:hover,
+  &:focus {
     background-color: ${p => p.theme.colors.w};
     border: 2px solid ${p => p.theme.colors.a};
     color: ${p => p.theme.colors.a};
@@ -170,7 +165,9 @@ export const RegisterLink = styled(NavLink)`
     line-height: 27px;
     padding: 10px 28px;
   }
-  &:active {
+  &:active,
+  &:hover,
+  &:focus {
     background-color: ${p => p.theme.colors.a};
     border: 2px solid ${p => p.theme.colors.a};
     color: ${p => p.theme.colors.w};
