@@ -1,14 +1,19 @@
 import React from 'react';
 import { Container } from 'components/global/Container';
-import { Text } from 'components/global/text';
-import { Background } from './Home.styled';
+
+import { Background, Box, Image, MaxBox, HomeTitle } from './Home.styled';
 const Home = () => {
   return (
-    <Background>
-      <Container>
-        <Text>Home Component</Text>
-      </Container>
-    </Background>
+    // <Background>
+    <MaxBox>
+      <Background>
+        <Box>
+          <HomeTitle>Take good care of your small pets</HomeTitle>
+          <Image src={require('../../img/girl_mobile.png')}></Image>
+        </Box>
+      </Background>
+    </MaxBox>
+    // </Background>
   );
 };
 
