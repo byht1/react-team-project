@@ -10,6 +10,13 @@ export const TitleBlock = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
+
+  @media (min-width: 768px) {
+    max-width: none;
+    width: 704px;
+  }
+  @media (min-width: 1280px) {
+  }
 `;
 export const Title = styled.h2`
   font-family: 'Manrope';
@@ -21,7 +28,7 @@ export const Title = styled.h2`
   align-items: center;
   letter-spacing: 0.04em;
 
-  color: #000000;
+  color: ${theme.colors.b};
 `;
 export const TitleSpan = styled.span`
   font-family: 'Manrope';
@@ -30,7 +37,7 @@ export const TitleSpan = styled.span`
   font-size: 20px;
   line-height: 27px;
 
-  color: #111111;
+  color: ${theme.colors.b};
 `;
 export const PetBlcok = styled.div`
   display: flex;
@@ -53,10 +60,24 @@ export const PetCard = styled.div`
   }
   box-shadow: 7px 4px 14px rgba(0, 0, 0, 0.11);
   border-radius: 20px;
+
+  @media (min-width: 768px) {
+    flex-direction: row;
+    max-width: none;
+    width: 704px;
+  }
+  @media (min-width: 1280px) {
+  }
 `;
 export const InfoList = styled.ul`
   display: flex;
   flex-direction: column;
+
+  @media (min-width: 768px) {
+    margin-left: 32px;
+  }
+  @media (min-width: 1280px) {
+  }
 `;
 export const ListItem = styled.li`
   margin-bottom: 12px;
@@ -70,6 +91,13 @@ export const Img = styled.img`
   height: 240px;
   border-radius: 20px;
   margin-bottom: 20px;
+  @media (min-width: 768px) {
+    width: 161px;
+    height: 161px;
+    margin-bottom: 0px;
+  }
+  @media (min-width: 1280px) {
+  }
 `;
 
 export const ListItemInfo = styled.p`
@@ -83,16 +111,31 @@ export const ListItemInfo = styled.p`
   align-items: center;
   letter-spacing: 0.04em;
 
-  color: #000000;
+  color: ${theme.colors.b};
+
+  @media (min-width: 768px) {
+    font-size: 16px;
+  }
+  @media (min-width: 1280px) {
+  }
 `;
 
 export const Icon = styled.div`
   position: absolute;
-  margin-top: 290px;
+  margin-top: 280px;
   margin-left: 227.5px;
   top: 0;
   bottom: 0;
   width: 12.5px;
   height: 12.5px;
   background-color: salmon;
+
+  @media (min-width: 768px) {
+    margin-top: 20px;
+    margin-left: 650px;
+  }
+  @media (min-width: 1280px) {
+  }
 `;
+
+export const PhotoBlock = styled.div``;

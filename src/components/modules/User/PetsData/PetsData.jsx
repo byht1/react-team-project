@@ -11,6 +11,7 @@ import {
   Img,
   ListItemInfo,
   Icon,
+  PhotoBlock,
 } from './PetsData.styled';
 import Chloe from '../../../../img/chloe grace moretz.webp';
 
@@ -23,11 +24,11 @@ export const PetsData = () => {
       </TitleBlock>
       <PetBlcok>
         <PetCard>
+          <PhotoBlock>
+            <Img src={Chloe} />
+            <Icon></Icon>
+          </PhotoBlock>
           <InfoList>
-            <ListItem>
-              <Img src={Chloe} />
-              <Icon></Icon>
-            </ListItem>
             <ListItem>
               <ListItemInfo>Name:Chloe Grace Moretz</ListItemInfo>
             </ListItem>
@@ -47,10 +48,11 @@ export const PetsData = () => {
           </InfoList>
         </PetCard>
         <PetCard>
+          <PhotoBlock>
+            <Img src={Chloe} />
+            <Icon></Icon>
+          </PhotoBlock>
           <InfoList>
-            <ListItem>
-              <Img src={Chloe} /> <Icon></Icon>
-            </ListItem>
             <ListItem>
               <ListItemInfo>Name:Chloe Grace Moretz</ListItemInfo>
             </ListItem>

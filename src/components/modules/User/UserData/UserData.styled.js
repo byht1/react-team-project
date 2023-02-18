@@ -11,6 +11,11 @@ export const Title = styled.h2`
   display: flex;
   align-items: center;
   letter-spacing: 0.04em;
+  @media (min-width: 768px) {
+    width: 736px;
+  }
+  @media (min-width: 1280px) {
+  }
 `;
 
 export const ProfileImage = styled.img`
@@ -33,8 +38,12 @@ export const Div = styled.div`
   display: flex;
   flex-direction: column;
   @media (min-width: 768px) {
+    border-top-left-radius: 0px;
+    border-bottom-left-radius: 0px;
+    padding: 24px 40px 24px 32px;
     display: flex;
     flex-direction: row-reverse;
+    justify-content: space-between;
   }
   @media (min-width: 1280px) {
   }
@@ -53,6 +62,12 @@ export const SpanEditPhoto = styled.span`
   display: flex;
   align-items: center;
   letter-spacing: 0.04em;
+
+  @media (min-width: 768px) {
+    margin-top: 8px;
+  }
+  @media (min-width: 1280px) {
+  }
 
   &::before {
     content: '';
@@ -90,7 +105,8 @@ export const Container = styled.div`
   margin: 0px 20px;
   max-width: 280px;
   @media (min-width: 768px) {
-    margin-right: 32px;
+    max-width: 736px;
+    margin: 0px 32px 0px 0px;
   }
   @media (min-width: 1280px) {
   }
@@ -102,7 +118,6 @@ export const PhotoBlock = styled.div`
   align-items: center;
   max-width: 280px;
   @media (min-width: 768px) {
-    margin-right: 32px;
   }
   @media (min-width: 1280px) {
   }

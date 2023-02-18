@@ -9,29 +9,7 @@ export const Form = styled.form`
   padding: 34px 12px 42px 8px;
 `;
 
-export const Item = styled.label`
-  /* font-family: 'Manrope';
-  font-style: normal;
-  font-weight: 500;
-  font-size: 12px;
-  line-height: 16px;
-  display: grid;
-  grid-template-columns: 56px 159px max-content;
-  grid-column-gap: 6px;
-  align-items: center;
-  margin-bottom: 6px;
-
-  letter-spacing: 0.04em;
-
-  color: ${theme.colors.b}; */
-
-  /* &::after {
-    content: '';
-    width: 20px;
-    height: 20px;
-    background-color: aquamarine;
-  } */
-`;
+export const Item = styled.label``;
 
 export const Input = styled.input`
   width: 159px;
@@ -74,6 +52,13 @@ export const SpanLogout = styled.span`
   align-items: center;
   letter-spacing: 0.04em;
 
+  @media (min-width: 768px) {
+    margin-left: 8px;
+    margin-right: auto;
+  }
+  @media (min-width: 1280px) {
+  }
+
   &::before {
     content: '';
     margin-right: 8px;
@@ -89,7 +74,6 @@ export const Cover = styled.div`
   align-items: center;
   max-width: 280px;
   @media (min-width: 768px) {
-    flex-direction: row;
   }
   @media (min-width: 1280px) {
   }
