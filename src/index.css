@@ -6,9 +6,11 @@ html {
   --background: #fdf7f2;
   --grey: rgba(17, 17, 17, 0.6);
   /* --link: #3091eb; */
-  --link: #181C27; /* header */
+  --link: #181c27; /* header */
   --button-bg: #f59256;
+  --tag-bg: rgba(255, 255, 255, 0.6);
   --dark-accent: #ff6101;
+  --search-text: #535353;
 
   --white: #ffffff;
   --black: #111111;

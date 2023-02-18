@@ -9,8 +9,10 @@ export const colors = Object.freeze({
   b: 'var(--black)',
   gradient: 'var(--gradient)',
   overlay: 'var(--overlay)',
+  tagBg: 'var(--tag-bg)',
   wt: 'var(--white-text)',
   bt: 'var(--black-text)',
+  sf: 'var(--search-text)',
 });
 
 export const fonts = Object.freeze({
@@ -28,10 +30,7 @@ export const lineHeights = Object.freeze({
 
 export const theme = {
   colors,
-  space: [
-    0, 2, 4, 8, 12, 16, 20, 24, 28, 32, 36, 40, 44, 49, 52, 56, 60, 64, 110,
-    128, 256,
-  ],
+  space: [0, 2, 4, 8, 12, 16, 20, 24, 28, 32, 36, 40, 44, 49, 52, 56, 60, 64, 110, 128, 256],
   fonts,
   fontSizes: {
     min: '12px',
@@ -59,7 +58,10 @@ export const theme = {
     none: '0',
     inputRadius: '40px',
     buttonRadius: '40px',
+    tagRadius: '0px 40px 40px 0px',
     currentAnymal: '0px 0px 40px 40px',
+    cardRadius: '0px 0px 20px 20px',
+    modalThumbRadius: '0px 0px 40px 40px',
     normal: '20px',
     round: '50%',
   },
