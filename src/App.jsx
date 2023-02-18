@@ -39,8 +39,9 @@ function App() {
             <Route path="step2" element={<FormSellStepTwo />} />
           </Route> */}
           <Route path="addpet" element={<FormBox />}>
-            <Route index element={<FormSellStepOne />}></Route>
-            <Route path="addpetsteptwo" element={<FormSellStepTwo />}></Route>
+            <Route path="step1" element={<FormSellStepOne />}></Route>
+            <Route path="step2" element={<FormSellStepTwo />}></Route>
+            {/* // <Route path="step2" element={<FormSellStepTwo />}></Route> */} */
           </Route>
         </Route>
       </Routes>

@@ -2,9 +2,9 @@ import React from 'react';
 import { useForm } from 'react-hook-form';
 import { FormSellStepOne } from '../FormSell/FormSellStepOne';
 import { FormSellStepTwo } from '../FormSell/FormSellStepTwo';
-import { useNavigate } from 'react-router-dom';
+import { Outlet, useNavigate } from 'react-router-dom';
 
-export const Form = ({ methods }) => {
+export const Form = ({ methods, children }) => {
   // const { register, handleSubmit, watch, errors } = useForm();
   const navigate = useNavigate();
   const onSubmit = data => {
@@ -14,8 +14,9 @@ export const Form = ({ methods }) => {
 
   return (
     <form onSubmit={methods.handleSubmit(onSubmit)}>
-      <FormSellStepOne />
+      {/* <FormSellStepOne /> */}
       {/* <button className="btn btn-primary">Create New Account</button> */}
+      <Outlet></Outlet>
     </form>
   );
 };

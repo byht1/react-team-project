@@ -45,13 +45,14 @@
 import { useState } from 'react';
 import { useFormContext } from 'react-hook-form';
 import { FormSellStepTwo } from './FormSellStepTwo';
-import { useNavigate } from 'react-router-dom';
+import { Outlet, useNavigate } from 'react-router-dom';
 import { Text } from 'components/global/text';
 import { useLocation } from 'react-router-dom';
 import { InputWrap, ButtonWrap, TextTittle } from './FormSell.styled';
+import { Link } from 'react-router-dom';
 
 export const FormSellStepOne = () => {
-  const [open, setOpen] = useState(false);
+  // const [open, setOpen] = useState(false);
   const { register, setValue, getValues, reset } = useFormContext();
   const location = useLocation();
   const navigate = useNavigate();
@@ -73,10 +74,11 @@ export const FormSellStepOne = () => {
       <ButtonWrap>
         <button
           type="button"
-          onClick={() => {
-            setOpen(!open);
-            console.log('first');
-          }}
+          // onClick={() => {
+          //   setOpen(!open);
+          //   console.log('first');
+          // }}
+          onClick={() => navigate('/addpet/step2')}
         >
           Next
         </button>
@@ -84,7 +86,6 @@ export const FormSellStepOne = () => {
           Back
         </button>
       </ButtonWrap>
-      {open && <FormSellStepTwo />}
     </>
   );
 };

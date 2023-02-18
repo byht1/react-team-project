@@ -8,7 +8,7 @@ const Home = () => {
   return (
     <div>
       <Text>Home Component</Text>
-      <button type="button" onClick={() => navigate('/addpet')}>
+      <button type="button" onClick={() => navigate('/addpet/step1')}>
         Button
       </button>
     </div>
