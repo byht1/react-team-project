@@ -4,9 +4,15 @@ import { Outlet } from 'react-router-dom';
 import { Form } from './Form';
 import { FormWrap } from './FormBox.styled';
 import { BackDrop } from '../BackDrop.styled';
-
+import { schemaAddPet } from '../schema';
+import { yupResolver } from '@hookform/resolvers/yup';
+// import yupResolver
 export const FormBox = () => {
-  const methods = useForm();
+  const methods = useForm({
+    defaultValues: { petName: 'Linsy' },
+    resolver: yupResolver(schemaAddPet),
+    mode: 'onBlur',
+  });
 
   return (
     <FormProvider {...methods}>
