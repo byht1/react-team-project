@@ -42,7 +42,7 @@ export const Header = () => {
       ) : (
         <Container>
           <HeaderBox>
-            <NavigationLink to="">
+            <NavigationLink to="/" end>
               <Title>
                 pe
                 <span>t</span>ly
