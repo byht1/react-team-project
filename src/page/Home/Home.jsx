@@ -1,5 +1,4 @@
 import React from 'react';
-import { Container } from 'components/global/Container';
 
 import { Background, Box, Image, MaxBox, HomeTitle } from './Home.styled';
 const Home = () => {
