@@ -82,7 +82,7 @@ export const MenuIcon = styled(BiMenu)`
     height: 40px;
   }
 `;
-export const LoginButton = styled.button`
+export const LoginButton = styled(NavLink)`
   width: 30px;
   height: 30px;
   display: flex;
@@ -90,9 +90,10 @@ export const LoginButton = styled.button`
   align-items: center;
   margin-left: auto;
   background-color: ${p => p.theme.colors.trsp};
+  color: ${p => p.theme.colors.b};
   cursor: pointer;
   &:active {
-    color: ${p => p.theme.colors.buttonBg};
+    color: ${p => p.theme.colors.a};
   }
   @media (min-width: 768px) {
     display: none;
@@ -113,9 +114,7 @@ export const HeaderBox = styled.header`
     padding: 0;
   }
 `;
-export const NavigationLink = styled(NavLink)`
-  color: red;
-`;
+export const NavigationLink = styled(NavLink)``;
 export const ButtonsBox = styled.div`
   display: flex;
   justify-content: center;

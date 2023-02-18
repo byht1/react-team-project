@@ -17,6 +17,7 @@ import {
   MenuNavigationLink,
   AccentNavigationLink,
 } from './Header.styled';
+import { useLocation } from 'react-router-dom';
 import { MobileMenu } from '../MobileMenu/MobileMenu';
 import { useState } from 'react';
 import { Container } from '../Container';
@@ -31,6 +32,8 @@ export const Header = () => {
       console.log(error);
     }
   }
+  const location = useLocation();
+  console.log(location.pathname);
   console.log(menuIsOpen);
   return (
     <>
@@ -46,9 +49,12 @@ export const Header = () => {
               </Title>
             </NavigationLink>
             <MobileBox>
-              <LoginButton type="button">
-                <LoginIcon />
-              </LoginButton>
+              {!(location.pathname === '/login' || location.pathname === '/register') && (
+                <LoginButton to="login">
+                  <LoginIcon />
+                </LoginButton>
+              )}
+
               <TabletBox>
                 {authorized ? (
                   <ButtonsBox>

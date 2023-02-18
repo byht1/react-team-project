@@ -1,12 +1,14 @@
 import React from 'react';
-
+import { Container } from 'components/global/Container';
 import { Text } from 'components/global/text';
-
+import { Background } from './Home.styled';
 const Home = () => {
   return (
-    <div>
-      <Text>Home Component</Text>
-    </div>
+    <Background>
+      <Container>
+        <Text>Home Component</Text>
+      </Container>
+    </Background>
   );
 };
 
