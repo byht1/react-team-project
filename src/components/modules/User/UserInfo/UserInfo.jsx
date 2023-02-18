@@ -1,33 +1,37 @@
 import React from 'react';
-import { Form, Item, Input } from './UserInfo.styled';
+import { Form, Item, Input, SpanLogout, Cover, FildName, Icon } from './UserInfo.styled';
 
 export const UserInfo = () => {
   return (
-    <Form>
-      <Item>
-        Name:
-        <Input placeholder="Anna" />
-      </Item>
-
-      <Item>
-        Email:
-        <Input placeholder="anna00@gmail.com" />
-      </Item>
-
-      <Item>
-        Birthday:
-        <Input placeholder="00.00.0000" />
-      </Item>
-
-      <Item>
-        Phone:
-        <Input placeholder="00.00.0000" />
-      </Item>
-
-      <Item>
-        City:
-        <Input placeholder="Kiev" />
-      </Item>
-    </Form>
+    <Cover>
+      <Form>
+        <FildName>Name:</FildName>
+        <Item>
+          <Input placeholder="Anna" />
+        </Item>
+        <Icon>ic</Icon>
+        <FildName>Email:</FildName>
+        <Item>
+          <Input placeholder="anna00@gmail.com" />
+        </Item>
+        <Icon>ic</Icon>
+        <FildName>Birthday: </FildName>
+        <Item>
+          <Input placeholder="00.00.0000 " />
+        </Item>
+        <Icon>ic</Icon>
+        <FildName>Phone:</FildName>
+        <Item>
+          <Input placeholder="+38000000000" />
+        </Item>
+        <Icon>ic</Icon>
+        <FildName>City:</FildName>
+        <Item>
+          <Input placeholder="Kiev" />
+        </Item>
+        <Icon>ic</Icon>
+      </Form>
+      <SpanLogout>Logout</SpanLogout>
+    </Cover>
   );
 };

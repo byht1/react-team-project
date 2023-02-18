@@ -1,14 +1,12 @@
-import { Container } from 'components/global/Container';
 import React from 'react';
 import {
   ProfileImage,
+  Container,
   Div,
-  ImgCover,
-  EditPhoto,
   SpanEditPhoto,
   Title,
   SpanLogout,
-  Logout,
+  PhotoBlock,
 } from './UserData.styled';
 import { UserInfo } from '../UserInfo';
 import Chloe from '../../../../img/chloe grace moretz.webp';
@@ -18,16 +16,11 @@ export const UserData = () => {
     <Container>
       <Title>My information:</Title>
       <Div>
-        <ImgCover>
+        <PhotoBlock>
           <ProfileImage src={Chloe} />
-        </ImgCover>
-        <EditPhoto>
           <SpanEditPhoto>Edit photo</SpanEditPhoto>
-        </EditPhoto>
+        </PhotoBlock>
         <UserInfo />
-        <Logout>
-          <SpanLogout>Logout</SpanLogout>
-        </Logout>
       </Div>
     </Container>
   );

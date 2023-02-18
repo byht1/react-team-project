@@ -21,17 +21,24 @@ export const ProfileImage = styled.img`
   border-radius: ${theme.radii.round};
 `;
 
-export const ImgCover = styled.div``;
-
 export const Div = styled.div`
-  padding-top: 20px;
-  padding-bottom: 20px;
+  padding: 20px 14px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
   background: ${theme.colors.wt};
   border-radius: ${theme.radii.normal};
   box-shadow: 7px 4px 14px rgba(0, 0, 0, 0.11);
+  display: flex;
+  flex-direction: column;
+  @media (min-width: 768px) {
+    display: flex;
+    flex-direction: row-reverse;
+  }
+  @media (min-width: 1280px) {
+  }
 `;
-
-export const EditPhoto = styled.div``;
 
 export const SpanEditPhoto = styled.span`
   width: fit-content;
@@ -56,8 +63,6 @@ export const SpanEditPhoto = styled.span`
   }
 `;
 
-export const Logout = styled.div``;
-
 export const SpanLogout = styled.span`
   width: fit-content;
   margin-right: 24px;
@@ -78,5 +83,27 @@ export const SpanLogout = styled.span`
     width: 12.5px;
     height: 12.5px;
     background-color: salmon;
+  }
+`;
+
+export const Container = styled.div`
+  margin: 0px 20px;
+  max-width: 280px;
+  @media (min-width: 768px) {
+    margin-right: 32px;
+  }
+  @media (min-width: 1280px) {
+  }
+`;
+
+export const PhotoBlock = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 280px;
+  @media (min-width: 768px) {
+    margin-right: 32px;
+  }
+  @media (min-width: 1280px) {
   }
 `;

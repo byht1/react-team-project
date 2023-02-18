@@ -2,6 +2,9 @@ import styled from 'styled-components';
 import { theme } from 'theme/theme';
 
 export const TitleBlock = styled.div`
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 280px;
   margin-top: 46px;
   margin-bottom: 32px;
   display: flex;
@@ -30,10 +33,14 @@ export const TitleSpan = styled.span`
   color: #111111;
 `;
 export const PetBlcok = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   border-radius: 20px;
   margin-bottom: 80px;
 `;
 export const PetCard = styled.div`
+  max-width: 280px;
   position: relative;
   background-color: ${theme.colors.wt};
   display: flex;
