@@ -1,12 +1,18 @@
 import React from 'react';
 
-import { Text } from 'components/global/text';
-
+import { Background, Box, Image, MaxBox, HomeTitle } from './Home.styled';
 const Home = () => {
   return (
-    <div style={{ display: 'flex', gap: 16 }}>
-      <Text>Home Component</Text>
-    </div>
+    // <Background>
+    <MaxBox>
+      <Background>
+        <Box>
+          <HomeTitle>Take good care of your small pets</HomeTitle>
+          <Image src={require('../../img/girl_mobile.png')}></Image>
+        </Box>
+      </Background>
+    </MaxBox>
+    // </Background>
   );
 };
 

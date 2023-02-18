@@ -1,10 +1,13 @@
 import axios from 'axios';
 
-// _____ Документаці як в 8 дз по React
+// https://node-team-project.onrender.com/docs Документаці як в 8 дз по React
 // Первий запит може йти довго так як server безкоштовний і він "засинає"
 
-const URL = '';
+const URL = 'https://node-team-project.onrender.com/api';
 
-export const server = axios.create({
+const server = axios.create({
+  withCredentials: true,
   baseURL: URL,
 });
+
+export default server;
