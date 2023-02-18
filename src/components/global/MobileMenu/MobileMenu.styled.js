@@ -2,26 +2,13 @@ import styled from 'styled-components';
 import { NavLink } from 'react-router-dom';
 import { IoClose } from 'react-icons/io5';
 import { RiAccountPinCircleFill } from 'react-icons/ri';
-// import { MenuIcon } from './Header.styled';
-//   background-color: ${p => p.theme.colors.aBg};
-// export const colors = Object.freeze({
-//   a: 'var(--accent)',
-//   bg: 'var(--background)',
-//   g: 'var(--grey)',
-//   l: 'var(--link)',
-//   buttonBg: 'var(--button-bg)',
-//   da: 'var(--dark-accent)',
-//   w: 'var(--white)',
-//   b: 'var(--black)',
-//   gradient: 'var(--gradient)',
-//   overlay: 'var(--overlay)',
-//   wt: 'var(--white-text)',
-//   bt: 'var(--black-text)',
-//   trsp: 'var(--transparent-color)',
-// });
 export const CloseMenuIcon = styled(IoClose)`
   width: 20px;
   height: 20px;
+  @media (min-width: 768px) {
+    width: 40px;
+    height: 40px;
+  }
 `;
 export const AccountIcon = styled(RiAccountPinCircleFill)`
   width: 20px;
@@ -38,7 +25,10 @@ export const CloseMenuButton = styled.button`
   text-transform: uppercase;
   background-color: ${p => p.theme.colors.trsp};
   cursor: pointer;
-
+  @media (min-width: 768px) {
+    width: 40px;
+    height: 40px;
+  }
   &:active {
     color: ${p => p.theme.colors.buttonBg};
   }
@@ -54,6 +44,10 @@ export const Title = styled.h1`
 
   padding: 0;
   margin: 0;
+  @media (min-width: 768px) {
+    font-size: 32px;
+    line-height: 1.5;
+  }
   & > span {
     color: ${p => p.theme.colors.a};
   }
@@ -96,6 +90,16 @@ export const LoginLink = styled(NavLink)`
   line-height: 19px;
   letter-spacing: 0.04em;
   margin-right: 18px;
+  @media (min-width: 768px) {
+    font-size: 20px;
+    line-height: 27px;
+    padding: 10px 28px;
+  }
+  &:active {
+    background-color: ${p => p.theme.colors.w};
+    border: 2px solid ${p => p.theme.colors.a};
+    color: ${p => p.theme.colors.a};
+  }
 `;
 export const RegisterLink = styled(NavLink)`
   display: inline-block;
@@ -109,6 +113,16 @@ export const RegisterLink = styled(NavLink)`
   font-size: 14px;
   line-height: 19px;
   letter-spacing: 0.04em;
+  @media (min-width: 768px) {
+    font-size: 20px;
+    line-height: 27px;
+    padding: 10px 28px;
+  }
+  &:active {
+    background-color: ${p => p.theme.colors.a};
+    border: 2px solid ${p => p.theme.colors.a};
+    color: ${p => p.theme.colors.w};
+  }
 `;
 export const MenuNavigationLink = styled(NavLink)`
   font-family: 'Manrope';
@@ -118,6 +132,10 @@ export const MenuNavigationLink = styled(NavLink)`
   letter-spacing: 0.04em;
 
   color: #181c27;
+  @media (min-width: 768px) {
+    font-size: 42px;
+    line-height: 1.38;
+  }
 `;
 export const AccentNavigationLink = styled(NavLink)`
   font-family: 'Manrope';
@@ -129,6 +147,10 @@ export const AccentNavigationLink = styled(NavLink)`
   text-decoration-line: underline;
 
   color: ${p => p.theme.colors.a};
+  @media (min-width: 768px) {
+    font-size: 42px;
+    line-height: 1.38;
+  }
 `;
 export const LinksBox = styled.div`
   display: flex;

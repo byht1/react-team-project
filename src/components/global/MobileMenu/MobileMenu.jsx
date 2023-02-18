@@ -45,7 +45,7 @@ export const MobileMenu = ({ closeMenu }) => {
                 Login
               </LoginLink>
               <RegisterLink to="register" onClick={closeMenu}>
-                Register
+                Registration
               </RegisterLink>
             </ButtonsBox>
           )}

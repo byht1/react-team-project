@@ -6,13 +6,19 @@ import {
   LoginIcon,
   Title,
   NavigationLink,
+  MobileBox,
+  ButtonsBox,
+  RegisterLink,
+  LoginLink,
+  AccountIcon,
+  TabletBox,
 } from './Header.styled';
 import { MobileMenu } from '../MobileMenu/MobileMenu';
 import { useState } from 'react';
 import { Container } from '../Container';
 export const Header = () => {
   const [menuIsOpen, setMenuIsOpen] = useState(false);
-
+  let authorized = false;
   async function openMenu() {
     try {
       setMenuIsOpen(!menuIsOpen);
@@ -35,12 +41,34 @@ export const Header = () => {
                 <span>t</span>ly
               </Title>
             </NavigationLink>
-            <LoginButton type="button">
-              <LoginIcon />
-            </LoginButton>
-            <MenuButton type="button" onClick={openMenu}>
-              <MenuIcon />
-            </MenuButton>
+            <MobileBox>
+              <LoginButton type="button">
+                <LoginIcon />
+              </LoginButton>
+              <TabletBox>
+                {authorized ? (
+                  <ButtonsBox>
+                    <LoginLink to="">
+                      <AccountIcon />
+                      Account
+                    </LoginLink>
+                  </ButtonsBox>
+                ) : (
+                  <ButtonsBox>
+                    <LoginLink to="login" onClick={openMenu}>
+                      Login
+                    </LoginLink>
+                    <RegisterLink to="register" onClick={openMenu}>
+                      Registration
+                    </RegisterLink>
+                  </ButtonsBox>
+                )}
+              </TabletBox>
+
+              <MenuButton type="button" onClick={openMenu}>
+                <MenuIcon />
+              </MenuButton>
+            </MobileBox>
           </HeaderBox>
         </Container>
       )}
