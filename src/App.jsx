@@ -14,7 +14,6 @@ import { Home } from 'page/Home';
 import { FormSellStepTwo } from 'components/modules/Form/FormSell/FormSellStepTwo';
 import { FormBox } from 'components/modules/Form/FormBox/FormBox';
 import { FormSellStepOne } from 'components/modules/Form/FormSell/FormSellStepOne';
-import { BackDrop } from 'components/modules/Form/BackDrop';
 
 const queryClient = new QueryClient();
 
