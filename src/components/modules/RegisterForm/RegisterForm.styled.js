@@ -21,7 +21,7 @@ export const AuthContainer = styled(Container)`
   padding-top: 42px;
 
   @media (min-width: 768px) {
-    /* padding-top: 204px; */
+    /* padding-top: 152px; */
     padding-top: 15vh;
   }
 
@@ -30,7 +30,7 @@ export const AuthContainer = styled(Container)`
   }
 `;
 
-export const LoginFormTitle = styled.h2`
+export const RegisterFormTitle = styled.h2`
   font-family: ${p => p.theme.fonts.manrope};
   font-weight: ${p => p.theme.fontWeights.bold};
   font-size: ${p => p.theme.fontSizes.xxl};
@@ -69,7 +69,16 @@ export const InputsWrapper = styled.div`
   }
 `;
 
-export const LoginText = styled.p`
+export const Input = styled.input`
+  height: 40px;
+  padding: 11px 14px;
+  background-color: ${p => p.theme.colors.bg};
+  border: 1px solid rgba(245, 146, 86, 0.5);
+  border-radius: ${p => p.theme.radii.inputRadius};
+  margin-bottom: ${p => p.mb}px;
+`;
+
+export const RegisterText = styled.p`
   font-family: ${p => p.theme.fonts.manrope};
   font-weight: ${p => p.theme.fontWeights.normal};
   font-size: ${p => p.theme.fontSizes.s};
