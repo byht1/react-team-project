@@ -12,6 +12,10 @@ import {
   LoginLink,
   AccountIcon,
   TabletBox,
+  DesktopBox,
+  LinksBox,
+  MenuNavigationLink,
+  AccentNavigationLink,
 } from './Header.styled';
 import { MobileMenu } from '../MobileMenu/MobileMenu';
 import { useState } from 'react';
@@ -65,6 +69,26 @@ export const Header = () => {
                 <MenuIcon />
               </MenuButton>
             </MobileBox>
+            <DesktopBox>
+              <LinksBox>
+                <MenuNavigationLink to="news">News</MenuNavigationLink>
+                <AccentNavigationLink to="notices">Find pet</AccentNavigationLink>
+                <MenuNavigationLink to="friends">Our friends</MenuNavigationLink>
+              </LinksBox>
+              {authorized ? (
+                <ButtonsBox>
+                  <LoginLink to="user">
+                    <AccountIcon />
+                    Account
+                  </LoginLink>
+                </ButtonsBox>
+              ) : (
+                <ButtonsBox>
+                  <LoginLink to="login">Login</LoginLink>
+                  <RegisterLink to="register">Registration</RegisterLink>
+                </ButtonsBox>
+              )}
+            </DesktopBox>
           </HeaderBox>
         </Container>
       )}

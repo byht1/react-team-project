@@ -3,41 +3,31 @@ import { BiMenu } from 'react-icons/bi';
 import { MdLogin } from 'react-icons/md';
 import { NavLink } from 'react-router-dom';
 import { RiAccountPinCircleFill } from 'react-icons/ri';
-// import { MenuIcon } from './Header.styled';
-//   background-color: ${p => p.theme.colors.aBg};
-// export const colors = Object.freeze({
-//   a: 'var(--accent)',
-//   bg: 'var(--background)',
-//   g: 'var(--grey)',
-//   l: 'var(--link)',
-//   buttonBg: 'var(--button-bg)',
-//   da: 'var(--dark-accent)',
-//   w: 'var(--white)',
-//   b: 'var(--black)',
-//   gradient: 'var(--gradient)',
-//   overlay: 'var(--overlay)',
-//   wt: 'var(--white-text)',
-//   bt: 'var(--black-text)',
-//   trsp: 'var(--transparent-color)',
-// });
-//  @media (min-width: 768px) {
-//     padding-left: 32px;
-//     padding-right: 32px;
-//     width: 768px;
-//   }TabletBox
+export const DesktopBox = styled.div`
+  @media (max-width: 1279.9px) {
+    display: none;
+  }
+  display: flex;
+  width: 100%;
+`;
 export const TabletBox = styled.div`
   @media (max-width: 767.9px) {
     display: none;
   }
 `;
 export const MobileBox = styled.div`
-  @media (min-width: 768px) {
+  display: flex;
+  margin-bottom: 0;
+  margin-left: auto;
+  justify-content: center;
+  align-items: center;
+  /* @media (min-width: 768px) {
     display: flex;
     margin-bottom: 0;
     margin-left: auto;
     justify-content: center;
     align-items: center;
-  }
+  } */
 
   @media (min-width: 1280px) {
     display: none;
@@ -80,6 +70,9 @@ export const Title = styled.h1`
   @media (min-width: 768px) {
     font-size: 32px;
     line-height: 1.5;
+  }
+  @media (min-width: 1280px) {
+    margin-right: 80px;
   }
   & > span {
     color: ${p => p.theme.colors.a};
@@ -191,5 +184,57 @@ export const AccountIcon = styled(RiAccountPinCircleFill)`
     width: 30px;
     height: 30px;
     margin-right: 12px;
+  }
+`;
+export const MenuNavigationLink = styled(NavLink)`
+  font-family: 'Manrope';
+  font-weight: 500;
+  font-size: 32px;
+  line-height: 1.38;
+  letter-spacing: 0.04em;
+
+  color: #181c27;
+  @media (min-width: 768px) {
+    font-size: 42px;
+    line-height: 1.38;
+  }
+  @media (min-width: 1280px) {
+    font-size: 20px;
+    line-height: 1.38;
+    transition: all var(--transition-transform);
+    &:hover {
+      transform: scale(1.05);
+    }
+  }
+`;
+export const AccentNavigationLink = styled(NavLink)`
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 32px;
+  line-height: 1.38;
+  letter-spacing: 0.04em;
+  text-decoration-line: underline;
+
+  color: ${p => p.theme.colors.a};
+  @media (min-width: 768px) {
+    font-size: 42px;
+    line-height: 1.38;
+  }
+  @media (min-width: 1280px) {
+    font-size: 20px;
+    line-height: 1.38;
+    transition: all var(--transition-transform);
+    &:hover {
+      transform: scale(1.05);
+    }
+  }
+`;
+export const LinksBox = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 40px;
+  @media (min-width: 1280px) {
+    gap: 80px;
   }
 `;
