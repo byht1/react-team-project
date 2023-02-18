@@ -1,1 +1,0 @@
-{"version":3,"file":"static/js/597.40deb195.chunk.js","mappings":"0JAMA,UAJoB,WAClB,OAAO,mDACT,C","sources":["page/NoticesPage/NoticesPage.jsx"],"sourcesContent":["import React from 'react';\n\nconst NoticesPage = () => {\n  return <div>NoticesPage Component </div>;\n};\n\nexport default NoticesPage;\n"],"names":[],"sourceRoot":""}
