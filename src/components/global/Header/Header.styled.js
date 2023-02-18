@@ -66,6 +66,9 @@ export const Title = styled.h1`
   }
   @media (min-width: 1280px) {
     margin-right: 80px;
+    @media (min-width: 768px) {
+      padding: 24px 0;
+    }
   }
   & > span {
     color: ${p => p.theme.colors.a};
@@ -105,6 +108,9 @@ export const HeaderBox = styled.header`
   align-items: center;
   @media (min-width: 768px) {
     padding: 24px 0;
+  }
+  @media (min-width: 1280px) {
+    padding: 0;
   }
 `;
 export const NavigationLink = styled(NavLink)`
@@ -202,6 +208,9 @@ export const MenuNavigationLink = styled(NavLink)`
     &:hover {
       transform: scale(1.05);
     }
+    @media (min-width: 768px) {
+      padding: 24px 0;
+    }
   }
 `;
 export const AccentNavigationLink = styled(NavLink)`
@@ -224,6 +233,9 @@ export const AccentNavigationLink = styled(NavLink)`
     transition: all var(--transition-transform);
     &:hover {
       transform: scale(1.05);
+    }
+    @media (min-width: 768px) {
+      padding: 24px 0;
     }
   }
 `;
