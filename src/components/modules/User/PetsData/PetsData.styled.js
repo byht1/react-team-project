@@ -16,6 +16,8 @@ export const TitleBlock = styled.div`
     width: 704px;
   }
   @media (min-width: 1280px) {
+    width: 704px;
+    margin: 0 0 22px 0;
   }
 `;
 export const Title = styled.h2`
@@ -67,6 +69,7 @@ export const PetCard = styled.div`
     width: 704px;
   }
   @media (min-width: 1280px) {
+    width: 821px;
   }
 `;
 export const InfoList = styled.ul`

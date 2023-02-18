@@ -15,6 +15,8 @@ export const Title = styled.h2`
     width: 736px;
   }
   @media (min-width: 1280px) {
+    font-size: 28px;
+    line-height: 38px;
   }
 `;
 
@@ -46,6 +48,9 @@ export const Div = styled.div`
     justify-content: space-between;
   }
   @media (min-width: 1280px) {
+    position: relative;
+    flex-direction: column;
+    padding: 20px 16px 18px 16px;
   }
 `;
 
@@ -67,6 +72,11 @@ export const SpanEditPhoto = styled.span`
     margin-top: 8px;
   }
   @media (min-width: 1280px) {
+    position: absolute;
+    top: 0;
+    right: 0;
+    margin-top: 231px;
+    margin-right: 16px;
   }
 
   &::before {
@@ -75,6 +85,9 @@ export const SpanEditPhoto = styled.span`
     width: 12.5px;
     height: 12.5px;
     background-color: salmon;
+  }
+  &:hover {
+    cursor: pointer;
   }
 `;
 
@@ -109,6 +122,7 @@ export const Container = styled.div`
     margin: 0px 32px 0px 0px;
   }
   @media (min-width: 1280px) {
+    max-width: 411px;
   }
 `;
 
@@ -120,5 +134,6 @@ export const PhotoBlock = styled.div`
   @media (min-width: 768px) {
   }
   @media (min-width: 1280px) {
+    max-width: fit-content;
   }
 `;
