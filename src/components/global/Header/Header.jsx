@@ -24,7 +24,7 @@ import { Container } from '../Container';
 export const Header = () => {
   const [menuIsOpen, setMenuIsOpen] = useState(false);
   let authorized = false;
-  async function openMenu() {
+  function openMenu() {
     try {
       setMenuIsOpen(!menuIsOpen);
       console.log('first');
