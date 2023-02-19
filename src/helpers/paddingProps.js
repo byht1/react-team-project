@@ -25,12 +25,7 @@ export const paddingProps = p => {
 function paddingPropsType(value, position = 'padding') {
   const type = typeof value;
 
-  return type === 'string'
-    ? `${position}: ${value};`
-    : `${position}: ${value}px;`;
+  return type === 'string' ? `${position}: ${value};` : `${position}: ${value}px;`;
 }
 
-export const paddingType = PropTypes.oneOfType([
-  PropTypes.string,
-  PropTypes.number,
-]);
+export const paddingType = PropTypes.oneOfType([PropTypes.string, PropTypes.number]);

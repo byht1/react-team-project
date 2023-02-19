@@ -5,10 +5,13 @@ export const ContainerBox = styled.div`
   ${p => p.pb && `padding-bottom: ${p.pb}px`};
   padding-left: 20px;
   padding-right: 20px;
-
   margin: 0 auto;
   width: 100%;
-
+  @media (min-width: 480px) and (max-width: 767.9px) {
+    padding-left: 32px;
+    padding-right: 32px;
+    width: 480px;
+  }
   @media (min-width: 768px) {
     padding-left: 32px;
     padding-right: 32px;
