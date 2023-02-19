@@ -1,6 +1,8 @@
 import styled from 'styled-components';
 import FemaleIcon from '@mui/icons-material/Female';
 import MaleIcon from '@mui/icons-material/Male';
+import { IconButton } from '@mui/material';
+
 export const Wrap = styled.div`
   position: absolute;
   top: 0;
@@ -55,4 +57,41 @@ export const LabelMale = styled.label`
 
 export const LabelFemale = styled.label`
   color: ${props => (props.female ? '#F59256' : '#000000')};
+`;
+
+export const InputFile = styled(IconButton)`
+  width: 140px;
+  height: 140px;
+  & span {
+    background-color: #fdf7f2;
+    border-radius: 20px;
+  }
+  & svg {
+    z-index: 2;
+    width: 62px;
+    height: 62px;
+    color: #6f6d6b;
+  }
+`;
+
+export const ImgLoaded = styled.img`
+  position: absolute;
+  z-index: 4;
+  width: 140px;
+  max-height: 140px;
+  border-radius: 20px;
+`;
+
+export const LabelText = styled.p`
+  display: inline-block;
+  /* border: 2px solid #f59256;
+  border-radius: 40px;
+  padding: 10px 28px; */
+`;
+
+export const Label = styled.label`
+  border: 2px solid #f59256;
+  border-radius: 40px;
+  padding: 10px 28px;
+  background-color: ${props => (props.checked ? '#F59256' : '#FFF')};
 `;
