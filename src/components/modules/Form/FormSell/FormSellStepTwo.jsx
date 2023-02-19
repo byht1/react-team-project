@@ -56,6 +56,8 @@ import { Male, Female } from '@mui/icons-material';
 import { RadioTwo } from './FormSell.styled';
 import { RadioMale, RadioFemale, LabelMale, LabelFemale } from './FormSell.styled';
 import { LabelMail } from './FormSell.styled';
+import StarIcon from '@mui/icons-material/Star';
+
 export const FormSellStepTwo = () => {
   const navigate = useNavigate();
   const [male, setMale] = useState(false);
@@ -74,6 +76,7 @@ export const FormSellStepTwo = () => {
     <>
       <FormWrap>
         <Text>Add pet</Text>
+
         <InputWrap>
           <LabelMale
             htmlFor="Male"
@@ -87,7 +90,7 @@ export const FormSellStepTwo = () => {
             <RadioMale />
           </LabelMale>
 
-          <RadioTwo {...register('radio')} type="radio" value="Male" id="Male" />
+          <RadioTwo {...register('sex')} type="radio" value="Male" id="Male" />
           <LabelFemale
             htmlFor="Female"
             onClick={() => {
@@ -99,7 +102,7 @@ export const FormSellStepTwo = () => {
             Female
             <RadioFemale />
           </LabelFemale>
-          <RadioTwo {...register('radio')} type="radio" value="Female" id="Female" />
+          <RadioTwo {...register('sex')} type="radio" value="Female" id="Female" />
 
           <label htmlFor="location">Location</label>
           <input {...register('location')} placeholder="Type location" id="location" />
