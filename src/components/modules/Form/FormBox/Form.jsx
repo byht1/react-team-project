@@ -18,14 +18,20 @@ import { LabelMale, LabelFemale } from '../FormSell/FormSell.styled';
 //       console.error('Error sending POST request:', error);
 //     });
 // };
-
-export const Form = ({ methods }) => {
+import { useFormContext } from 'react-hook-form';
+import { FormSellStepOne } from '../FormSell/FormSellStepOne';
+import { FormSellStepTwo } from '../FormSell/FormSellStepTwo';
+export const Form = ({ methods, children, formProps }) => {
   const navigate = useNavigate();
+
+  // const { formProps } = useFormContext();
+
+  // console.log(formProps);
   const [selectedValue, setSelectedValue] = useState('option-1');
   const [male, setMale] = useState(true);
   const [female, setFemale] = useState(false);
   // const { mutate } = useMutation({ mutationFn: createAd });
-  console.log(selectedValue);
+
   const onSubmit = data => {
     console.log(data);
     navigate('/');
@@ -37,7 +43,7 @@ export const Form = ({ methods }) => {
 
   return (
     <>
-      <div>
+      {/* <div>
         <label>
           <input
             type="radio"
@@ -68,7 +74,7 @@ export const Form = ({ methods }) => {
           />
           <p>Option3</p>
         </label>
-      </div>
+      </div> */}
       {/* <form>
         <LabelMale
           htmlFor="Male"

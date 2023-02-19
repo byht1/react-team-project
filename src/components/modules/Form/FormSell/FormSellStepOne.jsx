@@ -4,12 +4,22 @@ import { Text } from 'components/global/text';
 
 import { InputWrap, ButtonWrap, TextTittle } from './FormSell.styled';
 import { Autocomplete, TextField } from '@mui/material';
+import { useEffect } from 'react';
 
 export const FormSellStepOne = () => {
   const {
     register,
     formState: { errors },
   } = useFormContext();
+
+  // useEffect(() => {
+  //   const timerId = setTimeout(() => {
+  //     const values = getValues();
+  //     console.log(values);
+  //   }, 100);
+  //   return () => clearTimeout(timerId);
+  // }, [getValues()]);
+
   const navigate = useNavigate();
   return (
     <>

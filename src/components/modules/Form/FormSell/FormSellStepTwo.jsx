@@ -14,7 +14,7 @@ import {
   InputFile,
   ImgLoaded,
 } from './FormSell.styled';
-
+import { useEffect } from 'react';
 export const FormSellStepTwo = () => {
   const navigate = useNavigate();
   const [male, setMale] = useState(true);
@@ -29,8 +29,14 @@ export const FormSellStepTwo = () => {
   const {
     register,
     formState: { errors },
+    getValues,
   } = useFormContext();
 
+  const values = getValues();
+  useEffect(() => {
+    const value = getValues();
+    console.log(value.radio);
+  }, [getValues, values]);
   return (
     <>
       <FormWrap>
