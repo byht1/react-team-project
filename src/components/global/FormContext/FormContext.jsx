@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { FormProvider } from 'react-hook-form';
 import PropTypes from 'prop-types';
@@ -9,7 +10,7 @@ export const FormContext = ({ methods, children, submit }) => {
 
   return (
     <FormProvider {...methods}>
-      <Form onSubmit={handleSubmit(submit)}>{children}</Form>;
+      <Form onSubmit={handleSubmit(submit)}>{children}</Form>
     </FormProvider>
   );
 };

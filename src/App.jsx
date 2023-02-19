@@ -24,7 +24,7 @@ function App() {
           <Route path="friends" element={<OurFriendsPage />} />
           {/* Пудлычний шлях */}
           <Route path="register" element={<RegisterPage />} />
-          <Route path="login " element={<LoginPage />} />
+          <Route path="login" element={<LoginPage />} />
           {/* Приватний шлях */}
           <Route path="user" element={<UserPage />} />
           <Route path="*" element={<Navigate to="/" />} />
