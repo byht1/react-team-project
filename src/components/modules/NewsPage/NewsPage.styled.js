@@ -1,11 +1,12 @@
 import styled from 'styled-components';
-  
+import { IoMdSearch } from 'react-icons/io';  
+
 export const Input = styled.input`
     width: 280px;
     font-size: 16px;
     padding: 9px 12px 9px 12px;
     color: #535353;
-    border: none;
+    border: 1px solid transparent;
     outline: none;
     box-shadow: 7px 4px 14px 0px rgba(49, 21, 4, 0.07);
     border-radius: 20px;
@@ -80,16 +81,35 @@ margin-top: 40px;
 `
 export const Block = styled.div`
 position: relative;
-text-align: center;
+margin: 0 auto;
 
 `
 export const Button = styled.button`
 position: absolute;
 top: 10px;
 right: 12px;
-width: 24px;
-height: 24px;
+width: 20px;
+height: 20px;
 border-radius: 50%;
 background: transparent;
+
+@media (min-width: 768px) {
+  width: 24px;
+  height: 24px;
+}
+`
+export const Icon = styled(IoMdSearch)`
+width: 20px;
+height: 20px;
 fill: #111111;
+@media (min-width: 768px) {
+  width: 24px;
+  height: 24px;
+}
+`
+export const SvgContainer = styled.div`
+// width: 280px;
+// @media (min-width: 768px) {
+//   width: 608px;
+// }
 `
