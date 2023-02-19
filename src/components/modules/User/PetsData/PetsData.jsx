@@ -12,15 +12,20 @@ import {
   ListItemInfo,
   Icon,
   PhotoBlock,
+  AddPetBlock,
 } from './PetsData.styled';
 import Chloe from '../../../../img/chloe grace moretz.webp';
+import AddCircleIcon from '@mui/icons-material/AddCircle';
 
 export const PetsData = () => {
   return (
     <Container>
       <TitleBlock>
         <Title>My pets:</Title>
-        <TitleSpan>Add pet</TitleSpan>
+        <AddPetBlock>
+          <TitleSpan>Add pet</TitleSpan>
+          <AddCircleIcon className="AddCircleIcon" sx={{ fontSize: 48 }} />
+        </AddPetBlock>
       </TitleBlock>
       <PetBlcok>
         <PetCard>

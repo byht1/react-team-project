@@ -16,8 +16,8 @@ export const TitleBlock = styled.div`
     width: 704px;
   }
   @media (min-width: 1280px) {
-    width: 704px;
-    margin: 0 0 22px 0;
+    width: 821px;
+    margin: 0 0 12px 0;
   }
 `;
 export const Title = styled.h2`
@@ -31,6 +31,14 @@ export const Title = styled.h2`
   letter-spacing: 0.04em;
 
   color: ${theme.colors.b};
+
+  @media (min-width: 768px) {
+  }
+  @media (min-width: 1280px) {
+    font-weight: 500;
+    font-size: 28px;
+    line-height: 38px;
+  }
 `;
 export const TitleSpan = styled.span`
   font-family: 'Manrope';
@@ -38,8 +46,17 @@ export const TitleSpan = styled.span`
   font-weight: 500;
   font-size: 20px;
   line-height: 27px;
+  display: flex;
 
   color: ${theme.colors.b};
+
+  @media (min-width: 768px) {
+  }
+  @media (min-width: 1280px) {
+    font-weight: 500;
+    font-size: 28px;
+    line-height: 38px;
+  }
 `;
 export const PetBlcok = styled.div`
   display: flex;
@@ -132,13 +149,23 @@ export const Icon = styled.div`
   width: 12.5px;
   height: 12.5px;
   background-color: salmon;
+  cursor: pointer;
 
   @media (min-width: 768px) {
     margin-top: 20px;
     margin-left: 650px;
   }
   @media (min-width: 1280px) {
+    margin-top: 20px;
+    margin-left: 738px;
+    width: 44px;
+    height: 44px;
   }
 `;
 
 export const PhotoBlock = styled.div``;
+
+export const AddPetBlock = styled.div`
+  display: flex;
+  align-items: center;
+`;

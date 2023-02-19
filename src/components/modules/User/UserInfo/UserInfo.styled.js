@@ -9,6 +9,7 @@ export const Form = styled.form`
   padding: 34px 12px 42px 8px;
 
   @media (min-width: 768px) {
+    width: fit-content;
   }
   @media (min-width: 1280px) {
     width: 100%;
@@ -76,6 +77,7 @@ export const SpanLogout = styled.span`
   @media (min-width: 768px) {
     margin-left: 8px;
     margin-right: auto;
+    margin-top: 18px;
   }
   @media (min-width: 1280px) {
     font-weight: 500;
@@ -119,7 +121,7 @@ export const FildName = styled.span`
   align-items: center;
   letter-spacing: 0.04em;
 
-  color: #111111;
+  color: ${theme.colors.b};
 
   @media (min-width: 768px) {
     font-size: 18px;
@@ -133,6 +135,7 @@ export const Icon = styled.span`
   width: 20px;
   height: 20px;
   background-color: salmon;
+  cursor: pointer;
   @media (min-width: 768px) {
   }
   @media (min-width: 1280px) {
