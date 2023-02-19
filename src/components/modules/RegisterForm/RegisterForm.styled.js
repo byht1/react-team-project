@@ -11,22 +11,19 @@ export const BgWrapper = styled.div`
   background-size: 1800px;
 
   @media (min-width: 768px) {
+    min-height: 600px;
     background-size: 1280px;
     background-position: bottom;
   }
 `;
 
 export const AuthContainer = styled(Container)`
-  align-items: 'center';
   padding-top: 42px;
 
   @media (min-width: 768px) {
-    /* padding-top: 152px; */
-    padding-top: 15vh;
-  }
-
-  @media (min-width: 1280px) {
-    padding-top: 80px;
+    padding-top: 0;
+    position: relative;
+    height: 100%;
   }
 `;
 
@@ -37,6 +34,10 @@ export const RegisterFormTitle = styled.h2`
   line-height: ${p => p.theme.lineHeights.heading};
   color: ${p => p.theme.colors.b};
   margin-bottom: 40px;
+
+  @media (min-width: 768px) {
+    font-size: ${p => p.theme.fontSizes.xxxml};
+  } ;
 `;
 
 export const FormWrapper = styled.div`
@@ -45,6 +46,10 @@ export const FormWrapper = styled.div`
   align-items: center;
 
   @media (min-width: 768px) {
+    position: absolute;
+    left: 50%;
+    top: 42%;
+    transform: translate(-50%, -50%);
     background-color: ${p => p.theme.colors.w};
     width: 608px;
     margin-left: auto;

@@ -17,6 +17,7 @@ import {
 import { Box } from 'components/global/Box';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { registerSchema } from './RegisterSchema';
+import { bgcolor } from '@mui/system';
 
 export const RegisterForm = () => {
   const [step, setStep] = useState(1);
@@ -61,7 +62,12 @@ export const RegisterForm = () => {
                   <Button theme={'dark'} type={'submit'} fn={() => console.log('click')}>
                     Register
                   </Button>
-                  <Button type={'button'} mt={10} fn={() => setStep(1)}>
+                  <Button
+                    style={{ backgroundColor: 'transparent' }}
+                    type={'button'}
+                    mt={10}
+                    fn={() => setStep(1)}
+                  >
                     Back
                   </Button>
                 </>

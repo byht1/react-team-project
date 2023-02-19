@@ -40,6 +40,7 @@ export const theme = {
     xxl: '24px',
     xxxl: '28px',
     logo: '32px',
+    xxxml: '36px',
     xxxxl: '48px',
   },
   fontWeights: {
