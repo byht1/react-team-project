@@ -1,8 +1,28 @@
 import styled from 'styled-components';
 import { IoMdSearch } from 'react-icons/io';  
+import {TitleH2} from 'components/global/text';
 
+export const NewBlock = styled.div`
+margin: 0 auto;
+@media (min-width: 768px) {
+  padding-top: 40px;
+}
+@media (min-width: 1280px) {
+  padding-top: 19px;
+  padding-bottom: 100px;
+}
+`
+export const TitleNews = styled(TitleH2)`
+margin-bottom: 28px;
+font-size: 24px;
+      @media (min-width: 768px) {
+        margin-bottom: 40px;
+        font-size: 48px;
+      }
+     
+`
 export const Input = styled.input`
-    width: 280px;
+    width: 100%;
     font-size: ${p => p.theme.fontSizes.m};
     padding: 9px 12px 9px 12px;
     color: #535353;
@@ -47,16 +67,17 @@ export const Item = styled.li`
 display: flex;
 flex-direction: column;
 justify-content: space-between;
-width: 280px;
-height: 348px;
+width: 100%;
+margin-top: 40px;
 
 @media (min-width: 768px) {
     width: 336px;
-    height: 348px;
+    height: 288px;
+    margin-top: 60px;
   }
   @media (min-width: 1280px) {
     width: 395px;
-    height: 314px;
+    height: 266px;
   
   }
 `
@@ -65,18 +86,17 @@ display: flex;
 justify-content: space-between;
 `
 export const Line = styled.div`
-width: 200px;
+width: 71%;
 height: 4px;
 border-radius: ${p => p.theme.radii.inputRadius};
-// background: linear-gradient(90deg, #FF634E 0%, #FFDF48 105.44%);
 background: var(--gradient);
 margin-bottom: 4px;
-margin-top: 40px;
+
 
 @media (min-width: 768px) {
     width: 280px;
     height: 8px;
-    margin-top: 60px;
+   
   }
   @media (min-width: 1280px) {
     width: 340px;
@@ -86,7 +106,14 @@ margin-top: 40px;
 `
 export const Block = styled.div`
 position: relative;
-margin: 0 auto;
+@media (min-width: 768px) {
+  margin: 0 auto;
+  // width: 608px;
+}
+@media (min-width: 1280px) {
+
+}
+
 
 `
 export const Button = styled.button`
@@ -112,9 +139,4 @@ fill: ${p => p.theme.colors.b};
   height: 24px;
 }
 `
-export const SvgContainer = styled.div`
-// width: 280px;
-// @media (min-width: 768px) {
-//   width: 608px;
-// }
-`
+

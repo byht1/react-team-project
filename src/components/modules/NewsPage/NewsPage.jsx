@@ -1,19 +1,22 @@
 import React from 'react';
 import data from './data';
-import {TitleH2} from 'components/global/text';
+
 import {Box} from 'components/global/Box';
 import {Container} from 'components/global/Container';
 import {NewsList} from 'components/modules/NewsPage/NewsList';
-import {Input, Block, Button, Icon} from './NewsPage.styled';
+import {Input, Block, Button, Icon, NewBlock, TitleNews} from './NewsPage.styled';
 
 
 export const NewsPageConponent = () => {
   return (
-      <Container pb={200} pt={69}>
-          <Box display="flex" flexDirection="column" justifyContent="center">
-            <TitleH2 textAlign="center" mb={40}>News</TitleH2>
+      <Container pb={100} pt={26}>
+        <NewBlock>
+        <Box display="flex" flexDirection="column" justifyContent="center">
+            <TitleNews textAlign="center">News</TitleNews>
             <Block>
-              <Input type="text" placeholder="Search" />
+              <label htmlFor="filter">
+                <Input type="text" placeholder="Search"></Input>
+              </label>
                 <Button>
                   <Icon/>
                 </Button>
@@ -21,6 +24,7 @@ export const NewsPageConponent = () => {
             
             <NewsList data = {data}/>
           </Box>
+        </NewBlock>
         </Container>
     );
 };
