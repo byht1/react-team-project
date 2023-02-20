@@ -1,5 +1,7 @@
 import styled from 'styled-components';
 import { theme } from 'theme/theme';
+import { ReactComponent as plus } from '../../../../img/User/plus.svg';
+import { ReactComponent as trashBin } from '../../../../img/User/trashBin.svg';
 
 export const TitleBlock = styled.div`
   margin-left: auto;
@@ -17,7 +19,7 @@ export const TitleBlock = styled.div`
   }
   @media (min-width: 1280px) {
     width: 821px;
-    margin: 0 0 12px 0;
+    margin: 0 0 15px 0;
   }
 `;
 export const Title = styled.h2`
@@ -92,9 +94,11 @@ export const PetCard = styled.div`
 export const InfoList = styled.ul`
   display: flex;
   flex-direction: column;
+  margin-bottom: 24px;
 
   @media (min-width: 768px) {
     margin-left: 32px;
+    margin-bottom: 0px;
   }
   @media (min-width: 1280px) {
   }
@@ -141,25 +145,31 @@ export const ListItemInfo = styled.p`
 `;
 
 export const Icon = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
   position: absolute;
-  margin-top: 280px;
-  margin-left: 227.5px;
+  color: rgba(17, 17, 17, 0.6);
+  margin-top: 276px;
+  margin-left: 225px;
   top: 0;
   bottom: 0;
-  width: 12.5px;
-  height: 12.5px;
-  background-color: salmon;
+  width: 16.5px;
+  height: 18.5px;
+  background-color: none;
   cursor: pointer;
+  border-radius: 50%;
 
   @media (min-width: 768px) {
+    background-color: #fdf7f2;
     margin-top: 20px;
-    margin-left: 650px;
+    margin-left: 618px;
+    width: 44px;
+    height: 44px;
   }
   @media (min-width: 1280px) {
     margin-top: 20px;
     margin-left: 738px;
-    width: 44px;
-    height: 44px;
   }
 `;
 
@@ -168,4 +178,37 @@ export const PhotoBlock = styled.div``;
 export const AddPetBlock = styled.div`
   display: flex;
   align-items: center;
+`;
+
+export const AddPetIc = styled(plus)`
+  margin-left: 15px;
+  cursor: pointer;
+  height: 40px;
+  width: 40px;
+  background-color: ${theme.colors.a};
+  border-radius: 50%;
+  & path {
+    stroke: ${theme.colors.w};
+  }
+`;
+
+export const TrashBinIc = styled(trashBin)`
+  cursor: pointer;
+  height: 16px;
+  width: 18px;
+
+  & path {
+    stroke: ${theme.colors.w};
+  }
+
+  @media (min-width: 768px) {
+    height: 22px;
+    width: 22px;
+  }
+  @media (min-width: 1280px) {
+  }
+
+  &:hover path {
+    fill: ${theme.colors.a};
+  }
 `;

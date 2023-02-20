@@ -1,7 +1,15 @@
 import React from 'react';
-import { ProfileImage, Container, Div, SpanEditPhoto, Title, PhotoBlock } from './UserData.styled';
+import {
+  ProfileImage,
+  Container,
+  Div,
+  SpanEditPhoto,
+  Title,
+  PhotoBlock,
+  CameraIc,
+} from './UserData.styled';
 import { UserInfo } from '../UserInfo';
-import Chloe from '../../../../img/chloe grace moretz.webp';
+import Chloe from '../../../../img/User/chloe grace moretz.webp';
 
 export const UserData = () => {
   return (
@@ -10,7 +18,10 @@ export const UserData = () => {
       <Div>
         <PhotoBlock>
           <ProfileImage src={Chloe} />
-          <SpanEditPhoto>Edit photo</SpanEditPhoto>
+          <SpanEditPhoto>
+            <CameraIc />
+            Edit photo
+          </SpanEditPhoto>
         </PhotoBlock>
         <UserInfo />
       </Div>

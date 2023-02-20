@@ -1,12 +1,16 @@
 import styled from 'styled-components';
 import { theme } from 'theme/theme';
+import { ReactComponent as edit } from '../../../../img/User/edit.svg';
+import { ReactComponent as logout } from '../../../../img/User/logout.svg';
+import { ReactComponent as check } from '../../../../img/User/check.svg';
 
 export const Form = styled.form`
   display: grid;
   gap: 6px;
   width: 252px;
   grid-template-columns: auto auto auto;
-  padding: 34px 12px 42px 8px;
+  margin-top: 38px;
+  margin-bottom: 25px;
 
   @media (min-width: 768px) {
     width: fit-content;
@@ -61,7 +65,6 @@ export const Input = styled.input`
 
 export const SpanLogout = styled.span`
   width: fit-content;
-  margin-right: 24px;
   margin-left: auto;
   color: ${theme.colors.bt};
   font-family: 'Manrope';
@@ -75,7 +78,7 @@ export const SpanLogout = styled.span`
   color: rgba(17, 17, 17, 0.6);
 
   @media (min-width: 768px) {
-    margin-left: 8px;
+    margin-left: 0px;
     margin-right: auto;
     margin-top: 18px;
   }
@@ -86,17 +89,7 @@ export const SpanLogout = styled.span`
     margin-top: 24px;
   }
 
-  &::before {
-    content: '';
-    margin-right: 8px;
-    width: 12.5px;
-    height: 12.5px;
-    background-color: salmon;
-  }
-
-  &:hover {
-    cursor: pointer;
-  }
+  cursor: pointer;
 `;
 
 export const Cover = styled.div`
@@ -131,10 +124,14 @@ export const FildName = styled.span`
   }
 `;
 
-export const Icon = styled.span`
+export const Icon = styled.a`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
   width: 20px;
   height: 20px;
-  background-color: salmon;
+  background-color: #fdf7f2;
   cursor: pointer;
   @media (min-width: 768px) {
   }
@@ -142,5 +139,42 @@ export const Icon = styled.span`
     margin-left: 16px;
     width: 32px;
     height: 32px;
+  }
+`;
+
+export const EditIc = styled(edit)`
+  cursor: pointer;
+  height: 22px;
+  width: 22px;
+
+  & path {
+    fill: ${theme.colors.a};
+  }
+`;
+
+export const LogoutIc = styled(logout)`
+  cursor: pointer;
+  height: 22px;
+  width: 22px;
+  margin-right: 8px;
+
+  & path {
+    stroke: ${theme.colors.w};
+  }
+`;
+
+export const CheckIc = styled(check)`
+  cursor: pointer;
+  height: 22px;
+  width: 22px;
+`;
+
+export const EditIcBlack = styled(edit)`
+  cursor: pointer;
+  height: 22px;
+  width: 22px;
+
+  & path {
+    fill: ${theme.colors.b};
   }
 `;

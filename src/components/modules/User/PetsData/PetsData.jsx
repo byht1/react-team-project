@@ -13,9 +13,10 @@ import {
   Icon,
   PhotoBlock,
   AddPetBlock,
+  AddPetIc,
+  TrashBinIc,
 } from './PetsData.styled';
-import Chloe from '../../../../img/chloe grace moretz.webp';
-import AddCircleIcon from '@mui/icons-material/AddCircle';
+import Chloe from '../../../../img/User/chloe grace moretz.webp';
 
 export const PetsData = () => {
   return (
@@ -23,15 +24,16 @@ export const PetsData = () => {
       <TitleBlock>
         <Title>My pets:</Title>
         <AddPetBlock>
-          <TitleSpan>Add pet</TitleSpan>
-          <AddCircleIcon className="AddCircleIcon" sx={{ fontSize: 48 }} />
+          <TitleSpan>Add pet</TitleSpan> <AddPetIc />
         </AddPetBlock>
       </TitleBlock>
       <PetBlcok>
         <PetCard>
           <PhotoBlock>
             <Img src={Chloe} />
-            <Icon></Icon>
+            <Icon>
+              <TrashBinIc />
+            </Icon>
           </PhotoBlock>
           <InfoList>
             <ListItem>
@@ -55,7 +57,9 @@ export const PetsData = () => {
         <PetCard>
           <PhotoBlock>
             <Img src={Chloe} />
-            <Icon></Icon>
+            <Icon>
+              <TrashBinIc />
+            </Icon>
           </PhotoBlock>
           <InfoList>
             <ListItem>

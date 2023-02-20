@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import { theme } from '../../../../theme/theme';
+import { ReactComponent as camera } from '../../../../img/User/camera.svg';
 
 export const Title = styled.h2`
   margin-bottom: 18px;
@@ -56,7 +57,7 @@ export const Div = styled.div`
 
 export const SpanEditPhoto = styled.span`
   width: fit-content;
-  margin-right: 24px;
+  margin-right: 0px;
   margin-left: auto;
   color: ${theme.colors.bt};
   font-family: 'Manrope';
@@ -67,6 +68,7 @@ export const SpanEditPhoto = styled.span`
   display: flex;
   align-items: center;
   letter-spacing: 0.04em;
+  margin-top: 13px;
 
   @media (min-width: 768px) {
     margin-top: 8px;
@@ -78,40 +80,7 @@ export const SpanEditPhoto = styled.span`
     margin-top: 231px;
     margin-right: 16px;
   }
-
-  &::before {
-    content: '';
-    margin-right: 5px;
-    width: 12.5px;
-    height: 12.5px;
-    background-color: salmon;
-  }
-  &:hover {
-    cursor: pointer;
-  }
-`;
-
-export const SpanLogout = styled.span`
-  width: fit-content;
-  margin-right: 24px;
-  margin-left: auto;
-  color: ${theme.colors.bt};
-  font-family: 'Manrope';
-  font-style: normal;
-  font-weight: 400;
-  font-size: 12px;
-  line-height: 22px;
-  display: flex;
-  align-items: center;
-  letter-spacing: 0.04em;
-
-  &::before {
-    content: '';
-    margin-right: 8px;
-    width: 12.5px;
-    height: 12.5px;
-    background-color: salmon;
-  }
+  cursor: pointer;
 `;
 
 export const Container = styled.div`
@@ -135,5 +104,16 @@ export const PhotoBlock = styled.div`
   }
   @media (min-width: 1280px) {
     max-width: fit-content;
+  }
+`;
+
+export const CameraIc = styled(camera)`
+  cursor: pointer;
+  height: 22px;
+  width: 22px;
+  margin-right: 5px;
+
+  & path {
+    stroke: ${theme.colors.w};
   }
 `;
