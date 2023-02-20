@@ -18,7 +18,7 @@ export const Background = styled.div`
     background-size: 1449px;
   }
   @media (min-width: 1280px) {
-    background-size: 1280px;
+    background-size: 1380px;
     background-image: url(${imageDesk});
     background-position: center;
   }
