@@ -25,8 +25,8 @@ export const ThumbTag = styled('span')`
   width: 158px;
   padding-top: 7px;
   padding-bottom: 7px;
-  padding-left: 20px;
 
+  text-align: center;
   background-color: ${p => p.theme.colors.tagBg};
   backdrop-filter: blur(2px);
 
@@ -108,7 +108,7 @@ export const DeleteBtn = styled(LightBtn)`
 
   padding-top: 8px;
   padding-bottom: 8px;
-  margin-top: 20px;
+  margin-top: 12px;
 
   color: ${p => p.theme.colors.da};
 

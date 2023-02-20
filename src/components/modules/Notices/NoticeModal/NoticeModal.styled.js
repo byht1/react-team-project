@@ -46,7 +46,7 @@ export const Modal = styled(Box)`
     top: 50%;
     left: 50%;
 
-    width: 704px;
+    min-width: 704px;
 
     padding-top: 32px;
     padding-bottom: 32px;

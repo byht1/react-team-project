@@ -1,4 +1,6 @@
 import React from 'react';
+import { useQuery } from '@tanstack/react-query';
+import { fetchOneNotice } from 'services/notices';
 import { AiFillHeart } from 'react-icons/ai';
 import {
   ThumbWrapper,
@@ -22,66 +24,80 @@ import {
   AddToFavBtn,
 } from './NoticesModalCard.styled';
 
-export const NoticesModalCard = () => {
+export const NoticesModalCard = ({ noticeId }) => {
+  const { data, isLoading, isSuccess } = useQuery({
+    queryFn: () => fetchOneNotice(noticeId),
+    queryKey: ['notices', noticeId],
+  });
+
   return (
-    <ModalCard>
-      <ModalCardInfoWrapper>
-        <ThumbWrapper>
-          <ModalThumbImage src="https://mkantwerpen.be/wp-content/uploads/2020/01/placeholder.png"></ModalThumbImage>
-          <ThumbTag>in good hands</ThumbTag>
-        </ThumbWrapper>
-        <ModalCardTextWrapper>
-          <ModalCardTitle>Сute dog looking for a home</ModalCardTitle>
-          <ModalCardDescriptionTable>
-            <TableBody>
-              <CardDescriptionRow>
-                <ModalCardDescriptionKey>Name:</ModalCardDescriptionKey>
-                <ModalCardDescriptionValue>Rich</ModalCardDescriptionValue>
-              </CardDescriptionRow>
-              <CardDescriptionRow>
-                <ModalCardDescriptionKey>Birthday:</ModalCardDescriptionKey>
-                <ModalCardDescriptionValue>21.09.2020</ModalCardDescriptionValue>
-              </CardDescriptionRow>
-              <CardDescriptionRow>
-                <ModalCardDescriptionKey>Breed:</ModalCardDescriptionKey>
-                <ModalCardDescriptionValue>Pomeranian</ModalCardDescriptionValue>
-              </CardDescriptionRow>
-              <CardDescriptionRow>
-                <ModalCardDescriptionKey>Place:</ModalCardDescriptionKey>
-                <ModalCardDescriptionValue>Lviv</ModalCardDescriptionValue>
-              </CardDescriptionRow>
-              <CardDescriptionRow>
-                <ModalCardDescriptionKey>Sex:</ModalCardDescriptionKey>
-                <ModalCardDescriptionValue>male</ModalCardDescriptionValue>
-              </CardDescriptionRow>
-              <CardDescriptionRow>
-                <ModalCardDescriptionKey>Email:</ModalCardDescriptionKey>
-                <ModalCardDescriptionValue>user@mail.com</ModalCardDescriptionValue>
-              </CardDescriptionRow>
-              <CardDescriptionRow>
-                <ModalCardDescriptionKey>Phone:</ModalCardDescriptionKey>
-                <ModalCardDescriptionValue>+380971234567</ModalCardDescriptionValue>
-              </CardDescriptionRow>
-              <CardDescriptionRow>
-                <ModalCardDescriptionKey>Price:</ModalCardDescriptionKey>
-                <ModalCardDescriptionValue>$150</ModalCardDescriptionValue>
-              </CardDescriptionRow>
-            </TableBody>
-          </ModalCardDescriptionTable>
-        </ModalCardTextWrapper>
-      </ModalCardInfoWrapper>
-      <ModalCommentText>
-        <ModalCommentTitle>Comments: </ModalCommentTitle>
-        Lorem ipsum dolor sit amet, consectetur Lorem ipsum dolor sit amet, consectetur Lorem ipsum
-        dolor sit amet, consectetur Lorem
-      </ModalCommentText>
-      <ModalCardBtnWrapper>
-        <ContactBtn>Contact</ContactBtn>
-        <AddToFavBtn>
-          Add to
-          <AiFillHeart size={'16px'} />
-        </AddToFavBtn>
-      </ModalCardBtnWrapper>
-    </ModalCard>
+    <>
+      {isSuccess && (
+        <ModalCard>
+          <ModalCardInfoWrapper>
+            <ThumbWrapper>
+              <ModalThumbImage
+                src={
+                  data.imgUrl[0]
+                    ? data.imgUrl[0]
+                    : 'https://mkantwerpen.be/wp-content/uploads/2020/01/placeholder.png'
+                }
+              ></ModalThumbImage>
+              <ThumbTag>{data.category}</ThumbTag>
+            </ThumbWrapper>
+            <ModalCardTextWrapper>
+              <ModalCardTitle>{data.title}</ModalCardTitle>
+              <ModalCardDescriptionTable>
+                <TableBody>
+                  <CardDescriptionRow>
+                    <ModalCardDescriptionKey>Name:</ModalCardDescriptionKey>
+                    <ModalCardDescriptionValue>{data.name}</ModalCardDescriptionValue>
+                  </CardDescriptionRow>
+                  <CardDescriptionRow>
+                    <ModalCardDescriptionKey>Birthday:</ModalCardDescriptionKey>
+                    <ModalCardDescriptionValue>{data.birthday}</ModalCardDescriptionValue>
+                  </CardDescriptionRow>
+                  <CardDescriptionRow>
+                    <ModalCardDescriptionKey>Breed:</ModalCardDescriptionKey>
+                    <ModalCardDescriptionValue>{data.breed}</ModalCardDescriptionValue>
+                  </CardDescriptionRow>
+                  <CardDescriptionRow>
+                    <ModalCardDescriptionKey>Place:</ModalCardDescriptionKey>
+                    <ModalCardDescriptionValue>{data.location}</ModalCardDescriptionValue>
+                  </CardDescriptionRow>
+                  <CardDescriptionRow>
+                    <ModalCardDescriptionKey>Sex:</ModalCardDescriptionKey>
+                    <ModalCardDescriptionValue>{data.sex}</ModalCardDescriptionValue>
+                  </CardDescriptionRow>
+                  <CardDescriptionRow>
+                    <ModalCardDescriptionKey>Email:</ModalCardDescriptionKey>
+                    <ModalCardDescriptionValue>{data.owner.email}</ModalCardDescriptionValue>
+                  </CardDescriptionRow>
+                  <CardDescriptionRow>
+                    <ModalCardDescriptionKey>Phone:</ModalCardDescriptionKey>
+                    <ModalCardDescriptionValue>{data.owner.phone}</ModalCardDescriptionValue>
+                  </CardDescriptionRow>
+                  <CardDescriptionRow>
+                    <ModalCardDescriptionKey>Price:</ModalCardDescriptionKey>
+                    <ModalCardDescriptionValue>${data.price}</ModalCardDescriptionValue>
+                  </CardDescriptionRow>
+                </TableBody>
+              </ModalCardDescriptionTable>
+            </ModalCardTextWrapper>
+          </ModalCardInfoWrapper>
+          <ModalCommentText>
+            <ModalCommentTitle>Comments: </ModalCommentTitle>
+            {data.comments}
+          </ModalCommentText>
+          <ModalCardBtnWrapper>
+            <ContactBtn href={`tel:${data.owner.phone}`}>Contact</ContactBtn>
+            <AddToFavBtn>
+              Add to
+              <AiFillHeart size={'16px'} />
+            </AddToFavBtn>
+          </ModalCardBtnWrapper>
+        </ModalCard>
+      )}
+    </>
   );
 };
