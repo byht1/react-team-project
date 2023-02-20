@@ -1,27 +1,32 @@
 import styled from 'styled-components';
-  
+import { IoMdSearch } from 'react-icons/io';  
+
 export const Input = styled.input`
     width: 280px;
-    font-size: 16px;
+    font-size: ${p => p.theme.fontSizes.m};
     padding: 9px 12px 9px 12px;
     color: #535353;
-    border: none;
+    border: 1px solid ${p => p.theme.colors.trsp};
     outline: none;
-    box-shadow: 7px 4px 14px 0px rgba(49, 21, 4, 0.07);
-    border-radius: 20px;
+    box-shadow: ${p => p.theme.shadows.s};
+    border-radius: ${p => p.theme.radii.normal};
+    &::placeholder {
+      color: #535353;
+    }
+    transition: var(----transition-border-color);
     &:hover,
     &:focus{
         border: 1px solid rgba(245, 146, 86, 0.5);
     }
     @media (min-width: 768px) {
         width: 608px;
-        font-size: 20px;
+        font-size: ${p => p.theme.fontSizes.xl};
         padding: 9px 12px 9px 20px;
-        border-radius: 40px;
+        border-radius: ${p => p.theme.radii.inputRadius};
       }
       @media (min-width: 1280px) {
         padding: 10px 12px 10px 20px;
-        border-radius: 20px;
+        border-radius: ${p => p.theme.radii.normal};
       }
 `
 export const List = styled.ul`
@@ -62,8 +67,9 @@ justify-content: space-between;
 export const Line = styled.div`
 width: 200px;
 height: 4px;
-border-radius: 40px;
-background: linear-gradient(90deg, #FF634E 0%, #FFDF48 105.44%);
+border-radius: ${p => p.theme.radii.inputRadius};
+// background: linear-gradient(90deg, #FF634E 0%, #FFDF48 105.44%);
+background: var(--gradient);
 margin-bottom: 4px;
 margin-top: 40px;
 
@@ -80,16 +86,35 @@ margin-top: 40px;
 `
 export const Block = styled.div`
 position: relative;
-text-align: center;
+margin: 0 auto;
 
 `
 export const Button = styled.button`
 position: absolute;
 top: 10px;
 right: 12px;
-width: 24px;
-height: 24px;
-border-radius: 50%;
-background: transparent;
-fill: #111111;
+width: 20px;
+height: 20px;
+border-radius: ${p => p.theme.radii.round};
+background: ${p => p.theme.colors.trsp};
+
+@media (min-width: 768px) {
+  width: 24px;
+  height: 24px;
+}
+`
+export const Icon = styled(IoMdSearch)`
+width: 20px;
+height: 20px;
+fill: ${p => p.theme.colors.b};
+@media (min-width: 768px) {
+  width: 24px;
+  height: 24px;
+}
+`
+export const SvgContainer = styled.div`
+// width: 280px;
+// @media (min-width: 768px) {
+//   width: 608px;
+// }
 `
