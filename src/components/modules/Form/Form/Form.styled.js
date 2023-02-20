@@ -24,3 +24,13 @@ export const FormWrap = styled.div`
     border-radius: 20px;
   } */
 `;
+
+export const BackDrop = styled.div`
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: rgba(17, 17, 17, 0.6);
+  backdrop-filter: blur(10px);
+`;

@@ -51,8 +51,6 @@ export const RadioFemale = styled(FemaleIcon)`
 
 export const LabelMale = styled.label`
    color: ${props => (props.male ? '#F59256' : '#000000')}; */
-  /* & + input:checked {
-    color: #23c2ef; */
 `;
 
 export const LabelFemale = styled.label`
@@ -84,14 +82,19 @@ export const ImgLoaded = styled.img`
 
 export const LabelText = styled.p`
   display: inline-block;
-  /* border: 2px solid #f59256;
-  border-radius: 40px;
-  padding: 10px 28px; */
 `;
 
 export const Label = styled.label`
+  display: inline-block;
   border: 2px solid #f59256;
   border-radius: 40px;
   padding: 10px 28px;
   background-color: ${props => (props.checked ? '#F59256' : '#FFF')};
+  color: ${props => (props.checked ? '#FFF' : '#000')};
+`;
+
+export const RadioWrap = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
 `;

@@ -11,9 +11,9 @@ import { LoginPage } from 'page/LoginPage';
 import { Home } from 'page/Home';
 // import { NotFound } from 'page/NotFound';
 // import { FormSellStepOne } from 'components/modules/Form/FormSell/FormSellStepOne';
-import { FormSellStepTwo } from 'components/modules/Form/FormSell/FormSellStepTwo';
-import { FormBox } from 'components/modules/Form/FormBox/FormBox';
-import { FormSellStepOne } from 'components/modules/Form/FormSell/FormSellStepOne';
+import { FormSellStepTwo } from 'components/modules/Form/FormSteps/FormStepTwo';
+import { Form } from 'components/modules/Form/Form/Form';
+import { FormSellStepOne } from 'components/modules/Form/FormSteps/FormStepOne';
 
 const queryClient = new QueryClient();
 
@@ -37,7 +37,7 @@ function App() {
             <Route path="step1" element={<FormSellStepOne />} />
             <Route path="step2" element={<FormSellStepTwo />} />
           </Route> */}
-          <Route path="addpet" element={<FormBox />}>
+          <Route path="addpet" element={<Form />}>
             <Route path="step1" element={<FormSellStepOne />}></Route>
             <Route path="step2" element={<FormSellStepTwo />}></Route>
             {/* // <Route path="step2" element={<FormSellStepTwo />}></Route> */} */
