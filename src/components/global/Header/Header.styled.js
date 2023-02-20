@@ -27,8 +27,8 @@ export const MobileBox = styled.div`
   }
 `;
 export const MenuButton = styled.button`
-  width: 30px;
-  height: 30px;
+  width: 40px;
+  height: 40px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -75,16 +75,16 @@ export const Title = styled.h1`
   }
 `;
 export const MenuIcon = styled(BiMenu)`
-  width: 30px;
-  height: 20px;
+  width: 40px;
+  height: 30px;
   @media (min-width: 768px) {
     width: 50px;
     height: 40px;
   }
 `;
 export const LoginButton = styled(NavLink)`
-  width: 30px;
-  height: 30px;
+  width: 40px;
+  height: 40px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -100,8 +100,8 @@ export const LoginButton = styled(NavLink)`
   }
 `;
 export const LoginIcon = styled(MdLogin)`
-  width: 30px;
-  height: 20px;
+  width: 40px;
+  height: 30px;
 `;
 export const HeaderBox = styled.header`
   display: flex;
@@ -125,36 +125,10 @@ export const ButtonsBox = styled.div`
     margin-left: auto;
   }
 `;
-export const LoginLink = styled(NavLink)`
+export const AuthLink = styled(NavLink)`
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 8px 28px;
-  background-color: ${p => p.theme.colors.a};
-  border: 2px solid ${p => p.theme.colors.a};
-  color: ${p => p.theme.colors.w};
-  border-radius: 40px;
-  font-family: 'Manrope';
-  font-weight: 500;
-  font-size: 14px;
-  line-height: 19px;
-  letter-spacing: 0.04em;
-  margin-right: 18px;
-  &:active,
-  &:hover,
-  &:focus {
-    background-color: ${p => p.theme.colors.w};
-    border: 2px solid ${p => p.theme.colors.a};
-    color: ${p => p.theme.colors.a};
-  }
-  @media (min-width: 768px) {
-    font-size: 20px;
-    line-height: 27px;
-    padding: 10px 28px;
-  }
-`;
-export const RegisterLink = styled(NavLink)`
-  display: inline-block;
   padding: 8px 28px;
   background-color: ${p => p.theme.colors.w};
   color: ${p => p.theme.colors.a};
@@ -165,6 +139,7 @@ export const RegisterLink = styled(NavLink)`
   font-size: 14px;
   line-height: 19px;
   letter-spacing: 0.04em;
+  margin-right: 18px;
   @media (min-width: 768px) {
     font-size: 20px;
     line-height: 27px;
@@ -172,7 +147,8 @@ export const RegisterLink = styled(NavLink)`
   }
   &:active,
   &:hover,
-  &:focus {
+  &:focus,
+  &.active {
     background-color: ${p => p.theme.colors.a};
     border: 2px solid ${p => p.theme.colors.a};
     color: ${p => p.theme.colors.w};
@@ -194,7 +170,11 @@ export const MenuNavigationLink = styled(NavLink)`
   font-size: 32px;
   line-height: 1.38;
   letter-spacing: 0.04em;
+  &.active {
+    text-decoration-line: underline;
 
+    color: ${p => p.theme.colors.a};
+  }
   color: #181c27;
   @media (min-width: 768px) {
     font-size: 42px;
@@ -212,32 +192,32 @@ export const MenuNavigationLink = styled(NavLink)`
     }
   }
 `;
-export const AccentNavigationLink = styled(NavLink)`
-  font-family: 'Manrope';
-  font-style: normal;
-  font-weight: 700;
-  font-size: 32px;
-  line-height: 1.38;
-  letter-spacing: 0.04em;
-  text-decoration-line: underline;
+// export const AccentNavigationLink = styled(NavLink)`
+//   font-family: 'Manrope';
+//   font-style: normal;
+//   font-weight: 700;
+//   font-size: 32px;
+//   line-height: 1.38;
+//   letter-spacing: 0.04em;
+//   text-decoration-line: underline;
 
-  color: ${p => p.theme.colors.a};
-  @media (min-width: 768px) {
-    font-size: 42px;
-    line-height: 1.38;
-  }
-  @media (min-width: 1280px) {
-    font-size: 20px;
-    line-height: 1.38;
-    transition: all var(--transition-transform);
-    &:hover {
-      transform: scale(1.05);
-    }
-    @media (min-width: 768px) {
-      padding: 24px 0;
-    }
-  }
-`;
+//   color: ${p => p.theme.colors.a};
+//   @media (min-width: 768px) {
+//     font-size: 42px;
+//     line-height: 1.38;
+//   }
+//   @media (min-width: 1280px) {
+//     font-size: 20px;
+//     line-height: 1.38;
+//     transition: all var(--transition-transform);
+//     &:hover {
+//       transform: scale(1.05);
+//     }
+//     @media (min-width: 768px) {
+//       padding: 24px 0;
+//     }
+//   }
+// `;
 export const LinksBox = styled.div`
   display: flex;
   align-items: center;
