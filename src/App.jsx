@@ -33,14 +33,10 @@ function App() {
           <Route path="user" element={<UserPage />} />
           <Route path="*" element={<Navigate to="/" />} />
           {/* <Route path="*" element={<NotFound />} /> */}
-          {/* <Route path="addpet" element={<BackDrop />}>
-            <Route path="step1" element={<FormSellStepOne />} />
-            <Route path="step2" element={<FormSellStepTwo />} />
-          </Route> */}
+
           <Route path="addpet" element={<Form />}>
             <Route path="step1" element={<FormSellStepOne />}></Route>
             <Route path="step2" element={<FormSellStepTwo />}></Route>
-            {/* // <Route path="step2" element={<FormSellStepTwo />}></Route> */} */
           </Route>
         </Route>
       </Routes>

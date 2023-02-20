@@ -18,13 +18,13 @@ export const FormSellStepOne = () => {
           Tittle of ad<span>*</span>:
         </label>
         <input {...register('tittle')} placeholder="Type name" id="tittle" />
-        {errors.tittle && <p>{errors.tittle.message}</p>}
+        {/* {errors.tittle && <p>{errors.tittle.message}</p>} */}
         <label htmlFor="petName">Name pet:</label>
         <input {...register('name')} placeholder="Type name pet" id="petName" />
-        {errors.name && <p>{errors.name.message}</p>}
+        {/* {errors.name && <p>{errors.name.message}</p>} */}
         <label htmlFor="petBirth">Date of birth:</label>
         <input {...register('birthday')} placeholder="Type date of birth" id="petBirth" />
-        {errors.birthday && <p>{errors.birthday.message}</p>}
+        {/* {errors.birthday && <p>{errors.birthday.message}</p>} */}
         <label htmlFor="petBreed">
           Breed:
           <Autocomplete
@@ -36,7 +36,7 @@ export const FormSellStepOne = () => {
             renderInput={params => <TextField {...params} {...register('bread')} />}
           />
         </label>
-        {errors.bread && <p>{errors.bread.message}</p>}
+        {/* {errors.bread && <p>{errors.bread.message}</p>} */}
       </InputWrap>
       <ButtonWrap>
         <button type="button" onClick={() => navigate('/')}>

@@ -75,14 +75,14 @@ export const FormSellStepTwo = () => {
             Location<span>*</span>:
           </label>
           <input {...register('location')} placeholder="Type location" id="location" />
-          {errors.location && <p>{errors.location.message}</p>}
-          {values.radio === 'sell' && (
+          {/* {errors.location && <p>{errors.location.message}</p>} */}
+          {values.category === 'sell' && (
             <>
               <label htmlFor="price">
                 Price<span>*</span>:
               </label>
               <input {...register('price')} placeholder="Type price" />
-              {errors.price && <p>{errors.price.message}</p>}
+              {/* {errors.price && <p>{errors.price.message}</p>} */}
             </>
           )}
           <label htmlFor="photo">Load the pet’s image:</label>
@@ -96,11 +96,10 @@ export const FormSellStepTwo = () => {
             {img && <ImgLoaded src={img} alt="uploaded" />}
             <AddIcon />
           </InputFile>
-          <input {...register('picture')} type="file" />
           {errors.photo && <p>{errors.photo.message}</p>}
           <label htmlFor="comments">Comments:</label>
           <textarea {...register('comments')} />
-          {errors.comments && <p>{errors.comments.message}</p>}
+          {/* {errors.comments && <p>{errors.comments.message}</p>} */}
           {/* ТЕСТУЮннннннннннннннннннннннннннннннннннннннннннннннннннннннннннннннннннннннннЮ */}
         </InputWrap>
         <ButtonWrap>

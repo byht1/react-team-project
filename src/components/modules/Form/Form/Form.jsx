@@ -1,8 +1,12 @@
 import React, { useState } from 'react';
 import { useForm, FormProvider } from 'react-hook-form';
 import { Outlet, useNavigate, useLocation } from 'react-router-dom';
+import { useQuery, useQueryClient } from '@tanstack/react-query';
+import { useMutation } from '@tanstack/react-query';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { schemaAddPet } from '../helpers/schemaAppPet';
+import { postNotice } from 'api/addNotice';
+
 import { Text } from 'components/global/text';
 import { FormWrap, BackDrop } from './Form.styled';
 import { RadioTwo, LabelText, RadioWrap, Label, TextTittle } from '../FormSteps/FormStep.styled';
@@ -10,22 +14,26 @@ import { RadioTwo, LabelText, RadioWrap, Label, TextTittle } from '../FormSteps/
 export const Form = () => {
   const [selectedValue, setSelectedValue] = useState('lost/found');
   const location = useLocation();
-  console.log(location);
+  const navigate = useNavigate();
 
   const methods = useForm({
-    defaultValues: { petName: 'Linsy', category: selectedValue },
+    defaultValues: { name: 'Linsy', category: selectedValue },
     resolver: yupResolver(schemaAddPet),
     mode: 'onBlur',
   });
 
-  const navigate = useNavigate();
+  const client = useQueryClient();
+  // const { data, isLoading } = useQuery({ queryFn: postNotice(value), queryKey: 'notice' });
+  const { mutate: create } = useMutation({ mutationFn: postNotice, onSuccess: () => {} });
+
   const handleRadioInputChange = event => {
     setSelectedValue(event.target.value);
     methods.setValue('category', event.target.value);
   };
 
   const onSubmit = data => {
-    console.log(data);
+    // console.log(data);
+    create(data);
     navigate('/');
   };
   return (
