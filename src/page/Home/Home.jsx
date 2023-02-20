@@ -1,6 +1,14 @@
 import React from 'react';
 
-import { Background, Box, Image, MaxBox, HomeTitle } from './Home.styled';
+import {
+  Background,
+  Box,
+  MobileImage,
+  MaxBox,
+  HomeTitle,
+  TabletImage,
+  DesktopImage,
+} from './Home.styled';
 const Home = () => {
   return (
     // <Background>
@@ -8,7 +16,9 @@ const Home = () => {
       <Background>
         <Box>
           <HomeTitle>Take good care of your small pets</HomeTitle>
-          <Image src={require('../../img/girl_mobile.png')}></Image>
+          <MobileImage src={require('../../img/home/girl_mobile.png')} />
+          <TabletImage src={require('../../img/home/tablet_girl.png')} />
+          <DesktopImage src={require('../../img/home/girl_desk.png')} />
         </Box>
       </Background>
     </MaxBox>
