@@ -107,6 +107,8 @@ export const HeaderBox = styled.header`
   display: flex;
   padding: 16px 0;
   align-items: center;
+  position: relative;
+  z-index: 10;
   @media (min-width: 768px) {
     padding: 24px 0;
   }
