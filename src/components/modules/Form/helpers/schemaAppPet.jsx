@@ -1,7 +1,7 @@
 import * as yup from 'yup';
 
 export const schemaAddPet = yup.object({
-  // tittle: yup
+  // title: yup
   //   .string()
   //   .min(2, 'Must be at least 2 letters')
   //   .max(48, 'Cannot be more than 48 letters')

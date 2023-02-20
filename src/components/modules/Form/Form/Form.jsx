@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useForm, FormProvider } from 'react-hook-form';
 import { Outlet, useNavigate, useLocation } from 'react-router-dom';
 import { useQuery, useQueryClient } from '@tanstack/react-query';
@@ -13,11 +13,19 @@ import { RadioTwo, LabelText, RadioWrap, Label, TextTittle } from '../FormSteps/
 
 export const Form = () => {
   const [selectedValue, setSelectedValue] = useState('lost/found');
+  const [isModalOpen, setIsModalOpen] = useState(false);
   const location = useLocation();
   const navigate = useNavigate();
 
   const methods = useForm({
-    defaultValues: { name: 'Linsy', category: selectedValue },
+    defaultValues: {
+      // category: selectedValue,
+      owner: '63f397ebf7f968c7a15349d6',
+      title: 'Notice',
+      price: '150',
+      category: 'sell',
+      comment: 'cpmments',
+    },
     resolver: yupResolver(schemaAddPet),
     mode: 'onBlur',
   });
@@ -29,6 +37,7 @@ export const Form = () => {
   const handleRadioInputChange = event => {
     setSelectedValue(event.target.value);
     methods.setValue('category', event.target.value);
+    methods.reset();
   };
 
   const onSubmit = data => {
@@ -36,9 +45,39 @@ export const Form = () => {
     create(data);
     navigate('/');
   };
+
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  const closeModal = e => {
+    if (
+      e.target.id === 'backdrop-notice' ||
+      // e.target.id === 'modal-close' ||
+      // e.target.id === 'close-svg' ||
+      e.key === 'Escape'
+    ) {
+      console.log(e);
+      navigate('/');
+    }
+  };
+
+  useEffect(() => {
+    window.addEventListener('keydown', closeModal);
+
+    return () => {
+      window.removeEventListener('keydown', closeModal);
+    };
+  }, [closeModal]);
+
+  // useEffect(() => {
+  //   window.addEventListener('keydown', navigate('/'));
+
+  //   return () => {
+  //     window.removeEventListener('keydown', navigate('/'));
+  //   };
+  // }, [navigate]);
+
   return (
     <FormProvider {...methods}>
-      <BackDrop>
+      <BackDrop onClick={closeModal} id="backdrop-notice">
         <FormWrap>
           <TextTittle>Add pet</TextTittle>
           {location.pathname === '/addpet/step1' && (

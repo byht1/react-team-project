@@ -17,8 +17,8 @@ export const FormSellStepOne = () => {
         <label htmlFor="tittle">
           Tittle of ad<span>*</span>:
         </label>
-        <input {...register('tittle')} placeholder="Type name" id="tittle" />
-        {/* {errors.tittle && <p>{errors.tittle.message}</p>} */}
+        <input {...register('title')} placeholder="Type name" id="tittle" />
+        {/* {errors.title && <p>{errors.title.message}</p>} */}
         <label htmlFor="petName">Name pet:</label>
         <input {...register('name')} placeholder="Type name pet" id="petName" />
         {/* {errors.name && <p>{errors.name.message}</p>} */}
