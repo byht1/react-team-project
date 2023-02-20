@@ -3,8 +3,8 @@ import { NavLink } from 'react-router-dom';
 import { IoClose } from 'react-icons/io5';
 import { RiAccountPinCircleFill } from 'react-icons/ri';
 export const CloseMenuIcon = styled(IoClose)`
-  width: 20px;
-  height: 20px;
+  width: 30px;
+  height: 30px;
   @media (min-width: 768px) {
     width: 40px;
     height: 40px;
@@ -80,13 +80,15 @@ export const ButtonsBox = styled.div`
 export const MenuBox = styled.div``;
 export const NavigationLink = styled(NavLink)``;
 
-
 export const AuthLink = styled(NavLink)`
   display: flex;
   justify-content: center;
   align-items: center;
   padding: 8px 28px;
-  margin-right: 18px;
+  &:not(:last-child) {
+    margin-right: 18px;
+  }
+
   background-color: ${p => p.theme.colors.w};
   color: ${p => p.theme.colors.a};
   border: 2px solid ${p => p.theme.colors.a};
