@@ -80,32 +80,7 @@ export const ButtonsBox = styled.div`
 export const MenuBox = styled.div``;
 export const NavigationLink = styled(NavLink)``;
 
-// export const LoginLink = styled(NavLink)`
-//   display: flex;
-//   justify-content: center;
-//   align-items: center;
-//   padding: 8px 28px;
-//   background-color: ${p => p.theme.colors.a};
-//   border: 2px solid ${p => p.theme.colors.a};
-//   color: ${p => p.theme.colors.w};
-//   border-radius: 40px;
-//   font-family: 'Manrope';
-//   font-weight: 500;
-//   font-size: 14px;
-//   line-height: 19px;
-//   letter-spacing: 0.04em;
 
-//   @media (min-width: 768px) {
-//     font-size: 20px;
-//     line-height: 27px;
-//     padding: 10px 28px;
-//   }
-//   &:active {
-//     background-color: ${p => p.theme.colors.w};
-//     border: 2px solid ${p => p.theme.colors.a};
-//     color: ${p => p.theme.colors.a};
-//   }
-// `;
 export const AuthLink = styled(NavLink)`
   display: flex;
   justify-content: center;
