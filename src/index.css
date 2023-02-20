@@ -9,6 +9,7 @@ html {
   --button-bg: #f59256;
   --dark-accent: #ff6101;
   --transparent-color: transparent;
+  --tag-bg: rgba(255, 255, 255, 0.6);
 
   --white: #ffffff;
   --black: #111111;
@@ -19,6 +20,7 @@ html {
 
   --black-text: #111111;
   --white-text: #ffffff;
+  --search-text: #535353;
 
   --transition-bg: background-color 250ms linear;
   --transition-color: color 250ms linear;
