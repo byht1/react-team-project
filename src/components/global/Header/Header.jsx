@@ -19,6 +19,8 @@ import { useLocation } from 'react-router-dom';
 import { MobileMenu } from '../MobileMenu/MobileMenu';
 import { useState, useEffect } from 'react';
 import { Container } from '../Container';
+import { useSelector } from 'react-redux';
+import { getIsLogin } from 'redux/auth';
 export const Header = () => {
   const [menuIsOpen, setMenuIsOpen] = useState(false);
   useEffect(() => {
@@ -26,7 +28,7 @@ export const Header = () => {
       document.body.style.overflow = 'hidden';
     }
   }, [menuIsOpen]);
-  let authorized = false;
+  let authorized = useSelector(getIsLogin);
   function openMenu() {
     setMenuIsOpen(!menuIsOpen);
   }
