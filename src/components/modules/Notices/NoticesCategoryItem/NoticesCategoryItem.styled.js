@@ -17,7 +17,6 @@ export const CardBox = styled(Box)`
 
 export const ThumbWrapper = styled(Box)`
   position: relative;
-  width: 280px;
   height: 288px;
 
   @media (min-width: 768px) {

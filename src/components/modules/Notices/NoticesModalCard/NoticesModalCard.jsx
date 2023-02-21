@@ -28,6 +28,7 @@ export const NoticesModalCard = ({ noticeId }) => {
   const { data, isSuccess } = useQuery({
     queryFn: () => fetchOneNotice(noticeId),
     queryKey: ['notices', noticeId],
+    staleTime: 5 * 60 * 1000,
   });
 
   return (

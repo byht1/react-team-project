@@ -1,9 +1,9 @@
 import server from 'api/basic';
 
 //Get all notices @ /notices
-export const fetchAllNotices = async category => {
+export const fetchAllNotices = async (category, offset = 0, count = 12) => {
   try {
-    const r = await server.get(`/notices/?category=${category}`);
+    const r = await server.get(`/notices/?category=${category}&offset=${offset}&count=${count}`);
     return r.data;
   } catch (e) {
     return e.message;

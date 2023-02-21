@@ -19,22 +19,14 @@ export const ModalCardInfoWrapper = styled(Box)`
   }
 `;
 
-export const ModalThumbWrapper = styled(ThumbWrapper)`
-  width: 240px;
-  height: 240px;
-
-  @media (min-width: 768px) {
-    width: 288px;
-    height: 328px;
-  }
-`;
+export const ModalThumbWrapper = styled(ThumbWrapper)``;
 
 export const ModalThumbImage = styled(ThumbImage)`
   border-radius: ${p => p.theme.radii.modalThumbRadius};
 
   @media (min-width: 768px) {
-    width: 288px;
-    height: 328px;
+    min-width: 288px;
+    max-width: 380px;
   }
 `;
 
