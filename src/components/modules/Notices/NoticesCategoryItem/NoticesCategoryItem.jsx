@@ -28,24 +28,27 @@ export const NoticesCategoryItem = ({ noticesItem }) => {
 
   const petAge = getPetAge(noticesItem.birthday);
 
-  const openModal = () => {
-    setIsModalOpen(true);
+  // const openModal = () => {
+  //   setIsModalOpen(true);
+  // };
+  const toggleModal = () => {
+    setIsModalOpen(!isModalOpen);
   };
 
-  const closeModal = e => {
-    if (
-      e.target.id === 'backdrop' ||
-      e.target.id === 'modal-close' ||
-      e.target.id === 'close-svg' ||
-      e.key === 'Escape'
-    ) {
-      setIsModalOpen(false);
-    }
-  };
+  // const closeModal = e => {
+  //   if (
+  //     e.target.id === 'backdrop' ||
+  //     e.target.id === 'modal-close' ||
+  //     e.target.id === 'close-svg' ||
+  //     e.key === 'Escape'
+  //   ) {
+  //     setIsModalOpen(false);
+  //   }
+  // };
 
   return (
     <>
-      <CardBox onClick={openModal}>
+      <CardBox>
         <ThumbWrapper>
           <ThumbImage
             src={
@@ -77,14 +80,14 @@ export const NoticesCategoryItem = ({ noticesItem }) => {
               </CardDescriptionRow>
             </TableBody>
           </CardDescriptionTable>
-          <ViewMoreBtn>Learn more</ViewMoreBtn>
+          <ViewMoreBtn onClick={toggleModal}>Learn more</ViewMoreBtn>
           <DeleteBtn>
             Delete
             <HiTrash size={'20px'} color={'inherit'} style={{ marginLeft: '13px' }} />
           </DeleteBtn>
         </CardInfoWrapper>
       </CardBox>
-      {isModalOpen && <NoticeModal noticeId={noticesItem._id} closeModal={closeModal} />}
+      {isModalOpen && <NoticeModal noticeId={noticesItem._id} onClose={toggleModal} />}
     </>
   );
 };
