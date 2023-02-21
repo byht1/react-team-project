@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 import { Box } from 'components/global/Box';
 import {
+  ThumbWrapper,
   ThumbImage,
   CardInfoWrapper,
   CardDescriptionTable,
@@ -15,6 +16,16 @@ export const ModalCard = styled(Box)``;
 export const ModalCardInfoWrapper = styled(Box)`
   @media (min-width: 768px) {
     display: flex;
+  }
+`;
+
+export const ModalThumbWrapper = styled(ThumbWrapper)`
+  width: 240px;
+  height: 240px;
+
+  @media (min-width: 768px) {
+    width: 288px;
+    height: 328px;
   }
 `;
 

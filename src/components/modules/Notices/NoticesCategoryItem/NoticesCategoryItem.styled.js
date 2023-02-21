@@ -9,13 +9,30 @@ export const CardBox = styled(Box)`
   border-radius: ${p => p.theme.radii.cardRadius};
 
   box-shadow: ${p => p.theme.shadows.s};
+
+  @media (max-width: 767px) {
+    margin-top: 32px;
+  }
 `;
 
 export const ThumbWrapper = styled(Box)`
   position: relative;
+  width: 280px;
+  height: 288px;
+
+  @media (min-width: 768px) {
+    width: 336px;
+  }
+
+  @media (min-width: 1280px) {
+    width: 288px;
+  }
 `;
 
-export const ThumbImage = styled('img')``;
+export const ThumbImage = styled('img')`
+  width: 100%;
+  height: 100%;
+`;
 
 export const ThumbTag = styled('span')`
   position: absolute;
@@ -82,6 +99,7 @@ export const CardDescriptionKey = styled('td')``;
 export const CardDescriptionValue = styled('td')`
   padding-left: 45px;
   text-align: left;
+  overflow-wrap: anywhere;
 `;
 
 export const ViewMoreBtn = styled(LightBtn)`

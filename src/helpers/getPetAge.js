@@ -10,7 +10,9 @@ export const getPetAge = dateString => {
   const yearDiff = today.getFullYear() - inputDate.getFullYear();
   const monthDiff = today.getMonth() - inputDate.getMonth();
 
-  if (yearDiff === 0) {
+  if (!yearDiff || monthDiff) {
+    return '';
+  } else if (yearDiff === 0) {
     return `${monthDiff} ${getPlural(monthDiff, 'month')}`;
   } else if (yearDiff === 1 && monthDiff < 0) {
     return `1 year`;
