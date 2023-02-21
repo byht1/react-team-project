@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { Autocomplete, TextField } from '@mui/material';
 import { dogBreeds } from '../helpers/dogBreeds';
 import { InputWrap, ButtonWrap } from './FormStep.styled';
-
+// import { MaterialUIPickers } from '../Form/Calendar';
 export const FormSellStepOne = () => {
   const {
     register,
@@ -14,6 +14,7 @@ export const FormSellStepOne = () => {
   return (
     <>
       <InputWrap>
+        {/* <MaterialUIPickers></MaterialUIPickers> */}
         <label htmlFor="tittle">
           Tittle of ad<span>*</span>:
         </label>
