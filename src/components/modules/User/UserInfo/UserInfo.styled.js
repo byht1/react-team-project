@@ -25,7 +25,7 @@ export const Form = styled.form`
 export const Item = styled.label``;
 
 export const Input = styled.input`
-  scroll-margin-top: 300px;
+  scroll-margin-top: 200px;
   overflow-anchor: none;
   width: 159px;
   height: 24px;
@@ -146,11 +146,17 @@ export const Icon = styled.a`
 
 export const EditIc = styled(edit)`
   cursor: pointer;
-  height: 22px;
-  width: 22px;
+  height: 15px;
+  width: 15px;
 
   & path {
     fill: ${theme.colors.a};
+  }
+  @media (min-width: 768px) {
+    height: 22px;
+    width: 22px;
+  }
+  @media (min-width: 1280px) {
   }
 `;
 
@@ -167,16 +173,28 @@ export const LogoutIc = styled(logout)`
 
 export const CheckIc = styled(check)`
   cursor: pointer;
-  height: 22px;
-  width: 22px;
+  height: 15px;
+  width: 15px;
+  @media (min-width: 768px) {
+    height: 22px;
+    width: 22px;
+  }
+  @media (min-width: 1280px) {
+  }
 `;
 
 export const EditIcBlack = styled(edit)`
-  height: 22px;
-  width: 22px;
+  height: 15px;
+  width: 15px;
   cursor: default;
 
   & path {
     fill: ${theme.colors.g};
+  }
+  @media (min-width: 768px) {
+    height: 22px;
+    width: 22px;
+  }
+  @media (min-width: 1280px) {
   }
 `;
