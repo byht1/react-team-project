@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { useMutation } from '@tanstack/react-query';
@@ -54,8 +53,6 @@ export const RegisterForm = () => {
   });
 
   const onSubmit = data => {
-    console.log(data);
-
     regUser(data);
   };
 

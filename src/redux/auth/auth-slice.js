@@ -5,7 +5,7 @@ const initialState = {
   user: { name: null, email: null, phone: null, city: null },
   access_token: null,
   refresh_token: null,
-  isLoggin: false,
+  isLogin: false,
   loading: false,
 };
 
@@ -24,7 +24,7 @@ export const authSlice = createSlice({
 
       state.access_token = payload.access_token;
       state.refresh_token = payload.refresh_token;
-      state.isLoggin = true;
+      state.isLogin = true;
     },
   },
 });
