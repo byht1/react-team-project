@@ -1,5 +1,5 @@
 import React from 'react';
-import { Container } from '../../components/global/Container/Container';
+// import { Container } from '../../components/global/Container/Container';
 import {
   Background,
   Box,
