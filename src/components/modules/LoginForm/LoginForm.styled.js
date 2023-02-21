@@ -1,3 +1,4 @@
+
 import { Container } from 'components/global/Container';
 import { NavLink } from 'react-router-dom';
 import styled from 'styled-components';
@@ -11,22 +12,24 @@ export const BgWrapper = styled.div`
   background-size: 1800px;
 
   @media (min-width: 768px) {
+    min-height: 500px;
     background-size: 1280px;
     background-position: bottom;
   }
 `;
 
 export const AuthContainer = styled(Container)`
-  align-items: 'center';
   padding-top: 42px;
 
   @media (min-width: 768px) {
-    /* padding-top: 204px; */
-    padding-top: 15vh;
-  }
-
-  @media (min-width: 1280px) {
-    padding-top: 80px;
+    /* display: flex;
+    flex: 1;
+    padding-top: 100px;
+    align-items: center;
+    justify-content: center; */
+    padding-top: 0;
+    position: relative;
+    height: 100%;
   }
 `;
 
@@ -37,6 +40,10 @@ export const LoginFormTitle = styled.h2`
   line-height: ${p => p.theme.lineHeights.heading};
   color: ${p => p.theme.colors.b};
   margin-bottom: 40px;
+
+  @media (min-width: 768px) {
+    font-size: ${p => p.theme.fontSizes.xxxml};
+  } ;
 `;
 
 export const FormWrapper = styled.div`
@@ -45,10 +52,16 @@ export const FormWrapper = styled.div`
   align-items: center;
 
   @media (min-width: 768px) {
+    position: absolute;
+    left: 50%;
+    top: 42%;
+    transform: translate(-50%, -50%);
     background-color: ${p => p.theme.colors.w};
     width: 608px;
-    margin-left: auto;
-    margin-right: auto;
+
+    /* margin-left: auto;
+    margin-right: auto; */
+
     padding: 60px 80px 40px 80px;
     border-radius: ${p => p.theme.radii.inputRadius};
     box-shadow: 7px 4px 14px rgba(0, 0, 0, 0.11);
@@ -85,3 +98,4 @@ export const Link = styled(NavLink)`
   line-height: ${p => p.theme.lineHeights.heading};
   color: ${p => p.theme.colors.l};
 `;
+
