@@ -25,6 +25,8 @@ export const Form = styled.form`
 export const Item = styled.label``;
 
 export const Input = styled.input`
+  scroll-margin-top: 300px;
+  overflow-anchor: none;
   width: 159px;
   height: 24px;
   background: ${theme.colors.w};
@@ -125,6 +127,7 @@ export const FildName = styled.span`
 `;
 
 export const Icon = styled.a`
+  cursor: default;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -132,7 +135,6 @@ export const Icon = styled.a`
   width: 20px;
   height: 20px;
   background-color: #fdf7f2;
-  cursor: pointer;
   @media (min-width: 768px) {
   }
   @media (min-width: 1280px) {
@@ -170,11 +172,11 @@ export const CheckIc = styled(check)`
 `;
 
 export const EditIcBlack = styled(edit)`
-  cursor: pointer;
   height: 22px;
   width: 22px;
+  cursor: default;
 
   & path {
-    fill: ${theme.colors.b};
+    fill: ${theme.colors.g};
   }
 `;

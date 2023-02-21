@@ -90,6 +90,7 @@ export const UserInfo = () => {
           <Input
             onChange={onHandleInputChange}
             id="Name"
+            type="text"
             disabled={!editName ? true : false}
             value={inputValueName}
           />
@@ -112,6 +113,7 @@ export const UserInfo = () => {
           <Input
             onChange={onHandleInputChange}
             id="Email"
+            type="email"
             disabled={!editEmail ? true : false}
             value={inputValueEmail}
           />
@@ -134,6 +136,7 @@ export const UserInfo = () => {
           <Input
             onChange={onHandleInputChange}
             id="Birthday"
+            type="number"
             disabled={!editBirthday ? true : false}
             value={inputValueBirthday}
           />
@@ -156,6 +159,7 @@ export const UserInfo = () => {
           <Input
             onChange={onHandleInputChange}
             id="Phone"
+            type="number"
             disabled={!editPhone ? true : false}
             value={inputValuePhone}
           />
@@ -178,6 +182,7 @@ export const UserInfo = () => {
           <Input
             onChange={onHandleInputChange}
             id="City"
+            type="text"
             disabled={!editCity ? true : false}
             value={inputValueCity}
           />
