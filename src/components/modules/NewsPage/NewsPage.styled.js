@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import { IoMdSearch } from 'react-icons/io';  
+import {SlClose} from 'react-icons/sl'
 import {TitleH2} from 'components/global/text';
 
 export const NewBlock = styled.div`
@@ -108,7 +109,7 @@ export const Block = styled.div`
 position: relative;
 @media (min-width: 768px) {
   margin: 0 auto;
-  // width: 608px;
+ 
 }
 @media (min-width: 1280px) {
 
@@ -124,19 +125,35 @@ width: 20px;
 height: 20px;
 border-radius: ${p => p.theme.radii.round};
 background: ${p => p.theme.colors.trsp};
-
+  
 @media (min-width: 768px) {
   width: 24px;
   height: 24px;
 }
 `
-export const Icon = styled(IoMdSearch)`
+export const IconSearch = styled(IoMdSearch)`
 width: 20px;
 height: 20px;
 fill: ${p => p.theme.colors.b};
+&:hover,
+&:focus{
+    fill: ${p => p.theme.colors.a};
+}
 @media (min-width: 768px) {
   width: 24px;
   height: 24px;
 }
 `
-
+export const IconClose = styled(SlClose)`
+width: 20px;
+height: 20px;
+fill: ${p => p.theme.colors.b};
+&:hover,
+&:focus{
+    fill: ${p => p.theme.colors.a};
+}
+@media (min-width: 768px) {
+  width: 24px;
+  height: 24px;
+}
+`

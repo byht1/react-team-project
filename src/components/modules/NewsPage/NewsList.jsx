@@ -4,13 +4,14 @@ import { List } from './NewsPage.styled';
 export const NewsList = ({ data }) => {
   return (
     <List>
-      {data.map(({ title, text, day, link }) => {
+      {data.map(({ title, description, date, url, _id }) => {
         return (
           <NewsItem
+            key={_id}
             title={title}
-            text={text}
-            day={day}
-            link={link}
+            text={description}
+            day={date}
+            link={url}
           />
         );
       })}{' '}
