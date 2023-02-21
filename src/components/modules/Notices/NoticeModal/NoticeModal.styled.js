@@ -5,7 +5,7 @@ export const Backdrop = styled(Box)`
   position: fixed;
   top: 0;
   left: 0;
-  z-index: 3;
+  z-index: 997;
 
   width: ${p => p.theme.size.maxVW};
   height: ${p => p.theme.size.maxVH};
@@ -46,7 +46,7 @@ export const Modal = styled(Box)`
     top: 50%;
     left: 50%;
 
-    width: 704px;
+    min-width: 704px;
 
     padding-top: 32px;
     padding-bottom: 32px;
@@ -59,7 +59,7 @@ export const CloseModalBtn = styled('button')`
   position: absolute;
   top: 20px;
   right: 20px;
-  z-index: 4;
+  z-index: 998;
 
   display: flex;
 

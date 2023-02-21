@@ -1,3 +1,4 @@
+
 import { FormInput } from 'components/global/FormInput';
 
 export const RegStepTwo = () => {
