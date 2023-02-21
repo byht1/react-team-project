@@ -3,7 +3,7 @@ import {TitleH3} from 'components/global/text';
 import {Item, NewsMore, Line} from './NewsPage.styled';
 
 
-export const NewsItem = ({ title, text, day, link }) => {
+export const NewsItem = ({ title, description, date, url }) => {
   return (
     <Item>
     <div>
@@ -13,13 +13,13 @@ export const NewsItem = ({ title, text, day, link }) => {
      </TitleH3>
     </div>
         <Text weight={400} lh="heading">
-          {text}
+          {description}
         </Text>
         <NewsMore>
             <Text weight={400} lh="heading" color="overlay">
-              {day}
+              {date}
             </Text>
-            <a href={link} target="_blank" rel="noreferrer" >
+            <a href={url} target="_blank" rel="noreferrer" >
               <Text color="a">
               Read more
               </Text>
