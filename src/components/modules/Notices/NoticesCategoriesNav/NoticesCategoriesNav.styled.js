@@ -1,6 +1,6 @@
 import styled from 'styled-components';
+import { NavLink } from 'react-router-dom';
 import { Box } from 'components/global/Box';
-import { LightBtn } from 'components/global/button/Button.styled';
 
 export const CategoriesBox = styled(Box)`
   padding-top: 28px;
@@ -22,14 +22,37 @@ export const CategoryBtnWrapper = styled(Box)`
   }
 `;
 
-export const CategoryBtn = styled(LightBtn)`
+export const CategoryBtn = styled(NavLink)`
   display: inline-block;
 
+  padding-left: 28px;
+  padding-right: 28px;
   padding-top: 8px;
   padding-bottom: 8px;
 
   font-size: ${p => p.theme.fontSizes.s};
   line-height: ${p => p.theme.lineHeights.heading};
+
+  font-family: ${p => p.theme.fonts.manrope};
+  font-weight: ${p => p.theme.fontWeights.average};
+
+  background-color: ${p => p.theme.colors.a};
+  color: ${p => p.theme.colors.wt};
+
+  outline: none;
+
+  border: 2px solid ${p => p.theme.colors.a};
+  border-radius: ${p => p.theme.radii.buttonRadius};
+
+  transition: var(--transition-bg), var(--transition-color), var(--transition-border-color);
+
+  &:hover,
+  &:focus,
+  &.active {
+    background-color: ${p => p.theme.colors.w};
+    color: ${p => p.theme.colors.a};
+    cursor: pointer;
+  }
 
   @media (min-width: 768px) {
     font-size: ${p => p.theme.fontSizes.xl};

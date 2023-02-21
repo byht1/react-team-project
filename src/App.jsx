@@ -7,8 +7,10 @@ import { OurFriendsPage } from 'page/OurFriendsPage';
 import { RegisterPage } from 'page/RegisterPage';
 import { UserPage } from 'page/UserPage';
 import { NoticesPage } from 'page/NoticesPage';
+import { NoticesCategoriesList } from 'components/modules/Notices/NoticesCategoriesList';
 import { LoginPage } from 'page/LoginPage';
 import { Home } from 'page/Home';
+
 // import { NotFound } from 'page/NotFound';
 
 const queryClient = new QueryClient();
@@ -20,7 +22,13 @@ function App() {
         <Route path="/" element={<SharedLayout />}>
           <Route index element={<Home />} />
           <Route path="news" element={<NewsPage />} />
-          <Route path="notices" element={<NoticesPage />} />
+          <Route path="notices" element={<NoticesPage />}>
+            <Route path="sell" element={<NoticesCategoriesList />} />
+            <Route path="for-free" element={<NoticesCategoriesList />} />
+            <Route path="lost-found" element={<NoticesCategoriesList />} />
+            <Route path="favorite" element={<NoticesCategoriesList />} />
+            <Route path="own" element={<NoticesCategoriesList />} />
+          </Route>
           <Route path="friends" element={<OurFriendsPage />} />
           {/* Пудлычний шлях */}
           <Route path="register" element={<RegisterPage />} />
