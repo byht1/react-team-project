@@ -14,8 +14,9 @@ export const propTypeButton = {
   pr: paddingType,
   p: PropTypes.string,
   type: PropTypes.oneOf(['button', 'submit']),
-  theme: PropTypes.string,
-  fn: PropTypes.func.isRequired,
+  theme: PropTypes.string, // замінити на colorTheme
+  // colorTheme: PropTypes.string,
+  fn: PropTypes.func,
   children: PropTypes.oneOfType([
     PropTypes.arrayOf(PropTypes.node),
     PropTypes.node,

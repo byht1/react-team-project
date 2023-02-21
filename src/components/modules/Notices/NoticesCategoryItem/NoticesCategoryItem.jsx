@@ -1,5 +1,7 @@
 import React from 'react';
 import { useState } from 'react';
+
+import { getPetAge } from 'helpers/getPetAge';
 import { AiOutlineHeart } from 'react-icons/ai';
 import { HiTrash } from 'react-icons/hi';
 import { useTheme } from 'styled-components';
@@ -20,61 +22,72 @@ import {
   CardDescriptionValue,
 } from './NoticesCategoryItem.styled';
 
-export const NoticesCategoryItem = () => {
+export const NoticesCategoryItem = ({ noticesItem }) => {
   const theme = useTheme();
   const [isModalOpen, setIsModalOpen] = useState(false);
 
-  const openModal = () => {
-    setIsModalOpen(true);
+  const petAge = getPetAge(noticesItem.birthday);
+
+  // const openModal = () => {
+  //   setIsModalOpen(true);
+  // };
+  const toggleModal = () => {
+    setIsModalOpen(!isModalOpen);
   };
 
-  const closeModal = e => {
-    if (
-      e.target.id === 'backdrop' ||
-      e.target.id === 'modal-close' ||
-      e.target.id === 'close-svg' ||
-      e.key === 'Escape'
-    ) {
-      setIsModalOpen(false);
-    }
-  };
+  // const closeModal = e => {
+  //   if (
+  //     e.target.id === 'backdrop' ||
+  //     e.target.id === 'modal-close' ||
+  //     e.target.id === 'close-svg' ||
+  //     e.key === 'Escape'
+  //   ) {
+  //     setIsModalOpen(false);
+  //   }
+  // };
 
   return (
     <>
-      <CardBox onClick={openModal}>
+      <CardBox>
         <ThumbWrapper>
-          <ThumbImage src="https://mkantwerpen.be/wp-content/uploads/2020/01/placeholder.png"></ThumbImage>
-          <ThumbTag>in good hands</ThumbTag>
+          <ThumbImage
+            src={
+              noticesItem.imgUrl[0]
+                ? noticesItem.imgUrl[0]
+                : 'https://mkantwerpen.be/wp-content/uploads/2020/01/placeholder.png'
+            }
+          ></ThumbImage>
+          <ThumbTag>{noticesItem.category}</ThumbTag>
           <ThumbLikeBtn>
             <AiOutlineHeart size={'28px'} color={theme.colors.a} />
           </ThumbLikeBtn>
         </ThumbWrapper>
         <CardInfoWrapper>
-          <CardTitle>Сute dog looking for a home</CardTitle>
+          <CardTitle>{noticesItem.title}</CardTitle>
           <CardDescriptionTable>
             <TableBody>
               <CardDescriptionRow>
                 <CardDescriptionKey>Breed:</CardDescriptionKey>
-                <CardDescriptionValue>Pomeranian</CardDescriptionValue>
+                <CardDescriptionValue>{noticesItem.breed}</CardDescriptionValue>
               </CardDescriptionRow>
               <CardDescriptionRow>
                 <CardDescriptionKey>Place:</CardDescriptionKey>
-                <CardDescriptionValue>Lviv</CardDescriptionValue>
+                <CardDescriptionValue>{noticesItem.location}</CardDescriptionValue>
               </CardDescriptionRow>
               <CardDescriptionRow>
                 <CardDescriptionKey>Age:</CardDescriptionKey>
-                <CardDescriptionValue>one year</CardDescriptionValue>
+                <CardDescriptionValue>{petAge}</CardDescriptionValue>
               </CardDescriptionRow>
             </TableBody>
           </CardDescriptionTable>
-          <ViewMoreBtn>Learn more</ViewMoreBtn>
+          <ViewMoreBtn onClick={toggleModal}>Learn more</ViewMoreBtn>
           <DeleteBtn>
             Delete
             <HiTrash size={'20px'} color={'inherit'} style={{ marginLeft: '13px' }} />
           </DeleteBtn>
         </CardInfoWrapper>
       </CardBox>
-      {isModalOpen && <NoticeModal closeModal={closeModal} />}
+      {isModalOpen && <NoticeModal noticeId={noticesItem._id} onClose={toggleModal} />}
     </>
   );
 };

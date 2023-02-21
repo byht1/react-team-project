@@ -1,8 +1,8 @@
 import styled from 'styled-components';
 import { Box } from 'components/global/Box';
-import { DarkBtn } from 'components/global/button/Button.styled';
 import {
-  ThumbImage,
+  // ThumbWrapper,
+  // ThumbImage,
   CardInfoWrapper,
   CardDescriptionTable,
   CardTitle,
@@ -19,12 +19,25 @@ export const ModalCardInfoWrapper = styled(Box)`
   }
 `;
 
-export const ModalThumbImage = styled(ThumbImage)`
-  border-radius: ${p => p.theme.radii.modalThumbRadius};
+export const ModalThumbWrapper = styled.div`
+  position: relative;
 
   @media (min-width: 768px) {
     width: 288px;
     height: 328px;
+  }
+`;
+
+export const ModalThumbImage = styled.img`
+  border-radius: ${p => p.theme.radii.modalThumbRadius};
+  width: 100%;
+  height: auto;
+
+  @media (min-width: 768px) {
+    display: block;
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
   }
 `;
 
@@ -65,7 +78,17 @@ export const ModalCardDescriptionValue = styled(CardDescriptionValue)`
   }
 `;
 
-export const ModalCommentTitle = styled('span')`
+export const ModalCommentText = styled.p`
+  margin-top: 40px;
+  font-size: ${p => p.theme.fontSizes.s};
+
+  @media (min-width: 768px) {
+    margin-top: 28px;
+    font-size: ${p => p.theme.fontSizes.m};
+  }
+`;
+
+export const ModalCommentTitle = styled.span`
   font-weight: ${p => p.theme.fontWeights.semiBold};
   font-size: ${p => p.theme.fontSizes.s};
 
@@ -74,17 +97,8 @@ export const ModalCommentTitle = styled('span')`
   }
 `;
 
-export const ModalCommentText = styled('p')`
-  margin-top: 28px;
-  font-size: ${p => p.theme.fontSizes.s};
-
-  @media (min-width: 768px) {
-    font-size: ${p => p.theme.fontSizes.m};
-  }
-`;
-
 export const ModalCardBtnWrapper = styled(Box)`
-  margin-top: 20px;
+  margin-top: 40px;
 
   @media (min-width: 768px) {
     display: flex;
@@ -95,7 +109,7 @@ export const ModalCardBtnWrapper = styled(Box)`
   }
 `;
 
-export const ContactBtn = styled(DarkBtn)`
+export const ContactBtn = styled.a`
   display: flex;
   align-items: center;
   justify-content: center;
@@ -108,6 +122,25 @@ export const ContactBtn = styled(DarkBtn)`
 
   font-size: ${p => p.theme.fontSizes.m};
   line-height: ${p => p.theme.lineHeights.heading};
+  font-family: ${p => p.theme.fonts.manrope};
+  font-weight: ${p => p.theme.fontWeights.average};
+
+  background-color: ${p => p.theme.colors.a};
+  color: ${p => p.theme.colors.wt};
+
+  outline: none;
+
+  border: 2px solid ${p => p.theme.colors.a};
+  border-radius: ${p => p.theme.radii.buttonRadius};
+
+  transition: var(--transition-bg), var(--transition-color), var(--transition-border-color);
+
+  &:hover,
+  &:focus {
+    background-color: ${p => p.theme.colors.w};
+    color: ${p => p.theme.colors.a};
+    cursor: pointer;
+  }
 
   @media (min-width: 768px) {
     width: 160px;
@@ -121,6 +154,10 @@ export const AddToFavBtn = styled(ViewMoreBtn)`
 
   & > svg {
     margin-left: 8px;
+  }
+
+  @media (max-width: 767.98px) {
+    margin-top: 12px;
   }
 
   @media (min-width: 768px) {
