@@ -25,7 +25,7 @@ import {
 } from './NoticesModalCard.styled';
 
 export const NoticesModalCard = ({ noticeId }) => {
-  const { data, isLoading, isSuccess } = useQuery({
+  const { data, isSuccess } = useQuery({
     queryFn: () => fetchOneNotice(noticeId),
     queryKey: ['notices', noticeId],
   });

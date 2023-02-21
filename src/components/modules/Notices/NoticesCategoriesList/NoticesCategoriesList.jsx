@@ -24,7 +24,7 @@ export const NoticesCategoriesList = () => {
       break;
   }
 
-  const { data, isLoading, isSuccess } = useQuery({
+  const { data, isSuccess } = useQuery({
     queryFn: () => fetchAllNotices(categoryName),
     queryKey: ['notices', 'all', categoryName],
     enabled: !!categoryName,
