@@ -1,10 +1,21 @@
 import { useFormContext } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 import { Autocomplete, TextField } from '@mui/material';
+import { IoCloseOutline } from 'react-icons/io5';
+
 import { dogBreeds } from '../helpers/dogBreeds';
 import { Input } from 'components/global/FormInput/FormInput.styled';
-import { Button } from 'components/global/button';
-import { InputWrap, ButtonWrap, LabelInput, Text } from './FormStep.styled';
+import { CloseModalBtn } from 'components/modules/Notices/NoticeModal/NoticeModal.styled';
+
+import {
+  InputWrap,
+  ButtonWrap,
+  LabelInput,
+  Text,
+  ButtonAhead,
+  ButtonBack,
+} from './FormStep.styled';
+import useWindowDimensions from '../helpers/getWidth';
 
 export const FormSellStepOne = () => {
   const {
@@ -17,12 +28,15 @@ export const FormSellStepOne = () => {
     <>
       <InputWrap>
         <LabelInput htmlFor="tittle">
+          <CloseModalBtn id="modal-close" type="button" onClick={() => navigate('/')}>
+            <IoCloseOutline id="close-svg" size={'28px'} />
+          </CloseModalBtn>
           <Text>
             Tittle of ad
             <span>*</span>:
           </Text>
           <Input {...register('title')} placeholder="Type name" id="tittle" />
-          {/* {errors.title && <p>{errors.title.message}</p>} */}{' '}
+          {/* {errors.title && <p>{errors.title.message}</p>} */}
         </LabelInput>
         <LabelInput htmlFor="petName">
           <Text>Name pet:</Text>
@@ -75,16 +89,37 @@ export const FormSellStepOne = () => {
             )}
           />
         </LabelInput>
-        {/* {errors.bread && <p>{errors.bread.message}</p>} */}
+        {errors.bread && <p>{errors.bread.message}</p>}
       </InputWrap>
-      <ButtonWrap>
-        <Button type="button" p="9px 55px" onClick={() => navigate('/')}>
-          Cancel
-        </Button>
-        <Button theme="dark" p="9px 55px" type="button" onClick={() => navigate('/addpet/step2')}>
-          Next
-        </Button>
-      </ButtonWrap>
+      {useWindowDimensions().width < 768 ? (
+        <ButtonWrap>
+          <ButtonAhead
+            color="a"
+            p="9px 55px"
+            type="button"
+            onClick={() => navigate('/addpet/step2')}
+          >
+            Next
+          </ButtonAhead>
+          <ButtonBack type="button" onClick={() => navigate('/')}>
+            Cancel
+          </ButtonBack>
+        </ButtonWrap>
+      ) : (
+        <ButtonWrap>
+          <ButtonBack type="button" onClick={() => navigate('/')}>
+            Cancel
+          </ButtonBack>
+          <ButtonAhead
+            color="a"
+            p="9px 55px"
+            type="button"
+            onClick={() => navigate('/addpet/step2')}
+          >
+            Next
+          </ButtonAhead>
+        </ButtonWrap>
+      )}
     </>
   );
 };

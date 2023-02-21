@@ -66,14 +66,6 @@ export const Form = () => {
     };
   }, [closeModal]);
 
-  // useEffect(() => {
-  //   window.addEventListener('keydown', navigate('/'));
-
-  //   return () => {
-  //     window.removeEventListener('keydown', navigate('/'));
-  //   };
-  // }, [navigate]);
-
   return (
     <FormProvider {...methods}>
       <BackDrop onClick={closeModal} id="backdrop-notice">
@@ -84,7 +76,6 @@ export const Form = () => {
               Lorem ipsum dolor sit amet, consectetur Lorem ipsum dolor sit amet, consectetur
             </MainText>
           )}
-
           <RadioWrap>
             <Label checked={selectedValue === 'lost/found'}>
               <RadioTwo
@@ -117,9 +108,7 @@ export const Form = () => {
               <LabelText>sell</LabelText>
             </Label>
           </RadioWrap>
-          <form onSubmit={methods.handleSubmit(onSubmit)}>
-            <Outlet />
-          </form>
+          <form onSubmit={methods.handleSubmit(onSubmit)}>{<Outlet />}</form>
         </FormWrap>
       </BackDrop>
     </FormProvider>

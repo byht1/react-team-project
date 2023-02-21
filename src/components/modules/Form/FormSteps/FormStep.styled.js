@@ -13,16 +13,15 @@ export const Wrap = styled.div`
 export const InputWrap = styled.div`
   display: flex;
   flex-direction: column;
-  margin-bottom: 28px;
-  @media (min-width: 768px) {
-    margin-bottom: 28px;
-  }
+  margin-bottom: 40px;
 `;
 
 export const ButtonWrap = styled.div`
-  display: flex;
-  justify-content: center;
-  gap: 20px;
+  @media (min-width: 768px) {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+  }
 `;
 
 export const TextTittle = styled.p`
@@ -200,5 +199,73 @@ export const Comments = styled(TextareaAutosize)`
     min-height: 113px;
     font-size: 16px;
     border-radius: 20px;
+  }
+`;
+
+export const ButtonAhead = styled.button`
+  display: 'block';
+  width: 100%;
+  padding: 10px 28px;
+  outline: none;
+  margin-bottom: 12px;
+  border: 2px solid ${p => p.theme.colors.a};
+  border-radius: ${p => p.theme.radii.buttonRadius};
+
+  font-weight: ${p => p.theme.fontWeights.average};
+
+  font-size: 16px;
+  background-color: ${p => p.theme.colors.a};
+  color: ${p => p.theme.colors.wt};
+
+  &:hover,
+  &:focus {
+    background-color: ${p => p.theme.colors.w};
+    color: ${p => p.theme.colors.bt};
+  }
+
+  transition: var(--transition-bg), var(--transition-color), var(--transition-border-color);
+  @media (min-width: 768px) {
+    width: 180px;
+    font-size: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 0;
+  }
+`;
+
+export const ButtonBack = styled.button`
+  display: 'block';
+  width: 100%;
+  padding: 10px 28px;
+  outline: none;
+
+  border: 2px solid ${p => p.theme.colors.a};
+  border-radius: ${p => p.theme.radii.buttonRadius};
+
+  font-family: ${p => p.theme.fonts.manrope};
+  font-weight: ${p => p.theme.fontWeights.average};
+  font-size: 16px;
+  line-height: ${p => p.theme.lineHeights.heading};
+
+  transition: var(--transition-bg), var(--transition-color), var(--transition-border-color);
+  padding: 8px 28px;
+  line-height: ${p => p.theme.lineHeights.heading};
+
+  background-color: ${p => p.theme.colors.w};
+  color: ${p => p.theme.colors.b};
+  border: 2px solid ${p => p.theme.colors.a};
+
+  &:hover,
+  &:focus {
+    color: ${p => p.theme.colors.a};
+    border: 2px solid ${p => p.theme.colors.a};
+  }
+  @media (min-width: 768px) {
+    width: 180px;
+    font-size: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
 `;

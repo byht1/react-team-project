@@ -2,10 +2,10 @@ import { useFormContext } from 'react-hook-form';
 import { FormWrap } from '../Form/Form.styled';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { IoCloseOutline } from 'react-icons/io5';
+
 import { Input } from 'components/global/FormInput/FormInput.styled';
-import { Button } from 'components/global/button';
 import { AddIcon } from '../helpers/AddIcon';
-import { TextareaAutosize } from '@mui/base';
 import {
   RadioMale,
   RadioFemale,
@@ -17,8 +17,17 @@ import {
   ButtonWrap,
   RadioTwo,
   TextTittle,
+  ButtonAhead,
+  ButtonBack,
 } from './FormStep.styled';
 import { LabelInput, LabelSex, LabelWrap, Sex, Text, Comments } from './FormStep.styled';
+import { CloseModalBtn } from 'components/modules/Notices/NoticeModal/NoticeModal.styled';
+import Home from 'page/Home/Home';
+import useWindowDimensions from '../helpers/getWidth';
+
+import { useEffect, useRef } from 'react';
+
+// custom hook for ResizeObserver
 
 export const FormSellStepTwo = () => {
   const navigate = useNavigate();
@@ -32,13 +41,6 @@ export const FormSellStepTwo = () => {
     }
   };
 
-  function resize() {
-    var el = this;
-    setTimeout(function () {
-      el.style.cssText = 'height:auto; padding:0';
-      el.style.cssText = 'height:' + el.scrollHeight + 'px';
-    }, 1);
-  }
   const {
     register,
     formState: { errors },
@@ -55,6 +57,9 @@ export const FormSellStepTwo = () => {
     <>
       <FormWrap>
         <TextTittle>Add pet</TextTittle>
+        <CloseModalBtn id="modal-close" type="button" onClick={() => navigate('/')}>
+          <IoCloseOutline id="close-svg" size={'28px'} />
+        </CloseModalBtn>
         <InputWrap>
           <LabelSex>
             The sex<span>*</span>:
@@ -139,20 +144,34 @@ export const FormSellStepTwo = () => {
           {/* {errors.comments && <p>{errors.comments.message}</p>} */}
           {/* ТЕСТУЮннннннннннннннннннннннннннннннннннннннннннннннннннннннннннннннннннннннннЮ */}
         </InputWrap>
-        <ButtonWrap>
+        {useWindowDimensions().width < 768 ? (
           <ButtonWrap>
-            <Button type="button" p="9px 55px" onClick={() => navigate('/addpet/step1')}>
-              Back
-            </Button>
-            <Button theme="dark" p="9px 55px" type="submit">
+            <ButtonAhead color="a" p="9px 55px" type="button" onClick={() => navigate('/')}>
               Done
-            </Button>
+            </ButtonAhead>
+            <ButtonBack type="button" onClick={() => navigate('/addpet/step1')}>
+              Back
+            </ButtonBack>
           </ButtonWrap>
-          {/* <button type="button" onClick={() => navigate('/addpet/step1')}>
+        ) : (
+          <ButtonWrap>
+            <ButtonBack type="button" onClick={() => navigate('/')}>
+              Done
+            </ButtonBack>
+            <ButtonAhead
+              color="a"
+              p="9px 55px"
+              type="button"
+              onClick={() => navigate('/addpet/step1')}
+            >
+              Back
+            </ButtonAhead>
+          </ButtonWrap>
+        )}
+        {/* <button type="button" onClick={() => navigate('/addpet/step1')}>
             Back
           </button>
           <button type="submit">Done</button> */}
-        </ButtonWrap>
       </FormWrap>
     </>
   );

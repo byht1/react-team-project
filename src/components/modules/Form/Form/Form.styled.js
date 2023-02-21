@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 
 export const FormWrap = styled.div`
+  z-index: 999;
   position: absolute;
   top: 50%;
   left: 50%;
