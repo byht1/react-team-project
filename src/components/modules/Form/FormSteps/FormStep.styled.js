@@ -2,6 +2,7 @@ import styled from 'styled-components';
 import FemaleIcon from '@mui/icons-material/Female';
 import MaleIcon from '@mui/icons-material/Male';
 import { IconButton } from '@mui/material';
+import { TextareaAutosize } from '@mui/base';
 
 export const Wrap = styled.div`
   position: absolute;
@@ -182,5 +183,22 @@ export const Sex = styled.p`
   @media (min-width: 768px) {
     font-size: 20px;
     margin-top: 18px;
+  }
+`;
+
+export const Comments = styled(TextareaAutosize)`
+  display: flex;
+  background-color: #fdf7f2;
+  padding: 16px 18px;
+  resize: none;
+  width: 100%;
+  border: 1px solid #f59256;
+  border-radius: 40px;
+  height: 43px;
+  font-family: 'Manrope';
+  @media (min-width: 768px) {
+    min-height: 113px;
+    font-size: 16px;
+    border-radius: 20px;
   }
 `;

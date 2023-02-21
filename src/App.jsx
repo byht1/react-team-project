@@ -7,10 +7,8 @@ import { OurFriendsPage } from 'page/OurFriendsPage';
 import { RegisterPage } from 'page/RegisterPage';
 import { UserPage } from 'page/UserPage';
 import { NoticesPage } from 'page/NoticesPage';
-import { NoticesCategoriesList } from 'components/modules/Notices/NoticesCategoriesList';
 import { LoginPage } from 'page/LoginPage';
 import { Home } from 'page/Home';
-
 // import { NotFound } from 'page/NotFound';
 // import { FormSellStepOne } from 'components/modules/Form/FormSell/FormSellStepOne';
 import { FormSellStepTwo } from 'components/modules/Form/FormSteps/FormStepTwo';
@@ -26,13 +24,7 @@ function App() {
         <Route path="/" element={<SharedLayout />}>
           <Route index element={<Home />} />
           <Route path="news" element={<NewsPage />} />
-          <Route path="notices" element={<NoticesPage />}>
-            <Route path="sell" element={<NoticesCategoriesList />} />
-            <Route path="for-free" element={<NoticesCategoriesList />} />
-            <Route path="lost-found" element={<NoticesCategoriesList />} />
-            <Route path="favorite" element={<NoticesCategoriesList />} />
-            <Route path="own" element={<NoticesCategoriesList />} />
-          </Route>
+          <Route path="notices" element={<NoticesPage />} />
           <Route path="friends" element={<OurFriendsPage />} />
           {/* Пудлычний шлях */}
           <Route path="register" element={<RegisterPage />} />
@@ -45,6 +37,7 @@ function App() {
           <Route path="addpet" element={<Form />}>
             <Route path="step1" element={<FormSellStepOne />}></Route>
             <Route path="step2" element={<FormSellStepTwo />}></Route>
+            {/* // <Route path="step2" element={<FormSellStepTwo />}></Route> */} */
           </Route>
         </Route>
       </Routes>

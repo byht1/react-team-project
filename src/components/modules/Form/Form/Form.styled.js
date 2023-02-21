@@ -33,6 +33,7 @@ export const BackDrop = styled.div`
   right: 0;
   background-color: rgba(17, 17, 17, 0.6);
   backdrop-filter: blur(10px);
+  z-index: 100;
 `;
 
 export const MainText = styled.p`

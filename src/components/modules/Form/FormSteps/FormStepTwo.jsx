@@ -3,7 +3,9 @@ import { FormWrap } from '../Form/Form.styled';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Input } from 'components/global/FormInput/FormInput.styled';
+import { Button } from 'components/global/button';
 import { AddIcon } from '../helpers/AddIcon';
+import { TextareaAutosize } from '@mui/base';
 import {
   RadioMale,
   RadioFemale,
@@ -16,7 +18,7 @@ import {
   RadioTwo,
   TextTittle,
 } from './FormStep.styled';
-import { LabelInput, LabelSex, LabelWrap, Sex, Text } from './FormStep.styled';
+import { LabelInput, LabelSex, LabelWrap, Sex, Text, Comments } from './FormStep.styled';
 
 export const FormSellStepTwo = () => {
   const navigate = useNavigate();
@@ -29,6 +31,14 @@ export const FormSellStepTwo = () => {
       setImage(URL.createObjectURL(e.target.files[0]));
     }
   };
+
+  function resize() {
+    var el = this;
+    setTimeout(function () {
+      el.style.cssText = 'height:auto; padding:0';
+      el.style.cssText = 'height:' + el.scrollHeight + 'px';
+    }, 1);
+  }
   const {
     register,
     formState: { errors },
@@ -96,25 +106,26 @@ export const FormSellStepTwo = () => {
           {values.category === 'sell' && (
             <>
               <LabelInput htmlFor="price">
-                <p>
+                <Text>
                   Price<span>*</span>:
-                </p>
-                <input {...register('price')} placeholder="Type price" />
+                </Text>
+                <Input {...register('price')} placeholder="Type price" />
               </LabelInput>
 
               {/* {errors.price && <p>{errors.price.message}</p>} */}
             </>
           )}
           <LabelInput htmlFor="photo">
+            {' '}
             <Text>Load the pet’s image:</Text>
-            <input {...register('picture')} hidden accept="image/*" type="file" />
-
+            {/*  */}
             <InputFile
               color="primary"
               aria-label="upload picture"
               component="label"
               onChange={handleImageChange}
             >
+              <input {...register('picture')} hidden accept="image/*" type="file" id="photo" />
               {img && <ImgLoaded src={img} alt="uploaded" />}
               <AddIcon />
             </InputFile>
@@ -122,17 +133,25 @@ export const FormSellStepTwo = () => {
           {errors.photo && <p>{errors.photo.message}</p>}
           <LabelInput htmlFor="comments">
             <Text>Comments:</Text>
-            <textarea {...register('comments')} />
+            <Comments {...register('comments')} id="comments" placeholder="Type comment" />
           </LabelInput>
 
           {/* {errors.comments && <p>{errors.comments.message}</p>} */}
           {/* ТЕСТУЮннннннннннннннннннннннннннннннннннннннннннннннннннннннннннннннннннннннннЮ */}
         </InputWrap>
         <ButtonWrap>
-          <button type="button" onClick={() => navigate('/addpet/step1')}>
+          <ButtonWrap>
+            <Button type="button" p="9px 55px" onClick={() => navigate('/addpet/step1')}>
+              Back
+            </Button>
+            <Button theme="dark" p="9px 55px" type="submit">
+              Done
+            </Button>
+          </ButtonWrap>
+          {/* <button type="button" onClick={() => navigate('/addpet/step1')}>
             Back
           </button>
-          <button type="submit">Done</button>
+          <button type="submit">Done</button> */}
         </ButtonWrap>
       </FormWrap>
     </>
