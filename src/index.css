@@ -1,5 +1,5 @@
 @import-normalize; /* bring in normalize.css styles */
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@500&family=Manrope:wght@400;500;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@500&family=Poppins:wght@700&family=Manrope:wght@400;500;700&display=swap');
 
 html {
   --accent: #f59256;
@@ -8,6 +8,8 @@ html {
   --link: #3091eb;
   --button-bg: #f59256;
   --dark-accent: #ff6101;
+  --transparent-color: transparent;
+  --tag-bg: rgba(255, 255, 255, 0.6);
 
   --white: #ffffff;
   --black: #111111;
@@ -18,10 +20,12 @@ html {
 
   --black-text: #111111;
   --white-text: #ffffff;
+  --search-text: #535353;
 
   --transition-bg: background-color 250ms linear;
   --transition-color: color 250ms linear;
   --transition-border-color: border-color 250ms linear;
+  --transition-transform: transform 500ms linear cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 * {
