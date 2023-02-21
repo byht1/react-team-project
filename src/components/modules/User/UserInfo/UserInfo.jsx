@@ -14,11 +14,11 @@ import {
 } from './UserInfo.styled';
 
 export const UserInfo = () => {
-  const [inputValueName, setInputValueName] = useState('');
-  const [inputValueEmail, setInputValueEmail] = useState('');
-  const [inputValueBirthday, setInputValueBirthday] = useState('');
-  const [inputValuePhone, setInputValuePhone] = useState('');
-  const [inputValueCity, setInputValueCity] = useState('');
+  const [inputValueName, setInputValueName] = useState('Name');
+  const [inputValueEmail, setInputValueEmail] = useState('Email');
+  const [inputValueBirthday, setInputValueBirthday] = useState('00.00.0000');
+  const [inputValuePhone, setInputValuePhone] = useState('+380');
+  const [inputValueCity, setInputValueCity] = useState('Kiev');
 
   const [editName, setEditName] = useState(false);
   const [editEmail, setEditEmail] = useState(false);
@@ -136,7 +136,7 @@ export const UserInfo = () => {
           <Input
             onChange={onHandleInputChange}
             id="Birthday"
-            type="number"
+            type="text"
             disabled={!editBirthday ? true : false}
             value={inputValueBirthday}
           />
@@ -159,7 +159,7 @@ export const UserInfo = () => {
           <Input
             onChange={onHandleInputChange}
             id="Phone"
-            type="number"
+            type="text"
             disabled={!editPhone ? true : false}
             value={inputValuePhone}
           />
