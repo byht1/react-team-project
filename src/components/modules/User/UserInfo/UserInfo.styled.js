@@ -4,16 +4,15 @@ import { ReactComponent as edit } from '../../../../img/User/edit.svg';
 import { ReactComponent as logout } from '../../../../img/User/logout.svg';
 import { ReactComponent as check } from '../../../../img/User/check.svg';
 
-export const Form = styled.form`
+export const Form = styled.div`
   display: grid;
   gap: 6px;
   width: 252px;
-  grid-template-columns: auto auto auto;
+  grid-template-columns: auto;
   margin-top: 38px;
   margin-bottom: 25px;
 
   @media (min-width: 768px) {
-    width: fit-content;
   }
   @media (min-width: 1280px) {
     width: 100%;
@@ -21,8 +20,31 @@ export const Form = styled.form`
     padding: 32px 0 0 0;
   }
 `;
+// display: grid;
+// gap: 6px;
+// width: 252px;
+// grid-template-columns: auto auto auto;
+// margin-top: 38px;
+// margin-bottom: 25px;
 
-export const Item = styled.label``;
+// @media (min-width: 768px) {
+//   width: fit-content;
+// }
+// @media (min-width: 1280px) {
+//   width: 100%;
+//   gap: 4px;
+//   padding: 32px 0 0 0;
+// }
+export const Item = styled.label`
+  display: grid;
+  grid-template-columns: 55px 156px auto;
+
+  @media (min-width: 768px) {
+    grid-template-columns: 82px 216px auto;
+  }
+  @media (min-width: 1280px) {
+  }
+`;
 
 export const Input = styled.input`
   scroll-margin-top: 200px;
@@ -47,14 +69,14 @@ export const Input = styled.input`
   color: ${theme.colors.b};
 
   @media (min-width: 768px) {
-  }
-  @media (min-width: 1280px) {
-    margin-left: 24px;
-    width: 216px;
-    height: 32px;
     font-size: 18px;
     line-height: 25px;
+    margin-left: 36px;
+    width: 216px;
+    height: 32px;
     padding: 4px 12px;
+  }
+  @media (min-width: 1280px) {
   }
 
   &:focus {
@@ -135,10 +157,14 @@ export const Icon = styled.a`
   width: 20px;
   height: 20px;
   background-color: #fdf7f2;
+  margin-left: 26px;
   @media (min-width: 768px) {
+    margin-left: 42px;
+    width: 32px;
+    height: 32px;
   }
   @media (min-width: 1280px) {
-    margin-left: 16px;
+    margin-left: 42px;
     width: 32px;
     height: 32px;
   }
