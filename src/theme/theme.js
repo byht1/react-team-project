@@ -12,6 +12,8 @@ export const colors = Object.freeze({
   wt: 'var(--white-text)',
   bt: 'var(--black-text)',
   trsp: 'var(--transparent-color)',
+  tagBg: 'var(--tag-bg)',
+  sf: 'var(--search-text)',
 });
 
 export const fonts = Object.freeze({
@@ -57,7 +59,10 @@ export const theme = {
     none: '0',
     inputRadius: '40px',
     buttonRadius: '40px',
+    tagRadius: '0px 40px 40px 0px',
     currentAnimal: '0px 0px 40px 40px',
+    cardRadius: '0px 0px 20px 20px',
+    modalThumbRadius: '0px 0px 40px 40px',
     normal: '20px',
     round: '50%',
   },

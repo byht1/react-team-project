@@ -16,6 +16,7 @@ html {
   --shadow: 7px 4px 14px rgba(49, 21, 4, 0.07);
   --gradient: linear-gradient(90deg, #ff634e 0%, #ffdf48 105.44%);
   --overlay: rgba(17, 17, 17, 0.6);
+  --tag-bg: rgba(255, 255, 255, 0.6);
 
   --black-text: #111111;
   --white-text: #ffffff;
@@ -98,6 +99,7 @@ html {
   --button-bg: #f59256;
   --dark-accent: #ff6101;
   --transparent-color: transparent;
+  --tag-bg: rgba(255, 255, 255, 0.6);
 
   --white: #ffffff;
   --black: #111111;
@@ -108,6 +110,7 @@ html {
 
   --black-text: #111111;
   --white-text: #ffffff;
+  --search-text: #535353;
 
   --transition-bg: background-color 250ms linear;
   --transition-color: color 250ms linear;

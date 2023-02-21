@@ -8,12 +8,10 @@ import {
   Box,
   MenuBox,
   ButtonsBox,
-  LoginLink,
-  RegisterLink,
   MenuNavigationLink,
-  AccentNavigationLink,
   AccountIcon,
   LinksBox,
+  AuthLink,
 } from './MobileMenu.styled';
 export const MobileMenu = ({ closeMenu }) => {
   let authorized = false;
@@ -21,7 +19,7 @@ export const MobileMenu = ({ closeMenu }) => {
     <MobileMenuBox>
       <Container>
         <Box>
-          <NavigationLink to="">
+          <NavigationLink to="/" end onClick={closeMenu}>
             <Title>
               pe
               <span>t</span>ly
@@ -34,28 +32,28 @@ export const MobileMenu = ({ closeMenu }) => {
         <MenuBox>
           {authorized ? (
             <ButtonsBox>
-              <LoginLink to="user">
+              <AuthLink to="user">
                 <AccountIcon />
                 Account
-              </LoginLink>
+              </AuthLink>
             </ButtonsBox>
           ) : (
             <ButtonsBox>
-              <LoginLink to="login" onClick={closeMenu}>
+              <AuthLink to="login" onClick={closeMenu}>
                 Login
-              </LoginLink>
-              <RegisterLink to="register" onClick={closeMenu}>
+              </AuthLink>
+              <AuthLink to="register" onClick={closeMenu}>
                 Registration
-              </RegisterLink>
+              </AuthLink>
             </ButtonsBox>
           )}
           <LinksBox>
             <MenuNavigationLink to="news" onClick={closeMenu}>
               News
             </MenuNavigationLink>
-            <AccentNavigationLink to="notices" onClick={closeMenu}>
+            <MenuNavigationLink to="notices" onClick={closeMenu}>
               Find pet
-            </AccentNavigationLink>
+            </MenuNavigationLink>
             <MenuNavigationLink to="friends" onClick={closeMenu}>
               Our friends
             </MenuNavigationLink>

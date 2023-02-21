@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import { Box } from 'components/global/Box';
-import { DarkBtn } from 'components/global/button/Button.styled';
 import {
+  ThumbWrapper,
   ThumbImage,
   CardInfoWrapper,
   CardDescriptionTable,
@@ -16,6 +16,16 @@ export const ModalCard = styled(Box)``;
 export const ModalCardInfoWrapper = styled(Box)`
   @media (min-width: 768px) {
     display: flex;
+  }
+`;
+
+export const ModalThumbWrapper = styled(ThumbWrapper)`
+  width: 240px;
+  height: 240px;
+
+  @media (min-width: 768px) {
+    width: 288px;
+    height: 328px;
   }
 `;
 
@@ -95,7 +105,7 @@ export const ModalCardBtnWrapper = styled(Box)`
   }
 `;
 
-export const ContactBtn = styled(DarkBtn)`
+export const ContactBtn = styled('a')`
   display: flex;
   align-items: center;
   justify-content: center;
@@ -108,6 +118,25 @@ export const ContactBtn = styled(DarkBtn)`
 
   font-size: ${p => p.theme.fontSizes.m};
   line-height: ${p => p.theme.lineHeights.heading};
+  font-family: ${p => p.theme.fonts.manrope};
+  font-weight: ${p => p.theme.fontWeights.average};
+
+  background-color: ${p => p.theme.colors.a};
+  color: ${p => p.theme.colors.wt};
+
+  outline: none;
+
+  border: 2px solid ${p => p.theme.colors.a};
+  border-radius: ${p => p.theme.radii.buttonRadius};
+
+  transition: var(--transition-bg), var(--transition-color), var(--transition-border-color);
+
+  &:hover,
+  &:focus {
+    background-color: ${p => p.theme.colors.w};
+    color: ${p => p.theme.colors.a};
+    cursor: pointer;
+  }
 
   @media (min-width: 768px) {
     width: 160px;

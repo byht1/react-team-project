@@ -14,11 +14,11 @@ export const NoticesCategoriesNav = () => {
   return (
     <CategoriesBox>
       <CategoryBtnWrapper>
-        <CategoryBtn>lost/found</CategoryBtn>
-        <CategoryBtn>in good hands</CategoryBtn>
-        <CategoryBtn>sell</CategoryBtn>
-        <CategoryBtn>favorite ads</CategoryBtn>
-        <CategoryBtn>my ads</CategoryBtn>
+        <CategoryBtn to="lost-found">lost/found</CategoryBtn>
+        <CategoryBtn to="for-free">in good hands</CategoryBtn>
+        <CategoryBtn to="sell">sell</CategoryBtn>
+        <CategoryBtn to="favorite">favorite ads</CategoryBtn>
+        <CategoryBtn to="own">my ads</CategoryBtn>
       </CategoryBtnWrapper>
       <FixedBtnWrapper>
         <FixedAddPetText>Add pet</FixedAddPetText>
