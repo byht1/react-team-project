@@ -10,7 +10,6 @@ import {
   CardDescriptionValue,
   ViewMoreBtn,
 } from '../NoticesCategoryItem/NoticesCategoryItem.styled';
-import { Button } from 'components/global/button';
 
 export const ModalCard = styled(Box)``;
 
