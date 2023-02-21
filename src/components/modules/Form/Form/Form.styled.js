@@ -34,3 +34,11 @@ export const BackDrop = styled.div`
   background-color: rgba(17, 17, 17, 0.6);
   backdrop-filter: blur(10px);
 `;
+
+export const MainText = styled.p`
+  font-size: 16px;
+  font-weight: 500;
+  @media (min-width: 768px) {
+    font-size: 20px;
+  }
+`;

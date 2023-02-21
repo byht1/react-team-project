@@ -2,6 +2,7 @@ import { useFormContext } from 'react-hook-form';
 import { FormWrap } from '../Form/Form.styled';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { Input } from 'components/global/FormInput/FormInput.styled';
 import { AddIcon } from '../helpers/AddIcon';
 import {
   RadioMale,
@@ -15,6 +16,7 @@ import {
   RadioTwo,
   TextTittle,
 } from './FormStep.styled';
+import { LabelInput, LabelSex, LabelWrap, Sex, Text } from './FormStep.styled';
 
 export const FormSellStepTwo = () => {
   const navigate = useNavigate();
@@ -44,61 +46,85 @@ export const FormSellStepTwo = () => {
       <FormWrap>
         <TextTittle>Add pet</TextTittle>
         <InputWrap>
-          <p>
+          <LabelSex>
             The sex<span>*</span>:
-          </p>
-          <LabelMale
-            htmlFor="Male"
-            onClick={() => {
-              setMale(true);
-              setFemale(false);
-            }}
-            male={male}
-          >
-            Male
-            <RadioMale />
-          </LabelMale>
-          <RadioTwo {...register('sex')} type="radio" value="male" id="Male" checked={male} />
-          <LabelFemale
-            htmlFor="Female"
-            onClick={() => {
-              setMale(false);
-              setFemale(true);
-            }}
-            female={female}
-          >
-            Female
-            <RadioFemale />
-          </LabelFemale>
-          <RadioTwo {...register('sex')} type="radio" value="female" id="Female" checked={female} />
-          <label htmlFor="location">
-            Location<span>*</span>:
-          </label>
-          <input {...register('location')} placeholder="Type location" id="location" />
+          </LabelSex>
+          <LabelWrap>
+            <LabelMale
+              htmlFor="Male"
+              onClick={() => {
+                setMale(true);
+                setFemale(false);
+              }}
+              male={male}
+            >
+              <RadioMale
+                sx={{ width: { xs: '45px', md: '72px' }, height: { xs: '45px', md: '72px' } }}
+              />
+              <Sex>Male</Sex>
+            </LabelMale>
+            <RadioTwo {...register('sex')} type="radio" value="male" id="Male" checked={male} />
+            <LabelFemale
+              htmlFor="Female"
+              onClick={() => {
+                setMale(false);
+                setFemale(true);
+              }}
+              female={female}
+            >
+              <RadioFemale
+                sx={{ width: { xs: '45px', md: '72px' }, height: { xs: '45px', md: '72px' } }}
+              />
+              <Sex>Female</Sex>
+            </LabelFemale>
+            <RadioTwo
+              {...register('sex')}
+              type="radio"
+              value="female"
+              id="Female"
+              checked={female}
+            />
+          </LabelWrap>
+          <LabelInput htmlFor="location">
+            <Text>
+              Location<span>*</span>:
+            </Text>
+            <Input {...register('location')} placeholder="Type location" id="location" />
+          </LabelInput>
+
           {/* {errors.location && <p>{errors.location.message}</p>} */}
           {values.category === 'sell' && (
             <>
-              <label htmlFor="price">
-                Price<span>*</span>:
-              </label>
-              <input {...register('price')} placeholder="Type price" />
+              <LabelInput htmlFor="price">
+                <p>
+                  Price<span>*</span>:
+                </p>
+                <input {...register('price')} placeholder="Type price" />
+              </LabelInput>
+
               {/* {errors.price && <p>{errors.price.message}</p>} */}
             </>
           )}
-          <label htmlFor="photo">Load the pet’s image:</label>
-          <InputFile
-            color="primary"
-            aria-label="upload picture"
-            component="label"
-            onChange={handleImageChange}
-          >
+          <LabelInput htmlFor="photo">
+            <Text>Load the pet’s image:</Text>
             <input {...register('picture')} hidden accept="image/*" type="file" />
-            {img && <ImgLoaded src={img} alt="uploaded" />}
-            <AddIcon />
-          </InputFile>
+
+            <InputFile
+              color="primary"
+              aria-label="upload picture"
+              component="label"
+              onChange={handleImageChange}
+            >
+              {img && <ImgLoaded src={img} alt="uploaded" />}
+              <AddIcon />
+            </InputFile>
+          </LabelInput>
           {errors.photo && <p>{errors.photo.message}</p>}
-          <label htmlFor="comments">Comments:</label>
-          <textarea {...register('comments')} />
+          <LabelInput htmlFor="comments">
+            <Text>Comments:</Text>
+            <textarea {...register('comments')} />
+          </LabelInput>
+
           {/* {errors.comments && <p>{errors.comments.message}</p>} */}
           {/* ТЕСТУЮннннннннннннннннннннннннннннннннннннннннннннннннннннннннннннннннннннннннЮ */}
         </InputWrap>

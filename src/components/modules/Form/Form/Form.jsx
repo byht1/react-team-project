@@ -7,8 +7,7 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import { schemaAddPet } from '../helpers/schemaAppPet';
 import { postNotice } from 'api/addNotice';
 
-import { Text } from 'components/global/text';
-import { FormWrap, BackDrop } from './Form.styled';
+import { FormWrap, BackDrop, MainText } from './Form.styled';
 import { RadioTwo, LabelText, RadioWrap, Label, TextTittle } from '../FormSteps/FormStep.styled';
 
 export const Form = () => {
@@ -81,9 +80,9 @@ export const Form = () => {
         <FormWrap>
           <TextTittle>Add pet</TextTittle>
           {location.pathname === '/addpet/step1' && (
-            <Text>
+            <MainText>
               Lorem ipsum dolor sit amet, consectetur Lorem ipsum dolor sit amet, consectetur
-            </Text>
+            </MainText>
           )}
 
           <RadioWrap>

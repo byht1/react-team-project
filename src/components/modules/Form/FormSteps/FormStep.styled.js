@@ -12,8 +12,10 @@ export const Wrap = styled.div`
 export const InputWrap = styled.div`
   display: flex;
   flex-direction: column;
-  margin-top: 28px;
   margin-bottom: 28px;
+  @media (min-width: 768px) {
+    margin-bottom: 28px;
+  }
 `;
 
 export const ButtonWrap = styled.div`
@@ -40,21 +42,41 @@ export const RadioTwo = styled.input`
 `;
 
 export const RadioMale = styled(MaleIcon)`
+  /* & .jjTjuI {
+    width: 60px;
+    height: 60px;
+  } */
+
   color: #23c2ef;
+
   filter: drop-shadow(1px 1px 1px #4778e9);
 `;
 
 export const RadioFemale = styled(FemaleIcon)`
   color: #ff8787;
+  width: 60px;
+  height: 60px;
   filter: drop-shadow(1px 1px 1px #b71c1c);
 `;
 
 export const LabelMale = styled.label`
-   color: ${props => (props.male ? '#F59256' : '#000000')}; */
+  color: ${props => (props.male ? '#F59256' : '#000000')};
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-right: 45px;
+  @media (min-width: 768px) {
+    margin-right: 65px;
+  }
 `;
 
 export const LabelFemale = styled.label`
   color: ${props => (props.female ? '#F59256' : '#000000')};
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 `;
 
 export const InputFile = styled(IconButton)`
@@ -82,6 +104,11 @@ export const ImgLoaded = styled.img`
 
 export const LabelText = styled.p`
   display: inline-block;
+  font-weight: 500;
+  font-size: 16px;
+  @media (min-width: 768px) {
+    font-size: 20px;
+  }
 `;
 
 export const Label = styled.label`
@@ -97,4 +124,63 @@ export const RadioWrap = styled.div`
   display: flex;
   flex-wrap: wrap;
   gap: 15px;
+  margin-top: 20px;
+  margin-bottom: 32px;
+  @media (min-width: 768px) {
+    margin-top: 28px;
+    margin-bottom: 28px;
+  }
+`;
+export const Text = styled.p`
+  font-size: 18px;
+  margin-bottom: 8px;
+  @media (min-width: 768px) {
+    font-size: 24px;
+    margin-bottom: 12px;
+  }
+`;
+
+export const LabelInput = styled.label`
+  font-size: 18px;
+  @media (min-width: 768px) {
+    font-size: 24px;
+  }
+  &:not(:last-child) {
+    margin-bottom: 16px;
+    @media (min-width: 768px) {
+      margin-bottom: 28px;
+    }
+  }
+`;
+
+export const LabelSex = styled.p`
+  font-size: 18px;
+  margin-bottom: 16px;
+
+  @media (min-width: 768px) {
+    font-size: 24px;
+    margin-bottom: 28px;
+  }
+`;
+
+export const LabelWrap = styled.div`
+  display: flex;
+  margin-left: -10px;
+  margin-bottom: 32px;
+  margin-top: -5px;
+  @media (min-width: 768px) {
+    font-size: 24px;
+    margin-bottom: 40px;
+    margin-top: -10px;
+  }
+`;
+
+export const Sex = styled.p`
+  font-size: 18;
+  font-weight: 500;
+  margin-top: 10px;
+  @media (min-width: 768px) {
+    font-size: 20px;
+    margin-top: 18px;
+  }
 `;
