@@ -1,3 +1,4 @@
+
 import server from 'api/basic';
 
 //Get all notices @ /notices

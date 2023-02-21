@@ -1,3 +1,4 @@
+
 import styled from 'styled-components';
 import { Box } from 'components/global/Box';
 import {
@@ -152,3 +153,4 @@ export const AddToFavBtn = styled(ViewMoreBtn)`
     margin-right: 12px;
   }
 `;
+

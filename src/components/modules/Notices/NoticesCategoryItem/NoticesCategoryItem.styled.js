@@ -1,3 +1,4 @@
+
 import styled from 'styled-components';
 import { Box } from 'components/global/Box';
 import { LightBtn } from 'components/global/button/Button.styled';
@@ -132,3 +133,4 @@ export const DeleteBtn = styled(LightBtn)`
   font-size: ${p => p.theme.fontSizes.m};
   line-height: ${p => p.theme.lineHeights.heading};
 `;
+

@@ -76,7 +76,7 @@ export const DesktopImage = styled.img`
   position: relative;
   margin-left: auto;
   /* margin-bottom: 10px; */
-  bottom: 74px;
+  bottom: 0;
 `;
 export const HomeTitle = styled.h2`
   font-family: 'Manrope';

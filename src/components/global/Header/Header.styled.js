@@ -147,6 +147,7 @@ export const AuthLink = styled(NavLink)`
     line-height: 27px;
     padding: 10px 28px;
   }
+  transition: var(--transition-bg), var(--transition-color), var(--transition-border-color);
   &:active,
   &:hover,
   &:focus,
@@ -185,7 +186,6 @@ export const MenuNavigationLink = styled(NavLink)`
   @media (min-width: 1280px) {
     font-size: 20px;
     line-height: 1.38;
-    transition: all var(--transition-transform);
     &:hover {
       transform: scale(1.05);
     }

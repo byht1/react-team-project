@@ -10,12 +10,22 @@ import { NoticesPage } from 'page/NoticesPage';
 import { NoticesCategoriesList } from 'components/modules/Notices/NoticesCategoriesList';
 import { LoginPage } from 'page/LoginPage';
 import { Home } from 'page/Home';
+import { useEffect } from 'react';
+import { refresh } from 'api/auth';
 
 // import { NotFound } from 'page/NotFound';
 
 const queryClient = new QueryClient();
 
 function App() {
+  useEffect(() => {
+    const test = async () => {
+      await refresh();
+    };
+
+    test();
+  }, []);
+
   return (
     <QueryClientProvider client={queryClient}>
       <Routes>
