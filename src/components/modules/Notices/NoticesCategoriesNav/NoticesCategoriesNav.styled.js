@@ -63,7 +63,7 @@ export const FloatingAddPetBtn = styled('button')`
   position: fixed;
   bottom: 40px;
   right: 20px;
-  z-index: 999;
+  /* z-index: 5; */ /* не потрібен */
 
   display: flex;
   flex-direction: column-reverse;

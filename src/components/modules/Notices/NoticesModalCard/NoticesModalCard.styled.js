@@ -1,8 +1,8 @@
 import styled from 'styled-components';
 import { Box } from 'components/global/Box';
 import {
-  ThumbWrapper,
-  ThumbImage,
+  // ThumbWrapper,
+  // ThumbImage,
   CardInfoWrapper,
   CardDescriptionTable,
   CardTitle,
@@ -10,6 +10,7 @@ import {
   CardDescriptionValue,
   ViewMoreBtn,
 } from '../NoticesCategoryItem/NoticesCategoryItem.styled';
+import { Button } from 'components/global/button';
 
 export const ModalCard = styled(Box)``;
 
@@ -19,9 +20,8 @@ export const ModalCardInfoWrapper = styled(Box)`
   }
 `;
 
-export const ModalThumbWrapper = styled(ThumbWrapper)`
-  width: 240px;
-  height: 240px;
+export const ModalThumbWrapper = styled.div`
+  position: relative;
 
   @media (min-width: 768px) {
     width: 288px;
@@ -29,12 +29,16 @@ export const ModalThumbWrapper = styled(ThumbWrapper)`
   }
 `;
 
-export const ModalThumbImage = styled(ThumbImage)`
+export const ModalThumbImage = styled.img`
   border-radius: ${p => p.theme.radii.modalThumbRadius};
+  width: 100%;
+  height: auto;
 
   @media (min-width: 768px) {
-    width: 288px;
-    height: 328px;
+    display: block;
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
   }
 `;
 
@@ -75,7 +79,17 @@ export const ModalCardDescriptionValue = styled(CardDescriptionValue)`
   }
 `;
 
-export const ModalCommentTitle = styled('span')`
+export const ModalCommentText = styled.p`
+  margin-top: 40px;
+  font-size: ${p => p.theme.fontSizes.s};
+
+  @media (min-width: 768px) {
+    margin-top: 28px;
+    font-size: ${p => p.theme.fontSizes.m};
+  }
+`;
+
+export const ModalCommentTitle = styled.span`
   font-weight: ${p => p.theme.fontWeights.semiBold};
   font-size: ${p => p.theme.fontSizes.s};
 
@@ -84,17 +98,8 @@ export const ModalCommentTitle = styled('span')`
   }
 `;
 
-export const ModalCommentText = styled('p')`
-  margin-top: 28px;
-  font-size: ${p => p.theme.fontSizes.s};
-
-  @media (min-width: 768px) {
-    font-size: ${p => p.theme.fontSizes.m};
-  }
-`;
-
 export const ModalCardBtnWrapper = styled(Box)`
-  margin-top: 20px;
+  margin-top: 40px;
 
   @media (min-width: 768px) {
     display: flex;
@@ -105,7 +110,7 @@ export const ModalCardBtnWrapper = styled(Box)`
   }
 `;
 
-export const ContactBtn = styled('a')`
+export const ContactBtn = styled.a`
   display: flex;
   align-items: center;
   justify-content: center;
@@ -150,6 +155,10 @@ export const AddToFavBtn = styled(ViewMoreBtn)`
 
   & > svg {
     margin-left: 8px;
+  }
+
+  @media (max-width: 767.98px) {
+    margin-top: 12px;
   }
 
   @media (min-width: 768px) {

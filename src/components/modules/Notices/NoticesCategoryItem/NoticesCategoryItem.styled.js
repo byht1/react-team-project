@@ -39,7 +39,8 @@ export const ThumbTag = styled('span')`
   top: 20px;
   left: 0;
 
-  width: 158px;
+  /* width: 158px; */
+  width: 55%;
   padding-top: 7px;
   padding-bottom: 7px;
 
