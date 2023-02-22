@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { useQuery } from '@tanstack/react-query';
 import { fetchOneNotice } from 'services/notices';
@@ -28,6 +29,7 @@ export const NoticesModalCard = ({ noticeId }) => {
   const { data, isSuccess } = useQuery({
     queryFn: () => fetchOneNotice(noticeId),
     queryKey: ['notices', noticeId],
+    staleTime: 5 * 60 * 1000,
   });
 
   return (
