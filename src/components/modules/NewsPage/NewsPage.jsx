@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import data from './data';
+// import data from './data';
 
 import {Box} from 'components/global/Box';
 import {Container} from 'components/global/Container';
@@ -46,7 +46,7 @@ export const NewsPageConponent = () => {
            </Block>
           
             
-            <NewsList data = {data}/>
+            <NewsList/>
           </Box>
         </NewBlock>
         </Container>

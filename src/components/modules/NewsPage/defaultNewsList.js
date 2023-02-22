@@ -1,4 +1,4 @@
-[
+export const defaultNewsList = [
     { 
       "_id": "1",
       "title": "Обережно, кліщі! Як уберегти улюбленця",

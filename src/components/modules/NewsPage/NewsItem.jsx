@@ -4,6 +4,9 @@ import {Item, NewsMore, Line} from './NewsPage.styled';
 
 
 export const NewsItem = ({ title, description, date, url }) => {
+
+let text = description.split(' ', 22).join(' ');
+
   return (
     <Item>
     <div>
@@ -13,7 +16,7 @@ export const NewsItem = ({ title, description, date, url }) => {
      </TitleH3>
     </div>
         <Text weight={400} lh="heading">
-          {description}
+          {text+"..."}
         </Text>
         <NewsMore>
             <Text weight={400} lh="heading" color="overlay">

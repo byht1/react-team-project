@@ -59,9 +59,11 @@ list-style: none;
  flex-direction: column;
  flex-wrap: wrap;
  max-width: 1248px;
+
  @media (min-width: 768px) {
     flex-direction: row;
     justify-content: space-between;
+   
   }
 `
 export const Item = styled.li`
