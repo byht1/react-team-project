@@ -61,13 +61,13 @@ export const FormStepOne = () => {
             sx={{
               width: '100%',
               display: 'inline-block',
-              '&  .css-1d3z3hw-MuiOutlinedInput-notchedOutline': {
+              '&  .MuiOutlinedInput-notchedOutline': {
                 borderColor: 'transparent',
               },
-              '& .css-md26zr-MuiInputBase-root-MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline, & .css-154xyx0-MuiInputBase-root-MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline ':
-                {
-                  border: '1px solid #f58138db',
-                },
+              // '& .css-md26zr-MuiInputBase-root-MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline, & .css-154xyx0-MuiInputBase-root-MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline ':
+              //   {
+              //     border: '1px solid #f58138db',
+              //   },
               '& .MuiAutocomplete-inputRoot': {
                 p: '2px 10px',
                 fontSize: { xs: '14px', md: '16px' },
