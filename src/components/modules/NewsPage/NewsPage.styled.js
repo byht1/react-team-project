@@ -59,10 +59,14 @@ list-style: none;
  flex-direction: column;
  flex-wrap: wrap;
  max-width: 1248px;
+ margin-top: 40px;
+ gap: 40px;
 
  @media (min-width: 768px) {
     flex-direction: row;
     justify-content: space-between;
+    margin-top: 60px;
+    gap: 60px 0px;
    
   }
 `
@@ -71,12 +75,12 @@ display: flex;
 flex-direction: column;
 justify-content: space-between;
 width: 100%;
-margin-top: 40px;
+
 
 @media (min-width: 768px) {
     width: 336px;
     height: 288px;
-    margin-top: 60px;
+    
   }
   @media (min-width: 1280px) {
     width: 395px;

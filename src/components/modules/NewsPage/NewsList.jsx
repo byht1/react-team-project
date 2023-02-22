@@ -17,9 +17,11 @@ export const NewsList = () => {
     }
     getNewsList();
   }, []);
+  
   return (
     <List>
-      {newsList.slice(0, 6).map(({ title, description, date, url, _id }) => {
+      {newsList.sort(function(a,b){return new Date(b.date) - new Date(a.date)})
+      .slice(0, 6).map(({ title, description, date, url, _id }) => {
         return (
           <NewsItem
             key={_id}

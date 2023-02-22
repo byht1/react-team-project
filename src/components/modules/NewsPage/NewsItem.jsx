@@ -5,7 +5,7 @@ import {Item, NewsMore, Line} from './NewsPage.styled';
 
 export const NewsItem = ({ title, description, date, url }) => {
 
-let text = description.split(' ', 22).join(' ');
+let text = description.split(' ', 20).join(' ');
 
   return (
     <Item>
