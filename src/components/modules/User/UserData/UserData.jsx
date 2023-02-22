@@ -9,15 +9,17 @@ import {
   CameraIc,
 } from './UserData.styled';
 import { UserInfo } from '../UserInfo';
-import Chloe from '../../../../img/User/chloe grace moretz.webp';
+import { useSelector } from 'react-redux';
+import { getUserPhoto } from 'redux/user';
 
 export const UserData = () => {
+  const img = useSelector(getUserPhoto);
   return (
     <Container>
       <Title>My information:</Title>
       <Div>
         <PhotoBlock>
-          <ProfileImage src={Chloe} />
+          <ProfileImage src={img} />
           <SpanEditPhoto>
             <CameraIc />
             Edit photo

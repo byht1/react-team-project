@@ -16,9 +16,12 @@ import {
   AddPetIc,
   TrashBinIc,
 } from './PetsData.styled';
-import Chloe from '../../../../img/User/chloe grace moretz.webp';
+import { useSelector } from 'react-redux';
+import { getUserPetList } from 'redux/user';
 
 export const PetsData = () => {
+  const petList = useSelector(getUserPetList);
+
   return (
     <Container>
       <TitleBlock>
@@ -28,58 +31,37 @@ export const PetsData = () => {
         </AddPetBlock>
       </TitleBlock>
       <PetBlcok>
-        <PetCard>
-          <PhotoBlock>
-            <Img src={Chloe} />
-            <Icon>
-              <TrashBinIc />
-            </Icon>
-          </PhotoBlock>
-          <InfoList>
-            <ListItem>
-              <ListItemInfo>Name:Chloe Grace Moretz</ListItemInfo>
-            </ListItem>
-            <ListItem>
-              <ListItemInfo>Date of birth: 10.02.1997</ListItemInfo>
-            </ListItem>
-            <ListItem>
-              <ListItemInfo>Breed: Human ;)</ListItemInfo>
-            </ListItem>
-            <ListItem>
-              <ListItemInfo>
-                Comments: Chloë Grace Moretz is an American actress. She is the recipient of various
-                accolades, including four MTV Movie & TV Awards, two People's Choice Awards, two
-                Saturn Awards, and two Young Artist Awards.
-              </ListItemInfo>
-            </ListItem>
-          </InfoList>
-        </PetCard>
-        <PetCard>
-          <PhotoBlock>
-            <Img src={Chloe} />
-            <Icon>
-              <TrashBinIc />
-            </Icon>
-          </PhotoBlock>
-          <InfoList>
-            <ListItem>
-              <ListItemInfo>Name:Chloe Grace Moretz</ListItemInfo>
-            </ListItem>
-            <ListItem>
-              <ListItemInfo>Date of birth: 10.02.1997</ListItemInfo>
-            </ListItem>
-            <ListItem>
-              <ListItemInfo>Breed: Human ;)</ListItemInfo>
-            </ListItem>
-            <ListItem>
-              <ListItemInfo>
-                Comments: Chloë Grace Moretz is an American actress. She is the recipient of various
-                accolades, including four MTV Movie & TV Awards, two People's Choice Awards, two
-                Saturn Awards, and two Young Artist Awards.
-              </ListItemInfo>
-            </ListItem>
-          </InfoList>
-        </PetCard>
+        {petList
+          ? petList.map(el => {
+              const { _id, name, birth, breed, image, comments } = el;
+              return (
+                <>
+                  <PetCard key={_id}>
+                    <PhotoBlock>
+                      <Img src={image} />
+                      <Icon>
+                        <TrashBinIc />
+                      </Icon>
+                    </PhotoBlock>
+                    <InfoList>
+                      <ListItem>
+                        <ListItemInfo>{`Name: ${name}`}</ListItemInfo>
+                      </ListItem>
+                      <ListItem>
+                        <ListItemInfo>{`Date of birth: ${birth}`}</ListItemInfo>
+                      </ListItem>
+                      <ListItem>
+                        <ListItemInfo>{`Breed: ${breed}`}</ListItemInfo>
+                      </ListItem>
+                      <ListItem>
+                        <ListItemInfo>{`Comments: ${comments}`}</ListItemInfo>
+                      </ListItem>
+                    </InfoList>
+                  </PetCard>
+                </>
+              );
+            })
+          : null}
       </PetBlcok>
     </Container>
   );
