@@ -10,6 +10,9 @@ import { NoticesPage } from 'page/NoticesPage';
 import { NoticesCategoriesList } from 'components/modules/Notices/NoticesCategoriesList';
 import { LoginPage } from 'page/LoginPage';
 import { Home } from 'page/Home';
+import FormAddNoticePage from 'page/AddNoticePage/AddNoticePage';
+import { FormStepOne } from 'components/modules/FormAddNotice';
+import { FormStepTwo } from 'components/modules/FormAddNotice';
 import { useEffect } from 'react';
 import { refresh } from 'api/auth';
 
@@ -46,6 +49,13 @@ function App() {
           {/* Приватний шлях */}
           <Route path="user" element={<UserPage />} />
           <Route path="*" element={<Navigate to="/" />} />
+
+          <Route path="addpet" element={<FormAddNoticePage />}>
+            <Route path="step1" element={<FormStepOne />}></Route>
+            <Route path="step2" element={<FormStepTwo />}></Route>
+            {/* // <Route path="step2" element={<FormSellStepTwo />}></Route> */} */
+          </Route>
+
           {/* <Route path="*" element={<NotFound />} /> */}
         </Route>
       </Routes>

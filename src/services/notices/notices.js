@@ -1,9 +1,13 @@
 import server from 'api/basic';
 
 //Get all notices @ /notices
-export const fetchAllNotices = async category => {
+export const fetchAllNotices = async ({ category, offset = 0, count = 12, search }) => {
   try {
-    const r = await server.get(`/notices/?category=${category}`);
+    let query = `/notices/?category=${category}&offset=${offset}&count=${count}`;
+    if (search) {
+      query += `&search=${search}`;
+    }
+    const r = await server.get(query);
     return r.data;
   } catch (e) {
     return e.message;
@@ -50,5 +54,16 @@ export const removeNoticeFromFav = async noticeId => {
     return r.data;
   } catch (e) {
     return e.message;
+  }
+};
+
+export const addNewNotice = async notice => {
+  try {
+    const { data } = await server.post('/notices/');
+    console.log(data);
+    return data;
+  } catch (error) {
+    console.error(error);
+    throw error;
   }
 };

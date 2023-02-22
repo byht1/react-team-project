@@ -1,3 +1,4 @@
+
 const getPlural = (count, singular, plural = `${singular}s`) => {
   return count === 1 ? singular : plural;
 };
@@ -10,7 +11,7 @@ export const getPetAge = dateString => {
   const yearDiff = today.getFullYear() - inputDate.getFullYear();
   const monthDiff = today.getMonth() - inputDate.getMonth();
 
-  if (!yearDiff || monthDiff) {
+  if (isNaN(yearDiff) || isNaN(monthDiff)) {
     return '';
   } else if (yearDiff === 0) {
     return `${monthDiff} ${getPlural(monthDiff, 'month')}`;
