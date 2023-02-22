@@ -27,14 +27,13 @@ export const Header = () => {
     if (menuIsOpen) {
       document.body.style.overflow = 'hidden';
     }
+    document.body.style.overflow = 'scroll';
   }, [menuIsOpen]);
   let authorized = useSelector(getIsLogin);
   function openMenu() {
     setMenuIsOpen(!menuIsOpen);
   }
   const location = useLocation();
-  console.log(location.pathname);
-  console.log(menuIsOpen);
   return (
     <>
       {menuIsOpen ? (

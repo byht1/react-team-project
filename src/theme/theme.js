@@ -1,5 +1,3 @@
-
-
 export const colors = Object.freeze({
   a: 'var(--accent)',
   bg: 'var(--background)',
@@ -79,4 +77,3 @@ export const theme = {
     s: 'var(--shadow)',
   },
 };
-
