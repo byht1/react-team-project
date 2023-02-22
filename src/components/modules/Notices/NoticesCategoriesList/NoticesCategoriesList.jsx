@@ -1,4 +1,5 @@
 import React from 'react';
+import { useSelector } from 'react-redux';
 import { useLocation } from 'react-router-dom';
 import { useInfiniteQuery } from '@tanstack/react-query';
 import { useTheme } from 'styled-components';
@@ -6,12 +7,15 @@ import { fetchAllNotices } from 'services/notices';
 import { NoticesCategoryItem } from '../NoticesCategoryItem';
 import { DarkBtn as LoadMoreBtn } from 'components/global/button';
 import { ListBox } from './NoticesCategoriesList.styled';
+import { selectSearchQuery } from 'redux/notices';
 
 export const NoticesCategoriesList = () => {
   const location = useLocation();
   const theme = useTheme();
   const pathname = location.pathname.split('/')[2];
   let categoryName = '';
+
+  const searchQuery = useSelector(selectSearchQuery);
 
   switch (pathname) {
     case 'for-free':
@@ -29,8 +33,9 @@ export const NoticesCategoriesList = () => {
 
   const { data, fetchNextPage, hasNextPage, isFetchingNextPage, isError, isSuccess } =
     useInfiniteQuery(
-      ['notices', 'all', categoryName],
-      ({ pageParam = 0 }) => fetchAllNotices(categoryName, pageParam),
+      ['notices', 'all', categoryName, searchQuery],
+      ({ pageParam = 0 }) =>
+        fetchAllNotices({ category: categoryName, offset: pageParam, search: searchQuery }),
       {
         getNextPageParam: (lastPage, allPages) => {
           if (lastPage.length === 0) return undefined;
