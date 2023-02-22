@@ -46,8 +46,6 @@ export const FormAddNotice = () => {
   });
 
   const categoryName = methods.getValues().category;
-  console.log('hkjhjkhnbkj');
-  console.log(categoryName);
 
   const client = useQueryClient();
   // const { data, isLoading } = useQuery({ queryFn: postNotice(value), queryKey: 'noticeі' });
@@ -58,7 +56,6 @@ export const FormAddNotice = () => {
       client.invalidateQueries({ queryKey: ['notices', 'all', categoryName] });
     },
   });
-  console.log(addNewNotice);
   const handleRadioInputChange = event => {
     setSelectedValue(event.target.value);
     methods.setValue('category', event.target.value);
@@ -67,7 +64,7 @@ export const FormAddNotice = () => {
 
   const onSubmit = data => {
     console.log('first');
-    // console.log(data);
+    console.log(data);
     // addNewNotice({
     //   breed: 'Bulldog',
     //   category: 'sell',

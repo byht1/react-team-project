@@ -1,7 +1,12 @@
 import { useFormContext } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
-import { Autocomplete, TextField } from '@mui/material';
+import { Autocomplete } from '@mui/material';
 import { IoCloseOutline } from 'react-icons/io5';
+import { useState } from 'react';
+import TextField from '@mui/material/TextField';
+import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
+import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
+import { DesktopDatePicker } from '@mui/x-date-pickers/DesktopDatePicker';
 
 import { dogBreeds } from './helpers/dogBreeds';
 import useWindowDimensions from './helpers/getWidth';
@@ -18,9 +23,14 @@ import {
   ButtonAhead,
   ButtonBack,
 } from './FormAddNotice.styled';
-
+import { Calendar } from './helpers/Calendar';
 export const FormStepOne = () => {
   const navigate = useNavigate();
+  const [value, setValue] = useState(null);
+
+  const handleChange = newValue => {
+    setValue(newValue);
+  };
   const {
     register,
     formState: { errors },
@@ -45,10 +55,56 @@ export const FormStepOne = () => {
           <Input {...register('name')} placeholder="Type name pet" id="petName" />
           {errors.name && <Error>{errors.name.message}</Error>}
         </LabelInput>
-
         <LabelInput htmlFor="petBirth">
           <Text>Date of birth:</Text>
-          <Input {...register('birthday')} placeholder="Type date of birth" id="petBirth" />
+          <LocalizationProvider dateAdapter={AdapterDayjs}>
+            <DesktopDatePicker
+              {...register('calendar')}
+              sx={{
+                borderRadius: '40px',
+                '&  .MuiOutlinedInput-notchedOutline': {
+                  borderColor: 'transparent',
+                },
+
+                '& MuiInputBase-root MuiOutlinedInput-root': { borderRadius: '40px' },
+                '& .MuiInputBase-input': {
+                  borderRadius: '40px',
+
+                  '&::placeholder': {
+                    fontSize: { xs: '14px', md: '16px' },
+                    color: '#111111',
+                    borderRadius: '40px',
+                  },
+                },
+              }}
+              inputFormat="DD.MM.YY"
+              value={value}
+              onChange={handleChange}
+              renderInput={params => (
+                <TextField
+                  {...params}
+                  {...register('calendar')}
+                  sx={{
+                    '&  .MuiOutlinedInput-notchedOutline': {
+                      border: '1px solid #F5925680',
+                      borderRadius: '40px',
+                    },
+
+                    '& .MuiInputBase-input': {
+                      bgcolor: '#FDF7F2',
+                      borderTopLeftRadius: '40px',
+                      borderBottomLeftRadius: '40px',
+                      padding: { xs: '10px 16px', md: '14px 32px' },
+                      fontSize: { xs: '14px', md: '18px' },
+                      fontFamily: 'Arial',
+                      '&::placeholder': { fontSize: { xs: '14px', md: '18px' }, color: '#111111' },
+                    },
+                  }}
+                />
+              )}
+            />
+          </LocalizationProvider>
+          {/* <Input {...register('birthday')} placeholder="Type date of birth" id="petBirth" /> */}
           {errors.birthday && <Error>{errors.birthday.message}</Error>}
         </LabelInput>
         <LabelInput htmlFor="petBreed">
@@ -61,6 +117,9 @@ export const FormStepOne = () => {
             sx={{
               width: '100%',
               display: 'inline-block',
+              '& .MuiOutlinedInput-root .MuiAutocomplete-input': {
+                padding: { xs: '10px 16px', md: '14px 26px' },
+              },
               '&  .MuiOutlinedInput-notchedOutline': {
                 borderColor: 'transparent',
               },
@@ -70,7 +129,8 @@ export const FormStepOne = () => {
               //   },
               '& .MuiAutocomplete-inputRoot': {
                 p: '2px 10px',
-                fontSize: { xs: '14px', md: '16px' },
+                fontFamily: 'Arial',
+                fontSize: { xs: '14px', md: '18px' },
               },
               '&  .MuiAutocomplete-inputRoot': {
                 bgcolor: '#FDF7F2',
@@ -78,7 +138,7 @@ export const FormStepOne = () => {
                 border: '1px solid #F5925680',
               },
               '& input': {
-                '&::placeholder': { fontSize: { xs: '13.3px', md: '16px' }, color: '#111111' },
+                '&::placeholder': { fontSize: { xs: '14px', md: '18px' }, color: '#111111' },
               },
             }}
             freeSolo={true}
@@ -87,7 +147,13 @@ export const FormStepOne = () => {
                 {...params}
                 {...register('breed')}
                 placeholder="Type breed"
-                sx={{ color: '#111111' }}
+                sx={{
+                  color: '#111111',
+                  '& input': {
+                    padding: { xs: '10px 16px', md: '14px 32px' },
+                    '& .MuiAutocomplete-input': { padding: { xs: '10px 16px', md: '14px 32px' } },
+                  },
+                }}
               />
             )}
           />

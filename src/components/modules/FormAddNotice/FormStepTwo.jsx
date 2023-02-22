@@ -145,7 +145,7 @@ export const FormStepTwo = () => {
         </InputWrap>
         {useWindowDimensions().width < 768 ? (
           <ButtonWrap>
-            <ButtonAhead color="a" p="9px 55px" type="button" onClick={() => navigate('/')}>
+            <ButtonAhead color="a" p="9px 55px" type="submit">
               Done
             </ButtonAhead>
             <ButtonBack type="button" onClick={() => navigate('/addpet/step1')}>
