@@ -83,14 +83,14 @@ export const FormSellStepOne = () => {
             renderInput={params => (
               <TextField
                 {...params}
-                {...register('bread')}
+                {...register('breed')}
                 placeholder="Type breed"
                 sx={{ color: '#111111' }}
               />
             )}
           />
         </LabelInput>
-        {errors.bread && <p>{errors.bread.message}</p>}
+        {errors.breed && <p>{errors.breed.message}</p>}
       </InputWrap>
       {useWindowDimensions().width < 768 ? (
         <ButtonWrap>

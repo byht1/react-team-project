@@ -48,7 +48,7 @@ export const FormSellStepTwo = () => {
   } = useFormContext();
 
   const values = getValues();
-  console.log(values);
+  // console.log(values);
   // useEffect(() => {
   //   const value = getValues();
   //   console.log(value.radio);
@@ -150,16 +150,11 @@ export const FormSellStepTwo = () => {
           </ButtonWrap>
         ) : (
           <ButtonWrap>
-            <ButtonBack type="button" onClick={() => navigate('/')}>
-              Done
-            </ButtonBack>
-            <ButtonAhead
-              color="a"
-              p="9px 55px"
-              type="button"
-              onClick={() => navigate('/addpet/step1')}
-            >
+            <ButtonBack type="button" onClick={() => navigate('/addpet/step1')}>
               Back
+            </ButtonBack>
+            <ButtonAhead color="a" p="9px 55px" type="submit">
+              Done
             </ButtonAhead>
           </ButtonWrap>
         )}
