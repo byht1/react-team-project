@@ -1,4 +1,3 @@
-
 import { useQuery } from '@tanstack/react-query';
 import { Navigate, Route, Routes } from 'react-router-dom';
 import { SharedLayout } from 'page/SharedLayout';
@@ -29,6 +28,8 @@ function App() {
     },
     onError: error => console.log(error.response.data.message),
     retry: 1,
+    staleTime: Infinity,
+    refetchOnWindowFocus: false,
   });
 
   if (isLoading) {
@@ -68,4 +69,3 @@ function App() {
 }
 
 export default App;
-
