@@ -25,7 +25,7 @@ export const Input = styled.input`
   font-size: ${p => p.theme.fontSizes.m};
   padding: 9px 12px 9px 12px;
   color: #535353;
-  border: 1px solid ${p => p.theme.colors.trsp};
+  border: 2px solid ${p => p.theme.colors.trsp};
   outline: none;
   box-shadow: ${p => p.theme.shadows.s};
   border-radius: ${p => p.theme.radii.normal};
@@ -35,7 +35,7 @@ export const Input = styled.input`
   transition: var(----transition-border-color);
   &:hover,
   &:focus {
-    border: 1px solid rgba(245, 146, 86, 0.5);
+    border: 2px solid rgba(245, 146, 86, 0.5);
   }
   @media (min-width: 768px) {
     width: 608px;
