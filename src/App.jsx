@@ -9,6 +9,7 @@ import { UserPage } from 'page/UserPage';
 import { NoticesPage } from 'page/NoticesPage';
 import { LoginPage } from 'page/LoginPage';
 import { Home } from 'page/Home';
+
 // import { NotFound } from 'page/NotFound';
 // import { FormAddNotice } from 'components/modules/FormAddNotice/FormAddNotice';
 import FormAddNoticePage from 'page/AddNoticePage/AddNoticePage';
@@ -18,6 +19,14 @@ import { FormStepTwo } from 'components/modules/FormAddNotice/FormStepTwo';
 const queryClient = new QueryClient();
 
 function App() {
+  useEffect(() => {
+    const test = async () => {
+      await refresh();
+    };
+
+    test();
+  }, []);
+
   return (
     <QueryClientProvider client={queryClient}>
       <Routes>

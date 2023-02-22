@@ -1,3 +1,4 @@
+
 import styled from 'styled-components';
 import { Box } from 'components/global/Box';
 import { LightBtn } from 'components/global/button/Button.styled';
@@ -17,7 +18,6 @@ export const CardBox = styled(Box)`
 
 export const ThumbWrapper = styled(Box)`
   position: relative;
-  width: 280px;
   height: 288px;
 
   @media (min-width: 768px) {
@@ -133,3 +133,4 @@ export const DeleteBtn = styled(LightBtn)`
   font-size: ${p => p.theme.fontSizes.m};
   line-height: ${p => p.theme.lineHeights.heading};
 `;
+
