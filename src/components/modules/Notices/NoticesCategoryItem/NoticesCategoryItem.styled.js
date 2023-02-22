@@ -1,3 +1,4 @@
+
 import styled from 'styled-components';
 import { Box } from 'components/global/Box';
 import { LightBtn } from 'components/global/button/Button.styled';
@@ -9,13 +10,29 @@ export const CardBox = styled(Box)`
   border-radius: ${p => p.theme.radii.cardRadius};
 
   box-shadow: ${p => p.theme.shadows.s};
+
+  @media (max-width: 767px) {
+    margin-top: 32px;
+  }
 `;
 
 export const ThumbWrapper = styled(Box)`
   position: relative;
+  height: 288px;
+
+  @media (min-width: 768px) {
+    width: 336px;
+  }
+
+  @media (min-width: 1280px) {
+    width: 288px;
+  }
 `;
 
-export const ThumbImage = styled('img')``;
+export const ThumbImage = styled('img')`
+  width: 100%;
+  height: 100%;
+`;
 
 export const ThumbTag = styled('span')`
   position: absolute;
@@ -25,8 +42,8 @@ export const ThumbTag = styled('span')`
   width: 158px;
   padding-top: 7px;
   padding-bottom: 7px;
-  padding-left: 20px;
 
+  text-align: center;
   background-color: ${p => p.theme.colors.tagBg};
   backdrop-filter: blur(2px);
 
@@ -82,6 +99,7 @@ export const CardDescriptionKey = styled('td')``;
 export const CardDescriptionValue = styled('td')`
   padding-left: 45px;
   text-align: left;
+  overflow-wrap: anywhere;
 `;
 
 export const ViewMoreBtn = styled(LightBtn)`
@@ -108,10 +126,11 @@ export const DeleteBtn = styled(LightBtn)`
 
   padding-top: 8px;
   padding-bottom: 8px;
-  margin-top: 20px;
+  margin-top: 12px;
 
   color: ${p => p.theme.colors.da};
 
   font-size: ${p => p.theme.fontSizes.m};
   line-height: ${p => p.theme.lineHeights.heading};
 `;
+

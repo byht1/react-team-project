@@ -1,9 +1,16 @@
 import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
+import { useMutation } from '@tanstack/react-query';
+import { yupResolver } from '@hookform/resolvers/yup';
+import { useDispatch } from 'react-redux';
+
 import { Button } from 'components/global/button';
 import { FormContext } from 'components/global/FormContext';
 import { RegStepOne } from './RegStepOne/RegStepOne';
 import { RegStepTwo } from './RegStepTwo/RegStepTwo';
+
+import { register } from 'redux/auth';
+import { registerSchema } from './RegisterSchema';
 
 import {
   AuthContainer,
@@ -15,11 +22,13 @@ import {
   BgWrapper,
 } from './RegisterForm.styled';
 import { Box } from 'components/global/Box';
-import { yupResolver } from '@hookform/resolvers/yup';
-import { registerSchema } from './RegisterSchema';
+import { signUp } from 'api';
+import { Alert } from '@mui/material';
 
 export const RegisterForm = () => {
   const [step, setStep] = useState(1);
+  const [err, setErr] = useState(null);
+  const dispatch = useDispatch();
 
   const method = useForm({
     resolver: yupResolver(registerSchema),
@@ -27,9 +36,24 @@ export const RegisterForm = () => {
   });
   const { reset, trigger } = method;
 
+  const { mutate: regUser } = useMutation({
+    mutationKey: ['user'],
+    mutationFn: data => signUp(data),
+    onSuccess: signData => {
+      // console.log(signData);
+      setErr(null);
+      dispatch(register(signData));
+      reset();
+    },
+    onError: error => {
+      setErr(error.response.data.message);
+      // console.log(error.response.data.message);
+      // alert(error.response.data.message);
+    },
+  });
+
   const onSubmit = data => {
-    console.log(data);
-    reset();
+    regUser(data);
   };
 
   return (
@@ -37,6 +61,11 @@ export const RegisterForm = () => {
       <AuthContainer>
         <FormWrapper>
           <RegisterFormTitle>Registration</RegisterFormTitle>
+          {err && (
+            <Alert style={{ marginBottom: 16 }} severity="error" onClose={() => setErr(null)}>
+              {err}
+            </Alert>
+          )}
           <FormContext methods={method} submit={onSubmit}>
             <InputsWrapper>
               {step === 1 && (
@@ -61,7 +90,12 @@ export const RegisterForm = () => {
                   <Button theme={'dark'} type={'submit'} fn={() => console.log('click')}>
                     Register
                   </Button>
-                  <Button type={'button'} mt={10} fn={() => setStep(1)}>
+                  <Button
+                    style={{ backgroundColor: 'transparent' }}
+                    type={'button'}
+                    mt={10}
+                    fn={() => setStep(1)}
+                  >
                     Back
                   </Button>
                 </>

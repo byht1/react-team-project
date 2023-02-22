@@ -16,6 +16,7 @@ html {
   --shadow: 7px 4px 14px rgba(49, 21, 4, 0.07);
   --gradient: linear-gradient(90deg, #ff634e 0%, #ffdf48 105.44%);
   --overlay: rgba(17, 17, 17, 0.6);
+  --tag-bg: rgba(255, 255, 255, 0.6);
 
   --black-text: #111111;
   --white-text: #ffffff;
@@ -23,7 +24,6 @@ html {
   --transition-bg: background-color 250ms linear;
   --transition-color: color 250ms linear;
   --transition-border-color: border-color 250ms linear;
-  --transition-transform: transform 500ms linear cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 * {
@@ -86,4 +86,8 @@ section {
   clip: rect(0 0 0 0);
   clip-path: inset(50%);
   margin: -1px;
+}
+
+.hidden {
+  overflow: hidden;
 }

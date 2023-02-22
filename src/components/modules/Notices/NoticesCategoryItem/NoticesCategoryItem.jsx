@@ -1,5 +1,7 @@
 import React from 'react';
 import { useState } from 'react';
+
+import { getPetAge } from 'helpers/getPetAge';
 import { AiOutlineHeart } from 'react-icons/ai';
 import { HiTrash } from 'react-icons/hi';
 import { useTheme } from 'styled-components';
@@ -20,9 +22,11 @@ import {
   CardDescriptionValue,
 } from './NoticesCategoryItem.styled';
 
-export const NoticesCategoryItem = () => {
+export const NoticesCategoryItem = ({ noticesItem }) => {
   const theme = useTheme();
   const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const petAge = getPetAge(noticesItem.birthday);
 
   const openModal = () => {
     setIsModalOpen(true);
@@ -43,27 +47,33 @@ export const NoticesCategoryItem = () => {
     <>
       <CardBox onClick={openModal}>
         <ThumbWrapper>
-          <ThumbImage src="https://mkantwerpen.be/wp-content/uploads/2020/01/placeholder.png"></ThumbImage>
-          <ThumbTag>in good hands</ThumbTag>
+          <ThumbImage
+            src={
+              noticesItem.imgUrl[0]
+                ? noticesItem.imgUrl[0]
+                : 'https://mkantwerpen.be/wp-content/uploads/2020/01/placeholder.png'
+            }
+          ></ThumbImage>
+          <ThumbTag>{noticesItem.category}</ThumbTag>
           <ThumbLikeBtn>
             <AiOutlineHeart size={'28px'} color={theme.colors.a} />
           </ThumbLikeBtn>
         </ThumbWrapper>
         <CardInfoWrapper>
-          <CardTitle>Сute dog looking for a home</CardTitle>
+          <CardTitle>{noticesItem.title}</CardTitle>
           <CardDescriptionTable>
             <TableBody>
               <CardDescriptionRow>
                 <CardDescriptionKey>Breed:</CardDescriptionKey>
-                <CardDescriptionValue>Pomeranian</CardDescriptionValue>
+                <CardDescriptionValue>{noticesItem.breed}</CardDescriptionValue>
               </CardDescriptionRow>
               <CardDescriptionRow>
                 <CardDescriptionKey>Place:</CardDescriptionKey>
-                <CardDescriptionValue>Lviv</CardDescriptionValue>
+                <CardDescriptionValue>{noticesItem.location}</CardDescriptionValue>
               </CardDescriptionRow>
               <CardDescriptionRow>
                 <CardDescriptionKey>Age:</CardDescriptionKey>
-                <CardDescriptionValue>one year</CardDescriptionValue>
+                <CardDescriptionValue>{petAge}</CardDescriptionValue>
               </CardDescriptionRow>
             </TableBody>
           </CardDescriptionTable>
@@ -74,7 +84,7 @@ export const NoticesCategoryItem = () => {
           </DeleteBtn>
         </CardInfoWrapper>
       </CardBox>
-      {isModalOpen && <NoticeModal closeModal={closeModal} />}
+      {isModalOpen && <NoticeModal noticeId={noticesItem._id} closeModal={closeModal} />}
     </>
   );
 };

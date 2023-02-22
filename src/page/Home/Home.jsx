@@ -1,5 +1,4 @@
 import React from 'react';
-
 import {
   Background,
   Box,
@@ -9,11 +8,16 @@ import {
   TabletImage,
   DesktopImage,
 } from './Home.styled';
+
+import { useNavigate } from 'react-router';
 const Home = () => {
+  const navigate = useNavigate();
   return (
-    // <Background>
     <MaxBox>
       <Background>
+        <button type="button" onClick={() => navigate('/addpet/step1')}>
+          Button
+        </button>
         <Box>
           <HomeTitle>Take good care of your small pets</HomeTitle>
           <MobileImage src={require('../../img/home/girl_mobile.png')} />
@@ -22,7 +26,6 @@ const Home = () => {
         </Box>
       </Background>
     </MaxBox>
-    // </Background>
   );
 };
 

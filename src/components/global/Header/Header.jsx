@@ -19,15 +19,19 @@ import { useLocation } from 'react-router-dom';
 import { MobileMenu } from '../MobileMenu/MobileMenu';
 import { useState } from 'react';
 import { Container } from '../Container';
+import { useSelector } from 'react-redux';
+import { getIsLogin } from 'redux/auth';
 export const Header = () => {
   const [menuIsOpen, setMenuIsOpen] = useState(false);
-  let authorized = false;
+
+  const authorized = useSelector(getIsLogin);
+
   function openMenu() {
-    setMenuIsOpen(!menuIsOpen);
+    setMenuIsOpen(prev => !prev);
+    document.body.classList.toggle('hidden');
   }
+
   const location = useLocation();
-  console.log(location.pathname);
-  console.log(menuIsOpen);
   return (
     <>
       {menuIsOpen ? (

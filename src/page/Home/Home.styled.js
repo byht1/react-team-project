@@ -20,7 +20,7 @@ export const Background = styled.div`
   @media (min-width: 1280px) {
     background-size: 1380px;
     background-image: url(${imageDesk});
-    background-position: center;
+    background-position: 50% 100%;
   }
 `;
 export const MaxBox = styled.div``;
@@ -42,7 +42,9 @@ export const Box = styled.div`
   }
   @media (min-width: 1280px) {
     width: 1280px;
-    display: block;
+    align-content: space-between;
+    /* justify-content: unset; */
+    height: 100%;
   }
 `;
 export const MobileImage = styled.img`
@@ -73,10 +75,11 @@ export const DesktopImage = styled.img`
   }
   display: block;
   width: 590px;
-  position: relative;
+  /* position: relative; */
   margin-left: auto;
   /* margin-bottom: 10px; */
-  bottom: 74px;
+  /* bottom: 0; */
+  margin-top: auto;
 `;
 export const HomeTitle = styled.h2`
   font-family: 'Manrope';
@@ -98,5 +101,8 @@ export const HomeTitle = styled.h2`
   @media (min-width: 768px) {
     width: 588px;
     font-size: 68px;
+  }
+  @media (min-width: 1280px) {
+    margin-right: auto;
   }
 `;

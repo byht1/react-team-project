@@ -1,10 +1,11 @@
 import React from 'react';
 import { useEffect } from 'react';
+
 import { IoCloseOutline } from 'react-icons/io5';
 import { NoticesModalCard } from '../NoticesModalCard';
 import { Backdrop, Modal, CloseModalBtn } from './NoticeModal.styled';
 
-export const NoticeModal = ({ closeModal }) => {
+export const NoticeModal = ({ noticeId, closeModal }) => {
   useEffect(() => {
     window.addEventListener('keydown', closeModal);
 
@@ -19,7 +20,7 @@ export const NoticeModal = ({ closeModal }) => {
         <CloseModalBtn id="modal-close" type="button" onClick={closeModal}>
           <IoCloseOutline id="close-svg" size={'28px'} />
         </CloseModalBtn>
-        <NoticesModalCard />
+        <NoticesModalCard noticeId={noticeId} />
       </Modal>
     </Backdrop>
   );
