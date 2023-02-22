@@ -39,11 +39,11 @@ export const NewsList = () => {
        <TitleNews textAlign="center">News</TitleNews>
               <Block>
                 <Filter value={filter} onChange={changeFilter}/>
-              <Button>
-                {valueSVG && <IconSearch/>}
-                {!valueSVG && <IconClose/>}
-              </Button>
-        </Block>
+                <Button>
+                  {valueSVG && <IconSearch/>}
+                  {!valueSVG && <IconClose/>}
+                </Button>
+              </Block>
             <List>
               {visibleNews.sort(function(a,b){return new Date(b.date) - new Date(a.date)})
               .slice(0, 6).map(({ title, description, date, url, _id }) => {

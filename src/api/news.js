@@ -1,5 +1,5 @@
 
-import { server } from './basic';
+import  server  from './basic';
 
 const UrlNews = Object.freeze({ all: './news' });
 

@@ -5,8 +5,8 @@ import axios from 'axios';
 
 const URL = 'https://node-team-project.onrender.com/api';
 
-export const server = axios.create({
+ const server = axios.create({
   baseURL: URL,
 });
 
-// export default server;
+export default server;
