@@ -103,6 +103,7 @@ export const AuthLink = styled(NavLink)`
     line-height: 27px;
     padding: 10px 28px;
   }
+  transition: var(--transition-bg), var(--transition-color), var(--transition-border-color);
   &:active,
   &.active {
     background-color: ${p => p.theme.colors.a};

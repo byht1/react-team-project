@@ -13,8 +13,10 @@ import {
   LinksBox,
   AuthLink,
 } from './MobileMenu.styled';
+import { useSelector } from 'react-redux';
+import { getIsLogin } from 'redux/auth';
 export const MobileMenu = ({ closeMenu }) => {
-  let authorized = false;
+  let authorized = useSelector(getIsLogin);
   return (
     <MobileMenuBox>
       <Container>
