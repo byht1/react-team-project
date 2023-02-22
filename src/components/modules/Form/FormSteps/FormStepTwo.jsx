@@ -29,7 +29,7 @@ import { useEffect, useRef } from 'react';
 
 // custom hook for ResizeObserver
 
-export const FormSellStepTwo = () => {
+export const FormStepTwo = () => {
   const navigate = useNavigate();
   const [male, setMale] = useState(false);
   const [female, setFemale] = useState(false);
@@ -101,7 +101,7 @@ export const FormSellStepTwo = () => {
               Location<Accent>*</Accent>:
             </Text>
             <Input {...register('location')} placeholder="Type location" id="location" />
-            {/* {errors.location && <Error>{errors.location.message}</Error>} */}
+            {errors.location && <Error>{errors.location.message}</Error>}
           </LabelInput>
 
           {values.category === 'sell' && (
@@ -111,14 +111,13 @@ export const FormSellStepTwo = () => {
                   Price<Accent>*</Accent>:
                 </Text>
                 <Input {...register('price')} placeholder="Type price" />
-                {/* {errors.price && <Error>{errors.price.message}</Error>} */}
+                {errors.price && <Error>{errors.price.message}</Error>}
               </LabelInput>
             </>
           )}
           <LabelInput htmlFor="photo">
             {' '}
             <Text>Load the pet’s image:</Text>
-            {/*  */}
             <InputFile
               color="primary"
               aria-label="upload picture"
@@ -134,7 +133,7 @@ export const FormSellStepTwo = () => {
           <LabelInput htmlFor="comments">
             <Text>Comments:</Text>
             <Comments {...register('comments')} id="comments" placeholder="Type comment" />
-            {/* {errors.comments && <Error>{errors.comments.message}</Error>} */}
+            {errors.comments && <Error>{errors.comments.message}</Error>}
           </LabelInput>
 
           {/* ТЕСТУЮннннннннннннннннннннннннннннннннннннннннннннннннннннннннннннннннннннннннЮ */}
@@ -158,10 +157,6 @@ export const FormSellStepTwo = () => {
             </ButtonAhead>
           </ButtonWrap>
         )}
-        {/* <button type="button" onClick={() => navigate('/addpet/step1')}>
-            Back
-          </button>
-          <button type="submit">Done</button> */}
       </FormWrap>
     </>
   );

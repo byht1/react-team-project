@@ -17,12 +17,16 @@ import {
 } from './FormStep.styled';
 import useWindowDimensions from '../helpers/getWidth';
 
-export const FormSellStepOne = () => {
+export const FormStepOne = () => {
   const {
     register,
     formState: { errors },
   } = useFormContext();
-
+  console.log(errors);
+  console.log(errors.length);
+  // const toddleBtn = err => {
+  //   return err.length ? true : false;
+  // };
   const navigate = useNavigate();
   return (
     <>
@@ -47,8 +51,8 @@ export const FormSellStepOne = () => {
         <LabelInput htmlFor="petBirth">
           <Text>Date of birth:</Text>
           <Input {...register('birthday')} placeholder="Type date of birth" id="petBirth" />
+          {errors.birthday && <Error>{errors.birthday.message}</Error>}
         </LabelInput>
-        {/* {errors.birthday && <Error>{errors.birthday.message}</Error>} */}
         <LabelInput htmlFor="petBreed">
           <Text>Breed:</Text>
           <Autocomplete
@@ -89,8 +93,8 @@ export const FormSellStepOne = () => {
               />
             )}
           />
+          {errors.breed && <Error>{errors.breed.message}</Error>}
         </LabelInput>
-        {errors.breed && <p>{errors.breed.message}</p>}
       </InputWrap>
       {useWindowDimensions().width < 768 ? (
         <ButtonWrap>

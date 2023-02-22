@@ -11,7 +11,7 @@ import { addNewNotice } from 'services/notices';
 import { FormWrap, BackDrop, MainText } from './Form.styled';
 import { RadioTwo, LabelText, RadioWrap, Label, TextTittle } from '../FormSteps/FormStep.styled';
 
-export const Form = () => {
+export const FormAddNotice = () => {
   const [selectedValue, setSelectedValue] = useState('lost/found');
   const [isModalOpen, setIsModalOpen] = useState(false);
   const location = useLocation();
@@ -20,25 +20,34 @@ export const Form = () => {
   const methods = useForm({
     defaultValues: {
       //  category: selectedValue,
+      // category: 'sell',
+
       petType: 'dog',
-      breed: 'Bulldog',
+      // breed: 'Bulldog',
       birthday: '12.12.12',
       title: 'Notice',
       price: '150',
-      category: 'sell',
       comments: 'The best dog ever',
       location: 'Odesa',
       name: 'Linsy',
       sex: 'female',
-      // picture: {name: 'Rectangle 22.png', lastModified: 1675615515776, lastModifiedDate: Sun Feb 05 2023 18:45:15 GMT+0200 (Восточная Европа, стандартное время), webkitRelativePath: '', size: 32199, …}
     },
     resolver: yupResolver(schemaAddPet),
     mode: 'onBlur',
   });
 
+  const categoryName = methods.getValues().category;
+  console.log('hkjhjkhnbkj');
+  console.log(categoryName);
+
   const client = useQueryClient();
   // const { data, isLoading } = useQuery({ queryFn: postNotice(value), queryKey: 'noticeі' });
-  const { mutate: create } = useMutation({ mutationFn: addNewNotice, onSuccess: () => {} });
+  const { mutate: create } = useMutation({
+    mutationFn: addNewNotice,
+    onSuccess: () => {
+      client.invalidateQueries({ queryKey: ['notices', 'all', categoryName] });
+    },
+  });
 
   const handleRadioInputChange = event => {
     setSelectedValue(event.target.value);
@@ -48,8 +57,8 @@ export const Form = () => {
 
   const onSubmit = data => {
     console.log('first');
-    console.log(data);
-    create(data);
+    // console.log(data);
+    // create(data);
     navigate('/');
   };
 

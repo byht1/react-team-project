@@ -11,9 +11,9 @@ import { LoginPage } from 'page/LoginPage';
 import { Home } from 'page/Home';
 // import { NotFound } from 'page/NotFound';
 // import { FormSellStepOne } from 'components/modules/Form/FormSell/FormSellStepOne';
-import { FormSellStepTwo } from 'components/modules/Form/FormSteps/FormStepTwo';
-import { Form } from 'components/modules/Form/Form/Form';
-import { FormSellStepOne } from 'components/modules/Form/FormSteps/FormStepOne';
+import { FormAddNotice } from 'components/modules/Form/Form/FormAddNotice';
+import { FormStepOne } from 'components/modules/Form/FormSteps/FormStepOne';
+import { FormStepTwo } from 'components/modules/Form/FormSteps/FormStepTwo';
 
 const queryClient = new QueryClient();
 
@@ -34,9 +34,9 @@ function App() {
           <Route path="*" element={<Navigate to="/" />} />
           {/* <Route path="*" element={<NotFound />} /> */}
 
-          <Route path="addpet" element={<Form />}>
-            <Route path="step1" element={<FormSellStepOne />}></Route>
-            <Route path="step2" element={<FormSellStepTwo />}></Route>
+          <Route path="addpet" element={<FormAddNotice />}>
+            <Route path="step1" element={<FormStepOne />}></Route>
+            <Route path="step2" element={<FormStepTwo />}></Route>
             {/* // <Route path="step2" element={<FormSellStepTwo />}></Route> */} */
           </Route>
         </Route>
