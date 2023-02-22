@@ -10,10 +10,10 @@ import { NoticesPage } from 'page/NoticesPage';
 import { LoginPage } from 'page/LoginPage';
 import { Home } from 'page/Home';
 // import { NotFound } from 'page/NotFound';
-// import { FormSellStepOne } from 'components/modules/Form/FormSell/FormSellStepOne';
-import { FormAddNotice } from 'components/modules/Form/Form/FormAddNotice';
-import { FormStepOne } from 'components/modules/Form/FormSteps/FormStepOne';
-import { FormStepTwo } from 'components/modules/Form/FormSteps/FormStepTwo';
+// import { FormAddNotice } from 'components/modules/FormAddNotice/FormAddNotice';
+import FormAddNoticePage from 'page/AddNoticePage/AddNoticePage';
+import { FormStepOne } from 'components/modules/FormAddNotice/FormStepOne';
+import { FormStepTwo } from 'components/modules/FormAddNotice/FormStepTwo';
 
 const queryClient = new QueryClient();
 
@@ -34,7 +34,7 @@ function App() {
           <Route path="*" element={<Navigate to="/" />} />
           {/* <Route path="*" element={<NotFound />} /> */}
 
-          <Route path="addpet" element={<FormAddNotice />}>
+          <Route path="addpet" element={<FormAddNoticePage />}>
             <Route path="step1" element={<FormStepOne />}></Route>
             <Route path="step2" element={<FormStepTwo />}></Route>
             {/* // <Route path="step2" element={<FormSellStepTwo />}></Route> */} */

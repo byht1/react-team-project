@@ -1,12 +1,15 @@
-import { useFormContext } from 'react-hook-form';
-import { FormWrap } from '../Form/Form.styled';
 import { useState } from 'react';
+import { useFormContext } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 import { IoCloseOutline } from 'react-icons/io5';
 
+import { AddIcon } from './helpers/AddIcon';
+import useWindowDimensions from './helpers/getWidth';
 import { Input } from 'components/global/FormInput/FormInput.styled';
-import { AddIcon } from '../helpers/AddIcon';
+
+import { CloseModalBtn } from 'components/modules/Notices/NoticeModal/NoticeModal.styled';
 import {
+  FormWrap,
   RadioMale,
   RadioFemale,
   LabelMale,
@@ -19,13 +22,15 @@ import {
   TextTittle,
   ButtonAhead,
   ButtonBack,
-} from './FormStep.styled';
-import { LabelInput, LabelSex, LabelWrap, Sex, Text, Comments } from './FormStep.styled';
-import { CloseModalBtn } from 'components/modules/Notices/NoticeModal/NoticeModal.styled';
-import Home from 'page/Home/Home';
-import useWindowDimensions from '../helpers/getWidth';
-import { Accent, Error } from './FormStep.styled';
-import { useEffect, useRef } from 'react';
+  Accent,
+  Error,
+  LabelInput,
+  LabelSex,
+  LabelWrap,
+  Sex,
+  Text,
+  Comments,
+} from './FormAddNotice.styled';
 
 // custom hook for ResizeObserver
 

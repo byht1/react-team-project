@@ -3,19 +3,21 @@ import { useNavigate } from 'react-router-dom';
 import { Autocomplete, TextField } from '@mui/material';
 import { IoCloseOutline } from 'react-icons/io5';
 
-import { dogBreeds } from '../helpers/dogBreeds';
+import { dogBreeds } from './helpers/dogBreeds';
+import useWindowDimensions from './helpers/getWidth';
+
 import { Input } from 'components/global/FormInput/FormInput.styled';
 import { CloseModalBtn } from 'components/modules/Notices/NoticeModal/NoticeModal.styled';
-import { Accent, Error } from './FormStep.styled';
 import {
+  Accent,
+  Error,
   InputWrap,
   ButtonWrap,
   LabelInput,
   Text,
   ButtonAhead,
   ButtonBack,
-} from './FormStep.styled';
-import useWindowDimensions from '../helpers/getWidth';
+} from './FormAddNotice.styled';
 
 export const FormStepOne = () => {
   const {

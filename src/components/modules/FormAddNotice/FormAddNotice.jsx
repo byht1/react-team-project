@@ -2,14 +2,21 @@ import React, { useState, useEffect } from 'react';
 import { useForm, FormProvider } from 'react-hook-form';
 import { Outlet, useNavigate, useLocation } from 'react-router-dom';
 import { useQuery, useQueryClient } from '@tanstack/react-query';
+import { addNewNotice } from 'services/notices';
 import { useMutation } from '@tanstack/react-query';
 import { yupResolver } from '@hookform/resolvers/yup';
-import { schemaAddPet } from '../helpers/schemaAppPet';
-import { postNotice } from 'api/addNotice';
-import { addNewNotice } from 'services/notices';
+import { schemaAddPet } from './helpers/schemaAppPet';
 
-import { FormWrap, BackDrop, MainText } from './Form.styled';
-import { RadioTwo, LabelText, RadioWrap, Label, TextTittle } from '../FormSteps/FormStep.styled';
+import {
+  FormWrap,
+  BackDrop,
+  MainText,
+  RadioTwo,
+  LabelText,
+  RadioWrap,
+  Label,
+  TextTittle,
+} from './FormAddNotice.styled';
 
 export const FormAddNotice = () => {
   const [selectedValue, setSelectedValue] = useState('lost/found');
