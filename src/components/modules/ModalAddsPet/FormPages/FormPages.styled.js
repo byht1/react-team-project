@@ -1,7 +1,7 @@
 import styled from 'styled-components';
-import { GrClose } from 'react-icons/gr';
-import { DesktopDatePicker } from '@mui/x-date-pickers/DesktopDatePicker';
-import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
+// import { GrClose } from 'react-icons/gr';
+// import { DesktopDatePicker } from '@mui/x-date-pickers/DesktopDatePicker';
+// import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 
 export const InputWrap = styled.div`
   display: flex;
@@ -341,7 +341,11 @@ export const ErrorTextarea = styled.div`
 `;
 
 export const ErrorInputFile = styled.div`
+  z-index: 10;
   position: absolute;
+  width: 410px;
   color: red;
-  font-size: 30px;
+  font-size: 10px;
+  top: -20px;
+  left: 35px;
 `;

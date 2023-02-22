@@ -11,6 +11,9 @@ html {
   --transparent-color: transparent;
   --tag-bg: rgba(255, 255, 255, 0.6);
 
+  --input-border: rgba(245, 146, 86, 0.5);
+  --placeholder-color: rgba(17, 17, 17, 0.6);
+
   --white: #ffffff;
   --black: #111111;
 

@@ -19,6 +19,7 @@ import {
 
 export const SecondPage = ({ prevStep }) => {
   const [photo, setPhoto] = useState('');
+  const [onAddPhoto, setOnAddPhoto] = useState(false);
 
   const {
     register,
@@ -26,12 +27,15 @@ export const SecondPage = ({ prevStep }) => {
     setValue,
   } = useFormContext();
 
-  console.log(errors);
-  console.log(setValue());
-
   const handleChange = e => {
     const file = e.currentTarget.files[0];
-    // console.log(file);
+
+    console.log(file);
+
+    if (file) {
+      setOnAddPhoto(true);
+    }
+
     const reader = new FileReader();
     reader.onload = function (e) {
       setPhoto(e.target.result);
@@ -52,14 +56,19 @@ export const SecondPage = ({ prevStep }) => {
           )}
           <InputFile
             {...register('myPetURL')}
-            name="myPetURL"
+            name="petPhotoURL"
             type="file"
             id="petPhotoURL"
             accept="image/png, image/jpeg, image/jpg, image/webp"
             onChange={handleChange}
             required
           />
-          {errors.myPetImageURL && <ErrorInputFile>{errors.myPetImageURL.message}</ErrorInputFile>}
+          {!onAddPhoto && (
+            <ErrorInputFile>
+              <p>This field is requaired!'</p>
+            </ErrorInputFile>
+          )}
+          {/* {errors.myPetImageURL && <ErrorInputFile>{errors.myPetImageURL.message}</ErrorInputFile>} */}
         </LabelFile>
 
         <LabelInput htmlFor="comments">

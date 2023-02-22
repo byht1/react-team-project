@@ -4,8 +4,9 @@ export const schemaAddMyPetForm = yup.object({
   petName: yup
     .string()
     .matches(
-      /^([A-Za-z\u00C0-\u00D6\u00D8-\u00f6\u00f8-\u00ff\s]*)$/gi,
-      'Name can only contain Latin letters.'
+      // /^([A-Za-z\u00C0-\u00D6\u00D8-\u00f6\u00f8-\u00ff\s]*)$/gi,
+      /^([а-яё\s]+|[a-z\s]+)$/iu,
+      'Name can contain only letters.'
     )
     .min(2, 'The name must contain more than 2 characters')
     .max(20, 'Maximum name length 20 characters')
@@ -41,13 +42,17 @@ export const schemaAddMyPetForm = yup.object({
     }),
   petBreed: yup
     .string()
+    .matches(
+      // /^([A-Za-z\u00C0-\u00D6\u00D8-\u00f6\u00f8-\u00ff\s]*)$/gi,
+      /^([а-яё\s]+|[a-z\s]+)$/iu,
+      'Breed can contain only letters.'
+    )
     .min(2, 'The breed must contain more than 2 characters')
     .max(24, 'Maximum breed length 20 characters')
     .required('This field is requaired!'),
 
-  // myPetURL: yup.object().required('This field is requaired!'),
   myPetURL: yup.mixed().required('This field is requaired!'),
-  myPetImageURL: yup.mixed().required('This field is requaired!'),
+  // myPetImageURL: yup.mixed().required('This field is requaired!'),
   comments: yup
     .string()
     .required('This field is requaired!')

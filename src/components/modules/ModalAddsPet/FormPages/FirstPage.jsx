@@ -1,4 +1,4 @@
-// import { useState } from 'react';
+
 import { useFormContext } from 'react-hook-form';
 
 // import { MaterialUIPickers } from '../DatePicker';
@@ -20,9 +20,6 @@ export const FirstPage = ({ nextStep, onClose }) => {
     trigger,
     formState: { errors },
   } = useFormContext();
-
-  // console.log(register);
-  // const [startDate, setStartDate] = useState(new Date());
 
   return (
     <>
@@ -87,11 +84,7 @@ export const FirstPage = ({ nextStep, onClose }) => {
           Next
         </ButtonDark>
         <ButtonLight onClick={onClose}>Cancel</ButtonLight>
-        {/* <Button theme="dark" fn={nextStep}> */}
       </Buttons>
-      {/* <CloseBtn type="button" onClick={onClose}>
-        <GrCloseIcon />
-      </CloseBtn> */}
     </>
   );
 };
