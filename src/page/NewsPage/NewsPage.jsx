@@ -1,5 +1,5 @@
 import React from 'react';
-import { NewsPageConponent } from 'components/modules/NewsPage';
+import { NewsPageConponent } from 'components/modules/NewsPage/NewsPage';
 
 
 const NewsPage = () => {
