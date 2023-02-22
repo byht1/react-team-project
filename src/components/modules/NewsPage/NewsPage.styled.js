@@ -1,7 +1,7 @@
 import styled from 'styled-components';
-import { IoMdSearch } from 'react-icons/io';  
-import {SlClose} from 'react-icons/sl'
+import { IoMdSearch, IoMdClose } from 'react-icons/io';  
 import {TitleH2} from 'components/global/text';
+import { Text } from 'components/global/text';
 
 export const NewBlock = styled.div`
 margin: 0 auto;
@@ -21,6 +21,11 @@ font-size: 24px;
         font-size: 48px;
       }
      
+`
+export const LinkText = styled(Text)`
+&:hover {
+  transform: scale(1.05);
+}
 `
 export const Input = styled.input`
     width: 100%;
@@ -140,7 +145,7 @@ background: ${p => p.theme.colors.trsp};
 export const IconSearch = styled(IoMdSearch)`
 width: 20px;
 height: 20px;
-fill: ${p => p.theme.colors.b};
+fill: ${p => p.theme.colors.g};
 &:hover,
 &:focus{
     fill: ${p => p.theme.colors.a};
@@ -150,10 +155,10 @@ fill: ${p => p.theme.colors.b};
   height: 24px;
 }
 `
-export const IconClose = styled(SlClose)`
+export const IconClose = styled(IoMdClose)`
 width: 20px;
 height: 20px;
-fill: ${p => p.theme.colors.b};
+fill: ${p => p.theme.colors.g};
 &:hover,
 &:focus{
     fill: ${p => p.theme.colors.a};

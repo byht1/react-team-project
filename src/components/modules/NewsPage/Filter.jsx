@@ -5,8 +5,8 @@ export const Filter = ({value, onChange}) => {
         <Input type="text" 
               placeholder="Search" 
               onChange={onChange}
-              // onFocus={handleChangeSvg}
-              // onBlur={handleChangeSvgNext}
+            //   onFocus={onFocus}
+            //   onBlur={onBlur}
               value = {value}>
                 
         </Input>

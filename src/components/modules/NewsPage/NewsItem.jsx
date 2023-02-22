@@ -1,6 +1,6 @@
 import { Text } from 'components/global/text';
 import {TitleH3} from 'components/global/text';
-import {Item, NewsMore, Line} from './NewsPage.styled';
+import {Item, NewsMore, Line, LinkText} from './NewsPage.styled';
 
 
 export const NewsItem = ({ title, description, date, url }) => {
@@ -23,9 +23,9 @@ let text = description.split(' ', 20).join(' ');
               {date}
             </Text>
             <a href={url} target="_blank" rel="noreferrer" >
-              <Text color="a">
+              <LinkText color="a">
               Read more
-              </Text>
+              </LinkText>
             </a>
         </NewsMore>
         

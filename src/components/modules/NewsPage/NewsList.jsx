@@ -21,28 +21,30 @@ export const NewsList = () => {
     }
     getNewsList();
   }, []);
- 
+  
    const [filter, setFilter] = useState('');
-   const [valueSVG, setValueSvg] = useState(true);
+  //  const [valueSVG, setValueSvg] = useState(true);
    
+
    const changeFilter = event =>{
     setFilter(event.currentTarget.value)
-    setValueSvg(false);
    }
+
    const normalizeFilter = filter.toLowerCase();
    const visibleNews = newsList.filter(todo => todo.title.toLowerCase().includes(normalizeFilter));
  
-   console.log(filter);
-   
+   const handleClear = ()=>{
+    setFilter('');
+   }
+ 
   return (
     <Box display="flex" flexDirection="column" justifyContent="center">
        <TitleNews textAlign="center">News</TitleNews>
               <Block>
-                <Filter value={filter} onChange={changeFilter}/>
-                <Button>
-                  {valueSVG && <IconSearch/>}
-                  {!valueSVG && <IconClose/>}
-                </Button>
+                <Filter value={filter} onChange={changeFilter} />
+                {filter
+                  ? <Button type="button" onClick={handleClear}><IconClose/></Button>
+                  : <Button><IconSearch/></Button>}
               </Block>
             <List>
               {visibleNews.sort(function(a,b){return new Date(b.date) - new Date(a.date)})
