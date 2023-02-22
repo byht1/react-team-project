@@ -40,7 +40,7 @@ import { createPortal } from 'react-dom';
 import PropTypes from 'prop-types';
 import { Overlay } from './ModalOverlay.styled.js';
 
-const modalRoot = document.querySelector('#modal-root');
+const modalRoot = document.querySelector('#modal-root-pets');
 
 export const ModalOverlay = ({ onClose, children }) => {
   useEffect(() => {
