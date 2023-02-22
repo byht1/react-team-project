@@ -6,7 +6,7 @@ import { IoCloseOutline } from 'react-icons/io5';
 import { dogBreeds } from '../helpers/dogBreeds';
 import { Input } from 'components/global/FormInput/FormInput.styled';
 import { CloseModalBtn } from 'components/modules/Notices/NoticeModal/NoticeModal.styled';
-
+import { Accent, Error } from './FormStep.styled';
 import {
   InputWrap,
   ButtonWrap,
@@ -33,21 +33,22 @@ export const FormSellStepOne = () => {
           </CloseModalBtn>
           <Text>
             Tittle of ad
-            <span>*</span>:
+            <Accent>*</Accent>:
           </Text>
           <Input {...register('title')} placeholder="Type name" id="tittle" />
-          {/* {errors.title && <p>{errors.title.message}</p>} */}
+          {errors.title && <Error>{errors.title.message}</Error>}
         </LabelInput>
         <LabelInput htmlFor="petName">
           <Text>Name pet:</Text>
           <Input {...register('name')} placeholder="Type name pet" id="petName" />
+          {errors.name && <Error>{errors.name.message}</Error>}
         </LabelInput>
-        {/* {errors.name && <p>{errors.name.message}</p>} */}
+
         <LabelInput htmlFor="petBirth">
           <Text>Date of birth:</Text>
           <Input {...register('birthday')} placeholder="Type date of birth" id="petBirth" />
         </LabelInput>
-        {/* {errors.birthday && <p>{errors.birthday.message}</p>} */}
+        {/* {errors.birthday && <Error>{errors.birthday.message}</Error>} */}
         <LabelInput htmlFor="petBreed">
           <Text>Breed:</Text>
           <Autocomplete

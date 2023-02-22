@@ -60,7 +60,7 @@ export const RadioFemale = styled(FemaleIcon)`
 `;
 
 export const LabelMale = styled.label`
-  color: ${props => (props.male ? '#F59256' : '#000000')};
+  color: ${props => (props.male ? ' var(--accent)' : '#000000')};
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -72,7 +72,7 @@ export const LabelMale = styled.label`
 `;
 
 export const LabelFemale = styled.label`
-  color: ${props => (props.female ? '#F59256' : '#000000')};
+  color: ${props => (props.female ? 'var(--accent)' : '#000000')};
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -113,10 +113,10 @@ export const LabelText = styled.p`
 
 export const Label = styled.label`
   display: inline-block;
-  border: 2px solid #f59256;
+  border: 2px solid var(--accent);
   border-radius: 40px;
   padding: 10px 28px;
-  background-color: ${props => (props.checked ? '#F59256' : '#FFF')};
+  background-color: ${props => (props.checked ? 'var(--accent)' : '#FFF')};
   color: ${props => (props.checked ? '#FFF' : '#000')};
 `;
 
@@ -191,7 +191,7 @@ export const Comments = styled(TextareaAutosize)`
   padding: 16px 18px;
   resize: none;
   width: 100%;
-  border: 1px solid #f59256;
+  border: 1px solid var(--accent);
   border-radius: 40px;
   height: 43px;
   font-family: 'Manrope';
@@ -268,4 +268,17 @@ export const ButtonBack = styled.button`
     justify-content: center;
     align-items: center;
   }
+`;
+
+export const Accent = styled.span`
+  color: var(--accent);
+`;
+
+export const Error = styled.p`
+  color: var(--dark-accent);
+  margin-top: 6px;
+  padding-left: 11px;
+  font-size: 12px;
+  font-weight: 400;
+  position: absolute;
 `;

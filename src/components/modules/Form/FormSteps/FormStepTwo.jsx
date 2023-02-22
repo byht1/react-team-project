@@ -24,14 +24,14 @@ import { LabelInput, LabelSex, LabelWrap, Sex, Text, Comments } from './FormStep
 import { CloseModalBtn } from 'components/modules/Notices/NoticeModal/NoticeModal.styled';
 import Home from 'page/Home/Home';
 import useWindowDimensions from '../helpers/getWidth';
-
+import { Accent, Error } from './FormStep.styled';
 import { useEffect, useRef } from 'react';
 
 // custom hook for ResizeObserver
 
 export const FormSellStepTwo = () => {
   const navigate = useNavigate();
-  const [male, setMale] = useState(true);
+  const [male, setMale] = useState(false);
   const [female, setFemale] = useState(false);
   const [img, setImage] = useState(null);
 
@@ -62,23 +62,25 @@ export const FormSellStepTwo = () => {
         </CloseModalBtn>
         <InputWrap>
           <LabelSex>
-            The sex<span>*</span>:
+            The sex<Accent>*</Accent>:
           </LabelSex>
           <LabelWrap>
             <LabelMale
               htmlFor="Male"
-              onClick={() => {
+              onClick={e => {
                 setMale(true);
                 setFemale(false);
               }}
+              value="male"
               male={male}
             >
               <RadioMale
                 sx={{ width: { xs: '45px', md: '72px' }, height: { xs: '45px', md: '72px' } }}
               />
               <Sex>Male</Sex>
+              <RadioTwo {...register('sex')} type="radio" value="male" id="Male" />
             </LabelMale>
-            <RadioTwo {...register('sex')} type="radio" value="male" id="Male" checked={male} />
+
             <LabelFemale
               htmlFor="Female"
               onClick={() => {
@@ -91,33 +93,26 @@ export const FormSellStepTwo = () => {
                 sx={{ width: { xs: '45px', md: '72px' }, height: { xs: '45px', md: '72px' } }}
               />
               <Sex>Female</Sex>
+              <RadioTwo {...register('sex')} type="radio" value="female" id="Female" />
             </LabelFemale>
-            <RadioTwo
-              {...register('sex')}
-              type="radio"
-              value="female"
-              id="Female"
-              checked={female}
-            />
           </LabelWrap>
           <LabelInput htmlFor="location">
             <Text>
-              Location<span>*</span>:
+              Location<Accent>*</Accent>:
             </Text>
             <Input {...register('location')} placeholder="Type location" id="location" />
+            {/* {errors.location && <Error>{errors.location.message}</Error>} */}
           </LabelInput>
 
-          {/* {errors.location && <p>{errors.location.message}</p>} */}
           {values.category === 'sell' && (
             <>
               <LabelInput htmlFor="price">
                 <Text>
-                  Price<span>*</span>:
+                  Price<Accent>*</Accent>:
                 </Text>
                 <Input {...register('price')} placeholder="Type price" />
+                {/* {errors.price && <Error>{errors.price.message}</Error>} */}
               </LabelInput>
-
-              {/* {errors.price && <p>{errors.price.message}</p>} */}
             </>
           )}
           <LabelInput htmlFor="photo">
@@ -139,9 +134,9 @@ export const FormSellStepTwo = () => {
           <LabelInput htmlFor="comments">
             <Text>Comments:</Text>
             <Comments {...register('comments')} id="comments" placeholder="Type comment" />
+            {/* {errors.comments && <Error>{errors.comments.message}</Error>} */}
           </LabelInput>
 
-          {/* {errors.comments && <p>{errors.comments.message}</p>} */}
           {/* ТЕСТУЮннннннннннннннннннннннннннннннннннннннннннннннннннннннннннннннннннннннннЮ */}
         </InputWrap>
         {useWindowDimensions().width < 768 ? (
