@@ -1,6 +1,8 @@
 import { useMutation } from '@tanstack/react-query';
 import { logOutUser } from 'api';
 import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { logout } from 'redux/auth';
 import { UserInputInfo } from '../UserInputInfo';
 import { Form, SpanLogout, Cover, LogoutIc } from './UserInfo.styled';
 
