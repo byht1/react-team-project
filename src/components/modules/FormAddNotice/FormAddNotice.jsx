@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { useForm, FormProvider } from 'react-hook-form';
 import { Outlet, useNavigate } from 'react-router-dom';
-// import { useQueryClient } from '@tanstack/react-query';
-// import { addNewNotice } from 'services/notices';
-// import { useMutation } from '@tanstack/react-query';
+import { useQueryClient } from '@tanstack/react-query';
+import { addNewNotice } from 'services/notices';
+import { useMutation } from '@tanstack/react-query';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { schemaAddPet } from './helpers/schemaAppPet';
 
@@ -49,15 +49,16 @@ export const FormAddNotice = () => {
   console.log('hkjhjkhnbkj');
   console.log(categoryName);
 
-  // const client = useQueryClient();
+  const client = useQueryClient();
   // const { data, isLoading } = useQuery({ queryFn: postNotice(value), queryKey: 'noticeі' });
-  // const { mutate: create } = useMutation({
-  //   mutationFn: addNewNotice,
-  //   onSuccess: () => {
-  //     client.invalidateQueries({ queryKey: ['notices', 'all', categoryName] });
-  //   },
-  // });
-
+  const { mutate: create } = useMutation({
+    // mutationKey: ['notices', 'all', categoryName],
+    mutationFn: addNewNotice,
+    onSuccess: () => {
+      client.invalidateQueries({ queryKey: ['notices', 'all', categoryName] });
+    },
+  });
+  console.log(addNewNotice);
   const handleRadioInputChange = event => {
     setSelectedValue(event.target.value);
     methods.setValue('category', event.target.value);
@@ -67,7 +68,30 @@ export const FormAddNotice = () => {
   const onSubmit = data => {
     console.log('first');
     // console.log(data);
-    // create(data);
+    // addNewNotice({
+    //   breed: 'Bulldog',
+    //   category: 'sell',
+    //   petType: 'dog',
+    //   birthday: '12.12.12',
+    //   title: 'Notice',
+    //   price: 150,
+    //   comments: 'The best dog ever',
+    //   location: 'Odesa',
+    //   name: 'Linsy',
+    //   sex: 'female',
+    // });
+    create({
+      breed: 'Bulldog',
+      category: 'sell',
+      petType: 'dog',
+      birthday: '12.12.12',
+      title: 'Notice',
+      price: 150,
+      comments: 'The best dog ever',
+      location: 'Odesa',
+      name: 'Linsy',
+      sex: 'female',
+    });
     navigate('/');
   };
 
