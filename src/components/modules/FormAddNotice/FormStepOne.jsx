@@ -20,16 +20,12 @@ import {
 } from './FormAddNotice.styled';
 
 export const FormStepOne = () => {
+  const navigate = useNavigate();
   const {
     register,
     formState: { errors },
   } = useFormContext();
-  console.log(errors);
-  console.log(errors.length);
-  // const toddleBtn = err => {
-  //   return err.length ? true : false;
-  // };
-  const navigate = useNavigate();
+
   return (
     <>
       <InputWrap>

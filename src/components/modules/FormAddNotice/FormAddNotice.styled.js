@@ -327,3 +327,11 @@ export const MainText = styled.p`
     font-size: 20px;
   }
 `;
+
+export const HeaderWrap = styled.div`
+  text-align: center;
+  margin-bottom: 28px;
+  @media (min-width: 768px) {
+    margin-bottom: 28px;
+  }
+`;

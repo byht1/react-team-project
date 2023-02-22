@@ -1,23 +1,25 @@
 import React, { useState, useEffect } from 'react';
 import { useForm, FormProvider } from 'react-hook-form';
 import { Outlet, useNavigate, useLocation } from 'react-router-dom';
-import { useQuery, useQueryClient } from '@tanstack/react-query';
+import { useQueryClient } from '@tanstack/react-query';
 import { addNewNotice } from 'services/notices';
 import { useMutation } from '@tanstack/react-query';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { schemaAddPet } from './helpers/schemaAppPet';
 
-import {
-  FormWrap,
-  BackDrop,
-  MainText,
-  RadioTwo,
-  LabelText,
-  RadioWrap,
-  Label,
-  TextTittle,
-} from './FormAddNotice.styled';
-
+// import {
+//   FormWrap,
+//   BackDrop,
+//   MainText,
+//   RadioTwo,
+//   LabelText,
+//   RadioWrap,
+//   Label,
+//   TextTittle,
+// } from './FormAddNotice.styled';
+import { FormWrap, BackDrop, RadioTwo, LabelText, RadioWrap, Label } from './FormAddNotice.styled';
+import { FormHeader } from './FormHeader';
+import { Categories } from './Categories';
 export const FormAddNotice = () => {
   const [selectedValue, setSelectedValue] = useState('lost/found');
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -71,13 +73,7 @@ export const FormAddNotice = () => {
 
   // eslint-disable-next-line react-hooks/exhaustive-deps
   const closeModal = e => {
-    if (
-      e.target.id === 'backdrop-notice' ||
-      // e.target.id === 'modal-close' ||
-      // e.target.id === 'close-svg' ||
-      e.key === 'Escape'
-    ) {
-      console.log(e);
+    if (e.target.id === 'backdrop-notice' || e.key === 'Escape') {
       navigate('/');
     }
   };
@@ -94,12 +90,8 @@ export const FormAddNotice = () => {
     <FormProvider {...methods}>
       <BackDrop onClick={closeModal} id="backdrop-notice">
         <FormWrap>
-          <TextTittle>Add pet</TextTittle>
-          {location.pathname === '/addpet/step1' && (
-            <MainText>
-              Lorem ipsum dolor sit amet, consectetur Lorem ipsum dolor sit amet, consectetur
-            </MainText>
-          )}
+          <FormHeader />
+          {/* <Categories></Categories> */}
           <RadioWrap>
             <Label checked={selectedValue === 'lost/found'}>
               <RadioTwo

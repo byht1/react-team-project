@@ -6,11 +6,9 @@ import { Outlet } from 'react-router-dom';
 const FormAddNoticePage = () => {
   return (
     <FormAddNotice>
-      {' '}
       <Suspense>
         <Outlet />
       </Suspense>
-      /
     </FormAddNotice>
   );
 };
