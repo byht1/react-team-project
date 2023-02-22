@@ -24,7 +24,7 @@ import { getIsLogin } from 'redux/auth';
 export const Header = () => {
   const [menuIsOpen, setMenuIsOpen] = useState(false);
 
-  let authorized = useSelector(getIsLogin);
+  const authorized = useSelector(getIsLogin);
 
   function openMenu() {
     setMenuIsOpen(prev => !prev);
