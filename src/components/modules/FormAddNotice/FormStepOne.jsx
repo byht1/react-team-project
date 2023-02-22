@@ -77,7 +77,7 @@ export const FormStepOne = () => {
                   },
                 },
               }}
-              inputFormat="DD.MM.YY"
+              inputFormat="DD.MM.YYYY"
               value={value}
               onChange={handleChange}
               renderInput={params => (
