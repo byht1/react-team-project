@@ -84,7 +84,7 @@ export const FormStepOne = () => {
               },
             }}
             inputFormat="DD.MM.YY"
-            value={date}
+            value={value}
             onChange={handleChange}
             renderInput={params => (
               <TextField

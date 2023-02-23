@@ -38,8 +38,8 @@ export const FormAddNotice = () => {
       // category: 'sell',
 
       petType: 'dog',
-      // breed: 'Bulldog',
-      birthday: '12.12.12',
+      breed: 'Bulldog',
+      birthday: '12.12.2012',
       title: 'Notice',
       price: '150',
       comments: 'The best dog ever',
@@ -72,6 +72,13 @@ export const FormAddNotice = () => {
     console.log('first');
     console.log(data);
     console.log(dateConverter(methods.getValues('calendar').$d));
+
+    const formData = new FormData();
+    for (const key in data) {
+      formData.append(key, data[key]);
+    }
+
+    create(formData);
     // addNewNotice({
     //   breed: 'Bulldog',
     //   category: 'sell',
@@ -84,7 +91,6 @@ export const FormAddNotice = () => {
     //   name: 'Linsy',
     //   sex: 'female',
     // });
-
     create({
       breed: 'Bulldog',
       category: 'sell',
