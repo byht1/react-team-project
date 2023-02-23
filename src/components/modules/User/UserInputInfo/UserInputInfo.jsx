@@ -10,6 +10,7 @@ import {
   editUserInfo,
 } from 'redux/user';
 import { Item, Input, FildName, Icon, EditIc, CheckIc, EditIcBlack } from './UserInputInfo.styled';
+import PropTypes from 'prop-types';
 
 export function UserInputInfo({
   fildName,
@@ -108,3 +109,13 @@ export function UserInputInfo({
     </Item>
   );
 }
+
+UserInputInfo.propTypes = {
+  Item: PropTypes.string,
+  Input: PropTypes.string,
+  FildName: PropTypes.string,
+  Icon: PropTypes.string,
+  EditIc: PropTypes.string,
+  CheckIc: PropTypes.string,
+  EditIcBlack: PropTypes.string,
+};

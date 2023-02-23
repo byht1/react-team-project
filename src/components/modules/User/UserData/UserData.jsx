@@ -7,13 +7,15 @@ import {
   Title,
   PhotoBlock,
   CameraIc,
+  LoadFile,
 } from './UserData.styled';
 import { UserInfo } from '../UserInfo';
-import { useSelector } from 'react-redux';
-import { getUserPhoto } from 'redux/user';
+import { useDispatch, useSelector } from 'react-redux';
+import { editUserProfilePhoto, getUserPhoto } from 'redux/user';
 
 export const UserData = () => {
   const img = useSelector(getUserPhoto);
+  const dispatch = useDispatch();
   return (
     <Container>
       <Title>My information:</Title>
@@ -22,6 +24,19 @@ export const UserData = () => {
           <ProfileImage src={img} />
           <SpanEditPhoto>
             <CameraIc />
+            <LoadFile
+              onChange={e => {
+                e.preventDefault();
+                if (e.target.files[0]) {
+                  const formData = new FormData();
+                  console.log(e.target.value);
+                  formData.append('file', e.target.files[0]);
+                  dispatch(editUserProfilePhoto(formData));
+                }
+              }}
+              accept="image/*"
+              type={'file'}
+            />
             Edit photo
           </SpanEditPhoto>
         </PhotoBlock>
