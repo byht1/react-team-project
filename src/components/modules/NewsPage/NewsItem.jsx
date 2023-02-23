@@ -9,15 +9,15 @@ export const NewsItem = ({ title, description, date, url }) => {
     <Item>
       <div>
         <Line />
-        <TitleH3 size={24} lh="heading">
+        <TitleH3 size={'24'} lh="heading">
           {title}
         </TitleH3>
       </div>
-      <Text weight={400} lh="heading">
+      <Text weight={'400'} lh="heading">
         {text + '...'}
       </Text>
       <NewsMore>
-        <Text weight={400} lh="heading" color="overlay">
+        <Text weight={'400'} lh="heading" color="overlay">
           {date}
         </Text>
         <a href={url} target="_blank" rel="noreferrer">

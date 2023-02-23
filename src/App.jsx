@@ -12,9 +12,9 @@ import { Home } from 'page/Home';
 import { refresh } from 'api/auth';
 import { RestrictedRoute } from 'components/global/RestrictedRoute';
 import { PrivateRoute } from 'components/global/PrivateRoute';
-import { Loader } from 'components/global/Loader/Loader';
 import { useDispatch } from 'react-redux';
 import { register } from 'redux/auth';
+import { Loader } from 'components/global/Loader';
 
 // import { NotFound } from 'page/NotFound';
 
@@ -35,11 +35,10 @@ function App() {
 
   if (isLoading) {
     // return <div>loading.....</div>;
-    return <Loader/>
+    return <Loader />;
   }
 
   return (
-     
     <Routes>
       <Route path="/" element={<SharedLayout />}>
         <Route index element={<Home />} />

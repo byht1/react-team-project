@@ -7,6 +7,7 @@ import { HiTrash } from 'react-icons/hi';
 import { useTheme } from 'styled-components';
 import { NoticeModal } from '../NoticeModal';
 import { ViewMoreBtn, DeleteBtn } from './NoticesCategoryItem.styled';
+import { Box } from 'components/global/Box';
 import {
   CardBox,
   ThumbWrapper,
@@ -77,11 +78,13 @@ export const NoticesCategoryItem = ({ noticesItem }) => {
               </CardDescriptionRow>
             </TableBody>
           </CardDescriptionTable>
-          <ViewMoreBtn>Learn more</ViewMoreBtn>
-          <DeleteBtn>
-            Delete
-            <HiTrash size={'20px'} color={'inherit'} style={{ marginLeft: '13px' }} />
-          </DeleteBtn>
+          <Box>
+            <ViewMoreBtn>Learn more</ViewMoreBtn>
+            <DeleteBtn>
+              Delete
+              <HiTrash size={'20px'} color={'inherit'} style={{ marginLeft: '13px' }} />
+            </DeleteBtn>
+          </Box>
         </CardInfoWrapper>
       </CardBox>
       {isModalOpen && <NoticeModal noticeId={noticesItem._id} closeModal={closeModal} />}
