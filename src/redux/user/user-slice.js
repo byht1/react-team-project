@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { getUserData } from './user-operations';
+import { getUserData, editUserProfilePhoto } from './user-operations';
 
 const handlePending = state => {
   state.isLoading = true;
@@ -20,43 +20,13 @@ export const userSlice = createSlice({
     photo: '',
     city: '',
     birthday: '',
-    cards: [
-      {
-        _id: '63f139e997fc630d8da1ff68',
-        name: 'Jack',
-        birth: '22.04.2018',
-        breed: 'Persian cat',
-        image: 'https://api.multiavatar.com/pet.png',
-        comments:
-          'Lorem ipsum dolor sit amet, consectetur Lorem ipsum dolor sit amet, consectetur Lorem ipsum dolor sit amet, consectetur Lorem',
-        owner: '63f37a8cbf6f72e7f1b27ba3',
-      },
-      {
-        _id: '63f139e997fc630d8da1ff68',
-        name: 'Jack',
-        birth: '22.04.2018',
-        breed: 'Persian cat',
-        image: 'https://api.multiavatar.com/pet.png',
-        comments:
-          'Lorem ipsum dolor sit amet, consectetur Lorem ipsum dolor sit amet, consectetur Lorem ipsum dolor sit amet, consectetur Lorem',
-        owner: '63f37a8cbf6f72e7f1b27ba3',
-      },
-      {
-        _id: '63f139e997fc630d8da1ff68',
-        name: 'Jack',
-        birth: '22.04.2018',
-        breed: 'Persian cat',
-        image: 'https://api.multiavatar.com/pet.png',
-        comments:
-          'Lorem ipsum dolor sit amet, consectetur Lorem ipsum dolor sit amet, consectetur Lorem ipsum dolor sit amet, consectetur Lorem',
-        owner: '63f37a8cbf6f72e7f1b27ba3',
-      },
-    ],
+    cards: [],
     isLoading: false,
     error: null,
   },
   reducers: {
-    unpadeUserPetList(state, action) {
+    updateUserPetList(state, action) {
+      console.log('action.payload = ', action.payload);
       return {
         _id: state._id,
         email: state.email,
@@ -65,7 +35,7 @@ export const userSlice = createSlice({
         photo: state.photo,
         city: state.city,
         birthday: state.birthday,
-        cards: action.payload,
+        cards: state.cards.filter(e => e._id !== action.payload),
         isLoading: state.isLoading,
         error: state.error,
       };
@@ -84,10 +54,17 @@ export const userSlice = createSlice({
       state.photo = action.payload.photo;
       state.city = action.payload.city;
       state.birthday = action.payload.birthday;
-      state.cards = action.payload.cards;
+      // state.cards = action.payload.cards;
+    },
+    [editUserProfilePhoto.pending]: handlePending,
+    [editUserProfilePhoto.rejected]: handleRejected,
+    [editUserProfilePhoto.fulfilled](state, action) {
+      state.isLoading = false;
+      state.error = null;
+      state.photo = action.payload.photo;
     },
   },
 });
 
-export const { unpadeUserPetList } = userSlice.actions;
+export const { updateUserPetList } = userSlice.actions;
 export const userSliceReducer = userSlice.reducer;

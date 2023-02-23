@@ -30,3 +30,15 @@ export const editUserProfilePhoto = createAsyncThunk(
     }
   }
 );
+
+export const deletePetFromList = createAsyncThunk(
+  'user/editingUserProfilePhoto',
+  async (_id, thunkAPI) => {
+    try {
+      const res = await server.delete(`/pets/${_id}`);
+      return res.data;
+    } catch (err) {
+      return thunkAPI.rejectWithValue(err.message);
+    }
+  }
+);

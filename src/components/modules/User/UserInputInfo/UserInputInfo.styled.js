@@ -49,9 +49,8 @@ export const Input = styled.input`
 
   &:focus {
     background: ${theme.colors.bg};
-    border: 1px solid rgba(245, 146, 86, 0.5);
+    outline: 1px solid rgba(245, 146, 86, 0.5);
     border-radius: 40px;
-    border: 1px solid rgba(245, 146, 86, 0.5);
   }
 `;
 export const FildName = styled.span`
@@ -82,7 +81,7 @@ export const Icon = styled.a`
   border-radius: 50%;
   width: 20px;
   height: 20px;
-  background-color: #fdf7f2;
+  background-color: ${theme.colors.bg};
   margin-left: 26px;
   @media (min-width: 768px) {
     margin-left: 42px;

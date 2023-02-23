@@ -4,6 +4,7 @@ const UrlRegister = Object.freeze({
   signUp: '/auth/sign-up',
   logIn: '/auth/log-in',
   refresh: '/auth/current',
+  google: '/auth/current?type=google',
   logOut: '/auth/logout',
 });
 
@@ -36,6 +37,17 @@ export const logIn = async body => {
 export const refresh = async () => {
   try {
     const { data } = await server.get(UrlRegister.refresh);
+    return data;
+  } catch (error) {
+    throw error;
+  }
+};
+
+export const googleIn = async accessToken => {
+  try {
+    token.set(accessToken);
+    const { data } = await server.get(UrlRegister.google);
+    localStorage.setItem('refreshToken', data.refresh_token);
     return data;
   } catch (error) {
     throw error;
