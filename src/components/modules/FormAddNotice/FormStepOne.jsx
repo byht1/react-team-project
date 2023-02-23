@@ -72,9 +72,9 @@ export const FormStepOne = () => {
                 {...register('calendar')}
                 sx={{
                   '& .MuiOutlinedInput-root': {
-                    // '&:hover fieldset': {
-                    //   border: '6px solid #f58138db',
-                    // },
+                    '&:hover fieldset': {
+                      border: '0.1px solid #F5925680',
+                    },
                     '&.Mui-focused fieldset': {
                       border: '2px solid #f58138db',
                     },
