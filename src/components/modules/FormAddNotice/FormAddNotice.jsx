@@ -77,6 +77,7 @@ export const FormAddNotice = () => {
     for (const key in data) {
       formData.append(key, data[key]);
     }
+    console.log(dateConverter(methods.getValues('calendar').$d));
 
     create(formData);
     // addNewNotice({
