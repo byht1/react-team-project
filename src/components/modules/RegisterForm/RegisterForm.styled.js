@@ -1,20 +1,27 @@
-
 import { Container } from 'components/global/Container';
 import { NavLink } from 'react-router-dom';
 import styled from 'styled-components';
-import bg from '../../../img/authBg.png';
+import bgmob from '../../../img/auth/bgMob.png';
+import bgtab from '../../../img/auth/bgTab.png';
+import bgdesc from '../../../img/auth/bgDesc.png';
 
 export const BgWrapper = styled.div`
-  height: 100vh;
-  background-image: url(${bg});
-  background-position: right -950px bottom -20px;
+  height: calc(100vh - 74px);
+  background-image: url(${bgmob});
+  background-position: 50% 100%;
   background-repeat: no-repeat;
-  background-size: 1800px;
+  background-size: 1200px;
 
   @media (min-width: 768px) {
-    min-height: 600px;
-    background-size: 1280px;
-    background-position: bottom;
+    height: calc(100vh - 97px);
+    min-height: 500px;
+    background-image: url(${bgtab});
+    background-size: 1500px;
+  }
+
+  @media (min-width: 1280px) {
+    height: calc(100vh - 96px);
+    background-image: url(${bgdesc});
   }
 `;
 
@@ -99,4 +106,21 @@ export const Link = styled(NavLink)`
   font-size: ${p => p.theme.fontSizes.s};
   line-height: ${p => p.theme.lineHeights.heading};
   color: ${p => p.theme.colors.l};
+`;
+
+export const GoogleBox = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 200px;
+  height: 50px;
+  border-radius: ${p => p.theme.radii.inputRadius};
+  border: 1px solid transparent;
+
+  transition: var(--transition-border-color);
+
+  &:hover,
+  &:focus {
+    border: 1px solid ${p => p.theme.colors.a};
+  }
 `;

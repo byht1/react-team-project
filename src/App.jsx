@@ -1,5 +1,5 @@
 import { useQuery } from '@tanstack/react-query';
-import { Navigate, Route, Routes } from 'react-router-dom';
+import { Navigate, Route, Routes, useNavigate, useSearchParams } from 'react-router-dom';
 import { SharedLayout } from 'page/SharedLayout';
 import { NewsPage } from 'page/NewsPage';
 import { OurFriendsPage } from 'page/OurFriendsPage';
@@ -9,7 +9,7 @@ import { NoticesPage } from 'page/NoticesPage';
 import { NoticesCategoriesList } from 'components/modules/Notices/NoticesCategoriesList';
 import { LoginPage } from 'page/LoginPage';
 import { Home } from 'page/Home';
-import { refresh } from 'api/auth';
+import { googleIn, refresh } from 'api/auth';
 import { RestrictedRoute } from 'components/global/RestrictedRoute';
 import { PrivateRoute } from 'components/global/PrivateRoute';
 import { useDispatch } from 'react-redux';
@@ -22,11 +22,26 @@ import { PostDetails } from 'page/PostDetails';
 
 function App() {
   const dispatch = useDispatch();
+  const [searchParams, setSearchParams] = useSearchParams();
+  const accessToken = searchParams.get('access_token');
+  console.log(accessToken);
+
+  const navigate = useNavigate();
 
   const { isLoading } = useQuery({
-    queryFn: () => refresh(),
+    queryFn: () => {
+      if (accessToken) {
+        return googleIn(accessToken);
+      }
+      return refresh();
+    },
     queryKey: ['user'],
     onSuccess: data => {
+      console.log(data);
+      if (accessToken) {
+        setSearchParams({});
+        navigate('/user');
+      }
       dispatch(register(data));
     },
     onError: error => console.log(error.response.data.message),
