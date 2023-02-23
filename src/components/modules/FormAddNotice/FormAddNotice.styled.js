@@ -141,7 +141,47 @@ export const Text = styled.p`
 `;
 
 export const LabelInput = styled.label`
+  /* & .Mui-focused .Muioutlinedinput-notchedoutline {
+    border: 20x solid #f58138db;
+    // width: '110 %',
+    // zIndex: 0,
+  } */
   font-size: 18px;
+  & .MuiInputBase-input:focus .MuiOutlinedInput-notchedOutline {
+    border: 4px solid red;
+  }
+  & .MuiFormControl-root {
+    width: 100%;
+  }
+
+  & .MuiInputBase-root.Muifocused {
+    /* border: 4px solid #f5925680;
+    outline: 4px solid #f5925680; */
+  }
+
+  & .MuiOutlinedInput-notchedOutline {
+    border: 1px solid #f5925680;
+    border-radius: 40px;
+    background-color: #fdf7f2;
+    z-index: -1;
+  }
+  & .MuiInputBase-input {
+    padding: 11px 14px;
+    /* border: 1px solid #f5925680;
+    border-radius: 40px; */
+
+    /* background-color: red; */
+    @media (min-width: 768px) {
+      padding: 14px 32px;
+    }
+  }
+
+  /* bgcolor: #FDF7F2,
+                    borderTopLeftRadius: 40px,
+                    borderBottomLeftRadius: 40px,}; */
+  /* padding: { xs: '10px 16px', md: '14px 32px' },
+                    fontSize: { xs: '14px', md: '18px' },
+                    fontFamily: 'Arial',}, */
   @media (min-width: 768px) {
     font-size: 24px;
   }

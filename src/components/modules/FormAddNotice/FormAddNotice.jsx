@@ -160,7 +160,7 @@ export const FormAddNotice = () => {
               <LabelText>sell</LabelText>
             </Label>
           </RadioWrap>
-          <LocalizationProvider dateAdapter={AdapterDayjs} sx={{ width: '100%' }}>
+          <LocalizationProvider dateAdapter={AdapterDayjs}>
             <form onSubmit={methods.handleSubmit(onSubmit)}>{<Outlet />}</form>
           </LocalizationProvider>
         </FormWrap>

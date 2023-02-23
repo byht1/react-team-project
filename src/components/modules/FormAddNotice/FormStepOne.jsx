@@ -61,28 +61,8 @@ export const FormStepOne = () => {
         </LabelInput>
         <LabelInput htmlFor="petBirth">
           <Text>Date of birth:</Text>
-          {/* <LocalizationProvider dateAdapter={AdapterDayjs}> */}
           <DesktopDatePicker
             {...register('calendar')}
-            sx={{
-              bgcolor: '#FDF7F2',
-              width: '40px',
-              borderRadius: '40px',
-              '&  .MuiOutlinedInput-notchedOutline': {
-                borderColor: 'transparent',
-              },
-
-              '& MuiInputBase-root MuiOutlinedInput-root': { borderRadius: '40px' },
-              '& .MuiInputBase-input': {
-                borderRadius: '40px',
-
-                '&::placeholder': {
-                  fontSize: { xs: '14px', md: '16px' },
-                  color: '#111111',
-                  borderRadius: '40px',
-                },
-              },
-            }}
             inputFormat="DD.MM.YY"
             value={date}
             onChange={handleChange}
@@ -91,32 +71,19 @@ export const FormStepOne = () => {
                 {...params}
                 {...register('calendar')}
                 sx={{
-                  '&  .MuiOutlinedInput-notchedOutline': {
-                    border: '1px solid #F5925680',
-                    borderRadius: '40px',
-                    bgcolor: '#FDF7F2',
-                    zIndex: '-1',
-                  },
-
-                  '& .MuiInputBase-input': {
-                    border: '1px solid #F5925680',
-
-                    bgcolor: '#FDF7F2',
-                    width: '120%',
-                    borderTopLeftRadius: '40px',
-                    borderBottomLeftRadius: '40px',
-                    padding: { xs: '10px 16px', md: '14px 32px' },
-                    fontSize: { xs: '14px', md: '18px' },
-                    fontFamily: 'Arial',
-                    '&::placeholder': { fontSize: { xs: '14px', md: '18px' }, color: '#111111' },
+                  '& .MuiOutlinedInput-root': {
+                    // '&:hover fieldset': {
+                    //   border: '6px solid #f58138db',
+                    // },
+                    '&.Mui-focused fieldset': {
+                      border: '2px solid #f58138db',
+                    },
                   },
                 }}
+                className="myDatePicker"
               />
             )}
           />
-          {/* </LocalizationProvider> */}
-
-          {/* <Input {...register('birthday')} placeholder="Type date of birth" id="petBirth" /> */}
           {errors.birthday && <Error>{errors.birthday.message}</Error>}
         </LabelInput>
         <LabelInput htmlFor="petBreed">
@@ -125,48 +92,37 @@ export const FormStepOne = () => {
             disablePortal
             id="petBreed"
             options={dogBreeds}
-            color="red"
             sx={{
+              // border: '6px solid #f58138db',
+
               width: '100%',
               display: 'inline-block',
               '& .MuiOutlinedInput-root .MuiAutocomplete-input': {
-                padding: { xs: '10px 16px', md: '14px 26px' },
+                padding: { xs: '1px 6px', md: '4px 20px' },
               },
-              '&  .MuiOutlinedInput-notchedOutline': {
-                borderColor: 'transparent',
-              },
-              // '& .css-md26zr-MuiInputBase-root-MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline, & .css-154xyx0-MuiInputBase-root-MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline ':
-              //   {
-              //     border: '1px solid #f58138db',
-              //   },
-              '& .MuiAutocomplete-inputRoot': {
-                p: '2px 10px',
-                fontFamily: 'Arial',
-                fontSize: { xs: '14px', md: '18px' },
+              '& .Mui-focused .MuiOutlinedInput-notchedOutline': {
+                border: '20px solid #f58138db',
+                position: 'absolute',
+                top: -2,
+                bottom: -2,
+                left: -2,
+                right: -2,
               },
               '&  .MuiAutocomplete-inputRoot': {
                 bgcolor: '#FDF7F2',
                 borderRadius: '40px',
                 border: '1px solid #F5925680',
               },
-              '& input': {
-                '&::placeholder': { fontSize: { xs: '14px', md: '18px' }, color: '#111111' },
+              '& .MuiOutlinedInput-notchedOutline': {
+                borderRadius: '40px',
+                // border: '8px solid red',
+                // backgroundColor: 'red',
+                // outline: '2px solid red',
               },
             }}
             freeSolo={true}
             renderInput={params => (
-              <TextField
-                {...params}
-                {...register('breed')}
-                placeholder="Type breed"
-                sx={{
-                  color: '#111111',
-                  '& input': {
-                    padding: { xs: '10px 16px', md: '14px 32px' },
-                    '& .MuiAutocomplete-input': { padding: { xs: '10px 16px', md: '14px 32px' } },
-                  },
-                }}
-              />
+              <TextField {...params} {...register('breed')} placeholder="Type breed" />
             )}
           />
           {errors.breed && <Error>{errors.breed.message}</Error>}
