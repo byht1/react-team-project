@@ -46,8 +46,6 @@ export const FileInput = props => {
     })
   );
 
-  console.log(fileRejectionItems);
-
   const CountError = () => {
     if (fileRejections.length > 1) {
       return (

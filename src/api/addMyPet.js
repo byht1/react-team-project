@@ -1,6 +1,6 @@
 import server from './basic';
 
-const UrlAddMyPet = Object.freeze({ addPet: '/petss' });
+const UrlAddMyPet = Object.freeze({ addPet: '/pets' });
 
 export const addPet = async petInfo => {
   try {

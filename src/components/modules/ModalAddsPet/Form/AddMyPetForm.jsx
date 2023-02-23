@@ -4,7 +4,7 @@ import { useState } from 'react';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useForm } from 'react-hook-form';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
-import { Alert } from '@mui/material';
+import { Alert, CheckCircleOutlineIcon } from '@mui/material';
 import { addPet } from '../../../../api';
 import { schemaAddMyPetForm } from '../validationSchema';
 import { FirstPage } from '../FormPages/FirstPage';
@@ -28,8 +28,13 @@ export const AddMyPetForm = ({ onClose }) => {
   const { reset } = methods;
 
   const client = useQueryClient();
-  const { mutateAsync: addNewPet, isLoading } = useMutation({
-    mutationKey: ['myPet'],
+
+  const {
+    mutateAsync: addNewPet,
+    isLoading,
+    isSuccess,
+  } = useMutation({
+    mutationKey: ['myPetData'],
     mutationFn: addPet,
     onSuccess: updateDate => {
       client.invalidateQueries(['myPet'], updateDate);
@@ -42,6 +47,7 @@ export const AddMyPetForm = ({ onClose }) => {
     retry: 1,
   });
 
+  console.log(isSuccess);
   const nextStep = () => {
     setPage(2);
   };
@@ -77,6 +83,7 @@ export const AddMyPetForm = ({ onClose }) => {
 
   return (
     <>
+      {isSuccess && <Alert onClose={() => {}}>Your pet added successfully</Alert>}
       <ModalOverlay onClose={onClose}>
         <FormWrapper page={page}>
           <FormContext methods={methods} submit={onSubmit}>
