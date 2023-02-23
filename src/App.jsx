@@ -14,6 +14,8 @@ import { RestrictedRoute } from 'components/global/RestrictedRoute';
 import { PrivateRoute } from 'components/global/PrivateRoute';
 import { useDispatch } from 'react-redux';
 import { register } from 'redux/auth';
+import { Blog } from 'page/Blog';
+import { PostDetails } from 'page/PostDetails';
 
 // import { NotFound } from 'page/NotFound';
 
@@ -60,7 +62,8 @@ function App() {
         />
         {/* Приватний шлях */}
         <Route path="user" element={<PrivateRoute component={UserPage} redirectTo="/login" />} />
-
+        <Route path="posts" element={<Blog />} />
+        <Route path="posts/:id" element={<PostDetails />} />
         <Route path="*" element={<Navigate to="/" />} />
         {/* <Route path="*" element={<NotFound />} /> */}
       </Route>
