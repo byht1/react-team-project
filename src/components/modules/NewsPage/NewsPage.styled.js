@@ -22,6 +22,7 @@ export const TitleNews = styled(TitleH2)`
   }
 `;
 export const LinkText = styled(Text)`
+transition: transform 250ms linear;
   &:hover {
     transform: scale(1.05);
   }
@@ -134,6 +135,7 @@ export const IconSearch = styled(IoMdSearch)`
   width: 20px;
   height: 20px;
   fill: ${p => p.theme.colors.g};
+  transition: var(--transition-color);
   &:hover,
   &:focus {
     fill: ${p => p.theme.colors.a};
@@ -147,6 +149,7 @@ export const IconClose = styled(IoMdClose)`
   width: 20px;
   height: 20px;
   fill: ${p => p.theme.colors.g};
+  transition: var(--transition-color);
   &:hover,
   &:focus {
     fill: ${p => p.theme.colors.a};
