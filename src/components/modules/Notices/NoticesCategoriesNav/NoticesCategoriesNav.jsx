@@ -20,7 +20,6 @@ export const NoticesCategoriesNav = () => {
     if (!isLoggedIn) showLoginWarning();
     return;
     // ----------------- Функцію для виклику додавання тваринки додавай знизу
-    return;
   };
 
   return (
