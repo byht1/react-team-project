@@ -1,4 +1,3 @@
-
 import styled from 'styled-components';
 
 export const Input = styled.input`
@@ -17,6 +16,7 @@ export const Input = styled.input`
 `;
 
 export const Label = styled.label`
+  position: relative;
   width: 100%;
   margin-bottom: ${p => p.mb}px;
 `;
@@ -27,4 +27,16 @@ export const ErrorMsg = styled.p`
   padding-left: 11px;
   font-size: ${p => p.theme.fontSizes.min};
   font-weight: ${p => p.theme.fontWeights.normal};
+`;
+
+export const IconBox = styled.div`
+  display: flex;
+  position: absolute;
+  right: 14px;
+  top: 13px;
+  /* transform: translate(0%, -50%); */
+  @media (min-width: 768px) {
+    right: 32px;
+    top: 19px;
+  } ;
 `;
