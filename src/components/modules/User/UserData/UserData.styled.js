@@ -14,8 +14,12 @@ export const Title = styled.h2`
   letter-spacing: 0.04em;
   @media (min-width: 768px) {
     width: 736px;
+    margin-top: 80px;
+    margin-left: 32px;
   }
   @media (min-width: 1280px) {
+    margin-left: 16px;
+    margin-top: 40px;
     font-size: 28px;
     line-height: 38px;
   }
@@ -55,7 +59,7 @@ export const Div = styled.div`
   }
 `;
 
-export const SpanEditPhoto = styled.span`
+export const SpanEditPhoto = styled.label`
   width: fit-content;
   margin-right: 0px;
   margin-left: auto;
@@ -69,6 +73,8 @@ export const SpanEditPhoto = styled.span`
   align-items: center;
   letter-spacing: 0.04em;
   margin-top: 13px;
+  position: relative;
+  cursor: pointer;
 
   @media (min-width: 768px) {
     margin-top: 8px;
@@ -112,8 +118,20 @@ export const CameraIc = styled(camera)`
   height: 22px;
   width: 22px;
   margin-right: 5px;
-
   & path {
     stroke: ${theme.colors.w};
+  }
+`;
+
+export const LoadFile = styled.input`
+  z-index: -155;
+  width: 100%;
+  top: 0px;
+  left: 0px;
+  position: absolute;
+
+  @media (min-width: 768px) {
+  }
+  @media (min-width: 1280px) {
   }
 `;

@@ -161,7 +161,7 @@ export const Icon = styled.div`
   border-radius: 50%;
 
   @media (min-width: 768px) {
-    background-color: #fdf7f2;
+    background-color: ${theme.colors.bg};
     margin-top: 20px;
     margin-left: 618px;
     width: 44px;
@@ -202,8 +202,10 @@ export const TrashBinIc = styled(trashBin)`
   }
 
   @media (min-width: 768px) {
-    height: 22px;
-    width: 22px;
+    height: 40px;
+    width: 40px;
+    padding: 7.5px;
+    border-radius: 50%;
   }
   @media (min-width: 1280px) {
   }
