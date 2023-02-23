@@ -111,11 +111,9 @@ export function UserInputInfo({
 }
 
 UserInputInfo.propTypes = {
-  Item: PropTypes.string,
-  Input: PropTypes.string,
-  FildName: PropTypes.string,
-  Icon: PropTypes.string,
-  EditIc: PropTypes.string,
-  CheckIc: PropTypes.string,
-  EditIcBlack: PropTypes.string,
+  fildName: PropTypes.string,
+  whatInputIsEditing: PropTypes.string,
+  setWhatInputIsEditing: PropTypes.func,
+  whichIconToShow: PropTypes.string,
+  setWhichIconToShow: PropTypes.func,
 };
