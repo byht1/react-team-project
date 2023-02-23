@@ -6,7 +6,13 @@ import { addNewNotice } from 'services/notices';
 import { useMutation } from '@tanstack/react-query';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { schemaAddPet } from './helpers/schemaAppPet';
-
+import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
+// import { AdapterDateJs } from '@mui/x-date-pickers/AdapterDateJs';
+import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
+import { dateConverter } from './helpers/dateConverter';
+import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
+import { createTheme, ThemeProvider } from '@mui/material/styles';
+import CssBaseline from '@mui/material/CssBaseline';
 // import {
 //   FormWrap,
 //   BackDrop,
@@ -65,6 +71,7 @@ export const FormAddNotice = () => {
   const onSubmit = data => {
     console.log('first');
     console.log(data);
+    console.log(dateConverter(methods.getValues('calendar').$d));
     // addNewNotice({
     //   breed: 'Bulldog',
     //   category: 'sell',
@@ -77,6 +84,7 @@ export const FormAddNotice = () => {
     //   name: 'Linsy',
     //   sex: 'female',
     // });
+
     create({
       breed: 'Bulldog',
       category: 'sell',
@@ -145,7 +153,9 @@ export const FormAddNotice = () => {
               <LabelText>sell</LabelText>
             </Label>
           </RadioWrap>
-          <form onSubmit={methods.handleSubmit(onSubmit)}>{<Outlet />}</form>
+          <LocalizationProvider dateAdapter={AdapterDayjs} sx={{ width: '100%' }}>
+            <form onSubmit={methods.handleSubmit(onSubmit)}>{<Outlet />}</form>
+          </LocalizationProvider>
         </FormWrap>
       </BackDrop>
     </FormProvider>

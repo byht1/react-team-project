@@ -54,15 +54,22 @@ export const schemaAddPet = yup.object({
   //   .min(8, 'Must be at least 8 letters')
   //   .max(120, 'Cannot be more than 120 letters')
   //   .required('Comments are required'),
-  // picture: yup
-  //   .mixed()
-  //   .test('fileSize', 'File size is too large', value => {
-  //     if (!value) return true; // handle empty input
-  //     return value.size <= 1024 * 1024; // max size is 1 MB
-  //   })
-  //   .test('fileType', 'Unsupported File Format', value => {
-  //     if (!value) return true; // handle empty input
-  //     const supportedFormats = ['image/jpeg', 'image/png', 'application/pdf'];
-  //     return supportedFormats.includes(value.type);
-  //   }),
+  picture: yup.mixed().test('required', 'You need to provide a file', file => {
+    // return file && file.size <-- u can use this if you don't want to allow empty files to be uploaded;
+    if (file) return true;
+    return false;
+  }),
+  // .test('fileSize', 'The file is too large', file => {
+  //   //if u want to allow only certain file sizes
+  //   return file && file.size <= 2000000;
+  // }),
+  // .test('fileSize', 'File size is too large', value => {
+  //   if (!value) return true; // handle empty input
+  //   return value.size <= 1024 * 1024; // max size is 1 MB
+  // })
+  // .test('fileType', 'Unsupported File Format', value => {
+  //   if (!value) return true; // handle empty input
+  //   const supportedFormats = ['image/jpeg', 'image/png', 'application/pdf'];
+  //   return supportedFormats.includes(value.type);
+  // }),
 });

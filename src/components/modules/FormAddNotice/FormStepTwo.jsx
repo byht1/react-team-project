@@ -31,8 +31,17 @@ import {
   Text,
   Comments,
 } from './FormAddNotice.styled';
-
+import { DataPicker } from './helpers/DatPicker';
 // custom hook for ResizeObserver
+import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
+import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
+import { createTheme, ThemeProvider } from '@mui/material/styles';
+import CssBaseline from '@mui/material/CssBaseline';
+import { TextField, Stack, Button } from '@mui/material';
+import { DatePicker } from '@mui/x-date-pickers/DatePicker';
+import { useForm, Controller } from 'react-hook-form';
+// import type { DefaultValues, SubmitHandler } from 'react-hook-form';
+import { isFuture } from 'date-fns';
 
 export const FormStepTwo = () => {
   const navigate = useNavigate();
@@ -58,6 +67,7 @@ export const FormStepTwo = () => {
   //   const value = getValues();
   //   console.log(value.radio);
   // }, [getValues, values]);
+  console.log(errors);
   return (
     <>
       <FormWrap>
@@ -65,6 +75,36 @@ export const FormStepTwo = () => {
         <CloseModalBtn id="modal-close" type="button" onClick={() => navigate('/')}>
           <IoCloseOutline id="close-svg" size={'28px'} />
         </CloseModalBtn>
+        <>
+          {/* <Controller
+            control={control}
+            name="date"
+            render={({ field: { ref, onBlur, name, ...field }, fieldState }) => (
+              <DatePicker
+                // mask="__.__.____"
+                // disableMaskedInput={tru}
+                views={['year', 'month', 'day']} // dateFormat="dd.mm.yyy"
+                // value={value}
+                // onChange={handleChange}
+                onChange={() => {
+                  console.log('first');
+                }}
+                hideTabs={true}
+                inputFormat="dd.mm.yyyy"
+              
+                inputRef={ref}
+                renderInput={inputProps => (
+                  <TextField
+                    {...inputProps}
+                    {...register('date2')}
+                    placeholder="dd.mm.yyy"
+                    
+                  />
+                )}
+              />
+            )}
+          /> */}
+        </>
         <InputWrap>
           <LabelSex>
             The sex<Accent>*</Accent>:
@@ -133,8 +173,8 @@ export const FormStepTwo = () => {
               {img && <ImgLoaded src={img} alt="uploaded" />}
               <AddIcon />
             </InputFile>
+            {errors.picture && <Error>{errors.picture.message}</Error>}
           </LabelInput>
-          {errors.photo && <p>{errors.photo.message}</p>}
           <LabelInput htmlFor="comments">
             <Text>Comments:</Text>
             <Comments {...register('comments')} id="comments" placeholder="Type comment" />

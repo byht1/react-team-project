@@ -7,10 +7,10 @@ import TextField from '@mui/material/TextField';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { DesktopDatePicker } from '@mui/x-date-pickers/DesktopDatePicker';
-
+import { useEffect } from 'react';
 import { dogBreeds } from './helpers/dogBreeds';
 import useWindowDimensions from './helpers/getWidth';
-
+import { useForm } from 'react-hook-form';
 import { Input } from 'components/global/FormInput/FormInput.styled';
 import { CloseModalBtn } from 'components/modules/Notices/NoticeModal/NoticeModal.styled';
 import {
@@ -26,15 +26,19 @@ import {
 import { Calendar } from './helpers/Calendar';
 export const FormStepOne = () => {
   const navigate = useNavigate();
-  const [value, setValue] = useState(null);
-
+  const [date, setDate] = useState(null);
   const handleChange = newValue => {
-    setValue(newValue);
+    setDate(newValue);
   };
+
   const {
     register,
     formState: { errors },
+    setValue,
   } = useFormContext();
+  useEffect(() => {
+    setValue('calendar', date);
+  }, [date]);
 
   return (
     <>
@@ -57,53 +61,61 @@ export const FormStepOne = () => {
         </LabelInput>
         <LabelInput htmlFor="petBirth">
           <Text>Date of birth:</Text>
-          <LocalizationProvider dateAdapter={AdapterDayjs}>
-            <DesktopDatePicker
-              {...register('calendar')}
-              sx={{
+          {/* <LocalizationProvider dateAdapter={AdapterDayjs}> */}
+          <DesktopDatePicker
+            {...register('calendar')}
+            sx={{
+              bgcolor: '#FDF7F2',
+              width: '40px',
+              borderRadius: '40px',
+              '&  .MuiOutlinedInput-notchedOutline': {
+                borderColor: 'transparent',
+              },
+
+              '& MuiInputBase-root MuiOutlinedInput-root': { borderRadius: '40px' },
+              '& .MuiInputBase-input': {
                 borderRadius: '40px',
-                '&  .MuiOutlinedInput-notchedOutline': {
-                  borderColor: 'transparent',
-                },
 
-                '& MuiInputBase-root MuiOutlinedInput-root': { borderRadius: '40px' },
-                '& .MuiInputBase-input': {
+                '&::placeholder': {
+                  fontSize: { xs: '14px', md: '16px' },
+                  color: '#111111',
                   borderRadius: '40px',
-
-                  '&::placeholder': {
-                    fontSize: { xs: '14px', md: '16px' },
-                    color: '#111111',
-                    borderRadius: '40px',
-                  },
                 },
-              }}
-              inputFormat="DD.MM.YY"
-              value={value}
-              onChange={handleChange}
-              renderInput={params => (
-                <TextField
-                  {...params}
-                  {...register('calendar')}
-                  sx={{
-                    '&  .MuiOutlinedInput-notchedOutline': {
-                      border: '1px solid #F5925680',
-                      borderRadius: '40px',
-                    },
+              },
+            }}
+            inputFormat="DD.MM.YY"
+            value={date}
+            onChange={handleChange}
+            renderInput={params => (
+              <TextField
+                {...params}
+                {...register('calendar')}
+                sx={{
+                  '&  .MuiOutlinedInput-notchedOutline': {
+                    border: '1px solid #F5925680',
+                    borderRadius: '40px',
+                    bgcolor: '#FDF7F2',
+                    zIndex: '-1',
+                  },
 
-                    '& .MuiInputBase-input': {
-                      bgcolor: '#FDF7F2',
-                      borderTopLeftRadius: '40px',
-                      borderBottomLeftRadius: '40px',
-                      padding: { xs: '10px 16px', md: '14px 32px' },
-                      fontSize: { xs: '14px', md: '18px' },
-                      fontFamily: 'Arial',
-                      '&::placeholder': { fontSize: { xs: '14px', md: '18px' }, color: '#111111' },
-                    },
-                  }}
-                />
-              )}
-            />
-          </LocalizationProvider>
+                  '& .MuiInputBase-input': {
+                    border: '1px solid #F5925680',
+
+                    bgcolor: '#FDF7F2',
+                    width: '120%',
+                    borderTopLeftRadius: '40px',
+                    borderBottomLeftRadius: '40px',
+                    padding: { xs: '10px 16px', md: '14px 32px' },
+                    fontSize: { xs: '14px', md: '18px' },
+                    fontFamily: 'Arial',
+                    '&::placeholder': { fontSize: { xs: '14px', md: '18px' }, color: '#111111' },
+                  },
+                }}
+              />
+            )}
+          />
+          {/* </LocalizationProvider> */}
+
           {/* <Input {...register('birthday')} placeholder="Type date of birth" id="petBirth" /> */}
           {errors.birthday && <Error>{errors.birthday.message}</Error>}
         </LabelInput>
