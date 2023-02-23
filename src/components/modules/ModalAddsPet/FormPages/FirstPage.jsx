@@ -1,14 +1,12 @@
-
+import React from 'react';
 import { useFormContext } from 'react-hook-form';
-
-// import { MaterialUIPickers } from '../DatePicker';
 
 import {
   Buttons,
   InputWrap,
   LabelInput,
   Input,
-  LastInput,
+  LabelName,
   ErrorInput,
   ButtonDark,
   ButtonLight,
@@ -21,17 +19,24 @@ export const FirstPage = ({ nextStep, onClose }) => {
     formState: { errors },
   } = useFormContext();
 
+  const checkInput = async () => {
+    const result = await trigger(['petName', 'petBirth', 'petBreed']);
+    if (result) {
+      nextStep();
+    }
+  };
+
   return (
     <>
       <InputWrap>
         <LabelInput htmlFor="petName">
-          Name pet
+          <LabelName>Name pet</LabelName>
           <Input {...register('petName')} id="petName" type="text" placeholder="Type name pet" />
           {errors.petName && <ErrorInput>{errors.petName.message}</ErrorInput>}
         </LabelInput>
 
         <LabelInput htmlFor="petBirth">
-          Date of birth
+          <LabelName>Date of birth</LabelName>
           <Input
             {...register('petBirth')}
             id="petBirth"
@@ -40,49 +45,18 @@ export const FirstPage = ({ nextStep, onClose }) => {
             onfocus="(this.type='date')"
             onblur="(this.type='text')"
           />
-          {/* <MaterialUIPickers /> */}
-          {/* <DatePicker
-            {...register('petBirth')}
-            showIcon
-            placeholderText="Type date of birth"
-            // clearIcon={null}
-            // calendarIcon={<ImgClose src={celendar} alt="" />}
-            dateFormat="dd.MM.yyyy"
-            selected={startDate}
-            onChange={value => {
-              setStartDate(value);
-            }}
-            // maxDate={new Date()}
-            // minDate={'01-01-1990'}
-            // yearPlaceholder={'years'}
-            // monthPlaceholder={'months'}
-            // dayPlaceholder={'days'}
-            id="petBirth"
-            name="petBirth"
-            // value={petBirth}
-          /> */}
           {errors.petBirth && <ErrorInput>{errors.petBirth.message}</ErrorInput>}
         </LabelInput>
 
         <LabelInput htmlFor="petBreed">
-          Breed
-          <LastInput {...register('petBreed')} id="petBreed" type="text" placeholder="Type breed" />
+          <LabelName>Breed</LabelName>
+          <Input {...register('petBreed')} id="petBreed" type="text" placeholder="Type breed" />
           {errors.petBreed && <ErrorInput>{errors.petBreed.message}</ErrorInput>}
         </LabelInput>
       </InputWrap>
 
       <Buttons>
-        <ButtonDark
-          onClick={async () => {
-            const result = await trigger(['petName', 'petBirth', 'petBreed']);
-            console.log(result);
-            if (result) {
-              nextStep();
-            }
-          }}
-        >
-          Next
-        </ButtonDark>
+        <ButtonDark onClick={checkInput}>Next</ButtonDark>
         <ButtonLight onClick={onClose}>Cancel</ButtonLight>
       </Buttons>
     </>

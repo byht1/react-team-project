@@ -1,5 +1,7 @@
 import { Container } from 'components/global/Container';
 import React from 'react';
+import { useState } from 'react';
+import { AddMyPetForm } from 'components/modules/ModalAddsPet';
 import {
   TitleBlock,
   Title,
@@ -19,14 +21,27 @@ import {
 import Chloe from '../../../../img/User/chloe grace moretz.webp';
 
 export const PetsData = () => {
+  const [isOpen, setIsOpen] = useState(false);
+
+  const openModal = () => {
+    setIsOpen(true);
+  };
+
+  const onCloseModal = () => {
+    setIsOpen(false);
+    console.log('Close');
+  };
+
   return (
     <Container>
       <TitleBlock>
         <Title>My pets:</Title>
         <AddPetBlock>
-          <TitleSpan>Add pet</TitleSpan> <AddPetIc />
+          <TitleSpan>Add pet</TitleSpan> <AddPetIc onClick={openModal} />
         </AddPetBlock>
       </TitleBlock>
+      {isOpen && <AddMyPetForm onClose={onCloseModal} />}
+
       <PetBlcok>
         <PetCard>
           <PhotoBlock>

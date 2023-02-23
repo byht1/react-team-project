@@ -3,8 +3,8 @@ import { FormContext } from 'components/global/FormContext';
 import { useState } from 'react';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useForm } from 'react-hook-form';
-import server, { token } from '../../../../api/basic';
-import { useMutation } from '@tanstack/react-query';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
+import { addPet } from '../../../../api';
 import { schemaAddMyPetForm } from '../validationSchema';
 import { FirstPage } from '../FormPages/FirstPage';
 import { SecondPage } from '../FormPages/SecondPage';
@@ -13,6 +13,8 @@ import { ModalOverlay } from '../ModalOverlay/ModalOverlay';
 import { FormWrapper, FormTitle, CloseBtn, GrCloseIcon } from './AddMyPetForm.styled';
 
 export const AddMyPetForm = ({ onClose }) => {
+  // Не удалять, стилизованы падинги!
+
   const [page, setPage] = useState(1);
 
   const methods = useForm({
@@ -21,30 +23,17 @@ export const AddMyPetForm = ({ onClose }) => {
   });
 
   const { reset } = methods;
-  // console.log(token);
 
-  const addPet = async petInfo => {
-    try {
-      const { data } = await server.post('/pets', petInfo, {
-        headers: {
-          'Content-Type': 'multipart/form-data',
-          Authorization: `Bearer ${token}`,
-        },
-      });
-      console.log(data);
-      return data;
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
-  const { mutateAsync: addNewPet, isLoading } = useMutation({
+  const client = useQueryClient();
+  const { mutateAsync: addNewPet } = useMutation({
     mutationKey: ['myPet'],
-    mutationFn: addPet, // функция post запрос
-    onSuccess: () => {
+    mutationFn: addPet,
+    onSuccess: updateDate => {
+      client.invalidateQueries(['myPet'], updateDate);
       reset();
     },
     onError: err => console.log(err),
+    retry: 1,
   });
 
   const nextStep = () => {
@@ -61,14 +50,14 @@ export const AddMyPetForm = ({ onClose }) => {
     const formInfo = new FormData();
 
     formInfo.append('name', data.petName);
-    // formInfo.append('birth', toDateFormat(data.petBirth, '/', '.'));
     formInfo.append('birth', data.petBirth);
     formInfo.append('breed', data.petBreed);
-    formInfo.append('image', data.myPetImageURL);
+    formInfo.append('image', data.myPetURL[0]);
     formInfo.append('comments', data.comments);
 
-    for (const pair of formInfo.entries()) {
-      console.log(pair[0] + ', ' + pair[1]);
+    if (data.myPetURL.length === 0) {
+      console.log('File not added ');
+      return;
     }
 
     await addNewPet(formInfo);
@@ -81,7 +70,7 @@ export const AddMyPetForm = ({ onClose }) => {
       {/* {isLoading && <p>Loading....</p>} */}
 
       <ModalOverlay onClose={onClose}>
-        <FormWrapper>
+        <FormWrapper page={page}>
           <FormContext methods={methods} submit={onSubmit}>
             <FormTitle>Add pet</FormTitle>
             <CloseBtn type="button" onClick={onClose}>

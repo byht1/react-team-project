@@ -3,24 +3,11 @@ import * as yup from 'yup';
 export const schemaAddMyPetForm = yup.object({
   petName: yup
     .string()
-    .matches(
-      // /^([A-Za-z\u00C0-\u00D6\u00D8-\u00f6\u00f8-\u00ff\s]*)$/gi,
-      /^([а-яё\s]+|[a-z\s]+)$/iu,
-      'Name can contain only letters.'
-    )
+    .matches(/^([а-яё\s]+|[a-z\s]+)$/iu, 'Name can contain only letters.')
     .min(2, 'The name must contain more than 2 characters')
     .max(20, 'Maximum name length 20 characters')
     .required('This field is requaired!'),
-  // petBirth: yup
-  //   .date('Please enter the date in the format dd.mm.yyyy')
-  // .string('Please enter the date in the format dd.mm.yyyy')
-  // .min('1990-01-01T00:00:00.000Z', 'Вate of birth must be no earlier than 01.01.1990.')
-  // .max(
-  //   new Date(),
-  //   `Date of birth cannot be later than the current date ${new Date().toLocaleString()}`
-  // )
-  // .required('This field is requaired!')
-  // .default(() => new Date()),
+
   petBirth: yup
     .string()
     .matches(
@@ -40,6 +27,7 @@ export const schemaAddMyPetForm = yup.object({
       }
       return true;
     }),
+
   petBreed: yup
     .string()
     .matches(
@@ -48,11 +36,10 @@ export const schemaAddMyPetForm = yup.object({
       'Breed can contain only letters.'
     )
     .min(2, 'The breed must contain more than 2 characters')
-    .max(24, 'Maximum breed length 20 characters')
+    .max(50, 'Maximum breed length 50 characters')
     .required('This field is requaired!'),
 
   myPetURL: yup.mixed().required('This field is requaired!'),
-  // myPetImageURL: yup.mixed().required('This field is requaired!'),
   comments: yup
     .string()
     .required('This field is requaired!')

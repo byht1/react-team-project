@@ -10,7 +10,7 @@ const Overlay = styled.div`
   justify-content: center;
   align-items: center;
   background-color: ${p => p.theme.colors.overlay};
-  z-index: 1200;
+  /* z-index: 1200; */
 `;
 
 export { Overlay };

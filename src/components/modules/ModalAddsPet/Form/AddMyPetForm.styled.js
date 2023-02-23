@@ -12,7 +12,25 @@ export const FormWrapper = styled.div`
   @media (min-width: 768px) {
     width: 608px;
     border-radius: ${p => p.theme.radii.inputRadius};
-    padding: 40px 80px;
+    padding-bottom: 40px;
+    padding-top: 40px;
+    padding-left: ${p => {
+      if (p.page === 1) {
+        return 80;
+      }
+      if (p.page === 2) {
+        return 108;
+      }
+    }}px;
+
+    padding-right: ${p => {
+      if (p.page === 1) {
+        return 80;
+      }
+      if (p.page === 2) {
+        return 106;
+      }
+    }}px;
   }
 `;
 
