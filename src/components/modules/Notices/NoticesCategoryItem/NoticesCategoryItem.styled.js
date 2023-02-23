@@ -49,7 +49,7 @@ export const ThumbTag = styled('span')`
   border-radius: ${p => p.theme.radii.tagRadius};
 `;
 
-export const ThumbLikeBtn = styled('button')`
+export const ThumbAddBtn = styled('button')`
   position: absolute;
   top: 12px;
   right: 12px;
@@ -68,16 +68,21 @@ export const ThumbLikeBtn = styled('button')`
   border-radius: ${p => p.theme.radii.round};
 `;
 
+export const ThumbRemoveBtn = styled(ThumbAddBtn)``;
+
 export const CardInfoWrapper = styled(Box)`
   display: flex;
   flex-direction: column;
   align-content: space-between;
+  height: 318px;
   margin-top: 20px;
   padding-left: 20px;
   padding-right: 20px;
 `;
 
 export const CardTitle = styled('h3')`
+  flex-grow: 1;
+  overflow-y: hidden;
   font-size: ${p => p.theme.fontSizes.xxxl};
   line-height: ${p => p.theme.lineHeights.heading};
 `;
