@@ -1,34 +1,42 @@
-
 import * as yup from 'yup';
 
 export const registerSchema = yup.object({
   email: yup
     .string()
-    .email('мінімум 2 символи до @ і не може починатися з тире і лише латинські літери')
-    .required("Поле обов'язкове для заповнення")
+    .min(7, 'Must be more than 7 characters')
+    .max(63, 'Must be less than 63 characters')
+    .email('minimum 2 characters before @, cannot start with a dash, only Latin letters')
+    .required('The field is mandatory')
     .matches(
-      /^(?!-)\w+(\.\w+)?@[a-zA-Z0-9]+\.[a-zA-Z]{2,}$/,
-      'мінімум 2 символи до @ і не може починатися з тире і лише латинські літери'
+      /^(?!-)\w{2,}(\.\w+)*@[\w-]+(\.[\w-]+)*\.[a-zA-Z]{2,}$/,
+      'minimum 2 characters before @, cannot start with a dash, only Latin letters'
     ),
   password: yup
     .string()
-    .required("Поле обов'язкове для заповнення")
-    .max(32, 'Максимальна довжина 32 символи')
+    .required('The field is mandatory')
+    .max(32, 'Must be less than 32 characters')
     .matches(
       /(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z!@#$%^&*_]{7,}/,
-      'Пароль повинен містити велику і маленьку літерy, мінімум 7 симфолів'
+      'The password must contain uppercase and lowercase letters, at least 7 symbols'
     ),
   confirmpassword: yup
     .string()
-    .required("Поле обов'язкове для заповнення")
-    .oneOf([yup.ref('password'), null], 'Пароль не співпадає'),
+    .required('The field is mandatory')
+    .oneOf([yup.ref('password'), null], 'Passwords do not match'),
   name: yup
     .string()
-    .matches(/^[A-Za-zА-Яа-яЁё]+(?:\s+[A-Za-zА-Яа-яЁё]+){0,3}$/, "Не валідне ім'я")
-    .required("Поле обов'язкове для заповнення"),
-  city: yup.string().required("Поле обов'язкове для заповнення"),
+    .min(2, 'Must be more than 2 characters')
+    .max(40, 'Must be less than 40 characters')
+    .matches(/^[A-Za-zА-Яа-яЁёҐґІіЇїЄє\s,'"'-.]+(?:\s+[A-Za-zА-Яа-яЁё]+){0,3}$/, 'Not a valid name')
+    .required('The field is mandatory'),
+  city: yup
+    .string()
+    .min(2, 'Must be more than 2 characters')
+    .max(50, 'Must be less than 50 characters')
+    .matches(/^[a-zA-Zа-яА-Я\s,'"'-.]+$/, 'Not a valid city')
+    .required('The field is mandatory'),
   phone: yup
     .string()
     .required()
-    .matches(/^\+38(0\d{2}|0\d{3})\d{7}$/, 'формат:+380500000000'),
+    .matches(/^\+38(0\d{2}|0\d{3})\d{7}$/, 'Number format:+380500000000'),
 });
