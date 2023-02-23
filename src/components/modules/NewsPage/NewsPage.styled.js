@@ -1,6 +1,7 @@
 import styled from 'styled-components';
-import { IoMdSearch } from 'react-icons/io';
+import { IoMdSearch, IoMdClose } from 'react-icons/io';
 import { TitleH2 } from 'components/global/text';
+import { Text } from 'components/global/text';
 
 export const NewBlock = styled.div`
   margin: 0 auto;
@@ -20,6 +21,13 @@ export const TitleNews = styled(TitleH2)`
     font-size: 48px;
   }
 `;
+export const LinkText = styled(Text)`
+transition: transform 250ms linear;
+  &:hover {
+    transform: scale(1.05);
+  }
+`;
+
 export const Input = styled.input`
   width: 100%;
   font-size: ${p => p.theme.fontSizes.m};
@@ -57,9 +65,14 @@ export const List = styled.ul`
   flex-direction: column;
   flex-wrap: wrap;
   max-width: 1248px;
+  margin-top: 40px;
+  gap: 40px;
+
   @media (min-width: 768px) {
     flex-direction: row;
     justify-content: space-between;
+    margin-top: 60px;
+    gap: 60px 0px;
   }
 `;
 export const Item = styled.li`
@@ -67,12 +80,10 @@ export const Item = styled.li`
   flex-direction: column;
   justify-content: space-between;
   width: 100%;
-  margin-top: 40px;
 
   @media (min-width: 768px) {
     width: 336px;
     height: 288px;
-    margin-top: 60px;
   }
   @media (min-width: 1280px) {
     width: 395px;
@@ -102,7 +113,6 @@ export const Block = styled.div`
   position: relative;
   @media (min-width: 768px) {
     margin: 0 auto;
-    // width: 608px;
   }
   @media (min-width: 1280px) {
   }
@@ -121,10 +131,29 @@ export const Button = styled.button`
     height: 24px;
   }
 `;
-export const Icon = styled(IoMdSearch)`
+export const IconSearch = styled(IoMdSearch)`
   width: 20px;
   height: 20px;
-  fill: ${p => p.theme.colors.b};
+  fill: ${p => p.theme.colors.g};
+  transition: var(--transition-color);
+  &:hover,
+  &:focus {
+    fill: ${p => p.theme.colors.a};
+  }
+  @media (min-width: 768px) {
+    width: 24px;
+    height: 24px;
+  }
+`;
+export const IconClose = styled(IoMdClose)`
+  width: 20px;
+  height: 20px;
+  fill: ${p => p.theme.colors.g};
+  transition: var(--transition-color);
+  &:hover,
+  &:focus {
+    fill: ${p => p.theme.colors.a};
+  }
   @media (min-width: 768px) {
     width: 24px;
     height: 24px;

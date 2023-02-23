@@ -7,6 +7,7 @@ import { HiTrash } from 'react-icons/hi';
 import { useTheme } from 'styled-components';
 import { NoticeModal } from '../NoticeModal';
 import { ViewMoreBtn, DeleteBtn } from './NoticesCategoryItem.styled';
+import { Box } from 'components/global/Box';
 import {
   CardBox,
   ThumbWrapper,
@@ -28,27 +29,24 @@ export const NoticesCategoryItem = ({ noticesItem }) => {
 
   const petAge = getPetAge(noticesItem.birthday);
 
-  // const openModal = () => {
-  //   setIsModalOpen(true);
-  // };
-  const toggleModal = () => {
-    setIsModalOpen(!isModalOpen);
+  const openModal = () => {
+    setIsModalOpen(true);
   };
 
-  // const closeModal = e => {
-  //   if (
-  //     e.target.id === 'backdrop' ||
-  //     e.target.id === 'modal-close' ||
-  //     e.target.id === 'close-svg' ||
-  //     e.key === 'Escape'
-  //   ) {
-  //     setIsModalOpen(false);
-  //   }
-  // };
+  const closeModal = e => {
+    if (
+      e.target.id === 'backdrop' ||
+      e.target.id === 'modal-close' ||
+      e.target.id === 'close-svg' ||
+      e.key === 'Escape'
+    ) {
+      setIsModalOpen(false);
+    }
+  };
 
   return (
     <>
-      <CardBox>
+      <CardBox onClick={openModal}>
         <ThumbWrapper>
           <ThumbImage
             src={
@@ -80,14 +78,16 @@ export const NoticesCategoryItem = ({ noticesItem }) => {
               </CardDescriptionRow>
             </TableBody>
           </CardDescriptionTable>
-          <ViewMoreBtn onClick={toggleModal}>Learn more</ViewMoreBtn>
-          <DeleteBtn>
-            Delete
-            <HiTrash size={'20px'} color={'inherit'} style={{ marginLeft: '13px' }} />
-          </DeleteBtn>
+          <Box>
+            <ViewMoreBtn>Learn more</ViewMoreBtn>
+            <DeleteBtn>
+              Delete
+              <HiTrash size={'20px'} color={'inherit'} style={{ marginLeft: '13px' }} />
+            </DeleteBtn>
+          </Box>
         </CardInfoWrapper>
       </CardBox>
-      {isModalOpen && <NoticeModal noticeId={noticesItem._id} onClose={toggleModal} />}
+      {isModalOpen && <NoticeModal noticeId={noticesItem._id} closeModal={closeModal} />}
     </>
   );
 };
