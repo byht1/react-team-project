@@ -1,4 +1,3 @@
-
 import styled from 'styled-components';
 import { Box } from 'components/global/Box';
 import { LightBtn } from 'components/global/button/Button.styled';
@@ -70,6 +69,9 @@ export const ThumbLikeBtn = styled('button')`
 `;
 
 export const CardInfoWrapper = styled(Box)`
+  display: flex;
+  flex-direction: column;
+  align-content: space-between;
   margin-top: 20px;
   padding-left: 20px;
   padding-right: 20px;
@@ -102,6 +104,10 @@ export const CardDescriptionValue = styled('td')`
   overflow-wrap: anywhere;
 `;
 
+export const BtnWrapper = styled(Box)`
+  margin-top: 20px;
+`;
+
 export const ViewMoreBtn = styled(LightBtn)`
   display: block;
 
@@ -109,7 +115,6 @@ export const ViewMoreBtn = styled(LightBtn)`
 
   padding-top: 8px;
   padding-bottom: 8px;
-  margin-top: 20px;
 
   color: ${p => p.theme.colors.a};
 
@@ -133,4 +138,3 @@ export const DeleteBtn = styled(LightBtn)`
   font-size: ${p => p.theme.fontSizes.m};
   line-height: ${p => p.theme.lineHeights.heading};
 `;
-

@@ -6,7 +6,6 @@ import { AiOutlineHeart } from 'react-icons/ai';
 import { HiTrash } from 'react-icons/hi';
 import { useTheme } from 'styled-components';
 import { NoticeModal } from '../NoticeModal';
-import { ViewMoreBtn, DeleteBtn } from './NoticesCategoryItem.styled';
 import {
   CardBox,
   ThumbWrapper,
@@ -20,6 +19,9 @@ import {
   CardDescriptionRow,
   CardDescriptionKey,
   CardDescriptionValue,
+  BtnWrapper,
+  ViewMoreBtn,
+  DeleteBtn,
 } from './NoticesCategoryItem.styled';
 
 export const NoticesCategoryItem = ({ noticesItem }) => {
@@ -77,11 +79,13 @@ export const NoticesCategoryItem = ({ noticesItem }) => {
               </CardDescriptionRow>
             </TableBody>
           </CardDescriptionTable>
-          <ViewMoreBtn>Learn more</ViewMoreBtn>
-          <DeleteBtn>
-            Delete
-            <HiTrash size={'20px'} color={'inherit'} style={{ marginLeft: '13px' }} />
-          </DeleteBtn>
+          <BtnWrapper>
+            <ViewMoreBtn>Learn more</ViewMoreBtn>
+            <DeleteBtn>
+              Delete
+              <HiTrash size={'20px'} color={'inherit'} style={{ marginLeft: '13px' }} />
+            </DeleteBtn>
+          </BtnWrapper>
         </CardInfoWrapper>
       </CardBox>
       {isModalOpen && <NoticeModal noticeId={noticesItem._id} closeModal={closeModal} />}
