@@ -14,6 +14,7 @@ import { RestrictedRoute } from 'components/global/RestrictedRoute';
 import { PrivateRoute } from 'components/global/PrivateRoute';
 import { useDispatch } from 'react-redux';
 import { register } from 'redux/auth';
+import { Loader } from 'components/global/Loader';
 import { Blog } from 'page/Blog';
 import { PostDetails } from 'page/PostDetails';
 
@@ -35,7 +36,8 @@ function App() {
   });
 
   if (isLoading) {
-    return <div>loading.....</div>;
+    // return <div>loading.....</div>;
+    return <Loader />;
   }
 
   return (
