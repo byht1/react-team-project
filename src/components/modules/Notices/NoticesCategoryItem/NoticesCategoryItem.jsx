@@ -1,19 +1,21 @@
-import React from 'react';
-import { useState } from 'react';
-
-import { getPetAge } from 'helpers/getPetAge';
-import { AiOutlineHeart } from 'react-icons/ai';
-import { HiTrash } from 'react-icons/hi';
+import React, { useState } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 import { useTheme } from 'styled-components';
+import { AiOutlineHeart, AiFillHeart } from 'react-icons/ai';
+import { HiTrash } from 'react-icons/hi';
+import { addNoticeToFav, removeNoticeFromFav } from 'api';
+import { getIsLogin } from 'redux/auth';
+import { selectFavorites, addFavorite, removeFavorite } from 'redux/notices';
+import { showLoginWarning } from 'helpers/showLoginWarning';
+import { getPetAge } from 'helpers/getPetAge';
 import { NoticeModal } from '../NoticeModal';
-import { ViewMoreBtn, DeleteBtn } from './NoticesCategoryItem.styled';
-import { Box } from 'components/global/Box';
 import {
   CardBox,
   ThumbWrapper,
   ThumbImage,
   ThumbTag,
-  ThumbLikeBtn,
+  ThumbAddBtn,
+  ThumbRemoveBtn,
   CardInfoWrapper,
   CardTitle,
   CardDescriptionTable,
@@ -21,13 +23,35 @@ import {
   CardDescriptionRow,
   CardDescriptionKey,
   CardDescriptionValue,
+  BtnWrapper,
+  ViewMoreBtn,
+  DeleteBtn,
 } from './NoticesCategoryItem.styled';
 
 export const NoticesCategoryItem = ({ noticesItem }) => {
-  const theme = useTheme();
   const [isModalOpen, setIsModalOpen] = useState(false);
 
+  const dispatch = useDispatch();
+  const theme = useTheme();
+  const isLoggedIn = useSelector(getIsLogin);
+  const favorites = useSelector(selectFavorites);
+
   const petAge = getPetAge(noticesItem.birthday);
+
+  const handleAddToFav = itemId => {
+    if (!isLoggedIn) {
+      showLoginWarning();
+      return;
+    }
+    dispatch(addFavorite(itemId));
+    addNoticeToFav(itemId);
+    return;
+  };
+
+  const handleRemoveFromFav = itemId => {
+    dispatch(removeFavorite(itemId));
+    removeNoticeFromFav(itemId);
+  };
 
   const openModal = () => {
     setIsModalOpen(true);
@@ -46,7 +70,7 @@ export const NoticesCategoryItem = ({ noticesItem }) => {
 
   return (
     <>
-      <CardBox onClick={openModal}>
+      <CardBox>
         <ThumbWrapper>
           <ThumbImage
             src={
@@ -56,9 +80,15 @@ export const NoticesCategoryItem = ({ noticesItem }) => {
             }
           ></ThumbImage>
           <ThumbTag>{noticesItem.category}</ThumbTag>
-          <ThumbLikeBtn>
-            <AiOutlineHeart size={'28px'} color={theme.colors.a} />
-          </ThumbLikeBtn>
+          {!favorites.includes(noticesItem._id) ? (
+            <ThumbAddBtn onClick={() => handleAddToFav(noticesItem._id)}>
+              <AiOutlineHeart size={'28px'} color={theme.colors.a} />
+            </ThumbAddBtn>
+          ) : (
+            <ThumbRemoveBtn onClick={() => handleRemoveFromFav(noticesItem._id)}>
+              <AiFillHeart size={'28px'} color={theme.colors.a} />
+            </ThumbRemoveBtn>
+          )}
         </ThumbWrapper>
         <CardInfoWrapper>
           <CardTitle>{noticesItem.title}</CardTitle>
@@ -78,13 +108,13 @@ export const NoticesCategoryItem = ({ noticesItem }) => {
               </CardDescriptionRow>
             </TableBody>
           </CardDescriptionTable>
-          <Box>
-            <ViewMoreBtn>Learn more</ViewMoreBtn>
+          <BtnWrapper>
+            <ViewMoreBtn onClick={openModal}>Learn more</ViewMoreBtn>
             <DeleteBtn>
               Delete
               <HiTrash size={'20px'} color={'inherit'} style={{ marginLeft: '13px' }} />
             </DeleteBtn>
-          </Box>
+          </BtnWrapper>
         </CardInfoWrapper>
       </CardBox>
       {isModalOpen && <NoticeModal noticeId={noticesItem._id} closeModal={closeModal} />}
