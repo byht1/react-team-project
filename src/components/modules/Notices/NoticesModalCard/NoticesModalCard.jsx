@@ -1,7 +1,10 @@
-
 import React from 'react';
 import { useQuery } from '@tanstack/react-query';
-import { fetchOneNotice } from 'services/notices';
+import { useSelector, useDispatch } from 'react-redux';
+import { getIsLogin } from 'redux/auth';
+import { selectFavorites, addFavorite, removeFavorite } from 'redux/notices';
+import { showLoginWarning } from 'helpers/showLoginWarning';
+import { fetchOneNotice, addNoticeToFav, removeNoticeFromFav } from 'api';
 import { AiFillHeart } from 'react-icons/ai';
 import {
   ThumbTag,
@@ -23,14 +26,34 @@ import {
   ModalCardBtnWrapper,
   ContactBtn,
   AddToFavBtn,
+  RemoveFromFavBtn,
 } from './NoticesModalCard.styled';
 
 export const NoticesModalCard = ({ noticeId }) => {
+  const favorites = useSelector(selectFavorites);
+  const dispatch = useDispatch();
+
   const { data, isSuccess } = useQuery({
     queryFn: () => fetchOneNotice(noticeId),
     queryKey: ['notices', noticeId],
     staleTime: 5 * 60 * 1000,
   });
+  const isLoggedIn = useSelector(getIsLogin);
+
+  const handleAddToFav = itemId => {
+    if (!isLoggedIn) {
+      showLoginWarning();
+      return;
+    }
+    dispatch(addFavorite(itemId));
+    addNoticeToFav(itemId);
+    return;
+  };
+
+  const handleRemoveFromFav = itemId => {
+    dispatch(removeFavorite(itemId));
+    removeNoticeFromFav(itemId);
+  };
 
   return (
     <>
@@ -108,19 +131,21 @@ export const NoticesModalCard = ({ noticeId }) => {
             {data.comments ? data.comments : ''}
           </ModalCommentText>
           <ModalCardBtnWrapper>
-            {/* <ContactBtn {...(data.owner && { href: `tel:${data.owner.phone}` })}>
-              Contact
-            </ContactBtn> */}
             {data.owner && (
               <ContactBtn {...(data.owner && { href: `tel:${data.owner.phone}` })}>
                 Contact
               </ContactBtn>
             )}
-
-            <AddToFavBtn>
-              Add to
-              <AiFillHeart size={'16px'} />
-            </AddToFavBtn>
+            {!favorites.includes(data._id) ? (
+              <AddToFavBtn onClick={() => handleAddToFav(data._id)}>
+                Add to
+                <AiFillHeart size={'16px'} />
+              </AddToFavBtn>
+            ) : (
+              <RemoveFromFavBtn onClick={() => handleRemoveFromFav(data._id)}>
+                Remove from <AiFillHeart size={'16px'} />
+              </RemoveFromFavBtn>
+            )}
           </ModalCardBtnWrapper>
         </ModalCard>
       )}
