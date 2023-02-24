@@ -1,4 +1,3 @@
-
 import styled from 'styled-components';
 import { Box } from 'components/global/Box';
 import { LightBtn } from 'components/global/button/Button.styled';
@@ -50,7 +49,7 @@ export const ThumbTag = styled('span')`
   border-radius: ${p => p.theme.radii.tagRadius};
 `;
 
-export const ThumbLikeBtn = styled('button')`
+export const ThumbAddBtn = styled('button')`
   position: absolute;
   top: 12px;
   right: 12px;
@@ -69,13 +68,21 @@ export const ThumbLikeBtn = styled('button')`
   border-radius: ${p => p.theme.radii.round};
 `;
 
+export const ThumbRemoveBtn = styled(ThumbAddBtn)``;
+
 export const CardInfoWrapper = styled(Box)`
+  display: flex;
+  flex-direction: column;
+  align-content: space-between;
+  height: 318px;
   margin-top: 20px;
   padding-left: 20px;
   padding-right: 20px;
 `;
 
 export const CardTitle = styled('h3')`
+  flex-grow: 1;
+  overflow-y: hidden;
   font-size: ${p => p.theme.fontSizes.xxxl};
   line-height: ${p => p.theme.lineHeights.heading};
 `;
@@ -102,6 +109,10 @@ export const CardDescriptionValue = styled('td')`
   overflow-wrap: anywhere;
 `;
 
+export const BtnWrapper = styled(Box)`
+  margin-top: 20px;
+`;
+
 export const ViewMoreBtn = styled(LightBtn)`
   display: block;
 
@@ -109,7 +120,6 @@ export const ViewMoreBtn = styled(LightBtn)`
 
   padding-top: 8px;
   padding-bottom: 8px;
-  margin-top: 20px;
 
   color: ${p => p.theme.colors.a};
 
@@ -133,4 +143,3 @@ export const DeleteBtn = styled(LightBtn)`
   font-size: ${p => p.theme.fontSizes.m};
   line-height: ${p => p.theme.lineHeights.heading};
 `;
-

@@ -1,4 +1,3 @@
-
 import styled from 'styled-components';
 import { Box } from 'components/global/Box';
 import {
@@ -141,6 +140,10 @@ export const AddToFavBtn = styled(ViewMoreBtn)`
   justify-content: center;
   align-items: center;
 
+  @media (max-width: 767px) {
+    margin-top: 12px;
+  }
+
   & > svg {
     margin-left: 8px;
   }
@@ -154,3 +157,4 @@ export const AddToFavBtn = styled(ViewMoreBtn)`
   }
 `;
 
+export const RemoveFromFavBtn = styled(AddToFavBtn)``;
