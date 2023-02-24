@@ -1,16 +1,18 @@
 import server from 'api/basic';
 
-//Get all notices @ /notices
-export const fetchAllNotices = async (category, offset = 0, count = 12) => {
+export const fetchAllNotices = async ({ category, offset = 0, count = 12, search }) => {
   try {
-    const r = await server.get(`/notices/?category=${category}&offset=${offset}&count=${count}`);
+    let query = `/notices/?category=${category}&offset=${offset}&count=${count}`;
+    if (search) {
+      query += `&search=${search}`;
+    }
+    const r = await server.get(query);
     return r.data;
   } catch (e) {
     return e.message;
   }
 };
 
-// Get one notice @ /notices
 export const fetchOneNotice = async noticeId => {
   try {
     const r = await server.get(`/notices/${noticeId}`);
@@ -20,7 +22,24 @@ export const fetchOneNotice = async noticeId => {
   }
 };
 
-// Remove notice
+export const fetchFavoriteNotices = async () => {
+  try {
+    const r = await server.get(`/notices/favorite`);
+    return r.data;
+  } catch (e) {
+    return e.message;
+  }
+};
+
+export const fetchOwnNotices = async () => {
+  try {
+    const r = await server.get(`/notices/user`);
+    console.log('fetched own');
+    return r.data;
+  } catch (e) {
+    return e.message;
+  }
+};
 
 export const removeNotice = async noticeId => {
   try {
@@ -31,8 +50,6 @@ export const removeNotice = async noticeId => {
   }
 };
 
-// Add to favorites
-
 export const addNoticeToFav = async noticeId => {
   try {
     const r = await server.patch(`/notices/${noticeId}/favorite`);
@@ -41,8 +58,6 @@ export const addNoticeToFav = async noticeId => {
     return e.message;
   }
 };
-
-// Remove from favorites
 
 export const removeNoticeFromFav = async noticeId => {
   try {

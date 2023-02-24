@@ -1,5 +1,6 @@
 import { Container } from 'components/global/Container';
 import React from 'react';
+
 import {
   TitleBlock,
   Title,
@@ -16,9 +17,19 @@ import {
   AddPetIc,
   TrashBinIc,
 } from './PetsData.styled';
-import Chloe from '../../../../img/User/chloe grace moretz.webp';
+import { useDispatch, useSelector } from 'react-redux';
+import { deletePetFromList, getUserPetList, updateUserPetList } from 'redux/user';
 
 export const PetsData = () => {
+  const petList = useSelector(getUserPetList);
+
+  const dispatch = useDispatch();
+
+  const deletePet = _id => {
+    dispatch(updateUserPetList(_id));
+    dispatch(deletePetFromList(_id));
+  };
+
   return (
     <Container>
       <TitleBlock>
@@ -27,59 +38,41 @@ export const PetsData = () => {
           <TitleSpan>Add pet</TitleSpan> <AddPetIc />
         </AddPetBlock>
       </TitleBlock>
+
       <PetBlcok>
-        <PetCard>
-          <PhotoBlock>
-            <Img src={Chloe} />
-            <Icon>
-              <TrashBinIc />
-            </Icon>
-          </PhotoBlock>
-          <InfoList>
-            <ListItem>
-              <ListItemInfo>Name:Chloe Grace Moretz</ListItemInfo>
-            </ListItem>
-            <ListItem>
-              <ListItemInfo>Date of birth: 10.02.1997</ListItemInfo>
-            </ListItem>
-            <ListItem>
-              <ListItemInfo>Breed: Human ;)</ListItemInfo>
-            </ListItem>
-            <ListItem>
-              <ListItemInfo>
-                Comments: Chloë Grace Moretz is an American actress. She is the recipient of various
-                accolades, including four MTV Movie & TV Awards, two People's Choice Awards, two
-                Saturn Awards, and two Young Artist Awards.
-              </ListItemInfo>
-            </ListItem>
-          </InfoList>
-        </PetCard>
-        <PetCard>
-          <PhotoBlock>
-            <Img src={Chloe} />
-            <Icon>
-              <TrashBinIc />
-            </Icon>
-          </PhotoBlock>
-          <InfoList>
-            <ListItem>
-              <ListItemInfo>Name:Chloe Grace Moretz</ListItemInfo>
-            </ListItem>
-            <ListItem>
-              <ListItemInfo>Date of birth: 10.02.1997</ListItemInfo>
-            </ListItem>
-            <ListItem>
-              <ListItemInfo>Breed: Human ;)</ListItemInfo>
-            </ListItem>
-            <ListItem>
-              <ListItemInfo>
-                Comments: Chloë Grace Moretz is an American actress. She is the recipient of various
-                accolades, including four MTV Movie & TV Awards, two People's Choice Awards, two
-                Saturn Awards, and two Young Artist Awards.
-              </ListItemInfo>
-            </ListItem>
-          </InfoList>
-        </PetCard>
+        {petList
+          ? petList.map(el => {
+              const { _id, name, birth, breed, image, comments } = el;
+              return (
+                <PetCard key={_id}>
+                  <PhotoBlock>
+                    <Img src={image} />
+                    <Icon>
+                      <TrashBinIc
+                        onClick={() => {
+                          deletePet(_id);
+                        }}
+                      />
+                    </Icon>
+                  </PhotoBlock>
+                  <InfoList>
+                    <ListItem>
+                      <ListItemInfo>{`Name: ${name}`}</ListItemInfo>
+                    </ListItem>
+                    <ListItem>
+                      <ListItemInfo>{`Date of birth: ${birth}`}</ListItemInfo>
+                    </ListItem>
+                    <ListItem>
+                      <ListItemInfo>{`Breed: ${breed}`}</ListItemInfo>
+                    </ListItem>
+                    <ListItem>
+                      <ListItemInfo>{`Comments: ${comments}`}</ListItemInfo>
+                    </ListItem>
+                  </InfoList>
+                </PetCard>
+              );
+            })
+          : null}
       </PetBlcok>
     </Container>
   );

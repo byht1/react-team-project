@@ -6,6 +6,7 @@ const initialState = {
   access_token: null,
   refresh_token: null,
   isLogin: false,
+  // isRefreshing: false,
   loading: false,
 };
 
@@ -26,7 +27,19 @@ export const authSlice = createSlice({
       state.refresh_token = payload.refresh_token;
       state.isLogin = true;
     },
+    logout(state) {
+      state.id = null;
+      state.user = {
+        name: null,
+        email: null,
+        phone: null,
+        city: null,
+      };
+      state.access_token = null;
+      state.refresh_token = null;
+      state.isLogin = false;
+    },
   },
 });
 
-export const { register } = authSlice.actions;
+export const { register, logout } = authSlice.actions;

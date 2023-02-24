@@ -12,6 +12,8 @@ import { RegStepTwo } from './RegStepTwo/RegStepTwo';
 import { register } from 'redux/auth';
 import { registerSchema } from './RegisterSchema';
 
+import { FcGoogle } from 'react-icons/fc';
+
 import {
   AuthContainer,
   FormWrapper,
@@ -20,6 +22,7 @@ import {
   RegisterText,
   Link,
   BgWrapper,
+  GoogleBox,
 } from './RegisterForm.styled';
 import { Box } from 'components/global/Box';
 import { signUp } from 'api';
@@ -102,10 +105,17 @@ export const RegisterForm = () => {
               )}
             </InputsWrapper>
           </FormContext>
-          <Box display="flex" mt={40}>
+          <Box display="flex" mt={40} mb={5}>
             <RegisterText>Already have an account?</RegisterText>
             <Link to="/login">Login</Link>
           </Box>
+          <a href="https://node-team-project.onrender.com/api/auth/google">
+            <GoogleBox>
+              <RegisterText>Sign in with Google</RegisterText>
+
+              <FcGoogle size={'25px'} />
+            </GoogleBox>
+          </a>
         </FormWrapper>
       </AuthContainer>
     </BgWrapper>

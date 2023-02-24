@@ -1,5 +1,4 @@
 import * as yup from 'yup';
-import { dateConverter } from './dateConverter';
 
 export const schemaAddPet = yup.object({
   sex: yup.string().required('Sex is required'),

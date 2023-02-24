@@ -14,6 +14,8 @@ export const colors = Object.freeze({
   trsp: 'var(--transparent-color)',
   tagBg: 'var(--tag-bg)',
   sf: 'var(--search-text)',
+  inputBdr: 'var(--input-border)',
+  phc: 'var(--placeholder-color)',
 });
 
 export const fonts = Object.freeze({
