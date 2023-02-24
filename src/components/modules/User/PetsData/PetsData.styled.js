@@ -190,6 +190,7 @@ export const AddPetBlock = styled.div`
 `;
 
 export const AddPetIc = styled(plus)`
+  padding: 8px;
   margin-left: 15px;
   cursor: pointer;
   height: 40px;
