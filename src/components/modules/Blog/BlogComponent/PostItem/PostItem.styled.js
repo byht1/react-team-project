@@ -1,40 +1,49 @@
 import styled from 'styled-components';
+import { TitleH3 } from 'components/global/text';
 
-export const StyledPost = styled.div`
+export const StyledPost = styled.li`
   display: flex;
   flex-direction: ${({ isImageOnRight }) => (isImageOnRight ? 'row-reverse' : 'row')};
-  align-items: center;
+  gap: ${p => p.theme.space[7]}px;
+  align-items: flex-start;
   margin: 20px 0;
   border-radius: 10px;
   overflow: hidden;
+  padding: ${p => p.theme.space[9]}px;
+  background: #ffffff;
+  box-shadow: 7px 4px 14px rgba(0, 0, 0, 0.11);
+  border-radius: 40px;
 
-  @media (max-width: 480px) {
+  @media (max-width: 767.98px) {
     flex-direction: column;
+    margin-bottom: ${p => p.theme.space[7]}px;
   }
 `;
 
 export const StyledImage = styled.img`
-  display: block;
+  flex-grow: 0;
   width: 100%;
   height: auto;
-  margin-right: ${({ isImageOnRight }) => (isImageOnRight ? 0 : '1rem')};
-  margin-left: ${({ isImageOnRight }) => (isImageOnRight ? '1rem' : 0)};
-  border-radius: 0.5rem;
+  border-radius: ${p => p.theme.space[10]}px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   transition: transform 0.2s ease-in-out;
+  object-fit: cover;
 
-  @media only screen and (min-width: 480px) {
-    width: 50%;
-    margin-right: ${({ isImageOnRight }) => (isImageOnRight ? 0 : '2rem')};
-    margin-left: ${({ isImageOnRight }) => (isImageOnRight ? '2rem' : 0)};
+  @media (max-width: 767.98px) {
+    margin-bottom: ${p => p.theme.space[7]}px;
   }
 
   @media only screen and (min-width: 768px) {
-    width: 40%;
+    height: 160px;
+    width: 240px;
+    /* width: 40%; */
   }
 
   @media only screen and (min-width: 1280px) {
-    width: 30%;
+    height: 320px;
+    width: 480px;
+    /* width: 40%; */
+    /* width: 30%; */
   }
 
   &:hover {
@@ -43,16 +52,17 @@ export const StyledImage = styled.img`
 `;
 
 export const StyledContent = styled.div`
-  flex: 1;
   display: flex;
+  min-height: 100%;
   flex-direction: column;
-  margin-left: ${({ isImageOnRight }) => (isImageOnRight ? '0' : '1rem')};
-  margin-right: ${({ isImageOnRight }) => (isImageOnRight ? '1rem' : '0')};
+  align-self: stretch;
 
   @media only screen and (max-width: 480px) {
     margin: 0;
   }
 `;
+
+export const StyledTitle = styled(TitleH3)``;
 
 export const StyledAuthor = styled.span`
   font-size: 14px;
@@ -62,13 +72,16 @@ export const StyledAuthor = styled.span`
 `;
 
 export const StyledDate = styled.span`
+  display: block;
   font-size: 14px;
   color: #757575;
   margin-right: 8px;
+  text-align: right;
 `;
 
 export const StyledCategory = styled.span`
-  font-size: 14px;
+  font-size: ${p => p.theme.fontSizes.l};
+  font-weight: ${p => p.theme.fontWeights.semiBold};
   color: #757575;
 `;
 
@@ -79,21 +92,19 @@ export const StyledText = styled.p`
   padding: 0;
   overflow: hidden;
   text-overflow: ellipsis;
-  display: -webkit-box;
-  -webkit-line-clamp: 6;
-  -webkit-box-orient: vertical;
 `;
 
-export const StyledComments = styled.span`
+export const StyledMetaIcon = styled.span`
+  display: flex;
+  gap: ${p => p.theme.space[3]}px;
+  align-items: center;
+  justify-content: space-between;
   font-size: 14px;
-  margin-right: 12px;
   color: #999;
-`;
 
-export const StyledLikes = styled.span`
-  font-size: 14px;
-  margin-right: 12px;
-  color: #999;
+  &:hover {
+    color: red;
+  }
 `;
 
 export const StyledButton = styled.button`

@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import { Box } from 'components/global/Box';
 
-export const ListBox = styled(Box)`
+export const ListBox = styled.ul`
   /* margin-top: 30px; */
 
   @media (min-width: 768px) {

@@ -1,11 +1,12 @@
 [
   {
     "id": "615da02da1b3e1f6c492b17a",
-    "owner": "615da02da1b3e1f6c492b17b",
     "image": "https://cdn.pixabay.com/photo/2016/02/19/15/46/labrador-retriever-1210559__180.jpg",
     "author": "John Smith",
+    "owner": "615da02da1b3e1f6c492b17b",
     "date": "15.02.2022 / 08:45",
     "category": "Travel",
+    "title": "Tile about Travel",
     "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin ut leo eu ex consequat mattis ac ut sapien. Nullam dignissim, sapien ut efficitur euismod, augue nibh ultrices ante, sed auctor velit odio sit amet ante. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Sed in convallis metus. Vestibulum sed velit enim. Nunc ut nisl nec metus lobortis ultricies. Sed vel turpis ut quam dapibus convallis.",
     "likeCount": 25,
     "comments": [
@@ -30,6 +31,7 @@
     "author": "John Doe",
     "date": "22.02.2023 / 10:35",
     "category": "Travel",
+    "title": "Tile about Travel",
     "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus sed lobortis sapien. Ut laoreet vestibulum leo, vitae hendrerit magna tincidunt sed. Duis in tortor sed mauris lacinia ornare. Nam pretium aliquet ex vel venenatis. Sed varius nibh turpis, in bibendum ipsum bibendum eu. Pellentesque sit amet mollis sapien. Aliquam vel pulvinar sapien, ut bibendum ante. Donec congue mi ac ligula rhoncus aliquet.",
     "likeCount": 12,
     "comments": [
@@ -54,6 +56,7 @@
     "author": "Jane Smith",
     "date": "21.02.2023 / 16:42",
     "category": "Nature",
+    "title": "Tile about Nature",
     "text": "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam.",
     "likeCount": 8,
     "comments": [

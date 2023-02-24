@@ -4,7 +4,7 @@ import React, { useState } from 'react';
 // import { useInfiniteQuery } from '@tanstack/react-query';
 // import { useTheme } from 'styled-components';
 // import { fetchAllNotices } from 'services/notices';
-import { Post } from '../Post';
+import { Post } from '../PostItem';
 import { DarkBtn as LoadMoreBtn } from 'components/global/button';
 import { ListBox } from './PostsList.styled';
 // import { selectSearchQuery } from 'redux/notices';
@@ -71,12 +71,8 @@ export const PostsList = () => {
 
         {posts.map((post, index) => {
           const isImageOnRight = index % 2 === 0 ? true : false;
-          console.log('🚀 ~ file: PostsList.jsx:74 ~ isImageOnRight:', isImageOnRight);
 
-          return (
-            // <div>123</div>
-            <Post key={post.id} post={post} isImageOnRight={isImageOnRight} />
-          );
+          return <Post key={post.id} post={post} isImageOnRight={isImageOnRight} />;
         })}
       </ListBox>
 

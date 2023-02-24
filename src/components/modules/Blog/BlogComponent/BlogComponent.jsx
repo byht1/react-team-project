@@ -7,7 +7,7 @@ import { useEffect } from 'react';
 import { BlogContainer, Title } from './BlogComponent.styled';
 import { BlogSearch } from './BlogSearch/BlogSearch';
 import { BlogCategoriesNav } from './BlogCategoriesNav';
-import { PostsList } from '../PostsList';
+import { PostsList } from './PostsList';
 
 export const BlogComponent = () => {
   // const location = useLocation();
