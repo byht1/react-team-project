@@ -212,7 +212,6 @@ export function UserInputInfo({
       default:
         break;
     }
-    console.log(`${fildName} Validation is `, inputErr, 'Value length = ', value.length);
   };
 
   const saveEditing = () => {
