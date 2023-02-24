@@ -1,5 +1,7 @@
-import { useQuery } from '@tanstack/react-query';
 import { Navigate, Route, Routes, useNavigate, useSearchParams } from 'react-router-dom';
+import { useQuery } from '@tanstack/react-query';
+import { useDispatch } from 'react-redux';
+
 import { SharedLayout } from 'page/SharedLayout';
 import { NewsPage } from 'page/NewsPage';
 import { OurFriendsPage } from 'page/OurFriendsPage';
@@ -7,16 +9,17 @@ import { RegisterPage } from 'page/RegisterPage';
 import { UserPage } from 'page/UserPage';
 import { NoticesPage } from 'page/NoticesPage';
 import { NoticesCategoriesList } from 'components/modules/Notices/NoticesCategoriesList';
-import { LoginPage } from 'page/LoginPage';
 import { Home } from 'page/Home';
-import { googleIn, refresh } from 'api/auth';
-import { RestrictedRoute } from 'components/global/RestrictedRoute';
-import { PrivateRoute } from 'components/global/PrivateRoute';
-import { useDispatch } from 'react-redux';
-import { register } from 'redux/auth';
-import { Loader } from 'components/global/Loader';
 import { Blog } from 'page/Blog';
 import { PostDetails } from 'page/PostDetails';
+
+import { LoginPage } from 'page/LoginPage';
+import { googleIn, refresh } from 'api/auth';
+
+import { RestrictedRoute } from 'components/global/RestrictedRoute';
+import { PrivateRoute } from 'components/global/PrivateRoute';
+import { register } from 'redux/auth';
+import { Loader } from 'components/global/Loader';
 
 // import { NotFound } from 'page/NotFound';
 
@@ -68,7 +71,7 @@ function App() {
           <Route path="own" element={<NoticesCategoriesList />} />
         </Route>
         <Route path="friends" element={<OurFriendsPage />} />
-        {/* Пудлычний шлях */}
+        {/* Публічний шлях */}
         <Route
           path="register"
           element={<RestrictedRoute component={RegisterPage} redirectTo="/user" />}
