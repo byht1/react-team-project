@@ -46,7 +46,7 @@ export const FileInput = props => {
     })
   );
 
-  const CountError = () => {
+  const Errors = () => {
     if (fileRejections.length > 1) {
       return (
         <>
@@ -68,74 +68,70 @@ export const FileInput = props => {
     }
   };
 
+  //   const MyFullscreenDropzone = ({ children }) => {
+  //     return (
+  //         <Dropzone
+  //             disableClick
+  //             onDrop={files => console.log('on drop')}
+  //             onDragEnter={onDragEnter}
+  //             onDragLeave={onDragLeave}
+  //             multiple={false}
+  //         >
+  //             {({ getRootProps, getInputProps }) => (
+  //                 <div {...getRootProps()}>
+  //                     <input {...getInputProps()} hidden />
+  //                     {children}
+  //                 </div>
+  //             )}
+  //         </Dropzone>
+  //     )}
+  // };
 
+  // const [isDragging, setIsDragging] = React.useState(false);
+  // const dragCounter = React.useRef(0);
 
-//   const MyFullscreenDropzone = ({ children }) => {
-//     return (
-//         <Dropzone
-//             disableClick
-//             onDrop={files => console.log('on drop')}
-//             onDragEnter={onDragEnter}
-//             onDragLeave={onDragLeave}
-//             multiple={false}
-//         >
-//             {({ getRootProps, getInputProps }) => (
-//                 <div {...getRootProps()}>
-//                     <input {...getInputProps()} hidden />
-//                     {children}
-//                 </div>
-//             )}
-//         </Dropzone>
-//     )}
-// };
-  
-    // const [isDragging, setIsDragging] = React.useState(false);
-    // const dragCounter = React.useRef(0);
+  // const handleDrag = React.useCallback(event => {
+  //   event.preventDefault();
+  //   event.stopPropagation();
+  // }, []);
+  // const handleDragIn = React.useCallback(event => {
+  //   event.preventDefault();
+  //   event.stopPropagation();
+  //   dragCounter.current++;
+  //   if (event.dataTransfer.items && event.dataTransfer.items.length > 0) {
+  //     setIsDragging(true);
+  //   }
+  // }, []);
+  // const handleDragOut = React.useCallback(event => {
+  //   event.preventDefault();
+  //   event.stopPropagation();
+  //   dragCounter.current--;
+  //   if (dragCounter.current > 0) return;
+  //   setIsDragging(false);
+  // }, []);
+  // const handleDrop = React.useCallback(event => {
+  //   event.preventDefault();
+  //   event.stopPropagation();
+  //   setIsDragging(false);
+  //   if (event.dataTransfer.files && event.dataTransfer.files.length > 0) {
+  //     dragCounter.current = 0;
+  //     console.log(event.dataTransfer.files);
+  //     event.dataTransfer.clearData();
+  //   }
+  // }, []);
 
-    // const handleDrag = React.useCallback(event => {
-    //   event.preventDefault();
-    //   event.stopPropagation();
-    // }, []);
-    // const handleDragIn = React.useCallback(event => {
-    //   event.preventDefault();
-    //   event.stopPropagation();
-    //   dragCounter.current++;
-    //   if (event.dataTransfer.items && event.dataTransfer.items.length > 0) {
-    //     setIsDragging(true);
-    //   }
-    // }, []);
-    // const handleDragOut = React.useCallback(event => {
-    //   event.preventDefault();
-    //   event.stopPropagation();
-    //   dragCounter.current--;
-    //   if (dragCounter.current > 0) return;
-    //   setIsDragging(false);
-    // }, []);
-    // const handleDrop = React.useCallback(event => {
-    //   event.preventDefault();
-    //   event.stopPropagation();
-    //   setIsDragging(false);
-    //   if (event.dataTransfer.files && event.dataTransfer.files.length > 0) {
-    //     dragCounter.current = 0;
-    //     console.log(event.dataTransfer.files);
-    //     event.dataTransfer.clearData();
-    //   }
-    // }, []);
-
-    // React.useEffect(() => {
-    //   window.addEventListener('dragenter', handleDragIn);
-    //   window.addEventListener('dragleave', handleDragOut);
-    //   window.addEventListener('dragover', handleDrag);
-    //   window.addEventListener('drop', handleDrop);
-    //   return function cleanUp() {
-    //     window.removeEventListener('dragenter', handleDragIn);
-    //     window.removeEventListener('dragleave', handleDragOut);
-    //     window.removeEventListener('dragover', handleDrag);
-    //     window.removeEventListener('drop', handleDrop);
-    //   };
-    // });
-
-
+  // React.useEffect(() => {
+  //   window.addEventListener('dragenter', handleDragIn);
+  //   window.addEventListener('dragleave', handleDragOut);
+  //   window.addEventListener('dragover', handleDrag);
+  //   window.addEventListener('drop', handleDrop);
+  //   return function cleanUp() {
+  //     window.removeEventListener('dragenter', handleDragIn);
+  //     window.removeEventListener('dragleave', handleDragOut);
+  //     window.removeEventListener('dragover', handleDrag);
+  //     window.removeEventListener('drop', handleDrop);
+  //   };
+  // });
 
   return (
     <>
@@ -146,7 +142,7 @@ export const FileInput = props => {
           {!!acceptedFiles?.length && (
             <PreviewPhoto src={URL.createObjectURL(files[0])} alt={files[0].name} />
           )}
-          <CountError />
+          <Errors />
         </InputFileWrap>
       </LabelFile>
     </>

@@ -119,6 +119,6 @@ export const FirstPage = ({ nextStep, onClose }) => {
 };
 
 FirstPage.propTypes = {
-  onClose: PropTypes.func.isRequired,
-  nextStep: PropTypes.func.isRequired,
+  onClose: PropTypes.func,
+  nextStep: PropTypes.func,
 };

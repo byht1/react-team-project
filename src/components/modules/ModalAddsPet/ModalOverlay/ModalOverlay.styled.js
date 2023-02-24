@@ -6,10 +6,8 @@ const Overlay = styled.div`
   left: 0;
   width: ${p => p.theme.size.maxVW};
   height: ${p => p.theme.size.maxVH};
-  display: flex;
-  justify-content: center;
-  align-items: center;
   background-color: ${p => p.theme.colors.overlay};
+  overflow-y: scroll;
   z-index: 1200;
 `;
 

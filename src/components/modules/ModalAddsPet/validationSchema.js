@@ -3,16 +3,17 @@ import * as yup from 'yup';
 export const schemaAddMyPetForm = yup.object({
   petName: yup
     .string()
-    .matches(/^([а-яё\s]+|[a-z\s]+)$/iu, 'Name can contain only letters.')
+    // .matches(/^[a-zA-Z0-9А-Яа-яЁё ]+$/u, 'Name can contain only letters, spaces and numbers.')
+    .matches(/^[a-zA-ZА-Яа-яЁё ]+$/u, 'Name can contain only letters and spaces.')
     .min(2, 'The name must contain more than 2 characters')
     .max(20, 'Maximum name length 20 characters')
-    .required('This field is requaired!'),
+    .required('This field is required!'),
 
   petBirth: yup
     .string()
     .matches(
-      /^(0[1-9]|[12]\d|3[01])\.(0[1-9]|1[012])\.\d{4}$/,
-      'Date must be in the format DD.MM.YYYY'
+      /^(?:(?:31(\/|-|\.)(?:0?[13578]|1[02]))\1|(?:(?:29|30)(\/|-|\.)(?:0?[1,3-9]|1[0-2])\2))(?:(?:1[6-9]|[2-9]\d)?\d{2})$|^(?:29(\/|-|\.)0?2\3(?:(?:(?:1[6-9]|[2-9]\d)?(?:0[48]|[2468][048]|[13579][26])|(?:(?:16|[2468][048]|[3579][26])00))))$|^(?:0?[1-9]|1\d|2[0-8])(\/|-|\.)(?:(?:0?[1-9])|(?:1[0-2]))\4(?:(?:1[6-9]|[2-9]\d)?\d{2})$/,
+      'Date does not exist or date format not supported (DD.MM.YYYY)'
     )
     .test('date', 'Date must be after 01.01.1990 and before today', value => {
       const [day, month, year] = value.split('.');
@@ -26,23 +27,21 @@ export const schemaAddMyPetForm = yup.object({
         return false;
       }
       return true;
-    }),
+    })
+    .required('This field is required!'),
 
   petBreed: yup
     .string()
-    .matches(
-      // /^([A-Za-z\u00C0-\u00D6\u00D8-\u00f6\u00f8-\u00ff\s]*)$/gi,
-      /^([а-яё\s]+|[a-z\s]+)$/iu,
-      'Breed can contain only letters.'
-    )
-    .min(2, 'The breed must contain more than 2 characters')
+    .matches(/^[a-zA-ZА-Яа-яЁё ]+$/u, 'Breed can contain only letters and spaces.')
+    .min(2, 'Breed must contain more than 2 characters')
     .max(50, 'Maximum breed length 50 characters')
-    .required('This field is requaired!'),
+    .required('This field is required!'),
 
-  myPetURL: yup.mixed().required('This field is requaired!'),
+  myPetURL: yup.mixed().required('This field is required!'),
+
   comments: yup
     .string()
-    .required('This field is requaired!')
+    .required('This field is required!')
     .min(8, 'The comment must contain more than 8 characters')
     .max(120, 'Maximum comment length 120 characters'),
 });

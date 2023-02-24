@@ -43,5 +43,5 @@ export const SecondPage = ({ prevStep }) => {
 };
 
 SecondPage.propTypes = {
-  prevStep: PropTypes.func.isRequired,
+  prevStep: PropTypes.func,
 };
