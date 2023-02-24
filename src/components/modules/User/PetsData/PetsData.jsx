@@ -16,6 +16,8 @@ import {
   AddPetBlock,
   AddPetIc,
   TrashBinIc,
+  PandaImg,
+  PandaText,
 } from './PetsData.styled';
 import { useDispatch, useSelector } from 'react-redux';
 import { deletePetFromList, getUserPetList, updateUserPetList } from 'redux/user';
@@ -29,7 +31,6 @@ export const PetsData = () => {
     dispatch(updateUserPetList(_id));
     dispatch(deletePetFromList(_id));
   };
-
   return (
     <Container>
       <TitleBlock>
@@ -40,7 +41,7 @@ export const PetsData = () => {
       </TitleBlock>
 
       <PetBlcok>
-        {petList
+        {petList[0]
           ? petList.map(el => {
               const { _id, name, birth, breed, image, comments } = el;
               return (
@@ -73,6 +74,12 @@ export const PetsData = () => {
               );
             })
           : null}
+        {!petList[0] ? (
+          <>
+            <PandaImg src={require('../../../../img/User/panda.png')} />
+            <PandaText>You have not added an pets to favorite list yet</PandaText>
+          </>
+        ) : null}
       </PetBlcok>
     </Container>
   );
