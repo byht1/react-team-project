@@ -8,6 +8,7 @@ import useWindowDimensions from './helpers/getWidth';
 import { Input } from 'components/global/FormInput/FormInput.styled';
 
 import { CloseModalBtn } from 'components/modules/Notices/NoticeModal/NoticeModal.styled';
+import { Box } from 'components/global/Box';
 import {
   FormWrap,
   RadioMale,
@@ -37,11 +38,14 @@ export const FormStepTwo = () => {
   const navigate = useNavigate();
   const [male, setMale] = useState(false);
   const [female, setFemale] = useState(false);
-  const [img, setImage] = useState(null);
+  const [img, setImage] = useState([]);
 
   const handleImageChange = e => {
+    const files = e.target.files;
     if (e.target.files && e.target.files[0]) {
-      setImage(URL.createObjectURL(e.target.files[0]));
+      for (const file of files) {
+        setImage(prev => [...prev, URL.createObjectURL(file)]);
+      }
     }
   };
 
@@ -125,6 +129,7 @@ export const FormStepTwo = () => {
               </LabelInput>
             </>
           )}
+
           <LabelInput htmlFor="photo">
             {' '}
             <Text>Load the pet’s image:</Text>
@@ -142,7 +147,14 @@ export const FormStepTwo = () => {
                 id="photo"
                 multiple
               />
-              {img && <ImgLoaded src={img} alt="uploaded" />}
+              {/* {img.length !== 0 && (
+                <Box>
+                  {img.map((x, i) => (
+                    <ImgLoaded key={i} src={x} alt="uploaded" />
+                  ))}
+                </Box>
+              )} */}
+
               <AddIcon />
             </InputFile>
             {errors.images && <Error>{errors.images.message}</Error>}
