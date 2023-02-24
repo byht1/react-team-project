@@ -72,15 +72,18 @@ export const FormAddNotice = () => {
   const onSubmit = data => {
     // console.log('first' + data);
     // console.log(dateConverter(methods.getValues('calendar').$d));
-    data.calendar = dateConverter(methods.getValues('calendar').$d);
-    // console.log(data);
+    console.log(data);
+    if (data.birthday) {
+      data.birthday = dateConverter(methods.getValues('birthday').$d);
+      // console.log(data);
+    }
     const formData = new FormData();
     for (const key in data) {
       formData.append(key, data[key]);
     }
+    create(formData);
     // console.log(dateConverter(methods.getValues('calendar').$d));
     // console.log(data.images.type);
-    create(formData);
     // addNewNotice({
     //   breed: 'Bulldog',
     //   category: 'sell',

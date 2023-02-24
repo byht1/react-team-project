@@ -30,6 +30,7 @@ import {
   Sex,
   Text,
   Comments,
+  ErrorSex,
 } from './FormAddNotice.styled';
 import { DataPicker } from './helpers/DatPicker';
 // custom hook for ResizeObserver
@@ -67,7 +68,7 @@ export const FormStepTwo = () => {
   //   const value = getValues();
   //   console.log(value.radio);
   // }, [getValues, values]);
-  console.log(errors);
+  // console.log(errors.sex.message);
   return (
     <>
       <FormWrap>
@@ -75,36 +76,7 @@ export const FormStepTwo = () => {
         <CloseModalBtn id="modal-close" type="button" onClick={() => navigate('/')}>
           <IoCloseOutline id="close-svg" size={'28px'} />
         </CloseModalBtn>
-        <>
-          {/* <Controller
-            control={control}
-            name="date"
-            render={({ field: { ref, onBlur, name, ...field }, fieldState }) => (
-              <DatePicker
-                // mask="__.__.____"
-                // disableMaskedInput={tru}
-                views={['year', 'month', 'day']} // dateFormat="dd.mm.yyy"
-                // value={value}
-                // onChange={handleChange}
-                onChange={() => {
-                  console.log('first');
-                }}
-                hideTabs={true}
-                inputFormat="dd.mm.yyyy"
-              
-                inputRef={ref}
-                renderInput={inputProps => (
-                  <TextField
-                    {...inputProps}
-                    {...register('date2')}
-                    placeholder="dd.mm.yyy"
-                    
-                  />
-                )}
-              />
-            )}
-          /> */}
-        </>
+        {errors.sex && <ErrorSex>{errors.sex.message}</ErrorSex>}
         <InputWrap>
           <LabelSex>
             The sex<Accent>*</Accent>:
@@ -120,11 +92,13 @@ export const FormStepTwo = () => {
               male={male}
             >
               <RadioMale
-                sx={{ width: { xs: '45px', md: '72px' }, height: { xs: '45px', md: '72px' } }}
+              // sx={{ width: { xs: '45px', md: '72px' }, height: { xs: '45px', md: '72px' } }}
               />
               <Sex>Male</Sex>
+
               <RadioTwo {...register('sex')} type="radio" value="male" id="Male" />
             </LabelMale>
+            {/* {errors.sex && <Error>Its </Error>} */}
 
             <LabelFemale
               htmlFor="Female"
@@ -135,12 +109,13 @@ export const FormStepTwo = () => {
               female={female}
             >
               <RadioFemale
-                sx={{ width: { xs: '45px', md: '72px' }, height: { xs: '45px', md: '72px' } }}
+              // sx={{ width: { xs: '45px', md: '72px' }, height: { xs: '45px', md: '72px' } }}
               />
               <Sex>Female</Sex>
               <RadioTwo {...register('sex')} type="radio" value="female" id="Female" />
             </LabelFemale>
           </LabelWrap>
+
           <LabelInput htmlFor="location">
             <Text>
               Location<Accent>*</Accent>:

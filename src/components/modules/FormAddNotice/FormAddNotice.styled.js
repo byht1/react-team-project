@@ -47,6 +47,8 @@ export const RadioMale = styled(MaleIcon)`
     height: 60px;
   } */
 
+  width: 60px;
+  height: 60px;
   color: #23c2ef;
 
   filter: drop-shadow(1px 1px 1px #4778e9);
@@ -66,8 +68,14 @@ export const LabelMale = styled.label`
   align-items: center;
   justify-content: center;
   margin-right: 45px;
-  @media (min-width: 768px) {
-    margin-right: 65px;
+  & .MuiSvgIcon-root {
+    width: 54px;
+    height: 54px;
+    @media (min-width: 768px) {
+      width: 86px;
+      height: 85px;
+      padding-left: 6px;
+    }
   }
 `;
 
@@ -77,6 +85,14 @@ export const LabelFemale = styled.label`
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  & .MuiSvgIcon-root {
+    width: 56px;
+    height: 56px;
+    @media (min-width: 768px) {
+      width: 86px;
+      height: 85px;
+    }
+  }
 `;
 
 export const InputFile = styled(IconButton)`
@@ -186,7 +202,7 @@ export const LabelInput = styled.label`
     font-size: 24px;
   }
   &:not(:last-child) {
-    margin-bottom: 16px;
+    margin-bottom: 18px;
     @media (min-width: 768px) {
       margin-bottom: 28px;
     }
@@ -205,13 +221,15 @@ export const LabelSex = styled.p`
 
 export const LabelWrap = styled.div`
   display: flex;
-  margin-left: -10px;
+  margin-left: -5px;
   margin-bottom: 32px;
   margin-top: -5px;
   @media (min-width: 768px) {
     font-size: 24px;
+    margin-left: -20px;
     margin-bottom: 40px;
     margin-top: -10px;
+    margin-bottom: 28px;
   }
 `;
 
@@ -221,7 +239,7 @@ export const Sex = styled.p`
   margin-top: 10px;
   @media (min-width: 768px) {
     font-size: 20px;
-    margin-top: 18px;
+    margin-top: 13px;
   }
 `;
 
@@ -317,7 +335,7 @@ export const Accent = styled.span`
 export const Error = styled.p`
   color: var(--dark-accent);
   margin-top: 6px;
-  padding-left: 11px;
+
   font-size: 12px;
   font-weight: 400;
   position: absolute;
@@ -374,4 +392,21 @@ export const HeaderWrap = styled.div`
   @media (min-width: 768px) {
     margin-bottom: 28px;
   }
+`;
+
+export const ErrorSex = styled.p`
+  color: var(--dark-accent);
+  margin-top: 125px;
+  font-size: 12px;
+  font-weight: 400;
+  position: absolute;
+  @media (min-width: 768px) {
+    margin-top: 175px;
+  }
+  @media (min-width: 1280px) {
+    margin-top: 176px;
+  }
+
+  /* bottom: -10; */
+  /* bottom: 20; */
 `;

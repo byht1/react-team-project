@@ -37,7 +37,7 @@ export const FormStepOne = () => {
     setValue,
   } = useFormContext();
   useEffect(() => {
-    setValue('calendar', date);
+    setValue('birthday', date);
   }, [date]);
 
   return (
@@ -62,14 +62,16 @@ export const FormStepOne = () => {
         <LabelInput htmlFor="petBirth">
           <Text>Date of birth:</Text>
           <DesktopDatePicker
-            {...register('calendar')}
-            inputFormat="DD.MM.YY"
+            maxDate={new Date()}
+            minDate={'01.01.1990'}
+            // {...register('birthday')}
+            inputFormat="DD.MM.YYYY"
             value={date}
             onChange={handleChange}
             renderInput={params => (
               <TextField
                 {...params}
-                {...register('calendar')}
+                {...register('birthday')}
                 sx={{
                   '& .MuiOutlinedInput-root': {
                     '&:hover fieldset': {
