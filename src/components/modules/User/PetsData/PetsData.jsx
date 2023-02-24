@@ -21,6 +21,7 @@ import {
 } from './PetsData.styled';
 import { useDispatch, useSelector } from 'react-redux';
 import { deletePetFromList, getUserPetList, updateUserPetList } from 'redux/user';
+import { useNavigate } from 'react-router';
 
 export const PetsData = () => {
   const petList = useSelector(getUserPetList);
@@ -31,12 +32,20 @@ export const PetsData = () => {
     dispatch(updateUserPetList(_id));
     dispatch(deletePetFromList(_id));
   };
+
+  // модалка
+  const navigate = useNavigate();
+
+  const openModal = () => {
+    navigate('addmypet/page1');
+  };
+
   return (
     <Container>
       <TitleBlock>
         <Title>My pets:</Title>
         <AddPetBlock>
-          <TitleSpan>Add pet</TitleSpan> <AddPetIc />
+          <TitleSpan>Add pet</TitleSpan> <AddPetIc onClick={openModal} />
         </AddPetBlock>
       </TitleBlock>
 
