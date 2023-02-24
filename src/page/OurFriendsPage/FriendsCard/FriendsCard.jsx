@@ -19,7 +19,9 @@ const FriendsCard = ({ data }) => {
   };
   return (
     <CardBox>
-      <CardTitle href={`${data.url}`}>{data.title}</CardTitle>
+      <CardTitle href={`${data.url}`} target="_blank">
+        {data.title}
+      </CardTitle>
       <Wrapper>
         <FriendLogo src={`${data.imageUrl}`} />
         <InfoList>
@@ -51,7 +53,9 @@ const FriendsCard = ({ data }) => {
           {data.address ? (
             <InfoItem>
               <span>Address:</span>
-              <a href={`${data.addressUrl}`}>{data.address}</a>
+              <a href={`${data.addressUrl}`} target="_blank">
+                {data.address}
+              </a>
             </InfoItem>
           ) : (
             <InfoItem>

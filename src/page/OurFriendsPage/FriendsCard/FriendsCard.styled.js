@@ -1,58 +1,24 @@
 import styled from 'styled-components';
 
-// export const colors = Object.freeze({
-//   a: 'var(--accent)',
-//   bg: 'var(--background)',
-//   g: 'var(--grey)',
-//   l: 'var(--link)',
-//   buttonBg: 'var(--button-bg)',
-//   da: 'var(--dark-accent)',
-//   w: 'var(--white)',
-//   b: 'var(--black)',
-//   gradient: 'var(--gradient)',
-//   overlay: 'var(--overlay)',
-//   wt: 'var(--white-text)',
-//   bt: 'var(--black-text)',
-//   trsp: 'var(--transparent-color)',
-//   tagBg: 'var(--tag-bg)',
-//   sf: 'var(--search-text)',
-// });
-// html {
-//   --accent: #f59256;
-//   --background: #fdf7f2;
-//   --grey: rgba(17, 17, 17, 0.6);
-//   --link: #3091eb;
-//   --button-bg: #f59256;
-//   --dark-accent: #ff6101;
-//   --transparent-color: transparent;
-//   --tag-bg: rgba(255, 255, 255, 0.6);
-
-//   --white: #ffffff;
-//   --black: #111111;
-
-//   --shadow: 7px 4px 14px rgba(49, 21, 4, 0.07);
-//   --gradient: linear-gradient(90deg, #ff634e 0%, #ffdf48 105.44%);
-//   --overlay: rgba(17, 17, 17, 0.6);
-
-//   --black-text: #111111;
-//   --white-text: #ffffff;
-//   --search-text: #535353;
-
-//   --transition-bg: background-color 250ms linear;
-//   --transition-color: color 250ms linear;
-//   --transition-border-color: border-color 250ms linear;
-//   --transition-transform: transform 500ms linear cubic-bezier(0.4, 0, 0.2, 1);
-// }
 export const CardBox = styled.li`
   background-color: ${p => p.theme.colors.w};
   padding: 12px 5px 12px 5px;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
   border-radius: 20px;
-  &:not(:last-child) {
-    margin-bottom: 12px;
+  @media screen and (max-width: 767.9px) {
+    &:not(:last-child) {
+      margin-bottom: 12px;
+    }
+  }
+  @media screen and (min-width: 768px) {
+    width: 336px;
+    padding: 16px 5px 16px 5px;
+  }
+  @media screen and (min-width: 1280px) {
+    width: 394px;
   }
 `;
 export const CardTitle = styled.a`
@@ -64,6 +30,15 @@ export const CardTitle = styled.a`
   text-decoration: underline;
   color: ${p => p.theme.colors.a};
   margin-bottom: 12px;
+  text-align: center;
+  @media screen and (min-width: 768px) {
+    font-size: 16px;
+    line-height: 1.4;
+  }
+  @media screen and (min-width: 1280px) {
+    font-size: 20px;
+    margin-bottom: 16px;
+  }
 `;
 export const Wrapper = styled.div`
   display: flex;
@@ -74,9 +49,20 @@ export const Wrapper = styled.div`
 export const FriendLogo = styled.img`
   width: 110px;
   height: 78px;
-  margin-top: auto;
+
   margin-bottom: auto;
   margin-right: 12px;
+  @media screen and (max-width: 767.9px) {
+    margin-top: auto;
+  }
+  @media screen and (min-width: 768px) {
+    width: 120px;
+    height: 85px;
+  }
+  @media screen and (min-width: 1280px) {
+    width: 158px;
+    height: 112px;
+  }
 `;
 export const InfoList = styled.div`
   position: relative;
@@ -87,16 +73,18 @@ export const InfoItem = styled.div`
   font-style: normal;
   font-weight: 500;
   font-size: 12px;
-  line-height: 16px;
+  line-height: 1.33;
   max-width: 148px;
   color: ${p => p.theme.colors.b};
+  @media screen and (min-width: 768px) {
+    font-size: 14px;
+    line-height: 1.36;
+  }
+  @media screen and (min-width: 1280px) {
+    font-size: 16px;
+    line-height: 1.4;
+  }
   & a {
-    font-family: 'Manrope';
-    font-style: normal;
-    font-weight: 500;
-    font-size: 12px;
-    line-height: 16px;
-
     color: ${p => p.theme.colors.b};
     &:hover,
     &:focus {
@@ -107,23 +95,18 @@ export const InfoItem = styled.div`
   & span {
     display: block;
   }
+
   &:not(:last-child) {
     margin-bottom: 4px;
+    @media screen and (min-width: 768px) {
+      margin-bottom: 8px;
+    }
+    @media screen and (min-width: 1280px) {
+      margin-bottom: 12px;
+    }
   }
 `;
-export const Backdrop = styled.div`
-  position: absolute;
-  /* height: 100px;
-  width: 100px; */
-  z-index: 1;
-  background-color: white;
-  display: flex;
-  padding: 12px;
-  background-color: ${p => p.theme.colors.w};
-  border: 1px solid ${p => p.theme.colors.a};
-  box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.25);
-  border-radius: 8px;
-`;
+
 export const InfoTimeItem = styled.button`
   font-family: 'Manrope';
   font-style: normal;
@@ -133,6 +116,18 @@ export const InfoTimeItem = styled.button`
   background-color: ${p => p.theme.colors.trsp};
   color: ${p => p.theme.colors.b};
   text-align: left;
+
+  margin-bottom: 4px;
+
+  @media screen and (min-width: 768px) {
+    font-size: 14px;
+    line-height: 1.36;
+    margin-bottom: 8px;
+  }
+  @media screen and (min-width: 1280px) {
+    font-size: 16px;
+    line-height: 1.4;
+  }
   & span {
     display: block;
   }
@@ -141,7 +136,17 @@ export const InfoTimeItem = styled.button`
     color: ${p => p.theme.colors.a};
   }
 `;
-
+export const Backdrop = styled.div`
+  position: absolute;
+  z-index: 1;
+  background-color: white;
+  display: flex;
+  padding: 12px;
+  background-color: ${p => p.theme.colors.w};
+  border: 1px solid ${p => p.theme.colors.a};
+  box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.25);
+  border-radius: 8px;
+`;
 export const DayList = styled.ul`
   margin-right: 13px;
 `;
@@ -151,6 +156,7 @@ export const DayItem = styled.li`
   font-size: 12px;
   line-height: 1.33;
   color: ${p => p.theme.colors.b};
+  margin-bottom: 5px;
 `;
 
 export const TimeList = styled.ul``;
@@ -160,6 +166,7 @@ export const TimeItem = styled.li`
   font-size: 12px;
   line-height: 1.33;
   color: ${p => p.theme.colors.b};
+  margin-bottom: 5px;
 `;
 
 export const NoTimeDayList = styled.ul``;
@@ -171,6 +178,7 @@ export const NoTimeLi = styled.li`
   color: ${p => p.theme.colors.b};
   display: flex;
   justify-content: space-between;
+  margin-bottom: 5px;
 `;
 export const NoDayItem = styled.span`
   margin-right: 13px;
