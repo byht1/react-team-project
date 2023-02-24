@@ -1,15 +1,15 @@
-import { useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { AiOutlineSearch } from 'react-icons/ai';
 import { search } from 'redux/notices/notices-slice';
+import { selectSearchQuery } from 'redux/notices';
 import { Title, SearchForm, SearchBar, SearchButton } from './NoticesSearch.styled';
 
 export const NoticesSearch = () => {
-  const [searchValue, setSearchValue] = useState('');
   const dispatch = useDispatch();
+  const searchQuery = useSelector(selectSearchQuery);
 
   const onInputChange = e => {
-    setSearchValue(e.target.value);
+    dispatch(search(e.target.value));
   };
 
   const onFormSubmit = e => {
@@ -25,7 +25,7 @@ export const NoticesSearch = () => {
           type="text"
           placeholder="Search"
           name="search"
-          value={searchValue}
+          value={searchQuery}
           onChange={onInputChange}
         />
         <SearchButton type="submit">

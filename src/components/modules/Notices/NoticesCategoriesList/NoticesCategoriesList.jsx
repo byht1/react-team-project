@@ -7,7 +7,7 @@ import { fetchAllNotices, fetchFavoriteNotices, fetchOwnNotices, refresh } from 
 import { NoticesCategoryItem } from '../NoticesCategoryItem';
 import { DarkBtn as LoadMoreBtn } from 'components/global/button';
 import { ListBox } from './NoticesCategoriesList.styled';
-import { selectSearchQuery, setFavorites } from 'redux/notices';
+import { selectSearchQuery, setFavorites, setOwn } from 'redux/notices';
 
 export const NoticesCategoriesList = () => {
   const dispatch = useDispatch();
@@ -15,6 +15,15 @@ export const NoticesCategoriesList = () => {
   const theme = useTheme();
   const pathname = location.pathname.split('/')[2];
   let categoryName = '';
+
+  useEffect(() => {
+    const setFavoritesArray = async () => {
+      const result = await refresh();
+      dispatch(setFavorites(result.favorite));
+      dispatch(setOwn(result.advertisement));
+    };
+    setFavoritesArray();
+  }, [pathname, dispatch]);
 
   const searchQuery = useSelector(selectSearchQuery);
 
@@ -36,11 +45,12 @@ export const NoticesCategoriesList = () => {
 
   const { error, data, fetchNextPage, hasNextPage, isFetchingNextPage, isError, isSuccess } =
     useInfiniteQuery(
-      ['notices', 'all', categoryName, searchQuery],
+      ['notices', 'all', categoryName, searchQuery, pathname],
       ({ pageParam = 0 }) => {
         if (pathname === 'favorite') {
           return fetchFavoriteNotices();
-        } else if (pathname === 'own') {
+        }
+        if (pathname === 'own') {
           return fetchOwnNotices();
         }
         return fetchAllNotices({ category: categoryName, offset: pageParam, search: searchQuery });
@@ -57,14 +67,6 @@ export const NoticesCategoriesList = () => {
   if (error) {
     console.error(error.message);
   }
-
-  useEffect(() => {
-    const setFavoritesArray = async () => {
-      const result = await refresh();
-      dispatch(setFavorites(result.favorite));
-    };
-    setFavoritesArray();
-  }, [data, dispatch]);
 
   const isLoadingInitialData = !isSuccess && !isError;
 
@@ -87,7 +89,7 @@ export const NoticesCategoriesList = () => {
         )}
       </ListBox>
 
-      {hasNextPage && (
+      {pathname !== 'own' && pathname !== 'favorite' && hasNextPage && (
         <LoadMoreBtn
           type="button"
           onClick={() => fetchNextPage()}
