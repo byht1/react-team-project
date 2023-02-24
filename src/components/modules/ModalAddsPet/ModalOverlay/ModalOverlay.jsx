@@ -33,7 +33,7 @@ export const ModalOverlay = ({ onClose, children }) => {
 // import React, { useEffect } from 'react';
 // import { createPortal } from 'react-dom';
 // import PropTypes from 'prop-types';
-// import { Overlay } from './ModalOverlay.styled.js';
+// import { Overlay } from './ModalOverlay.styled.js';s
 
 // export const ModalOverlay = ({ onClose, children }) => {
 //   useEffect(() => {
