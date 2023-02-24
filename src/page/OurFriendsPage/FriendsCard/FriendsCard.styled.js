@@ -31,6 +31,9 @@ export const CardTitle = styled.a`
   color: ${p => p.theme.colors.a};
   margin-bottom: 12px;
   text-align: center;
+  &:hover {
+    transform: scale(1.05);
+  }
   @media screen and (min-width: 768px) {
     font-size: 16px;
     line-height: 1.4;
