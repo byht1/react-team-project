@@ -32,17 +32,6 @@ import {
   Comments,
   ErrorSex,
 } from './FormAddNotice.styled';
-import { DataPicker } from './helpers/DatPicker';
-// custom hook for ResizeObserver
-import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
-import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
-import { createTheme, ThemeProvider } from '@mui/material/styles';
-import CssBaseline from '@mui/material/CssBaseline';
-import { TextField, Stack, Button } from '@mui/material';
-import { DatePicker } from '@mui/x-date-pickers/DatePicker';
-import { useForm, Controller } from 'react-hook-form';
-// import type { DefaultValues, SubmitHandler } from 'react-hook-form';
-import { isFuture } from 'date-fns';
 
 export const FormStepTwo = () => {
   const navigate = useNavigate();
@@ -69,6 +58,7 @@ export const FormStepTwo = () => {
   //   console.log(value.radio);
   // }, [getValues, values]);
   // console.log(errors.sex.message);
+  console.log(errors);
   return (
     <>
       <FormWrap>

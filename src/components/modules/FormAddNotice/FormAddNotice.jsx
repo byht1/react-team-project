@@ -2,31 +2,17 @@ import React, { useState, useEffect } from 'react';
 import { useForm, FormProvider } from 'react-hook-form';
 import { Outlet, useNavigate } from 'react-router-dom';
 import { useQueryClient } from '@tanstack/react-query';
-import { addNewNotice } from 'services/notices';
 import { useMutation } from '@tanstack/react-query';
 import { yupResolver } from '@hookform/resolvers/yup';
-import { schemaAddPet } from './helpers/schemaAppPet';
-import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
-// import { AdapterDateJs } from '@mui/x-date-pickers/AdapterDateJs';
-import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
-import { dateConverter } from './helpers/dateConverter';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
-import { createTheme, ThemeProvider } from '@mui/material/styles';
-import CssBaseline from '@mui/material/CssBaseline';
-// import {
-//   FormWrap,
-//   BackDrop,
-//   MainText,
-//   RadioTwo,
-//   LabelText,
-//   RadioWrap,
-//   Label,
-//   TextTittle,
-// } from './FormAddNotice.styled';
-import { FormWrap, BackDrop, RadioTwo, LabelText, RadioWrap, Label } from './FormAddNotice.styled';
+import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
+
+import { addNewNotice } from 'api';
+import { dateConverter } from './helpers/dateConverter';
+import { schemaAddPet } from './helpers/schemaAppPet';
 import { FormHeader } from './FormHeader';
-import { checkTargetForNewValues } from 'framer-motion';
-// import { Categories } from './Categories';
+import { FormWrap, BackDrop, RadioTwo, LabelText, RadioWrap, Label } from './FormAddNotice.styled';
+
 export const FormAddNotice = () => {
   const [selectedValue, setSelectedValue] = useState('lost/found');
   // const [isModalOpen, setIsModalOpen] = useState(false);
@@ -70,44 +56,15 @@ export const FormAddNotice = () => {
   };
 
   const onSubmit = data => {
-    // console.log('first' + data);
-    // console.log(dateConverter(methods.getValues('calendar').$d));
+    data.birthday = dateConverter(methods.getValues('birthday').$d);
+
     console.log(data);
-    if (data.birthday) {
-      data.birthday = dateConverter(methods.getValues('birthday').$d);
-      // console.log(data);
-    }
+
     const formData = new FormData();
     for (const key in data) {
       formData.append(key, data[key]);
     }
     create(formData);
-    // console.log(dateConverter(methods.getValues('calendar').$d));
-    // console.log(data.images.type);
-    // addNewNotice({
-    //   breed: 'Bulldog',
-    //   category: 'sell',
-    //   petType: 'dog',
-    //   birthday: '12.12.12',
-    //   title: 'Notice',
-    //   price: 150,
-    //   comments: 'The best dog ever',
-    //   location: 'Odesa',
-    //   name: 'Linsy',
-    //   sex: 'female',
-    // });
-    // create({
-    //   breed: 'Bulldog',
-    //   category: 'sell',
-    //   petType: 'dog',
-    //   birthday: '12.12.12',
-    //   title: 'Notice',
-    //   price: 150,
-    //   comments: 'The best dog ever',
-    //   location: 'Odesa',
-    //   name: 'Linsy',
-    //   sex: 'female',
-    // });
     navigate('/');
   };
 

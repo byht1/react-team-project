@@ -1,16 +1,14 @@
+import { useState, useEffect } from 'react';
 import { useFormContext } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
-import { Autocomplete } from '@mui/material';
 import { IoCloseOutline } from 'react-icons/io5';
-import { useState } from 'react';
+
 import TextField from '@mui/material/TextField';
-import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
-import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { DesktopDatePicker } from '@mui/x-date-pickers/DesktopDatePicker';
-import { useEffect } from 'react';
+import { Autocomplete } from '@mui/material';
+
 import { dogBreeds } from './helpers/dogBreeds';
 import useWindowDimensions from './helpers/getWidth';
-import { useForm } from 'react-hook-form';
 import { Input } from 'components/global/FormInput/FormInput.styled';
 import { CloseModalBtn } from 'components/modules/Notices/NoticeModal/NoticeModal.styled';
 import {
@@ -23,7 +21,7 @@ import {
   ButtonAhead,
   ButtonBack,
 } from './FormAddNotice.styled';
-import { Calendar } from './helpers/Calendar';
+
 export const FormStepOne = () => {
   const navigate = useNavigate();
   const [date, setDate] = useState(null);
@@ -38,7 +36,8 @@ export const FormStepOne = () => {
   } = useFormContext();
   useEffect(() => {
     setValue('birthday', date);
-  }, [date]);
+  }, [date, setValue]);
+  console.log(errors);
 
   return (
     <>
@@ -64,7 +63,6 @@ export const FormStepOne = () => {
           <DesktopDatePicker
             maxDate={new Date()}
             minDate={'01.01.1990'}
-            // {...register('birthday')}
             inputFormat="DD.MM.YYYY"
             value={date}
             onChange={handleChange}
@@ -95,8 +93,6 @@ export const FormStepOne = () => {
             id="petBreed"
             options={dogBreeds}
             sx={{
-              // border: '6px solid #f58138db',
-
               width: '100%',
               display: 'inline-block',
               '& .MuiOutlinedInput-root .MuiAutocomplete-input': {
@@ -117,9 +113,6 @@ export const FormStepOne = () => {
               },
               '& .MuiOutlinedInput-notchedOutline': {
                 borderRadius: '40px',
-                // border: '8px solid red',
-                // backgroundColor: 'red',
-                // outline: '2px solid red',
               },
             }}
             freeSolo={true}
