@@ -1,5 +1,4 @@
-import { useQuery } from '@tanstack/react-query';
-import { Navigate, Route, Routes, useNavigate, useSearchParams } from 'react-router-dom';
+import { Navigate, Route, Routes } from 'react-router-dom';
 import { SharedLayout } from 'page/SharedLayout';
 import { NewsPage } from 'page/NewsPage';
 import { OurFriendsPage } from 'page/OurFriendsPage';
@@ -9,14 +8,12 @@ import { NoticesPage } from 'page/NoticesPage';
 import { NoticesCategoriesList } from 'components/modules/Notices/NoticesCategoriesList';
 import { LoginPage } from 'page/LoginPage';
 import { Home } from 'page/Home';
-import { googleIn, refresh } from 'api/auth';
 import { RestrictedRoute } from 'components/global/RestrictedRoute';
 import { PrivateRoute } from 'components/global/PrivateRoute';
-import { useDispatch } from 'react-redux';
-import { register } from 'redux/auth';
 import { Loader } from 'components/global/Loader';
 import { Blog } from 'page/Blog';
 import { PostDetails } from 'page/PostDetails';
+import { useAppLoading } from 'hooks/useAppLoading';
 import { AddMyPetForm } from 'components/modules/ModalAddsPet';
 import { FirstPage } from 'components/modules/ModalAddsPet/FormPages/FirstPage';
 import { SecondPage } from 'components/modules/ModalAddsPet/FormPages/SecondPage';
@@ -24,37 +21,9 @@ import { SecondPage } from 'components/modules/ModalAddsPet/FormPages/SecondPage
 // import { NotFound } from 'page/NotFound';
 
 function App() {
-  const dispatch = useDispatch();
-  const [searchParams, setSearchParams] = useSearchParams();
-  const accessToken = searchParams.get('access_token');
-  console.log(accessToken);
-
-  const navigate = useNavigate();
-
-  const { isLoading } = useQuery({
-    queryFn: () => {
-      if (accessToken) {
-        return googleIn(accessToken);
-      }
-      return refresh();
-    },
-    queryKey: ['user'],
-    onSuccess: data => {
-      console.log(data);
-      if (accessToken) {
-        setSearchParams({});
-        navigate('/user');
-      }
-      dispatch(register(data));
-    },
-    onError: error => console.log(error.response.data.message),
-    retry: 1,
-    staleTime: Infinity,
-    refetchOnWindowFocus: false,
-  });
+  const { isLoading } = useAppLoading();
 
   if (isLoading) {
-    // return <div>loading.....</div>;
     return <Loader />;
   }
 

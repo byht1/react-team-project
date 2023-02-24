@@ -4,9 +4,11 @@ import styled from 'styled-components';
 import bgmob from '../../../img/auth/bgMob.png';
 import bgtab from '../../../img/auth/bgTab.png';
 import bgdesc from '../../../img/auth/bgDesc.png';
+import { Button } from 'components/global/button';
 
 export const BgWrapper = styled.div`
   height: calc(100vh - 74px);
+
   background-image: url(${bgmob});
   background-position: 50% 100%;
   background-repeat: no-repeat;
@@ -14,7 +16,7 @@ export const BgWrapper = styled.div`
 
   @media (min-width: 768px) {
     height: calc(100vh - 97px);
-    min-height: 500px;
+    min-height: 750px;
     background-image: url(${bgtab});
     background-size: 1500px;
   }
@@ -56,7 +58,7 @@ export const FormWrapper = styled.div`
   @media (min-width: 768px) {
     position: absolute;
     left: 50%;
-    top: 42%;
+    top: 45%;
     transform: translate(-50%, -50%);
     background-color: ${p => p.theme.colors.w};
     width: 608px;
@@ -123,4 +125,8 @@ export const GoogleBox = styled.div`
   &:focus {
     border: 1px solid ${p => p.theme.colors.a};
   }
+`;
+
+export const TransparentBtn = styled(Button)`
+  background-color: transparent;
 `;
