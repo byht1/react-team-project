@@ -1,4 +1,6 @@
 import { Container } from 'components/global/Container';
+import React from 'react';
+
 import {
   TitleBlock,
   Title,
@@ -36,6 +38,7 @@ export const PetsData = () => {
           <TitleSpan>Add pet</TitleSpan> <AddPetIc />
         </AddPetBlock>
       </TitleBlock>
+
       <PetBlcok>
         {petList
           ? petList.map(el => {
