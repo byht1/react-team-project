@@ -5,7 +5,7 @@ import { ReactComponent as logout } from '../../../../img/User/logout.svg';
 export const Form = styled.div`
   display: grid;
   gap: 6px;
-  width: 252px;
+  width: 100%;
   grid-template-columns: auto;
   margin-top: 38px;
   margin-bottom: 25px;
@@ -36,13 +36,12 @@ export const SpanLogout = styled.span`
   @media (min-width: 768px) {
     margin-left: 0px;
     margin-right: auto;
-    margin-top: 18px;
+    margin-top: 0px;
   }
   @media (min-width: 1280px) {
     font-weight: 500;
     font-size: 16px;
     line-height: 22px;
-    margin-top: 24px;
   }
 
   cursor: pointer;
@@ -52,7 +51,7 @@ export const Cover = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  max-width: 280px;
+  max-width: 480px;
   @media (min-width: 768px) {
   }
   @media (min-width: 1280px) {

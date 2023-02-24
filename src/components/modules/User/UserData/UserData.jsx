@@ -29,7 +29,6 @@ export const UserData = () => {
                 e.preventDefault();
                 if (e.target.files[0]) {
                   const formData = new FormData();
-                  console.log(e.target.value);
                   formData.append('file', e.target.files[0]);
                   dispatch(editUserProfilePhoto(formData));
                 }
