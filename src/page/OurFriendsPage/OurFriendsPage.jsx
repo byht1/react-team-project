@@ -1,7 +1,29 @@
 import React from 'react';
-
+import { Container } from 'components/global/Container';
+import { CardBox } from './OurFriendsPage.styled';
+import { useQuery } from '@tanstack/react-query';
+import { friendsList } from 'api/friends';
+import FriendsCard from './FriendsCard/FriendsCard';
 const OurFriendsPage = () => {
-  return <div>OurFriendsPage Component </div>;
+  const { data, isSuccess } = useQuery({
+    queryFn: () => friendsList(),
+    queryKey: ['friends'],
+  });
+  const close = () => {};
+  return (
+    <Container>
+      <CardBox>
+        {isSuccess &&
+          data.map(card => {
+            return <FriendsCard data={card} key={card._id} close={close} />;
+          })}{' '}
+      </CardBox>
+    </Container>
+  );
 };
 
 export default OurFriendsPage;
+// title
+// dropdown
+// box paddings
+// responsive

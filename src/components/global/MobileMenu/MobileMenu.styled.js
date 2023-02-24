@@ -64,6 +64,9 @@ export const MobileMenuBox = styled.div`
   background-color: ${p => p.theme.colors.bg};
   position: fixed;
   z-index: 10;
+  @media screen and (min-width: 768px) {
+    padding-top: 11px;
+  }
 `;
 export const Box = styled.div`
   display: flex;
