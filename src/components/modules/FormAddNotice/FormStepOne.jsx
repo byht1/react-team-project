@@ -103,10 +103,10 @@ export const FormStepOne = () => {
               '& .Mui-focused .MuiOutlinedInput-notchedOutline': {
                 border: '20px solid #f58138db',
                 position: 'absolute',
-                top: -2,
-                bottom: -2,
-                left: -2,
-                right: -2,
+                top: -2.1,
+                bottom: -2.1,
+                left: -1.8,
+                right: -2.1,
               },
               '&  .MuiAutocomplete-inputRoot': {
                 bgcolor: '#FDF7F2',

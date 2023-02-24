@@ -169,11 +169,11 @@ export const FormStepTwo = () => {
               component="label"
               onChange={handleImageChange}
             >
-              <input {...register('picture')} hidden accept="image/*" type="file" id="photo" />
+              <input {...register('images')} hidden accept="image/*" type="file" id="photo" />
               {img && <ImgLoaded src={img} alt="uploaded" />}
               <AddIcon />
             </InputFile>
-            {errors.picture && <Error>{errors.picture.message}</Error>}
+            {errors.images && <Error>{errors.images.message}</Error>}
           </LabelInput>
           <LabelInput htmlFor="comments">
             <Text>Comments:</Text>

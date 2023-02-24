@@ -25,6 +25,7 @@ import CssBaseline from '@mui/material/CssBaseline';
 // } from './FormAddNotice.styled';
 import { FormWrap, BackDrop, RadioTwo, LabelText, RadioWrap, Label } from './FormAddNotice.styled';
 import { FormHeader } from './FormHeader';
+import { checkTargetForNewValues } from 'framer-motion';
 // import { Categories } from './Categories';
 export const FormAddNotice = () => {
   const [selectedValue, setSelectedValue] = useState('lost/found');
@@ -33,20 +34,20 @@ export const FormAddNotice = () => {
   const navigate = useNavigate();
 
   const methods = useForm({
-    defaultValues: {
-      //  category: selectedValue,
-      // category: 'sell',
+    // defaultValues: {
+    //   //  category: selectedValue,
+    //   // category: 'sell',
 
-      petType: 'dog',
-      breed: 'Bulldog',
-      birthday: '12.12.2012',
-      title: 'Notice',
-      price: '150',
-      comments: 'The best dog ever',
-      location: 'Odesa',
-      name: 'Linsy',
-      sex: 'female',
-    },
+    //   petType: 'dog',
+    //   breed: 'Bulldog',
+    //   birthday: '12.12.2012',
+    //   title: 'Notice',
+    //   price: '150',
+    //   comments: 'The best dog ever',
+    //   location: 'Odesa',
+    //   name: 'Linsy',
+    //   sex: 'female',
+    // },
     resolver: yupResolver(schemaAddPet),
     mode: 'onBlur',
   });
@@ -56,7 +57,7 @@ export const FormAddNotice = () => {
   const client = useQueryClient();
   // const { data, isLoading } = useQuery({ queryFn: postNotice(value), queryKey: 'noticeі' });
   const { mutate: create } = useMutation({
-    // mutationKey: ['notices', 'all', categoryName],
+    mutationKey: ['notices', 'all', categoryName],
     mutationFn: addNewNotice,
     onSuccess: () => {
       client.invalidateQueries({ queryKey: ['notices', 'all', categoryName] });
@@ -69,16 +70,16 @@ export const FormAddNotice = () => {
   };
 
   const onSubmit = data => {
-    console.log('first');
-    console.log(data);
-    console.log(dateConverter(methods.getValues('calendar').$d));
-
+    // console.log('first' + data);
+    // console.log(dateConverter(methods.getValues('calendar').$d));
+    data.calendar = dateConverter(methods.getValues('calendar').$d);
+    // console.log(data);
     const formData = new FormData();
     for (const key in data) {
       formData.append(key, data[key]);
     }
-    console.log(dateConverter(methods.getValues('calendar').$d));
-
+    // console.log(dateConverter(methods.getValues('calendar').$d));
+    // console.log(data.images.type);
     create(formData);
     // addNewNotice({
     //   breed: 'Bulldog',
@@ -92,18 +93,18 @@ export const FormAddNotice = () => {
     //   name: 'Linsy',
     //   sex: 'female',
     // });
-    create({
-      breed: 'Bulldog',
-      category: 'sell',
-      petType: 'dog',
-      birthday: '12.12.12',
-      title: 'Notice',
-      price: 150,
-      comments: 'The best dog ever',
-      location: 'Odesa',
-      name: 'Linsy',
-      sex: 'female',
-    });
+    // create({
+    //   breed: 'Bulldog',
+    //   category: 'sell',
+    //   petType: 'dog',
+    //   birthday: '12.12.12',
+    //   title: 'Notice',
+    //   price: 150,
+    //   comments: 'The best dog ever',
+    //   location: 'Odesa',
+    //   name: 'Linsy',
+    //   sex: 'female',
+    // });
     navigate('/');
   };
 
