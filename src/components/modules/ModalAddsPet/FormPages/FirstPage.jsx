@@ -1,8 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { useFormContext } from 'react-hook-form';
-// import { Autocomplete, TextField } from '@mui/material';
-// import { dogBreeds } from '../../FormAddNotice/helpers/dogBreeds';
 
 import {
   Buttons,
@@ -13,8 +11,6 @@ import {
   ErrorInput,
   ButtonDark,
   ButtonLight,
-  // InputSelect,
-  // TextFieldSelect,
 } from './FormPages.styled';
 
 export const FirstPage = ({ nextStep, onClose }) => {

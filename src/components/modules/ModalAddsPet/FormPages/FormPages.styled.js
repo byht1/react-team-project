@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { Autocomplete, TextField } from '@mui/material';
+import { Autocomplete } from '@mui/material';
 
 export const InputWrap = styled.div`
   display: flex;
@@ -83,8 +83,6 @@ export const InputSelect = styled(Autocomplete)`
     }
   }
 `;
-
-// export const TextFieldSelect = styled(TextField)``;
 
 export const Buttons = styled.div`
   display: flex;
