@@ -134,7 +134,14 @@ export const FormStepTwo = () => {
               component="label"
               onChange={handleImageChange}
             >
-              <input {...register('images')} hidden accept="image/*" type="file" id="photo" />
+              <input
+                {...register('images')}
+                hidden
+                accept="image/*"
+                type="file"
+                id="photo"
+                multiple
+              />
               {img && <ImgLoaded src={img} alt="uploaded" />}
               <AddIcon />
             </InputFile>
