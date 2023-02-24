@@ -14,6 +14,9 @@ import { Loader } from 'components/global/Loader';
 import { Blog } from 'page/Blog';
 import { PostDetails } from 'page/PostDetails';
 import { useAppLoading } from 'hooks/useAppLoading';
+import { AddMyPetForm } from 'components/modules/ModalAddsPet';
+import { FirstPage } from 'components/modules/ModalAddsPet/FormPages/FirstPage';
+import { SecondPage } from 'components/modules/ModalAddsPet/FormPages/SecondPage';
 
 // import { NotFound } from 'page/NotFound';
 
@@ -47,9 +50,16 @@ function App() {
           element={<RestrictedRoute component={LoginPage} redirectTo="/user" />}
         />
         {/* Приватний шлях */}
-        <Route path="user" element={<PrivateRoute component={UserPage} redirectTo="/login" />} />
+        <Route path="user" element={<PrivateRoute component={UserPage} redirectTo="/login" />}>
+          <Route path="addmypet" element={<AddMyPetForm />}>
+            <Route path="page1" element={<FirstPage />} />
+            <Route path="page2" element={<SecondPage />} />
+          </Route>
+        </Route>
+
         <Route path="posts" element={<Blog />} />
         <Route path="posts/:id" element={<PostDetails />} />
+
         <Route path="*" element={<Navigate to="/" />} />
         {/* <Route path="*" element={<NotFound />} /> */}
       </Route>

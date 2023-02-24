@@ -5,6 +5,7 @@ const noticesSlice = createSlice({
   initialState: {
     searchQuery: '',
     favoritesArray: [],
+    ownArray: [],
   },
   reducers: {
     search(state, action) {
@@ -21,8 +22,17 @@ const noticesSlice = createSlice({
     removeFavorite(state, action) {
       state.favoritesArray.splice(state.favoritesArray.indexOf(action.payload), 1);
     },
+    setOwn(state, action) {
+      if (!state.ownArray.includes(...action.payload)) {
+        state.ownArray.push(...action.payload);
+      }
+    },
+    removeOwn(state, action) {
+      state.ownArray.splice(state.ownArray.indexOf(action.payload), 1);
+    },
   },
 });
 
-export const { search, setFavorites, addFavorite, removeFavorite } = noticesSlice.actions;
+export const { search, setFavorites, addFavorite, removeFavorite, setOwn, removeOwn } =
+  noticesSlice.actions;
 export const noticesReducer = noticesSlice.reducer;

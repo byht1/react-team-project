@@ -3,8 +3,10 @@ import { FormContext } from 'components/global/FormContext';
 import { useState } from 'react';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useForm } from 'react-hook-form';
+import { useLocation } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
-import { Alert, CheckCircleOutlineIcon } from '@mui/material';
+import { Alert } from '@mui/material';
 import { addPet } from '../../../../api';
 import { schemaAddMyPetForm } from '../validationSchema';
 import { FirstPage } from '../FormPages/FirstPage';
@@ -14,26 +16,17 @@ import { Loader } from '../../../global/Loader';
 
 import { FormWrapper, FormTitle, CloseBtn, GrCloseIcon } from './AddMyPetForm.styled';
 
-export const AddMyPetForm = ({ onClose }) => {
-  // Не удалять, стилизованы падинги!
+export const AddMyPetForm = () => {
+  const location = useLocation();
 
   const [page, setPage] = useState(1);
   const [error, setError] = useState(null);
 
-  const methods = useForm({
-    resolver: yupResolver(schemaAddMyPetForm),
-    mode: 'onBlur',
-  });
-
-  const { reset } = methods;
+  const navigate = useNavigate();
 
   const client = useQueryClient();
 
-  const {
-    mutateAsync: addNewPet,
-    isLoading,
-    isSuccess,
-  } = useMutation({
+  const { mutateAsync: addNewPet, isLoading } = useMutation({
     mutationKey: ['myPetData'],
     mutationFn: addPet,
     onSuccess: updateDate => {
@@ -47,20 +40,29 @@ export const AddMyPetForm = ({ onClose }) => {
     retry: 1,
   });
 
-  console.log(isSuccess);
+  const methods = useForm({
+    resolver: yupResolver(schemaAddMyPetForm),
+    mode: 'onBlur',
+  });
+
+  const { reset } = methods;
+
   const nextStep = () => {
     setPage(2);
+    navigate('/user/addmypet/page2');
   };
 
   const prevStep = () => {
     setPage(1);
+    navigate('/user/addmypet/page1');
+  };
+
+  const onCloseModal = () => {
+    navigate('/user');
   };
 
   const onSubmit = async data => {
-    // console.log(data);
-
     const formInfo = new FormData();
-
     formInfo.append('name', data.petName);
     formInfo.append('birth', data.petBirth);
     formInfo.append('breed', data.petBreed);
@@ -68,31 +70,34 @@ export const AddMyPetForm = ({ onClose }) => {
     formInfo.append('comments', data.comments);
 
     if (data.myPetURL.length === 0) {
-      // console.log('File not added ');
       return;
     }
 
     await addNewPet(formInfo);
-    onClose();
+    navigate('/user');
   };
 
   const closeAlert = () => {
     setError(null);
-    onClose();
+    onCloseModal();
   };
 
   return (
     <>
-      {isSuccess && <Alert onClose={() => {}}>Your pet added successfully</Alert>}
-      <ModalOverlay onClose={onClose}>
+      <ModalOverlay onClose={onCloseModal}>
         <FormWrapper page={page}>
           <FormContext methods={methods} submit={onSubmit}>
             <FormTitle>Add pet</FormTitle>
-            <CloseBtn type="button" onClick={onClose}>
+            <CloseBtn type="button" onClick={onCloseModal}>
               <GrCloseIcon />
             </CloseBtn>
-            {page === 1 && <FirstPage nextStep={nextStep} onClose={onClose} />}
-            {page === 2 && <SecondPage prevStep={prevStep} />}
+
+            {location.pathname === '/user/addmypet/page1' && (
+              <FirstPage nextStep={nextStep} onClose={onCloseModal} />
+            )}
+
+            {location.pathname === '/user/addmypet/page2' && <SecondPage prevStep={prevStep} />}
+
             {isLoading && <Loader />}
             {error && (
               <Alert style={{ marginTop: 16 }} severity="error" onClose={closeAlert}>
