@@ -14,11 +14,11 @@ export const TitleBlock = styled.div`
   align-items: center;
 
   @media (min-width: 768px) {
-    padding-right: 16px;
     max-width: 821px;
     width: 704px;
   }
   @media (min-width: 1280px) {
+    padding-right: 16px;
     width: 100%;
     margin: 40px 0 15px 0;
     margin-left: auto;
@@ -182,9 +182,10 @@ export const AddPetBlock = styled.div`
   display: flex;
   align-items: center;
   @media (min-width: 768px) {
-    padding-right: 16px;
+    padding-right: 0px;
   }
   @media (min-width: 1280px) {
+    padding-right: 16px;
   }
 `;
 
