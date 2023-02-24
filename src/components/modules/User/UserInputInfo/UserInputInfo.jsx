@@ -80,6 +80,11 @@ export function UserInputInfo({
           disabled={whatInputIsEditing === fildName ? false : true}
           value={value}
           onChange={onChange}
+          onBlur={() => {
+            setWhichIconToShow('orange');
+            setWhatInputIsEditing('');
+            if (valueBeforEdited !== value) saveEditing();
+          }}
         />
       </Item>
       <Icon href={`#${fildName}`}>
