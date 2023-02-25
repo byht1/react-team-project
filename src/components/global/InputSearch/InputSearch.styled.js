@@ -38,6 +38,16 @@ export const IconSearch = styled(IoMdSearch)`
     height: 24px;
   }
 `;
+export const IconSearchHover = styled(IoMdSearch)`
+  width: 20px;
+  height: 20px;
+  fill: ${p => p.theme.colors.a};
+  transition: var(--transition-color);
+  @media (min-width: 768px) {
+    width: 24px;
+    height: 24px;
+  }
+`;
 export const IconClose = styled(IoMdClose)`
   width: 20px;
   height: 20px;
