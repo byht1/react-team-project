@@ -1,34 +1,30 @@
+import { useQuery } from '@tanstack/react-query';
 import { getNews } from 'api';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { NewsItem } from './NewsItem';
 import { Box } from 'components/global/Box';
 import { defaultNewsList } from './defaultNewsList';
 import {InputSearch} from '../../global/InputSearch';
-import { List, TitleNews } from './NewsPage.styled';
+import { Filter } from './Filter';
+import { Block, Button, IconSearch, IconClose, List, TitleNews } from './NewsPage.styled';
 
 export const NewsList = () => {
-  const [newsList, setNewsList] = useState([]);
-
-  useEffect(() => {
-    async function getNewsList() {
-      try {
-        const news = await getNews();
-        setNewsList(news);
-      } catch (error) {
-        setNewsList(defaultNewsList);
-      }
-    }
-    getNewsList();
-  }, []);
-
   const [filter, setFilter] = useState('');
-
+  const [data, setData] = useState([]);
+  const { isSuccess } = useQuery({
+    queryFn: () => getNews(),
+    queryKey: ['news'],
+    onSuccess: date => {
+      setData(date);
+    }
+  });
+ 
   const changeFilter = event => {
     setFilter(event.currentTarget.value);
   };
 
   const normalizeFilter = filter.toLowerCase();
-  const visibleNews = newsList.filter(todo => todo.title.toLowerCase().includes(normalizeFilter));
+  const visibleNews = data.filter(todo => todo.title.toLowerCase().includes(normalizeFilter));
 
   const handleClear = () => {
     setFilter('');
@@ -39,8 +35,8 @@ export const NewsList = () => {
       <TitleNews textAlign="center">News</TitleNews>
       <InputSearch onChange={changeFilter} value={filter} onClick={handleClear}/>
       <List>
-        {visibleNews
-          .sort(function (a, b) {
+        {isSuccess &&
+        visibleNews.sort(function (a, b) {
             return new Date(b.date) - new Date(a.date);
           })
           .slice(0, 6)
