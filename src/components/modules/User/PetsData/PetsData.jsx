@@ -1,7 +1,6 @@
-import { useQuery } from '@tanstack/react-query';
-import { getPetList } from 'api';
+import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
+import { deletePetFromUserPetList, getPetList } from 'api';
 import { Container } from 'components/global/Container';
-import React from 'react';
 
 import {
   TitleBlock,
@@ -25,16 +24,25 @@ import {
 import { useNavigate } from 'react-router';
 
 export const PetsData = () => {
+  const client = useQueryClient();
   // eslint-disable-next-line
   const { data, isLoading, isSuccess } = useQuery({
     queryFn: () => getPetList(),
-    queryKey: ['myPetData'],
+    queryKey: ['myPet'],
     onSuccess: data => {
       console.log(data);
     },
   });
-  console.log(data);
-  const deletePet = id => {};
+  const { mutate } = useMutation({
+    mutationKey: ['myPetData'],
+    mutationFn: id => deletePetFromUserPetList(id),
+    onSuccess: updateDate => {
+      client.invalidateQueries(['myPet'], updateDate);
+    },
+  });
+  const deletePet = id => {
+    mutate(id);
+  };
 
   // модалка
   const navigate = useNavigate();
@@ -42,7 +50,6 @@ export const PetsData = () => {
   const openModal = () => {
     navigate('addmypet/page1');
   };
-
   return (
     <Container>
       <TitleBlock>
@@ -55,15 +62,15 @@ export const PetsData = () => {
       <PetBlcok>
         {isSuccess
           ? data.map(el => {
-              const { id, name, birth, breed, image, comments } = el;
+              const { _id, name, birth, breed, image, comments } = el;
               return (
-                <PetCard key={id}>
+                <PetCard key={_id}>
                   <PhotoBlock>
                     <Img src={image} />
                     <Icon>
                       <TrashBinIc
                         onClick={() => {
-                          deletePet(id);
+                          deletePet(_id);
                         }}
                       />
                     </Icon>
@@ -86,7 +93,7 @@ export const PetsData = () => {
               );
             })
           : null}
-        {!isSuccess ? (
+        {!data[0] ? (
           <>
             <PandaImg src={require('../../../../img/User/panda.png')} />
             <PandaText>You have not added an pets to favorite list yet</PandaText>
