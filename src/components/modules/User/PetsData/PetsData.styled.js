@@ -21,7 +21,6 @@ export const TitleBlock = styled.div`
     padding-right: 16px;
     width: 100%;
     margin: 40px 0 15px 0;
-    margin-left: auto;
   }
 `;
 export const Title = styled.h2`
@@ -261,10 +260,9 @@ export const PandaText = styled.span`
     max-width: 700px;
   }
   @media (min-width: 1280px) {
-    max-width: 700px;
+    max-width: 800px;
     line-height: 44px;
     font-size: 36px;
     margin-top: 430px;
-    margin-left: 440px;
   }
 `;

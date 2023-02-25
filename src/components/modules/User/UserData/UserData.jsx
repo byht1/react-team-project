@@ -16,6 +16,7 @@ import { editUserProfilePhoto, getUserPhoto } from 'redux/auth';
 export const UserData = () => {
   const img = useSelector(getUserPhoto);
   const dispatch = useDispatch();
+
   return (
     <Container>
       <Title>My information:</Title>

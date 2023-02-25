@@ -99,7 +99,6 @@ export const Container = styled.div`
     margin: 0px 32px 40px 0px;
   }
   @media (min-width: 1280px) {
-    position: fixed;
     max-width: 411px;
   }
 `;
