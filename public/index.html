@@ -57,5 +57,45 @@
       To begin the development, run `npm start` or `yarn start`.
       To create a production bundle, use `npm run build` or `yarn build`.
     -->
+
+    <script>
+      // Створення нових об'єктів FontFace для кожного шрифту
+      const interFont = new FontFace(
+        'Inter',
+        "url(https://fonts.gstatic.com/s/inter/v12/UcCO3FwrK3iLTeHuS_fvQtMwCp50KnMw2boKoduKmMEVuI6fAZJhiI2B.woff2) format('woff2')",
+        { weight: 500 }
+      );
+      const poppinsFont = new FontFace(
+        'Poppins',
+        "url(https://fonts.gstatic.com/s/poppins/v20/pxiByp8kv8JHgFVrLCz7Z11lFc-K.woff2) format('woff2')",
+        { weight: 700 }
+      );
+      const manropeFont = new FontFace(
+        'Manrope',
+        "url(https://fonts.gstatic.com/s/manrope/v13/xn7gYHE41ni1AdIRggqxSuXd.woff2) format('woff2')",
+        { weight: 400 }
+      );
+
+      // Додавання шрифтів до документу
+      document.fonts.add(interFont);
+      document.fonts.add(poppinsFont);
+      document.fonts.add(manropeFont);
+      console.log(11111111111111111);
+
+      // Перевірка, чи успішно завантажилися шрифти та підтримуються браузером Safari
+      Promise.all([interFont.load(), poppinsFont.load(), manropeFont.load()])
+        .then(() => {
+          const interSupported = document.fonts.check('16px "Inter"'); // true якщо підтримується, інакше false
+          const poppinsSupported = document.fonts.check('16px "Poppins"');
+          const manropeSupported = document.fonts.check('16px "Manrope"');
+
+          console.log(`Inter supported: ${interSupported}`);
+          console.log(`Poppins supported: ${poppinsSupported}`);
+          console.log(`Manrope supported: ${manropeSupported}`);
+        })
+        .catch(err => {
+          console.error(`Failed to load font: ${err}`);
+        });
+    </script>
   </body>
 </html>
