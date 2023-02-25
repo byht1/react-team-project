@@ -153,6 +153,7 @@ export const InputErrMessage = styled.span`
     margin: 0 0 0 -80px;
   }
   @media (min-width: 1280px) {
+    width: 375px;
     top: 260px;
     margin: 0 0 0 -80px;
   }

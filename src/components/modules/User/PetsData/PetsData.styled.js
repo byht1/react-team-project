@@ -192,9 +192,10 @@ export const AddPetBlock = styled.div`
 export const AddPetIc = styled(plus)`
   margin-left: 15px;
   cursor: pointer;
-  height: 40px;
-  width: 40px;
+  height: 24px;
+  width: 24px;
   background-color: ${theme.colors.a};
+  background-size: 2rem;
   border-radius: 50%;
   & path {
     stroke: ${theme.colors.w};

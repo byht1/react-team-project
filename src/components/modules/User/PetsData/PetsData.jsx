@@ -77,7 +77,7 @@ export const PetsData = () => {
         {!petList[0] ? (
           <>
             <PandaImg src={require('../../../../img/User/panda.jpg')} />
-            <PandaText>You have not added an pets to favorite list yet</PandaText>
+            <PandaText>You have not added any pets to favorite list yet</PandaText>
           </>
         ) : null}
       </PetBlcok>
