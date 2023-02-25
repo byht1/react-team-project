@@ -3,31 +3,20 @@ import { getNews } from 'api';
 import { useState } from 'react';
 import { NewsItem } from './NewsItem';
 import { Box } from 'components/global/Box';
-// import { defaultNewsList } from './defaultNewsList';
 import { Filter } from './Filter';
 import { Block, Button, IconSearch, IconClose, List, TitleNews } from './NewsPage.styled';
 
 export const NewsList = () => {
-  // const [newsList, setNewsList] = useState([]);
-
-  // useEffect(() => {
-  //   async function getNewsList() {
-  //     try {
-  //       const news = await getNews();
-  //       setNewsList(news);
-  //     } catch (error) {
-  //       setNewsList(defaultNewsList);
-  //     }
-  //   }
-  //   getNewsList();
-  // }, []);
-  const { data, isSuccess } = useQuery({
+  const [filter, setFilter] = useState('');
+  const [data, setData] = useState([]);
+  const { isSuccess } = useQuery({
     queryFn: () => getNews(),
     queryKey: ['news'],
+    onSuccess: date => {
+      setData(date);
+    }
   });
-  const [filter, setFilter] = useState('');
-  //  const [valueSVG, setValueSvg] = useState(true);
-
+ 
   const changeFilter = event => {
     setFilter(event.currentTarget.value);
   };
