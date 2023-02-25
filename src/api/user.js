@@ -25,3 +25,12 @@ export const editUserInfo = async obj => {
     throw err;
   }
 };
+
+export const editUserProfilePhoto = async obj => {
+  try {
+    const res = await server.patch(`/user/editing/photo`, obj);
+    return res.data;
+  } catch (err) {
+    throw err;
+  }
+};

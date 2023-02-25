@@ -43,7 +43,8 @@ export const authSlice = createSlice({
       state.refresh_token = null;
     },
     updateUserInfo(state, { payload }) {
-      state.id = payload._id;
+      // eslint-disable-next-line
+      state.id = state.id;
       state.user = {
         name: payload.name,
         email: payload.email,
@@ -51,10 +52,10 @@ export const authSlice = createSlice({
         city: payload.city,
         photo: payload.photo,
         birthday: payload.birthday,
-      };
-      state.isLogin = payload.isLogin;
-      state.access_token = payload.access_token;
-      state.refresh_token = payload.refresh_token;
+      }; // eslint-disable-next-line
+      state.isLogin = state.isLogin; // eslint-disable-next-line
+      state.access_token = state.access_token; // eslint-disable-next-line
+      state.refresh_token = state.refresh_token;
     },
   },
 });
