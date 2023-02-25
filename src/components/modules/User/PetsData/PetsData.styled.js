@@ -118,6 +118,7 @@ export const Img = styled.img`
   height: 240px;
   border-radius: 20px;
   margin-bottom: 20px;
+  object-fit: cover;
   @media (min-width: 768px) {
     width: 161px;
     height: 161px;

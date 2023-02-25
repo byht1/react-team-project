@@ -31,6 +31,7 @@ export const ProfileImage = styled.img`
   width: 233px;
   height: 233px;
   border-radius: ${theme.radii.round};
+  object-fit: cover;
 `;
 
 export const Div = styled.div`
