@@ -31,6 +31,8 @@ export const authSlice = createSlice({
         email: payload.email,
         phone: payload.phone,
         city: payload.city,
+        photo: payload.photo,
+        birthday: payload.birthday,
       };
       state.isLogin = true;
       state.access_token = payload.access_token;
@@ -43,6 +45,8 @@ export const authSlice = createSlice({
         email: null,
         phone: null,
         city: null,
+        photo: null,
+        birthday: null,
       };
       state.isLogin = false;
       state.access_token = null;

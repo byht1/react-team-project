@@ -30,6 +30,7 @@ export function UserInputInfo({
 }) {
   const dispatch = useDispatch();
   const [value, setValue] = useState('');
+
   const [obj, setObj] = useState({});
   const [valueBeforEdited, setValueBeforEdited] = useState('');
   const [inputErr, setInputErr] = useState(false);
@@ -81,6 +82,8 @@ export function UserInputInfo({
   }, [value, fildName]);
 
   const onChange = e => {
+    console.log('🚀  value:', value);
+    console.log('🚀  e.target.value:', e.target.value);
     setValue(e.target.value);
     const valueLength = e.target.value.length;
     let stepOne = regExpNameInput.test(value);
