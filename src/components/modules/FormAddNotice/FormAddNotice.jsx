@@ -35,6 +35,7 @@ export const FormAddNotice = () => {
       client.invalidateQueries({ queryKey: ['notices', 'all', categoryName] });
     },
   });
+
   const handleRadioInputChange = event => {
     setSelectedValue(event.target.value);
     methods.setValue('category', event.target.value);
@@ -79,7 +80,6 @@ export const FormAddNotice = () => {
       <BackDrop onClick={closeModal} id="backdrop-notice">
         <FormWrap>
           <FormHeader />
-          {/* <Categories></Categories> */}
           <RadioWrap>
             <Label checked={selectedValue === 'lost/found'}>
               <RadioTwo

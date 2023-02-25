@@ -2,14 +2,12 @@ import { useState, useEffect } from 'react';
 import { useFormContext } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 import { IoCloseOutline } from 'react-icons/io5';
-import { useForm } from 'react-hook-form';
 import TextField from '@mui/material/TextField';
 import { DesktopDatePicker } from '@mui/x-date-pickers/DesktopDatePicker';
 import { Autocomplete } from '@mui/material';
-import useFormControl from '@mui/material';
+
 import { dogBreeds } from './helpers/dogBreeds';
 import useWindowDimensions from './helpers/getWidth';
-import { Input } from 'components/global/FormInput/FormInput.styled';
 import { CloseModalBtn } from 'components/modules/Notices/NoticeModal/NoticeModal.styled';
 import {
   Accent,
@@ -20,11 +18,14 @@ import {
   Text,
   ButtonAhead,
   ButtonBack,
+  InputAdd,
 } from './FormAddNotice.styled';
 
 export const FormStepOne = () => {
   const navigate = useNavigate();
+
   const [date, setDate] = useState(null);
+
   const handleChange = newValue => {
     setDate(newValue);
   };
@@ -52,12 +53,12 @@ export const FormStepOne = () => {
             Tittle of ad
             <Accent>*</Accent>:
           </Text>
-          <Input {...register('title')} placeholder="Type name" id="tittle" />
+          <InputAdd {...register('title')} placeholder="Type name" id="tittle" />
           {errors.title && <Error>{errors.title.message}</Error>}
         </LabelInput>
         <LabelInput htmlFor="petName">
           <Text>Name pet:</Text>
-          <Input {...register('name')} placeholder="Type name pet" id="petName" />
+          <InputAdd {...register('name')} placeholder="Type name pet" id="petName" />
           {errors.name && <Error>{errors.name.message}</Error>}
         </LabelInput>
         <LabelInput htmlFor="petBirth">
@@ -98,7 +99,7 @@ export const FormStepOne = () => {
               width: '100%',
               display: 'inline-block',
               '& .MuiOutlinedInput-root .MuiAutocomplete-input': {
-                padding: { xs: '1px 6px', md: '4px 20px' },
+                padding: { xs: '1px 6px' },
               },
               '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
                 border: '20px solid #f58138db',

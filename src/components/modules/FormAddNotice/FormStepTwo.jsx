@@ -5,10 +5,8 @@ import { IoCloseOutline } from 'react-icons/io5';
 
 import { AddIcon } from './helpers/AddIcon';
 import useWindowDimensions from './helpers/getWidth';
-import { Input } from 'components/global/FormInput/FormInput.styled';
 
 import { CloseModalBtn } from 'components/modules/Notices/NoticeModal/NoticeModal.styled';
-import { Box } from 'components/global/Box';
 
 import {
   FormWrap,
@@ -36,10 +34,13 @@ import {
   Comments,
   ErrorSex,
   WrapInputs,
+  InputAdd,
+  WrapAddedImg,
 } from './FormAddNotice.styled';
 
 export const FormStepTwo = () => {
   const navigate = useNavigate();
+
   const [male, setMale] = useState(false);
   const [female, setFemale] = useState(false);
   const [img, setImage] = useState([]);
@@ -57,7 +58,6 @@ export const FormStepTwo = () => {
     register,
     formState: { errors },
     getValues,
-    setValue,
   } = useFormContext();
 
   const values = getValues();
@@ -95,7 +95,6 @@ export const FormStepTwo = () => {
 
               <RadioTwo {...register('sex')} type="radio" value="male" id="Male" />
             </LabelMale>
-            {/* {errors.sex && <Error>Its </Error>} */}
 
             <LabelFemale
               htmlFor="Female"
@@ -114,7 +113,7 @@ export const FormStepTwo = () => {
             <Text>
               Location<Accent>*</Accent>:
             </Text>
-            <Input {...register('location')} placeholder="Type location" id="location" />
+            <InputAdd {...register('location')} placeholder="Type location" id="location" />
             {errors.location && <Error>{errors.location.message}</Error>}
           </LabelInput>
           {values.category === 'sell' && (
@@ -123,7 +122,7 @@ export const FormStepTwo = () => {
                 <Text>
                   Price<Accent>*</Accent>:
                 </Text>
-                <Input {...register('price')} placeholder="Type price" />
+                <InputAdd {...register('price')} placeholder="Type price" />
                 {errors.price && <Error>{errors.price.message}</Error>}
               </LabelInput>
             </>
@@ -131,6 +130,15 @@ export const FormStepTwo = () => {
           <Text>Load the pet’s image:</Text>
           <LabelInput htmlFor="photo">
             <ImgWrap>
+              {img.length !== 0 && (
+                <WrapInputs>
+                  {img.map((x, i) => (
+                    <WrapAddedImg key={i + 2}>
+                      <ImgLoaded key={i} src={x} alt="uploaded" />
+                    </WrapAddedImg>
+                  ))}
+                </WrapInputs>
+              )}
               <InputFileIcon
                 color="primary"
                 aria-label="upload picture"
@@ -145,18 +153,8 @@ export const FormStepTwo = () => {
                   id="photo"
                   multiple
                 />
-
+                {/* <ImgLoaded alt="uploaded" /> */}
                 <AddIcon />
-                {/* {img.length !== 0 && (
-                <WrapInputs>
-                  {img.map((x, i) => (
-                    <div key={i + 2}>
-                      <AddIcon key={i + 1} />
-                      <ImgLoaded key={i} src={x} alt="uploaded" />
-                    </div>
-                  ))}
-                </WrapInputs>
-              )} */}
               </InputFileIcon>
               {errors.images && <Error>{errors.images.message}</Error>}
               <AdditionalImg>

@@ -3,6 +3,15 @@ import FemaleIcon from '@mui/icons-material/Female';
 import MaleIcon from '@mui/icons-material/Male';
 import { IconButton } from '@mui/material';
 import { TextareaAutosize } from '@mui/base';
+import { Input } from 'components/global/FormInput/FormInput.styled';
+
+export const InputAdd = styled(Input)`
+  font-size: 14px;
+  @media (min-width: 768px) {
+    font-size: 16px;
+    padding: 11px 16px;
+  }
+`;
 
 export const Wrap = styled.div`
   position: absolute;
@@ -25,10 +34,13 @@ export const ButtonWrap = styled.div`
 `;
 
 export const TextTittle = styled.p`
-  font-size: 36px;
   font-weight: 600;
   text-align: center;
   margin-bottom: 20px;
+  font-size: 24px;
+  @media (min-width: 768px) {
+    font-size: 36px;
+  }
 `;
 
 export const RadioTwo = styled.input`
@@ -42,11 +54,6 @@ export const RadioTwo = styled.input`
 `;
 
 export const RadioMale = styled(MaleIcon)`
-  /* & .jjTjuI {
-    width: 60px;
-    height: 60px;
-  } */
-
   width: 60px;
   height: 60px;
   color: #23c2ef;
@@ -118,14 +125,6 @@ export const InputFileIcon = styled(IconButton)`
   }
 `;
 
-export const ImgLoaded = styled.img`
-  position: absolute;
-  z-index: 4;
-  width: 140px;
-  max-height: 140px;
-  border-radius: 20px;
-`;
-
 export const LabelText = styled.p`
   display: inline-block;
   font-weight: 500;
@@ -139,7 +138,7 @@ export const Label = styled.label`
   display: inline-block;
   border: 2px solid var(--accent);
   border-radius: 40px;
-  padding: 10px 28px;
+  padding: 8px 28px;
   background-color: ${props => (props.checked ? 'var(--accent)' : '#FFF')};
   color: ${props => (props.checked ? '#FFF' : '#000')};
 `;
@@ -147,11 +146,9 @@ export const Label = styled.label`
 export const RadioWrap = styled.div`
   display: flex;
   flex-wrap: wrap;
-  gap: 15px;
-  margin-top: 20px;
+  gap: 12px;
   margin-bottom: 32px;
   @media (min-width: 768px) {
-    margin-top: 28px;
     margin-bottom: 28px;
   }
 `;
@@ -165,11 +162,6 @@ export const Text = styled.p`
 `;
 
 export const LabelInput = styled.label`
-  /* & .Mui-focused .Muioutlinedinput-notchedoutline {
-    border: 20x solid #f58138db;
-    // width: '110 %',
-    // zIndex: 0,
-  } */
   font-size: 18px;
   & .MuiInputBase-input:focus .MuiOutlinedInput-notchedOutline {
     border: 4px solid red;
@@ -184,35 +176,29 @@ export const LabelInput = styled.label`
   }
 
   & .MuiOutlinedInput-notchedOutline {
+    font-size: 14px;
+
     border: 1px solid #f5925680;
     border-radius: 40px;
     background-color: #fdf7f2;
     z-index: -1;
   }
   & .MuiInputBase-input {
+    font-size: 14px;
     padding: 11px 14px;
-    /* border: 1px solid #f5925680;
-    border-radius: 40px; */
-
-    /* background-color: red; */
     @media (min-width: 768px) {
-      padding: 14px 32px;
+      padding: 11px 16px;
+      font-size: 16px;
     }
   }
-
-  /* bgcolor: #FDF7F2,
-                    borderTopLeftRadius: 40px,
-                    borderBottomLeftRadius: 40px,}; */
-  /* padding: { xs: '10px 16px', md: '14px 32px' },
-                    fontSize: { xs: '14px', md: '18px' },
-                    fontFamily: 'Arial',}, */
   @media (min-width: 768px) {
     font-size: 24px;
   }
   &:not(:last-child) {
-    margin-bottom: 18px;
+    margin-bottom: 16px;
     @media (min-width: 768px) {
       margin-bottom: 28px;
+      margin-bottom: 18px;
     }
   }
 `;
@@ -254,14 +240,17 @@ export const Sex = styled.p`
 export const Comments = styled(TextareaAutosize)`
   display: flex;
   background-color: #fdf7f2;
-  padding: 16px 18px;
+  padding: 11px 14px;
   resize: none;
   width: 100%;
   border: 1px solid var(--accent);
   border-radius: 40px;
-  height: 43px;
+  height: 41px;
   font-family: 'Manrope';
+  font-size: 14px;
+  display: flex;
   @media (min-width: 768px) {
+    padding: 16px 18px;
     min-height: 113px;
     font-size: 16px;
     border-radius: 20px;
@@ -360,7 +349,7 @@ export const FormWrap = styled.div`
   padding: 20px;
   background: #fff;
   border-radius: 20px;
-  width: 93.7vw;
+  width: 87vw;
   height: 76.5vh;
   overflow-y: auto;
   padding: 40px 20px;
@@ -369,10 +358,6 @@ export const FormWrap = styled.div`
     min-height: 885;
     padding: 40px 80px;
   }
-  /* @media (min-width: 1280px) {
-    padding: 10px 12px 10px 20px;
-    border-radius: 20px;
-  } */
 `;
 
 export const BackDrop = styled.div`
@@ -396,7 +381,7 @@ export const MainText = styled.p`
 
 export const HeaderWrap = styled.div`
   text-align: center;
-  margin-bottom: 28px;
+  margin-bottom: 20px;
   @media (min-width: 768px) {
     margin-bottom: 28px;
   }
@@ -414,15 +399,31 @@ export const ErrorSex = styled.p`
   @media (min-width: 1280px) {
     margin-top: 176px;
   }
-
-  /* bottom: -10; */
-  /* bottom: 20; */
 `;
 
 export const WrapInputs = styled.div`
   position: absolute;
-  width: 100%;
-  height: 140px;
+  display: flex;
+  width: 368px;
+  height: 116px;
+  left: 140;
+  gap: 10px;
+  z-index: 5;
+  @media (min-width: 768px) {
+    width: 540px;
+    height: 140px;
+  }
+`;
+export const ImgLoaded = styled.img`
+  /* position: absolute;
+  z-index: 4; */
+  width: 116px;
+  height: 116px;
+  border-radius: 20px;
+  @media (min-width: 768px) {
+    width: 140px;
+    height: 140px;
+  }
 `;
 
 export const AdditionalImg = styled.div`
@@ -451,4 +452,9 @@ export const AdditionalImg = styled.div`
 export const ImgWrap = styled.div`
   display: flex;
   gap: 10px;
+`;
+
+export const WrapAddedImg = styled.div`
+  border-radius: 20px;
+  overflow: hidden;
 `;
