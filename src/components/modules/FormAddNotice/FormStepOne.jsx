@@ -2,11 +2,11 @@ import { useState, useEffect } from 'react';
 import { useFormContext } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 import { IoCloseOutline } from 'react-icons/io5';
-
+import { useForm } from 'react-hook-form';
 import TextField from '@mui/material/TextField';
 import { DesktopDatePicker } from '@mui/x-date-pickers/DesktopDatePicker';
 import { Autocomplete } from '@mui/material';
-
+import useFormControl from '@mui/material';
 import { dogBreeds } from './helpers/dogBreeds';
 import useWindowDimensions from './helpers/getWidth';
 import { Input } from 'components/global/FormInput/FormInput.styled';
@@ -33,7 +33,9 @@ export const FormStepOne = () => {
     register,
     formState: { errors },
     setValue,
+    trigger,
   } = useFormContext();
+
   useEffect(() => {
     setValue('birthday', date);
   }, [date, setValue]);
@@ -84,7 +86,7 @@ export const FormStepOne = () => {
               />
             )}
           />
-          {errors.birthday && <Error>{errors.birthday.message}</Error>}
+          {errors.birthday && <Error>Invalid date</Error>}
         </LabelInput>
         <LabelInput htmlFor="petBreed">
           <Text>Breed:</Text>
@@ -98,13 +100,13 @@ export const FormStepOne = () => {
               '& .MuiOutlinedInput-root .MuiAutocomplete-input': {
                 padding: { xs: '1px 6px', md: '4px 20px' },
               },
-              '& .Mui-focused .MuiOutlinedInput-notchedOutline': {
+              '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
                 border: '20px solid #f58138db',
                 position: 'absolute',
-                top: -2.1,
-                bottom: -2.1,
-                left: -1.8,
-                right: -2.1,
+                top: -2,
+                bottom: -1.8,
+                left: -2,
+                right: -1.8,
               },
               '&  .MuiAutocomplete-inputRoot': {
                 bgcolor: '#FDF7F2',
@@ -113,6 +115,14 @@ export const FormStepOne = () => {
               },
               '& .MuiOutlinedInput-notchedOutline': {
                 borderRadius: '40px',
+              },
+              '& fieldset': {
+                borderRadius: '40px',
+                border: '1px solid #F5925680',
+                transition: 'border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out',
+                '&:focus-within': {
+                  border: '2px solid red',
+                },
               },
             }}
             freeSolo={true}
@@ -146,7 +156,15 @@ export const FormStepOne = () => {
             color="a"
             p="9px 55px"
             type="button"
-            onClick={() => navigate('/addpet/step2')}
+            onClick={() => {
+              trigger().then(isValid => {
+                if (isValid) {
+                  navigate('/addpet/step2');
+                } else {
+                  console.log('Form is invalid');
+                }
+              });
+            }}
           >
             Next
           </ButtonAhead>

@@ -1,25 +1,50 @@
 import * as yup from 'yup';
 
 export const schemaAddPet = yup.object({
-  sex: yup.string().required('Sex is required'),
+  // sex: yup.string().required('Sex is required'),
   title: yup
     .string()
     .min(2, 'Must be at least 2 letters')
     .max(48, 'Cannot be more than 48 letters')
     .matches(/^[a-zA-Zа-яА-Я\s]*$/, 'Name must contain only letters and spaces')
     .required('Field is required'),
-  name: yup
-    .string()
-    .min(2, 'Must be at least 2 letters')
-    .max(16, 'Cannot be more than 16 letters')
-    .matches(/^[a-zA-Zа-яА-Я\s]*$/, 'Name must contain only letters and spaces'),
-  breed: yup
-    .string()
-    .min(2, 'Must be at least 2 letters')
-    .max(50, 'Cannot be more than 50 letters')
-    .matches(/^[a-zA-Zа-яА-Я\s]*$/, 'Name must contain only letters and spaces'),
-  birthday: yup.string().required('Date is required and must be in the format DD.MM.YYYY'),
-  // .matches(
+  // name: yup
+  //   .string()
+  //   .min(2, 'Must be at least 2 letters')
+  //   .max(16, 'Cannot be more than 16 letters')
+  //   .matches(/^[a-zA-Zа-яА-Я\s]*$/, 'Name must contain only letters and spaces'),
+  // breed: yup
+  //   .string()
+  //   .min(2, 'Must be at least 2 letters')
+  //   .max(50, 'Cannot be more than 50 letters')
+  //   .matches(/^[a-zA-Zа-яА-Я\s]*$/, 'Name must contain only letters and spaces'),
+  // birthday: yup.string().required('Date is required and must be in the format DD.MM.YYYY'),
+  // birthday: yup
+  //   .date()
+  //   .typeError('Дата должна быть в формате dd.mm.yyyy')
+  //   .transform((value, originalValue) => {
+  //     // преобразуем значение даты из строки в объект Date
+  //     const date = new Date(originalValue);
+  //     // если дата не прошла преобразование, возвращаем null
+  //     return isNaN(date) ? null : date;
+  //   })
+  //   .test('is-valid-date', 'Некорректная дата', function (value) {
+  //     // проверяем, что дата не равна null и является допустимой
+  //     if (!value) return false;
+  //     const day = value.getDate();
+  //     const month = value.getMonth() + 1;
+  //     const year = value.getFullYear();
+  //     if (month === 2 && day > 29) {
+  //       // проверяем, что високосный год
+  //       if ((year % 4 === 0 && year % 100 !== 0) || year % 400 === 0) {
+  //         return false;
+  //       }
+  //       // иначе некорректная дата
+  //       return true;
+  //     }
+  //     return true;
+  //   }),
+  ///////////// .matches(
   //   /^(0[1-9]|[12]\d|3[01])\.(0[1-9]|1[012])\.\d{4}$/,
   //   'Date is required and must be in the format DD.MM.YYYY'
   // ),
@@ -38,39 +63,41 @@ export const schemaAddPet = yup.object({
   //   }
   //   return true;
   // })
-  // .required('Date is required'),
-  location: yup
-    .string()
-    .required('City and region are required')
-    .matches(
-      /^[a-zA-Zа-яА-ЯёЁ\s]+,[a-zA-Zа-яА-ЯёЁ\s]+$/,
-      'Location must be in the format City, Region'
-    )
-    .required('Field is required'),
-  price: yup.string().matches(/^\d+(\.\d{1,2})? uah$/, "Price must be in the format of '150 uah'"),
+  //////////////// .required('Date is required'),
+  // location: yup
+  //   .string()
+  //   .required('City and region are required')
+  //   .matches(
+  //     /^[a-zA-Zа-яА-ЯёЁ\s]+,[a-zA-Zа-яА-ЯёЁ\s]+$/,
+  //     'Location must be in the format City, Region'
+  //   )
+  //   .required('Field is required'),
+  // price: yup.string().matches(/^\d+(\.\d{1,2})? uah$/, "Price must be in the format of '150 uah'"),
+  // category: yup.string(),
+  price: yup.number().nullable().typeError('Invalid price'),
 
-  comments: yup
-    .string()
-    .min(8, 'Must be at least 8 letters')
-    .max(120, 'Cannot be more than 120 letters')
-    .required('Comments are required'),
-  images: yup
-    .mixed()
-    // .test('required', 'You need to provide a file', file => {
-    //   // if (!file) return true;
-    //   // return false;
-    // })
-    // .test('fileSize', 'The file is too large', file => {
-    //   //if u want to allow only certain file sizes
-    //   return file && file.size <= 2000000;
-    // })
-    // .test('fileSize', 'File size is too large', value => {
-    //   if (!value) return true; // handle empty input
-    //   return value.size <= 1024 * 1024; // max size is 1 MB
-    // })
-    .test('fileType', 'You need to add photo or unsupported photo format', value => {
-      if (!value) return true; // handle empty input
-      const supportedFormats = ['image/jpeg', 'image/png', 'application/pdf'];
-      return supportedFormats.includes(value[0]?.type);
-    }),
+  // comments: yup
+  //   .string()
+  //   .min(8, 'Must be at least 8 letters')
+  //   .max(120, 'Cannot be more than 120 letters')
+  //   .required('Comments are required'),
+  // images: yup
+  //   .mixed()
+  //////////////// .test('required', 'You need to provide a file', file => {
+  //   // if (!file) return true;
+  //   // return false;
+  // })
+  // .test('fileSize', 'The file is too large', file => {
+  //   //if u want to allow only certain file sizes
+  //   return file && file.size <= 2000000;
+  // })
+  // .test('fileSize', 'File size is too large', value => {
+  //   if (!value) return true; // handle empty input
+  //   return value.size <= 1024 * 1024; // max size is 1 MB
+  /////////////////// })
+  // .test('fileType', 'You need to add photo or unsupported photo format', value => {
+  //   if (!value) return true; // handle empty input
+  //   const supportedFormats = ['image/jpeg', 'image/png', 'application/pdf'];
+  //   return supportedFormats.includes(value[0]?.type);
+  // }),
 });

@@ -20,22 +20,8 @@ export const FormAddNotice = () => {
   const navigate = useNavigate();
 
   const methods = useForm({
-    // defaultValues: {
-    //   //  category: selectedValue,
-    //   // category: 'sell',
-
-    //   petType: 'dog',
-    //   breed: 'Bulldog',
-    //   birthday: '12.12.2012',
-    //   title: 'Notice',
-    //   price: '150',
-    //   comments: 'The best dog ever',
-    //   location: 'Odesa',
-    //   name: 'Linsy',
-    //   sex: 'female',
-    // },
     resolver: yupResolver(schemaAddPet),
-    mode: 'onBlur',
+    mode: 'all',
   });
 
   const categoryName = methods.getValues().category;
@@ -52,12 +38,13 @@ export const FormAddNotice = () => {
   const handleRadioInputChange = event => {
     setSelectedValue(event.target.value);
     methods.setValue('category', event.target.value);
-    methods.reset();
   };
 
   const onSubmit = data => {
-    data.birthday = dateConverter(methods.getValues('birthday').$d);
+    console.log(data.birthday);
 
+    // data.birthday = dateConverter(methods.getValues('birthday').$d);
+    // console.log(data.birthday);
     const files = data.images;
 
     console.log(data);
@@ -73,7 +60,7 @@ export const FormAddNotice = () => {
 
       formData.append(key, data[key]);
     }
-    create(formData);
+    // create(formData);
     navigate('/');
   };
 

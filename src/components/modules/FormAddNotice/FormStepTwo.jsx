@@ -9,6 +9,7 @@ import { Input } from 'components/global/FormInput/FormInput.styled';
 
 import { CloseModalBtn } from 'components/modules/Notices/NoticeModal/NoticeModal.styled';
 import { Box } from 'components/global/Box';
+
 import {
   FormWrap,
   RadioMale,
@@ -32,6 +33,7 @@ import {
   Text,
   Comments,
   ErrorSex,
+  WrapInputs,
 } from './FormAddNotice.styled';
 
 export const FormStepTwo = () => {
@@ -53,6 +55,7 @@ export const FormStepTwo = () => {
     register,
     formState: { errors },
     getValues,
+    setValue,
   } = useFormContext();
 
   const values = getValues();
@@ -85,9 +88,7 @@ export const FormStepTwo = () => {
               value="male"
               male={male}
             >
-              <RadioMale
-              // sx={{ width: { xs: '45px', md: '72px' }, height: { xs: '45px', md: '72px' } }}
-              />
+              <RadioMale />
               <Sex>Male</Sex>
 
               <RadioTwo {...register('sex')} type="radio" value="male" id="Male" />
@@ -102,14 +103,11 @@ export const FormStepTwo = () => {
               }}
               female={female}
             >
-              <RadioFemale
-              // sx={{ width: { xs: '45px', md: '72px' }, height: { xs: '45px', md: '72px' } }}
-              />
+              <RadioFemale />
               <Sex>Female</Sex>
               <RadioTwo {...register('sex')} type="radio" value="female" id="Female" />
             </LabelFemale>
           </LabelWrap>
-
           <LabelInput htmlFor="location">
             <Text>
               Location<Accent>*</Accent>:
@@ -117,7 +115,6 @@ export const FormStepTwo = () => {
             <Input {...register('location')} placeholder="Type location" id="location" />
             {errors.location && <Error>{errors.location.message}</Error>}
           </LabelInput>
-
           {values.category === 'sell' && (
             <>
               <LabelInput htmlFor="price">
@@ -128,11 +125,9 @@ export const FormStepTwo = () => {
                 {errors.price && <Error>{errors.price.message}</Error>}
               </LabelInput>
             </>
-          )}
-
+          )}{' '}
+          <Text>Load the pet’s image:</Text>
           <LabelInput htmlFor="photo">
-            {' '}
-            <Text>Load the pet’s image:</Text>
             <InputFile
               color="primary"
               aria-label="upload picture"
@@ -147,15 +142,18 @@ export const FormStepTwo = () => {
                 id="photo"
                 multiple
               />
-              {/* {img.length !== 0 && (
-                <Box>
-                  {img.map((x, i) => (
-                    <ImgLoaded key={i} src={x} alt="uploaded" />
-                  ))}
-                </Box>
-              )} */}
 
               <AddIcon />
+              {img.length !== 0 && (
+                <WrapInputs>
+                  {img.map((x, i) => (
+                    <div key={i + 2}>
+                      <AddIcon key={i + 1} />
+                      <ImgLoaded key={i} src={x} alt="uploaded" />
+                    </div>
+                  ))}
+                </WrapInputs>
+              )}
             </InputFile>
             {errors.images && <Error>{errors.images.message}</Error>}
           </LabelInput>
@@ -164,8 +162,6 @@ export const FormStepTwo = () => {
             <Comments {...register('comments')} id="comments" placeholder="Type comment" />
             {errors.comments && <Error>{errors.comments.message}</Error>}
           </LabelInput>
-
-          {/* ТЕСТУЮннннннннннннннннннннннннннннннннннннннннннннннннннннннннннннннннннннннннЮ */}
         </InputWrap>
         {useWindowDimensions().width < 768 ? (
           <ButtonWrap>

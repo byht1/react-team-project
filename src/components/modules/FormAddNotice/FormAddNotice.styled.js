@@ -410,3 +410,9 @@ export const ErrorSex = styled.p`
   /* bottom: -10; */
   /* bottom: 20; */
 `;
+
+export const WrapInputs = styled.div`
+  position: absolute;
+  width: 100%;
+  height: 140px;
+`;
