@@ -24,37 +24,9 @@ import { Loader } from 'components/global/Loader';
 // import { NotFound } from 'page/NotFound';
 
 function App() {
-  const dispatch = useDispatch();
-  const [searchParams, setSearchParams] = useSearchParams();
-  const accessToken = searchParams.get('access_token');
-  console.log(accessToken);
-
-  const navigate = useNavigate();
-
-  const { isLoading } = useQuery({
-    queryFn: () => {
-      if (accessToken) {
-        return googleIn(accessToken);
-      }
-      return refresh();
-    },
-    queryKey: ['user'],
-    onSuccess: data => {
-      console.log(data);
-      if (accessToken) {
-        setSearchParams({});
-        navigate('/user');
-      }
-      dispatch(register(data));
-    },
-    onError: error => console.log(error.response.data.message),
-    retry: 1,
-    staleTime: Infinity,
-    refetchOnWindowFocus: false,
-  });
+  const { isLoading } = useAppLoading();
 
   if (isLoading) {
-    // return <div>loading.....</div>;
     return <Loader />;
   }
 
@@ -81,9 +53,16 @@ function App() {
           element={<RestrictedRoute component={LoginPage} redirectTo="/user" />}
         />
         {/* Приватний шлях */}
-        <Route path="user" element={<PrivateRoute component={UserPage} redirectTo="/login" />} />
+        <Route path="user" element={<PrivateRoute component={UserPage} redirectTo="/login" />}>
+          <Route path="addmypet" element={<AddMyPetForm />}>
+            <Route path="page1" element={<FirstPage />} />
+            <Route path="page2" element={<SecondPage />} />
+          </Route>
+        </Route>
+
         <Route path="posts" element={<Blog />} />
         <Route path="posts/:id" element={<PostDetails />} />
+
         <Route path="*" element={<Navigate to="/" />} />
         {/* <Route path="*" element={<NotFound />} /> */}
       </Route>

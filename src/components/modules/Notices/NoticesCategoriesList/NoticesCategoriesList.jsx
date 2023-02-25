@@ -1,19 +1,29 @@
-import React from 'react';
-import { useSelector } from 'react-redux';
+import React, { useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 import { useLocation } from 'react-router-dom';
 import { useInfiniteQuery } from '@tanstack/react-query';
 import { useTheme } from 'styled-components';
-import { fetchAllNotices } from 'services/notices';
+import { fetchAllNotices, fetchFavoriteNotices, fetchOwnNotices, refresh } from 'api';
 import { NoticesCategoryItem } from '../NoticesCategoryItem';
 import { DarkBtn as LoadMoreBtn } from 'components/global/button';
 import { ListBox } from './NoticesCategoriesList.styled';
-import { selectSearchQuery } from 'redux/notices';
+import { selectSearchQuery, setFavorites, setOwn } from 'redux/notices';
 
 export const NoticesCategoriesList = () => {
+  const dispatch = useDispatch();
   const location = useLocation();
   const theme = useTheme();
   const pathname = location.pathname.split('/')[2];
   let categoryName = '';
+
+  useEffect(() => {
+    const setFavoritesArray = async () => {
+      const result = await refresh();
+      dispatch(setFavorites(result.favorite));
+      dispatch(setOwn(result.advertisement));
+    };
+    setFavoritesArray();
+  }, [pathname, dispatch]);
 
   const searchQuery = useSelector(selectSearchQuery);
 
@@ -25,17 +35,26 @@ export const NoticesCategoriesList = () => {
     case 'lost-found':
       categoryName = 'lost/found';
       break;
+    case 'sell':
+      categoryName = 'sell';
+      break;
 
     default:
-      categoryName = 'sell';
       break;
   }
 
-  const { data, fetchNextPage, hasNextPage, isFetchingNextPage, isError, isSuccess } =
+  const { error, data, fetchNextPage, hasNextPage, isFetchingNextPage, isError, isSuccess } =
     useInfiniteQuery(
-      ['notices', 'all', categoryName, searchQuery],
-      ({ pageParam = 0 }) =>
-        fetchAllNotices({ category: categoryName, offset: pageParam, search: searchQuery }),
+      ['notices', 'all', categoryName, searchQuery, pathname],
+      ({ pageParam = 0 }) => {
+        if (pathname === 'favorite') {
+          return fetchFavoriteNotices();
+        }
+        if (pathname === 'own') {
+          return fetchOwnNotices();
+        }
+        return fetchAllNotices({ category: categoryName, offset: pageParam, search: searchQuery });
+      },
       {
         getNextPageParam: (lastPage, allPages) => {
           if (lastPage.length === 0) return undefined;
@@ -44,6 +63,10 @@ export const NoticesCategoriesList = () => {
         staleTime: 5 * 60 * 1000,
       }
     );
+
+  if (error) {
+    console.error(error.message);
+  }
 
   const isLoadingInitialData = !isSuccess && !isError;
 
@@ -54,6 +77,7 @@ export const NoticesCategoriesList = () => {
         {isError && <p>An error occurred while fetching the data. Please try again later.</p>}
         {isSuccess && (
           <>
+            {data?.pages?.flat()?.length === 0 && <p>No notices here yet...</p>}
             {data.pages.map((page, i) => (
               <React.Fragment key={i}>
                 {page.map(noticesItem => (
@@ -65,7 +89,7 @@ export const NoticesCategoriesList = () => {
         )}
       </ListBox>
 
-      {hasNextPage && (
+      {pathname !== 'own' && pathname !== 'favorite' && hasNextPage && (
         <LoadMoreBtn
           type="button"
           onClick={() => fetchNextPage()}

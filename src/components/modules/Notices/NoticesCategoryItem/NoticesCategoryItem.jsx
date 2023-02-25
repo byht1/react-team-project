@@ -1,19 +1,21 @@
-import React from 'react';
-import { useState } from 'react';
-
-import { getPetAge } from 'helpers/getPetAge';
-import { AiOutlineHeart } from 'react-icons/ai';
-import { HiTrash } from 'react-icons/hi';
+import React, { useState } from 'react';
+import { useSelector } from 'react-redux';
 import { useTheme } from 'styled-components';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
+import { AiOutlineHeart, AiFillHeart } from 'react-icons/ai';
+import { HiTrash } from 'react-icons/hi';
+import { selectFavorites, selectOwn } from 'redux/notices';
+import { useFavManagement } from 'hooks/useFavManagement';
+import { useOwnCardsManagement } from 'hooks/useOwnCardsManagement';
+import { getPetAge } from 'helpers/getPetAge';
 import { NoticeModal } from '../NoticeModal';
-import { ViewMoreBtn, DeleteBtn } from './NoticesCategoryItem.styled';
-import { Box } from 'components/global/Box';
 import {
   CardBox,
   ThumbWrapper,
   ThumbImage,
   ThumbTag,
-  ThumbLikeBtn,
+  ThumbAddBtn,
+  ThumbRemoveBtn,
   CardInfoWrapper,
   CardTitle,
   CardDescriptionTable,
@@ -21,11 +23,39 @@ import {
   CardDescriptionRow,
   CardDescriptionKey,
   CardDescriptionValue,
+  BtnWrapper,
+  ViewMoreBtn,
+  DeleteBtn,
 } from './NoticesCategoryItem.styled';
 
 export const NoticesCategoryItem = ({ noticesItem }) => {
-  const theme = useTheme();
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [handleAddToFav, handleRemoveFromFav] = useFavManagement();
+  const handleRemoveFromOwn = useOwnCardsManagement();
+
+  const client = useQueryClient();
+  const theme = useTheme();
+  const favorites = useSelector(selectFavorites);
+  const own = useSelector(selectOwn);
+
+  const { mutate: addToFav } = useMutation({
+    mutationFn: handleAddToFav,
+    onSuccess: () => {
+      client.invalidateQueries({ queryKey: ['notices'] });
+    },
+  });
+  const { mutate: removeFromFav } = useMutation({
+    mutationFn: handleRemoveFromFav,
+    onSuccess: () => {
+      client.invalidateQueries({ queryKey: ['notices'] });
+    },
+  });
+  const { mutate: removeFromOwn } = useMutation({
+    mutationFn: handleRemoveFromOwn,
+    onSuccess: () => {
+      client.invalidateQueries({ queryKey: ['notices'] });
+    },
+  });
 
   const petAge = getPetAge(noticesItem.birthday);
 
@@ -46,7 +76,7 @@ export const NoticesCategoryItem = ({ noticesItem }) => {
 
   return (
     <>
-      <CardBox onClick={openModal}>
+      <CardBox>
         <ThumbWrapper>
           <ThumbImage
             src={
@@ -56,9 +86,15 @@ export const NoticesCategoryItem = ({ noticesItem }) => {
             }
           ></ThumbImage>
           <ThumbTag>{noticesItem.category}</ThumbTag>
-          <ThumbLikeBtn>
-            <AiOutlineHeart size={'28px'} color={theme.colors.a} />
-          </ThumbLikeBtn>
+          {!favorites.includes(noticesItem._id) ? (
+            <ThumbAddBtn onClick={() => addToFav(noticesItem._id)}>
+              <AiOutlineHeart size={'28px'} color={theme.colors.a} />
+            </ThumbAddBtn>
+          ) : (
+            <ThumbRemoveBtn onClick={() => removeFromFav(noticesItem._id)}>
+              <AiFillHeart size={'28px'} color={theme.colors.a} />
+            </ThumbRemoveBtn>
+          )}
         </ThumbWrapper>
         <CardInfoWrapper>
           <CardTitle>{noticesItem.title}</CardTitle>
@@ -78,13 +114,19 @@ export const NoticesCategoryItem = ({ noticesItem }) => {
               </CardDescriptionRow>
             </TableBody>
           </CardDescriptionTable>
-          <Box>
-            <ViewMoreBtn>Learn more</ViewMoreBtn>
-            <DeleteBtn>
-              Delete
-              <HiTrash size={'20px'} color={'inherit'} style={{ marginLeft: '13px' }} />
-            </DeleteBtn>
-          </Box>
+          <BtnWrapper>
+            <ViewMoreBtn onClick={openModal}>Learn more</ViewMoreBtn>
+            {own.includes(noticesItem._id) && (
+              <DeleteBtn
+                onClick={() => {
+                  removeFromOwn(noticesItem._id);
+                }}
+              >
+                Delete
+                <HiTrash size={'20px'} color={'inherit'} style={{ marginLeft: '13px' }} />
+              </DeleteBtn>
+            )}
+          </BtnWrapper>
         </CardInfoWrapper>
       </CardBox>
       {isModalOpen && <NoticeModal noticeId={noticesItem._id} closeModal={closeModal} />}

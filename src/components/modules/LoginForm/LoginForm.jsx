@@ -24,6 +24,7 @@ import { FormContext } from 'components/global/FormContext';
 import { logIn } from 'api';
 import { register } from 'redux/auth';
 import { Alert } from '@mui/material';
+import { Loader } from 'components/global/Loader';
 
 export const LoginForm = () => {
   const [err, setErr] = useState(null);
@@ -36,7 +37,7 @@ export const LoginForm = () => {
 
   const { reset } = method;
 
-  const { mutate: logUser } = useMutation({
+  const { mutate: logUser, isLoading } = useMutation({
     mutationKey: ['user'],
     mutationFn: data => logIn(data),
     onSuccess: logData => {
@@ -45,6 +46,7 @@ export const LoginForm = () => {
       dispatch(register(logData));
       reset();
     },
+
     onError: error => {
       setErr(error.response.data.message);
     },
@@ -57,6 +59,7 @@ export const LoginForm = () => {
 
   return (
     <BgWrapper>
+      {isLoading && <Loader opacity={0.5} />}
       <AuthContainer>
         <FormWrapper>
           <LoginFormTitle>Login</LoginFormTitle>
