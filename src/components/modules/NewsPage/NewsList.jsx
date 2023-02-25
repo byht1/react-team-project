@@ -22,7 +22,6 @@ export const NewsList = () => {
   }, []);
 
   const [filter, setFilter] = useState('');
-  //  const [valueSVG, setValueSvg] = useState(true);
 
   const changeFilter = event => {
     setFilter(event.currentTarget.value);
