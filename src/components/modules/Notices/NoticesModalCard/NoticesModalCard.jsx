@@ -1,10 +1,9 @@
 import React from 'react';
 import { useQuery } from '@tanstack/react-query';
-import { useSelector, useDispatch } from 'react-redux';
-import { getIsLogin } from 'redux/auth';
-import { selectFavorites, addFavorite, removeFavorite } from 'redux/notices';
-import { showLoginWarning } from 'helpers/showLoginWarning';
-import { fetchOneNotice, addNoticeToFav, removeNoticeFromFav } from 'api';
+import { useSelector } from 'react-redux';
+import { useFavManagement } from 'hooks/useFavManagement';
+import { selectFavorites } from 'redux/notices';
+import { fetchOneNotice } from 'api';
 import { AiFillHeart } from 'react-icons/ai';
 import {
   ThumbTag,
@@ -31,29 +30,13 @@ import {
 
 export const NoticesModalCard = ({ noticeId }) => {
   const favorites = useSelector(selectFavorites);
-  const dispatch = useDispatch();
+  const [handleAddToFav, handleRemoveFromFav] = useFavManagement();
 
   const { data, isSuccess } = useQuery({
     queryFn: () => fetchOneNotice(noticeId),
     queryKey: ['notices', noticeId],
     staleTime: 5 * 60 * 1000,
   });
-  const isLoggedIn = useSelector(getIsLogin);
-
-  const handleAddToFav = itemId => {
-    if (!isLoggedIn) {
-      showLoginWarning();
-      return;
-    }
-    dispatch(addFavorite(itemId));
-    addNoticeToFav(itemId);
-    return;
-  };
-
-  const handleRemoveFromFav = itemId => {
-    dispatch(removeFavorite(itemId));
-    removeNoticeFromFav(itemId);
-  };
 
   return (
     <>

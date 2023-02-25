@@ -14,7 +14,7 @@ export const BgWrapper = styled.div`
 
   @media (min-width: 768px) {
     height: calc(100vh - 97px);
-    min-height: 500px;
+    min-height: 600px;
     background-image: url(${bgtab});
     background-size: 1500px;
   }
@@ -61,7 +61,7 @@ export const FormWrapper = styled.div`
   @media (min-width: 768px) {
     position: absolute;
     left: 50%;
-    top: 42%;
+    top: 45%;
     transform: translate(-50%, -50%);
     background-color: ${p => p.theme.colors.w};
     width: 608px;

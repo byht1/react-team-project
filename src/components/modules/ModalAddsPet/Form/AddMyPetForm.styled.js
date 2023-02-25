@@ -2,15 +2,20 @@ import styled from 'styled-components';
 import { GrClose } from 'react-icons/gr';
 
 export const FormWrapper = styled.div`
-  position: relative;
-  width: 280px;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%) scale(1);
+  min-width: 280px;
+  width: 87vw;
+  max-width: 420px;
   background-color: ${p => p.theme.colors.w};
   box-shadow: 7px 4px 14px rgba(0, 0, 0, 0.11);
   border-radius: ${p => p.theme.radii.normal};
   padding: 40px 20px;
 
   @media (min-width: 768px) {
-    width: 608px;
+    max-width: 608px;
     border-radius: ${p => p.theme.radii.inputRadius};
     padding-bottom: 40px;
     padding-top: 40px;

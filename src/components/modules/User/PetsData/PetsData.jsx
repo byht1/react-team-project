@@ -22,6 +22,8 @@ import {
   PandaText,
 } from './PetsData.styled';
 
+import { useNavigate } from 'react-router';
+
 export const PetsData = () => {
   const { data, isLoading, isSuccess } = useQuery({
     queryFn: () => getPetList(),
@@ -33,12 +35,19 @@ export const PetsData = () => {
   console.log(data);
   const deletePet = id => {};
 
+  // модалка
+  const navigate = useNavigate();
+
+  const openModal = () => {
+    navigate('addmypet/page1');
+  };
+
   return (
     <Container>
       <TitleBlock>
         <Title>My pets:</Title>
         <AddPetBlock>
-          <TitleSpan>Add pet</TitleSpan> <AddPetIc />
+          <TitleSpan>Add pet</TitleSpan> <AddPetIc onClick={openModal} />
         </AddPetBlock>
       </TitleBlock>
 
@@ -78,8 +87,8 @@ export const PetsData = () => {
           : null}
         {!isSuccess ? (
           <>
-            <PandaImg src={require('../../../../img/User/panda.jpg')} />
-            <PandaText>You have not added any pets to favorite list yet</PandaText>
+            <PandaImg src={require('../../../../img/User/panda.png')} />
+            <PandaText>You have not added an pets to favorite list yet</PandaText>
           </>
         ) : null}
       </PetBlcok>

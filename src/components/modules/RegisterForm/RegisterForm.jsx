@@ -23,10 +23,13 @@ import {
   Link,
   BgWrapper,
   GoogleBox,
+  TransparentBtn,
 } from './RegisterForm.styled';
 import { Box } from 'components/global/Box';
 import { signUp } from 'api';
 import { Alert } from '@mui/material';
+import { Loader } from 'components/global/Loader';
+import server from 'api/basic';
 
 export const RegisterForm = () => {
   const [step, setStep] = useState(1);
@@ -37,9 +40,9 @@ export const RegisterForm = () => {
     resolver: yupResolver(registerSchema),
     mode: 'onTouched',
   });
-  const { reset, trigger } = method;
+  const { reset, trigger, getValues } = method;
 
-  const { mutate: regUser } = useMutation({
+  const { mutate: regUser, isLoading } = useMutation({
     mutationKey: ['user'],
     mutationFn: data => signUp(data),
     onSuccess: signData => {
@@ -50,10 +53,23 @@ export const RegisterForm = () => {
     },
     onError: error => {
       setErr(error.response.data.message);
-      // console.log(error.response.data.message);
-      // alert(error.response.data.message);
     },
   });
+
+  const onNextClick = async () => {
+    const email = getValues('email');
+    try {
+      await server.post('/auth/is-use-email', { email });
+      setErr(null);
+    } catch (error) {
+      setErr(error.response.data.message);
+      return;
+    }
+
+    const result = await trigger(['email', 'password', 'confirmpassword']);
+    // console.log(result);
+    result && setStep(2);
+  };
 
   const onSubmit = data => {
     regUser(data);
@@ -61,6 +77,7 @@ export const RegisterForm = () => {
 
   return (
     <BgWrapper>
+      {isLoading && <Loader opacity={0.5} />}
       <AuthContainer>
         <FormWrapper>
           <RegisterFormTitle>Registration</RegisterFormTitle>
@@ -74,15 +91,7 @@ export const RegisterForm = () => {
               {step === 1 && (
                 <>
                   <RegStepOne />
-                  <Button
-                    theme={'dark'}
-                    type={'button'}
-                    fn={async () => {
-                      const result = await trigger(['email', 'password', 'confirmpassword']);
-                      console.log(result);
-                      result && setStep(2);
-                    }}
-                  >
+                  <Button theme={'dark'} type={'button'} fn={onNextClick}>
                     Next
                   </Button>
                 </>
@@ -93,14 +102,9 @@ export const RegisterForm = () => {
                   <Button theme={'dark'} type={'submit'} fn={() => console.log('click')}>
                     Register
                   </Button>
-                  <Button
-                    style={{ backgroundColor: 'transparent' }}
-                    type={'button'}
-                    mt={10}
-                    fn={() => setStep(1)}
-                  >
+                  <TransparentBtn mt={10} fn={() => setStep(1)}>
                     Back
-                  </Button>
+                  </TransparentBtn>
                 </>
               )}
             </InputsWrapper>
