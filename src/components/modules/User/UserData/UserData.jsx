@@ -11,7 +11,7 @@ import {
 } from './UserData.styled';
 import { UserInfo } from '../UserInfo';
 import { useDispatch, useSelector } from 'react-redux';
-import { editUserProfilePhoto, getUserPhoto } from 'redux/user';
+import { editUserProfilePhoto, getUserPhoto } from 'redux/auth';
 
 export const UserData = () => {
   const img = useSelector(getUserPhoto);
