@@ -33,6 +33,7 @@ export const PetsData = () => {
       console.log(data);
     },
   });
+
   const { mutate } = useMutation({
     mutationKey: ['myPetData'],
     mutationFn: id => deletePetFromUserPetList(id),
@@ -93,12 +94,12 @@ export const PetsData = () => {
               );
             })
           : null}
-        {!data[0] ? (
+        {!data?.length && (
           <>
             <PandaImg src={require('../../../../img/User/panda.png')} />
             <PandaText>You have not added an pets to favorite list yet</PandaText>
           </>
-        ) : null}
+        )}
       </PetBlcok>
     </Container>
   );
