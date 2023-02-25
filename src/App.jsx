@@ -22,6 +22,10 @@ import { register } from 'redux/auth';
 import { Loader } from 'components/global/Loader';
 
 // import { NotFound } from 'page/NotFound';
+import { AddMyPetForm } from 'components/modules/ModalAddsPet/Form/AddMyPetForm';
+import { FirstPage } from 'components/modules/ModalAddsPet/FormPages/FirstPage';
+import { SecondPage } from 'components/modules/ModalAddsPet/FormPages/SecondPage';
+import { useAppLoading } from 'hooks/useAppLoading';
 
 function App() {
   const { isLoading } = useAppLoading();

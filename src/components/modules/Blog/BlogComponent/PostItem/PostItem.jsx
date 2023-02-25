@@ -12,13 +12,11 @@ import {
   StyledButton,
 } from './PostItem.styled';
 
-import { ReactComponent as CommentIcon } from 'img/icons/commentIcon.svg';
-import { ReactComponent as LikeIcon } from 'img/icons/likeIcon.svg';
-// import PropTypes from 'prop-types';
 import { Box } from 'components/global/Box';
+import { AiOutlineLike, AiOutlineComment } from 'react-icons/ai';
 
 export const Post = ({ post, isImageOnRight }) => {
-  const { id, owner, image, author, date, category, title, text, comments, likeCount } = post;
+  const { image, author, title, category, text, createdAt, comments, likes, _id } = post;
 
   const trimText = text => {
     const maxLength = 300;
@@ -30,26 +28,26 @@ export const Post = ({ post, isImageOnRight }) => {
 
   return (
     <StyledPost isImageOnRight={isImageOnRight}>
-      <StyledImage src={image} alt={author} isImageOnRight={isImageOnRight} />
+      <StyledImage src={image} alt={author.name} isImageOnRight={isImageOnRight} />
       <StyledContent isImageOnRight={isImageOnRight}>
         <Box flex="1">
           <Box display="flex" alignItems="flex-end" justifyContent="space-between" gridGap={7}>
             <StyledTitle>{title}</StyledTitle>
             <StyledCategory>{category}</StyledCategory>
           </Box>
-          <StyledAuthor>{author}</StyledAuthor>
+          <StyledAuthor>{author.name}</StyledAuthor>
           <StyledText>{trimText(text)}</StyledText>
-          <StyledDate>{date}</StyledDate>
+          <StyledDate>{createdAt}</StyledDate>
         </Box>
         <Box display="flex" alignItems="center" justifyContent="space-between">
           <Box display="flex" alignItems="center" p={3} gridGap={5}>
             <StyledMetaIcon>
-              <CommentIcon />
+              <AiOutlineComment style={{ width: '24px', height: '24px' }} />
               {comments.length}
             </StyledMetaIcon>
             <StyledMetaIcon>
-              <LikeIcon />
-              {likeCount}
+              <AiOutlineLike style={{ width: '24px', height: '24px' }} />
+              {likes.length}
             </StyledMetaIcon>
           </Box>
           <StyledButton>Read more</StyledButton>

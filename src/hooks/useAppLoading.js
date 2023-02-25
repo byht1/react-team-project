@@ -9,7 +9,7 @@ export const useAppLoading = () => {
   const dispatch = useDispatch();
   const [searchParams, setSearchParams] = useSearchParams();
   const accessToken = searchParams.get('access_token');
-  console.log(accessToken);
+  // console.log(accessToken);
 
   const navigate = useNavigate();
 
@@ -22,7 +22,7 @@ export const useAppLoading = () => {
     },
     queryKey: ['user'],
     onSuccess: data => {
-      console.log(data);
+      // console.log(data);
       if (accessToken) {
         setSearchParams({});
         navigate('/user');
