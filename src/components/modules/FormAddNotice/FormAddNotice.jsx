@@ -41,14 +41,9 @@ export const FormAddNotice = () => {
   };
 
   const onSubmit = data => {
-    console.log(data.birthday);
-
-    // data.birthday = dateConverter(methods.getValues('birthday').$d);
-    // console.log(data.birthday);
+    data.birthday = dateConverter(methods.getValues('birthday').$d);
     const files = data.images;
-
     console.log(data);
-
     const formData = new FormData();
     for (const key in data) {
       if (key === 'images') {
@@ -60,7 +55,7 @@ export const FormAddNotice = () => {
 
       formData.append(key, data[key]);
     }
-    // create(formData);
+    create(formData);
     navigate('/');
   };
 

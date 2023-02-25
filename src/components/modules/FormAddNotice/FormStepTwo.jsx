@@ -16,7 +16,9 @@ import {
   RadioFemale,
   LabelMale,
   LabelFemale,
-  InputFile,
+  InputFileIcon,
+  AdditionalImg,
+  ImgWrap,
   ImgLoaded,
   InputWrap,
   ButtonWrap,
@@ -128,23 +130,24 @@ export const FormStepTwo = () => {
           )}{' '}
           <Text>Load the pet’s image:</Text>
           <LabelInput htmlFor="photo">
-            <InputFile
-              color="primary"
-              aria-label="upload picture"
-              component="label"
-              onChange={handleImageChange}
-            >
-              <input
-                {...register('images')}
-                hidden
-                accept="image/*"
-                type="file"
-                id="photo"
-                multiple
-              />
+            <ImgWrap>
+              <InputFileIcon
+                color="primary"
+                aria-label="upload picture"
+                component="label"
+                onChange={handleImageChange}
+              >
+                <input
+                  {...register('images')}
+                  hidden
+                  accept="image/*"
+                  type="file"
+                  id="photo"
+                  multiple
+                />
 
-              <AddIcon />
-              {img.length !== 0 && (
+                <AddIcon />
+                {/* {img.length !== 0 && (
                 <WrapInputs>
                   {img.map((x, i) => (
                     <div key={i + 2}>
@@ -153,9 +156,16 @@ export const FormStepTwo = () => {
                     </div>
                   ))}
                 </WrapInputs>
-              )}
-            </InputFile>
-            {errors.images && <Error>{errors.images.message}</Error>}
+              )} */}
+              </InputFileIcon>
+              {errors.images && <Error>{errors.images.message}</Error>}
+              <AdditionalImg>
+                <AddIcon />
+              </AdditionalImg>
+              <AdditionalImg>
+                <AddIcon />
+              </AdditionalImg>
+            </ImgWrap>
           </LabelInput>
           <LabelInput htmlFor="comments">
             <Text>Comments:</Text>

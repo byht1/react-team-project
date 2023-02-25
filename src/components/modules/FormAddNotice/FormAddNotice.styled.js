@@ -95,18 +95,26 @@ export const LabelFemale = styled.label`
   }
 `;
 
-export const InputFile = styled(IconButton)`
-  width: 140px;
-  height: 140px;
+export const InputFileIcon = styled(IconButton)`
+  width: 116px;
+  height: 116px;
   & span {
-    background-color: #fdf7f2;
+    background-color: ${p => p.theme.colors.bg};
     border-radius: 20px;
   }
   & svg {
     z-index: 2;
-    width: 62px;
-    height: 62px;
+    width: 47px;
+    height: 47px;
     color: #6f6d6b;
+  }
+  @media (min-width: 768px) {
+    width: 140px;
+    height: 140px;
+    & svg {
+      width: 62px;
+      height: 62px;
+    }
   }
 `;
 
@@ -415,4 +423,32 @@ export const WrapInputs = styled.div`
   position: absolute;
   width: 100%;
   height: 140px;
+`;
+
+export const AdditionalImg = styled.div`
+  width: 116px;
+  height: 116px;
+  background-color: ${p => p.theme.colors.bg};
+  border-radius: 20px;
+  padding: 35px;
+  & svg {
+    z-index: 2;
+    width: 47px;
+    height: 47px;
+    color: #6f6d6b;
+  }
+  @media (min-width: 768px) {
+    padding: 39px;
+    width: 140px;
+    height: 140px;
+    & svg {
+      width: 62px;
+      height: 62px;
+    }
+  }
+`;
+
+export const ImgWrap = styled.div`
+  display: flex;
+  gap: 10px;
 `;
