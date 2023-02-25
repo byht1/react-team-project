@@ -25,6 +25,7 @@ import {
 import { useNavigate } from 'react-router';
 
 export const PetsData = () => {
+  // eslint-disable-next-line
   const { data, isLoading, isSuccess } = useQuery({
     queryFn: () => getPetList(),
     queryKey: ['myPetData'],
