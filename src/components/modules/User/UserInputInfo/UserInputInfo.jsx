@@ -8,7 +8,7 @@ import {
   getCity,
   getUserData,
   editUserInfo,
-} from 'redux/user';
+} from 'redux/auth';
 import {
   Item,
   Input,
@@ -30,6 +30,7 @@ export function UserInputInfo({
 }) {
   const dispatch = useDispatch();
   const [value, setValue] = useState('');
+
   const [obj, setObj] = useState({});
   const [valueBeforEdited, setValueBeforEdited] = useState('');
   const [inputErr, setInputErr] = useState(false);
@@ -48,7 +49,6 @@ export function UserInputInfo({
   const regExpCityInputNumber = new RegExp(/^(?!\s)[a-zA-Zа-яА-ЯЁёҐґІіЇїЄє\s,'"'-.]+$/);
   const regExpBirthdayInputNumber = new RegExp(/^\d{1,2}\.\d{1,2}\.\d{4}$/);
   const regExpPhoneInputNumber = new RegExp(/^\+380\d{9}$/);
-
   useEffect(() => {
     dispatch(getUserData());
     if (fildName === 'Name') {
@@ -75,13 +75,15 @@ export function UserInputInfo({
       setValue(city);
       setValueBeforEdited(city);
     } // eslint-disable-next-line
-  }, [name]);
+  }, []);
 
   useEffect(() => {
     setObj({ [fildName.toLowerCase()]: value });
   }, [value, fildName]);
 
   const onChange = e => {
+    console.log('🚀  value:', value);
+    console.log('🚀  e.target.value:', e.target.value);
     setValue(e.target.value);
     const valueLength = e.target.value.length;
     let stepOne = regExpNameInput.test(value);

@@ -1,5 +1,6 @@
+import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
+import { deletePetFromUserPetList, getPetList } from 'api';
 import { Container } from 'components/global/Container';
-import React from 'react';
 
 import {
   TitleBlock,
@@ -19,18 +20,29 @@ import {
   PandaImg,
   PandaText,
 } from './PetsData.styled';
-import { useDispatch, useSelector } from 'react-redux';
-import { deletePetFromList, getUserPetList, updateUserPetList } from 'redux/user';
+
 import { useNavigate } from 'react-router';
 
 export const PetsData = () => {
-  const petList = useSelector(getUserPetList);
+  const client = useQueryClient();
+  // eslint-disable-next-line
+  const { data, isLoading, isSuccess } = useQuery({
+    queryFn: () => getPetList(),
+    queryKey: ['myPet'],
+    onSuccess: data => {
+      console.log(data);
+    },
+  });
 
-  const dispatch = useDispatch();
-
-  const deletePet = _id => {
-    dispatch(updateUserPetList(_id));
-    dispatch(deletePetFromList(_id));
+  const { mutate } = useMutation({
+    mutationKey: ['myPetData'],
+    mutationFn: id => deletePetFromUserPetList(id),
+    onSuccess: updateDate => {
+      client.invalidateQueries(['myPet'], updateDate);
+    },
+  });
+  const deletePet = id => {
+    mutate(id);
   };
 
   // модалка
@@ -39,7 +51,6 @@ export const PetsData = () => {
   const openModal = () => {
     navigate('addmypet/page1');
   };
-
   return (
     <Container>
       <TitleBlock>
@@ -50,8 +61,8 @@ export const PetsData = () => {
       </TitleBlock>
 
       <PetBlcok>
-        {petList[0]
-          ? petList.map(el => {
+        {isSuccess
+          ? data.map(el => {
               const { _id, name, birth, breed, image, comments } = el;
               return (
                 <PetCard key={_id}>
@@ -83,12 +94,12 @@ export const PetsData = () => {
               );
             })
           : null}
-        {!petList[0] ? (
+        {!data?.length && (
           <>
             <PandaImg src={require('../../../../img/User/panda.png')} />
             <PandaText>You have not added an pets to favorite list yet</PandaText>
           </>
-        ) : null}
+        )}
       </PetBlcok>
     </Container>
   );
