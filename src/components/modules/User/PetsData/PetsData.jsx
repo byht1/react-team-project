@@ -1,3 +1,5 @@
+import { useQuery } from '@tanstack/react-query';
+import { getPetList } from 'api';
 import { Container } from 'components/global/Container';
 import React from 'react';
 
@@ -19,18 +21,18 @@ import {
   PandaImg,
   PandaText,
 } from './PetsData.styled';
-import { useDispatch, useSelector } from 'react-redux';
-import { deletePetFromList, getUserPetList, updateUserPetList } from 'redux/user';
 
 export const PetsData = () => {
-  const petList = useSelector(getUserPetList);
+  const { data, isLoading, isSuccess } = useQuery({
+    queryFn: () => getPetList(),
+    queryKey: ['myPetData'],
+    onSuccess: data => {
+      console.log(data);
+    },
+  });
+  console.log(data);
+  const deletePet = id => {};
 
-  const dispatch = useDispatch();
-
-  const deletePet = _id => {
-    dispatch(updateUserPetList(_id));
-    dispatch(deletePetFromList(_id));
-  };
   return (
     <Container>
       <TitleBlock>
@@ -41,17 +43,17 @@ export const PetsData = () => {
       </TitleBlock>
 
       <PetBlcok>
-        {petList[0]
-          ? petList.map(el => {
-              const { _id, name, birth, breed, image, comments } = el;
+        {isSuccess
+          ? data.map(el => {
+              const { id, name, birth, breed, image, comments } = el;
               return (
-                <PetCard key={_id}>
+                <PetCard key={id}>
                   <PhotoBlock>
                     <Img src={image} />
                     <Icon>
                       <TrashBinIc
                         onClick={() => {
-                          deletePet(_id);
+                          deletePet(id);
                         }}
                       />
                     </Icon>
@@ -74,7 +76,7 @@ export const PetsData = () => {
               );
             })
           : null}
-        {!petList[0] ? (
+        {!isSuccess ? (
           <>
             <PandaImg src={require('../../../../img/User/panda.jpg')} />
             <PandaText>You have not added any pets to favorite list yet</PandaText>

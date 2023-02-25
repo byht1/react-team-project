@@ -185,17 +185,16 @@ export const AddPetBlock = styled.div`
     padding-right: 0px;
   }
   @media (min-width: 1280px) {
-    padding-right: 16px;
   }
 `;
 
 export const AddPetIc = styled(plus)`
   margin-left: 15px;
+  padding: 8px;
   cursor: pointer;
-  height: 24px;
-  width: 24px;
+  height: 40px;
+  width: 40px;
   background-color: ${theme.colors.a};
-  background-size: 2rem;
   border-radius: 50%;
   & path {
     stroke: ${theme.colors.w};
@@ -227,7 +226,7 @@ export const TrashBinIc = styled(trashBin)`
 
 export const PandaImg = styled.img`
   border-radius: 20px;
-  box-shadow: 7px 4px 14px rgba(0, 0, 0, 0.11);
+  opacity: 50%;
   position: relative;
   max-width: 320px;
 
@@ -242,20 +241,27 @@ export const PandaImg = styled.img`
 `;
 
 export const PandaText = styled.span`
+  opacity: 50%;
   position: absolute;
   margin-top: 155px;
   font-family: 'Manrope';
   font-style: normal;
   font-weight: 500;
-  font-size: 14px;
+  max-width: 320px;
+  text-align: center;
+  font-size: 18px;
   line-height: 21px;
   @media (min-width: 768px) {
     margin-top: 360px;
     margin-left: 0px;
-    font-size: 18px;
+    font-size: 32px;
     line-height: 25px;
+    max-width: 700px;
   }
   @media (min-width: 1280px) {
+    max-width: 700px;
+    line-height: 44px;
+    font-size: 36px;
     margin-top: 430px;
     margin-left: 440px;
   }
