@@ -3,10 +3,10 @@ import { getNews } from 'api';
 import { useState } from 'react';
 import { NewsItem } from './NewsItem';
 import { Box } from 'components/global/Box';
-import { defaultNewsList } from './defaultNewsList';
+
 import {InputSearch} from '../../global/InputSearch';
-import { Filter } from './Filter';
-import { Block, Button, IconSearch, IconClose, List, TitleNews } from './NewsPage.styled';
+// import { Filter } from './Filter';
+import { List, TitleNews } from './NewsPage.styled';
 
 export const NewsList = () => {
   const [filter, setFilter] = useState('');

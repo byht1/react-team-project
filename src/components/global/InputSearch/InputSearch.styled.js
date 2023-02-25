@@ -70,23 +70,20 @@ export const Input = styled.input`
   border: 2px solid ${p => p.theme.colors.trsp};
   outline: none;
   box-shadow: ${p => p.theme.shadows.s};
-  border-radius: ${p => p.theme.radii.normal};
+  border-radius: ${p => p.theme.radii.inputRadius};
   &::placeholder {
     color: #535353;
   }
   transition: var(----transition-border-color);
-  &:hover,
+ 
   &:focus {
-    border: 2px solid rgba(245, 146, 86, 0.5);
+    border: 2px solid ${p => p.theme.colors.a};
   }
   @media (min-width: 768px) {
     width: 608px;
     font-size: ${p => p.theme.fontSizes.xl};
-    padding: 9px 12px 9px 20px;
-    border-radius: ${p => p.theme.radii.inputRadius};
-  }
-  @media (min-width: 1280px) {
     padding: 10px 12px 10px 20px;
-    border-radius: ${p => p.theme.radii.normal};
+    
   }
+ 
 `;
