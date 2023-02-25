@@ -65,6 +65,37 @@
         "url(https://fonts.gstatic.com/s/inter/v12/UcCO3FwrK3iLTeHuS_fvQtMwCp50KnMw2boKoduKmMEVuI6fAZJhiI2B.woff2) format('woff2')",
         { weight: 500 }
       );
+      const interFont2 = new FontFace(
+        'Inter',
+        "url(https://fonts.gstatic.com/s/inter/v12/UcCO3FwrK3iLTeHuS_fvQtMwCp50KnMw2boKoduKmMEVuI6fAZthiI2B.woff2) format('woff2')",
+        { weight: 500 }
+      );
+      const interFont3 = new FontFace(
+        'Inter',
+        "url(https://fonts.gstatic.com/s/inter/v12/UcCO3FwrK3iLTeHuS_fvQtMwCp50KnMw2boKoduKmMEVuI6fAZNhiI2B.woff2) format('woff2')",
+        { weight: 500 }
+      );
+      const interFont4 = new FontFace(
+        'Inter',
+        "url(https://fonts.gstatic.com/s/inter/v12/UcCO3FwrK3iLTeHuS_fvQtMwCp50KnMw2boKoduKmMEVuI6fAZxhiI2B.woff2) format('woff2')",
+        { weight: 500 }
+      );
+      const interFont5 = new FontFace(
+        'Inter',
+        "url(https://fonts.gstatic.com/s/inter/v12/UcCO3FwrK3iLTeHuS_fvQtMwCp50KnMw2boKoduKmMEVuI6fAZBhiI2B.woff2) format('woff2')",
+        { weight: 500 }
+      );
+      const interFont6 = new FontFace(
+        'Inter',
+        "url(https://fonts.gstatic.com/s/inter/v12/UcCO3FwrK3iLTeHuS_fvQtMwCp50KnMw2boKoduKmMEVuI6fAZFhiI2B.woff2) format('woff2')",
+        { weight: 500 }
+      );
+      const interFont7 = new FontFace(
+        'Inter',
+        "url(https://fonts.gstatic.com/s/inter/v12/UcCO3FwrK3iLTeHuS_fvQtMwCp50KnMw2boKoduKmMEVuI6fAZ9hiA.woff2) format('woff2')",
+        { weight: 500 }
+      );
+
       const poppinsFont = new FontFace(
         'Poppins',
         "url(https://fonts.gstatic.com/s/poppins/v20/pxiByp8kv8JHgFVrLCz7Z11lFc-K.woff2) format('woff2')",
@@ -78,12 +109,28 @@
 
       // Додавання шрифтів до документу
       document.fonts.add(interFont);
+      document.fonts.add(interFont2);
+      document.fonts.add(interFont3);
+      document.fonts.add(interFont4);
+      document.fonts.add(interFont5);
+      document.fonts.add(interFont6);
+      document.fonts.add(interFont7);
       document.fonts.add(poppinsFont);
       document.fonts.add(manropeFont);
       console.log(11111111111111111);
 
       // Перевірка, чи успішно завантажилися шрифти та підтримуються браузером Safari
-      Promise.all([interFont.load(), poppinsFont.load(), manropeFont.load()])
+      Promise.all([
+        interFont.load(),
+        interFont2.load(),
+        interFont3.load(),
+        interFont4.load(),
+        interFont5.load(),
+        interFont6.load(),
+        interFont7.load(),
+        poppinsFont.load(),
+        manropeFont.load(),
+      ])
         .then(() => {
           const interSupported = document.fonts.check('16px "Inter"'); // true якщо підтримується, інакше false
           const poppinsSupported = document.fonts.check('16px "Poppins"');
