@@ -1,12 +1,19 @@
 import React from 'react';
-import { Block, Button, IconSearch, IconClose} from './InputSearch.styled';
+import PropTypes from 'prop-types';
+import { Block, Button, IconSearch, IconClose, Input} from './InputSearch.styled';
 
-export const InputSearch = () =>{
+export const InputSearch = ({onChange, value ='', onClick}) =>{
+
     return(
         <Block>
-        <Filter value={filter} onChange={changeFilter} />
-        {filter ? (
-          <Button type="button" onClick={handleClear}>
+          <label>
+            <Input type="text" 
+                  placeholder="Search" 
+                  onChange={onChange}
+                  value = {value}/>
+          </label>
+        {value ? (
+          <Button type="button" onClick={onClick}>
             <IconClose />
           </Button>
         ) : (
@@ -17,3 +24,8 @@ export const InputSearch = () =>{
       </Block>
     )
 }
+InputSearch.propTypes = {
+  value: PropTypes.string.isRequired,
+  onClick: PropTypes.func.isRequired,
+  onChange: PropTypes.func.isRequired,
+};

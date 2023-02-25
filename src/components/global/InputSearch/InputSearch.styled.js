@@ -1,13 +1,15 @@
 import styled from 'styled-components';
 import { IoMdSearch, IoMdClose } from 'react-icons/io';
+
 export const Block = styled.div`
   position: relative;
+  
   @media (min-width: 768px) {
     margin: 0 auto;
   }
-  @media (min-width: 1280px) {
-  }
+  
 `;
+
 export const Button = styled.button`
   position: absolute;
   top: 10px;

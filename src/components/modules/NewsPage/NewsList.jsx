@@ -3,8 +3,8 @@ import { useEffect, useState } from 'react';
 import { NewsItem } from './NewsItem';
 import { Box } from 'components/global/Box';
 import { defaultNewsList } from './defaultNewsList';
-import { Filter } from './Filter';
-import { Block, Button, IconSearch, IconClose, List, TitleNews } from './NewsPage.styled';
+import {InputSearch} from '../../global/InputSearch';
+import { List, TitleNews } from './NewsPage.styled';
 
 export const NewsList = () => {
   const [newsList, setNewsList] = useState([]);
@@ -37,18 +37,7 @@ export const NewsList = () => {
   return (
     <Box display="flex" flexDirection="column" justifyContent="center">
       <TitleNews textAlign="center">News</TitleNews>
-      <Block>
-        <Filter value={filter} onChange={changeFilter} />
-        {filter ? (
-          <Button type="button" onClick={handleClear}>
-            <IconClose />
-          </Button>
-        ) : (
-          <Button>
-            <IconSearch />
-          </Button>
-        )}
-      </Block>
+      <InputSearch onChange={changeFilter} value={filter} onClick={handleClear}/>
       <List>
         {visibleNews
           .sort(function (a, b) {
