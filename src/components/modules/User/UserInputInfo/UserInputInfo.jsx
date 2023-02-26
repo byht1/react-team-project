@@ -42,8 +42,10 @@ export function UserInputInfo({
     /^[A-Za-zА-Яа-яЁёҐґІіЇїЄє\s,'"'-.]+(?:\s+[A-Za-zА-Яа-яЁёҐґІіЇїЄє]+){0,3}$/u
   );
   const regExpEmailInput = new RegExp(/^(?!-)[\w.-]{2,}@[\w-]+(\.[\w-]+)*\.[a-zA-Z]{2,}$/u);
-  const regExpCityInputNumber = new RegExp(/^(?!\s)[a-zA-Zа-яА-ЯЁёҐґІіЇїЄє\s,'"'-.]+$/);
-  const regExpBirthdayInputNumber = new RegExp(/^\d{1,2}\.\d{1,2}\.\d{4}$/);
+  const regExpCityInputNumber = new RegExp(/^(?!\s)[a-zA-Zа-яА-ЯЁёҐґІіЇїЄє\s,'"'-.’]+$/);
+  const regExpBirthdayInputNumber = new RegExp(
+    /^(0[1-9]|[12][0-9]|3[01])\.(0[1-9]|1[0-2])\.(19[3-9]\d|20[01]\d|2022)$/
+  );
   const regExpPhoneInputNumber = new RegExp(/^\+380\d{9}$/);
 
   const { mutate: sendEditUserInfo } = useMutation({
@@ -159,7 +161,7 @@ export function UserInputInfo({
         stepOne = regExpBirthdayInputNumber.test(e.target.value);
 
         if (!stepOne) {
-          setErrorMessage('Plese input date of birthday like dd.mm.year');
+          setErrorMessage('Plese input correct date of birthday like 01.08.1973');
           setInputErr(true);
           break;
         }
