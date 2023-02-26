@@ -13,7 +13,7 @@ export const useAppLoading = () => {
 
   const navigate = useNavigate();
 
-  const { isLoading, isSuccess } = useQuery({
+  const { isLoading, isSuccess, isError } = useQuery({
     queryFn: () => {
       if (accessToken) {
         return googleIn(accessToken);
@@ -34,9 +34,9 @@ export const useAppLoading = () => {
     staleTime: Infinity,
     refetchOnWindowFocus: false,
   });
-  console.log('🚀  isSuccess:', isSuccess);
+  console.log('🚀  isError:', isError);
 
-  return { isLoading, isSuccess };
+  return { isLoading, isSuccess, isError };
 };
 
 // const dispatch = useDispatch();

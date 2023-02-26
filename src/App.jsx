@@ -35,9 +35,9 @@ import 'react-toastify/dist/ReactToastify.css';
 // import { NotFound } from 'page/NotFound';
 
 function App() {
-  const { isLoading, isSuccess } = useAppLoading();
+  const { isLoading, isSuccess, isError } = useAppLoading();
 
-  if (isLoading || !isSuccess) {
+  if (isLoading && (!isSuccess || isError)) {
     return <Loader />;
   }
 
