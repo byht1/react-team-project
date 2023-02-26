@@ -44,7 +44,7 @@ export const Calendar = ({ petBirth }) => {
 //         id="petBirth"
 //         value={value}
 //         inputFormat="DD.MM.YYYY"
-//         minDate={'1990-01-01'}
+//         minDate={'1900-01-01'}
 //         disableFuture={true}
 //         onChange={newValue => {
 //           setValue(newValue);

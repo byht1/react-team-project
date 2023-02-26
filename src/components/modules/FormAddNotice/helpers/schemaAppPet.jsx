@@ -47,7 +47,7 @@ export const schemaAddPet = yup.object({
   //   /^(0[1-9]|[12]\d|3[01])\.(0[1-9]|1[012])\.\d{4}$/,
   //   'Date is required and must be in the format DD.MM.YYYY'
   // ),
-  // .test('birthday', 'Date must be after 01.01.1990 and before today', date => {
+  // .test('birthday', 'Date must be after 01.01.1900 and before today', date => {
   //   console.log(date);
   //   const value = dateConverter(date);
   //   const [day, month, year] = value.split('.');
@@ -55,7 +55,7 @@ export const schemaAddPet = yup.object({
   //   const currentDate = new Date();
   //   if (
   //     isNaN(parsedDate.getTime()) ||
-  //     parsedDate < new Date('1990-01-01') ||
+  //     parsedDate < new Date('1900-01-01') ||
   //     parsedDate > currentDate
   //   ) {
   //     return false;

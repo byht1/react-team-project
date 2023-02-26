@@ -65,7 +65,7 @@ export const FormStepOne = () => {
           <Text>Date of birth:</Text>
           <DesktopDatePicker
             maxDate={new Date()}
-            minDate={'01.01.1990'}
+            minDate={'01.01.1900'}
             inputFormat="DD.MM.YYYY"
             value={date}
             onChange={handleChange}
