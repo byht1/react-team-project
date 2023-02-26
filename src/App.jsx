@@ -41,6 +41,10 @@ function App() {
           <Route path="lost-found" element={<NoticesCategoriesList />} />
           <Route path="favorite" element={<NoticesCategoriesList />} />
           <Route path="own" element={<NoticesCategoriesList />} />
+          <Route path=":any/addpet" element={<FormAddNoticePage />}>
+            <Route index element={<FormStepOne />}></Route>
+            <Route path="step2" element={<FormStepTwo />}></Route>
+          </Route>
         </Route>
         <Route path="friends" element={<OurFriendsPage />} />
         {/* Пудлычний шлях */}
@@ -63,13 +67,8 @@ function App() {
         <Route path="posts" element={<Blog />} />
         <Route path="posts/:id" element={<PostDetails />} />
 
-        <Route path="*" element={<Navigate to="/" />} />
+        {/* <Route path="*" element={<Navigate to="/" />} /> */}
         {/* <Route path="*" element={<NotFound />} /> */}
-        <Route path="addpet" element={<FormAddNoticePage />}>
-          <Route path="step1" element={<FormStepOne />}></Route>
-          <Route path="step2" element={<FormStepTwo />}></Route>
-          {/* // <Route path="step2" element={<FormSellStepTwo />}></Route> */} */
-        </Route>
       </Route>
     </Routes>
   );

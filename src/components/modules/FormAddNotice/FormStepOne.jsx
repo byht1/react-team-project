@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useFormContext } from 'react-hook-form';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import { IoCloseOutline } from 'react-icons/io5';
 import TextField from '@mui/material/TextField';
 import { DesktopDatePicker } from '@mui/x-date-pickers/DesktopDatePicker';
@@ -22,6 +22,7 @@ import {
 } from './FormAddNotice.styled';
 
 export const FormStepOne = () => {
+  const location = useLocation().pathname.split('/')[2];
   const navigate = useNavigate();
 
   const [date, setDate] = useState(null);
@@ -40,13 +41,12 @@ export const FormStepOne = () => {
   useEffect(() => {
     setValue('birthday', date);
   }, [date, setValue]);
-  console.log(errors);
 
   return (
     <>
       <InputWrap>
         <LabelInput htmlFor="tittle">
-          <CloseModalBtn id="modal-close" type="button" onClick={() => navigate('/')}>
+          <CloseModalBtn id="modal-close" type="button" onClick={() => navigate(-1)}>
             <IoCloseOutline id="close-svg" size={'28px'} />
           </CloseModalBtn>
           <Text>
@@ -140,9 +140,17 @@ export const FormStepOne = () => {
             color="a"
             p="9px 55px"
             type="button"
-            onClick={() => navigate('/addpet/step2')}
+            onClick={() => {
+              trigger(['title', 'name', 'birthday', 'breed']).then(isValid => {
+                if (isValid) {
+                  navigate(`/notices/${location}/addpet/step2`);
+                } else {
+                  console.log('Form is invalid');
+                }
+              });
+            }}
           >
-            Next1
+            Next
           </ButtonAhead>
           <ButtonBack type="button" onClick={() => navigate('/')}>
             Cancel
@@ -160,14 +168,14 @@ export const FormStepOne = () => {
             onClick={() => {
               trigger(['title', 'name', 'birthday', 'breed']).then(isValid => {
                 if (isValid) {
-                  navigate('/addpet/step2');
+                  navigate(`/notices/${location}/addpet/step2`);
                 } else {
                   console.log('Form is invalid');
                 }
               });
             }}
           >
-            Next2
+            Next
           </ButtonAhead>
         </ButtonWrap>
       )}
