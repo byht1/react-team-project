@@ -9,7 +9,6 @@ import {
   DesktopImage,
 } from './Home.styled';
 
-import { useNavigate } from 'react-router';
 const Home = () => {
   return (
     <MaxBox>
