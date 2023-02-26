@@ -3,8 +3,7 @@ import server, { token } from './basic';
 const UrlRegister = Object.freeze({
   signUp: '/auth/sign-up',
   logIn: '/auth/log-in',
-  current: '/auth/current',
-  refresh: '/auth/refresh',
+  refresh: '/auth/current',
   google: '/auth/current?type=google',
   logOut: '/auth/logout',
 });
@@ -35,9 +34,9 @@ export const logIn = async body => {
   }
 };
 
-export const current = async () => {
+export const refresh = async () => {
   try {
-    const { data } = await server.get(UrlRegister.current);
+    const { data } = await server.get(UrlRegister.refresh);
     return data;
   } catch (error) {
     throw error;
@@ -62,24 +61,6 @@ export const logOutUser = async () => {
     });
     token.unset();
     localStorage.removeItem('refreshToken');
-  } catch (error) {
-    throw error;
-  }
-};
-
-export const refresh = async () => {
-  const refreshToken = localStorage.getItem('refreshToken');
-
-  if (!refreshToken) return false;
-
-  try {
-    const { data } = await server.post(UrlRegister.refresh, {
-      refresh_token: localStorage.getItem('refreshToken'),
-    });
-
-    token.set(data);
-
-    return true;
   } catch (error) {
     throw error;
   }
