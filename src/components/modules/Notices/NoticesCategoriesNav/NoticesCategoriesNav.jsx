@@ -12,6 +12,7 @@ import {
   FixedBtnWrapper,
   FixedAddPetText,
   FixedAddPetBtn,
+  FloatingAddPetBtn,
 } from './NoticesCategoriesNav.styled';
 
 export const NoticesCategoriesNav = () => {
@@ -53,16 +54,10 @@ export const NoticesCategoriesNav = () => {
           <AiOutlinePlus size={'24px'} color={'inherit'} />
         </FixedAddPetBtn>
       </FixedBtnWrapper>
-      {/* <FixedBtnWrapper>
-        <FixedAddPetText>Add pet</FixedAddPetText>
-        <FixedAddPetBtn onClick={handleAddPet}>
-          <AiOutlinePlus size={'24px'} color={'inherit'} />
-        </FixedAddPetBtn>
-      </FixedBtnWrapper>
       <FloatingAddPetBtn onClick={handleAddPet} type="button">
         Add pet
         <AiOutlinePlus size={'32px'} color={'inherit'} />
-      </FloatingAddPetBtn> */}
+      </FloatingAddPetBtn>
     </CategoriesBox>
   );
 };
