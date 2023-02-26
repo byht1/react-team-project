@@ -41,7 +41,6 @@ export const FileInput = props => {
 
   const fileRejectionItems = fileRejections.map(({ file, errors }) =>
     errors.map(e => {
-      console.log(e.message);
       return <p key={e.code}>{e.message}</p>;
     })
   );
@@ -68,7 +67,6 @@ export const FileInput = props => {
     }
   };
 
-  
   return (
     <>
       <LabelFile htmlFor={name}>

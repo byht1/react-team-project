@@ -78,6 +78,10 @@ export const LabelInputDate = styled.label`
     border-radius: 40px;
   }
 
+  & .css-1ozfgvy-MuiFormControl-root-MuiTextField-root .MuiOutlinedInput-root.Mui-focused fieldset {
+    border: 1px solid #f58138db;
+  }
+
   & .MuiOutlinedInput-notchedOutline {
     font-size: 14px;
 
@@ -127,7 +131,6 @@ export const Input = styled.input`
   outline: none;
   transition: var(--transition-border-color);
 
-  &:hover,
   &:focus {
     border: 1.5px solid ${p => p.theme.colors.a};
   }
@@ -153,7 +156,8 @@ export const Input = styled.input`
 export const InputSelect = styled(Autocomplete)`
   &.css-zrexw9-MuiAutocomplete-root .MuiAutocomplete-inputRoot {
     &:hover {
-      border: transparent;
+      /* border: transparent; */
+      border-color: 1.5px solid ${p => p.theme.colors.a};
     }
   }
 
@@ -274,7 +278,6 @@ export const Subtitle = styled.p`
 
   @media (min-width: 768px) {
     font-size: ${p => p.theme.fontSizes.xl};
-   
   }
 `;
 

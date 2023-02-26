@@ -28,8 +28,6 @@ export const FirstPage = ({ nextStep, onClose }) => {
     setValue,
   } = useFormContext();
 
-  console.log(errors);
-
   const [date, setDate] = useState(null);
 
   useEffect(() => {
@@ -100,8 +98,8 @@ export const FirstPage = ({ nextStep, onClose }) => {
               '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
                 border: '20px solid #f58138db',
                 position: 'absolute',
-                top: -0.5,
-                bottom: -0.8,
+                top: -0.4,
+                bottom: -1,
                 left: 0,
                 right: 0,
               },
