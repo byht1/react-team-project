@@ -41,9 +41,13 @@ export const Content = styled.div`
 export const ButtonBlock = styled.div`
 width: 100%;
 display: flex;
+padding-bottom: 5px;
 gap: 30px;
 flex-direction: column;
 align-items: flex-end;
+border-bottom: 1px solid rgba(245, 146, 86, 0.5);
+border-radius: ${p => p.theme.radii.normal};
+
 `
 export const Button = styled.button`
 display: block;

@@ -13,10 +13,9 @@ export const PostComment = () =>{
         <ImgComment src={data.image} alt=""/>
         <ButtonBlock>
         <Label>
-            <Input placeholder="Type comment" />
+            <Input placeholder="Type comment"></Input>
         </Label>
         <AddComent>
-        <Text size={'24'} lh="heading" color='a'>Add</Text>
         <Button type='button'>
             <AiOutlinePlus size={'32px'} color={'inherit'}/>
         </Button>
