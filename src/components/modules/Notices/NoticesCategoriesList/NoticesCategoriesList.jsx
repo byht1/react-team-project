@@ -14,6 +14,7 @@ export const NoticesCategoriesList = () => {
   const location = useLocation();
   const theme = useTheme();
   const pathname = location.pathname.split('/')[2];
+
   let categoryName = '';
 
   useEffect(() => {
