@@ -37,6 +37,7 @@ import {
   InputAdd,
   WrapAddedImg,
   AddWrap,
+  ImgError,
 } from './FormAddNotice.styled';
 
 export const FormStepTwo = () => {
@@ -158,7 +159,11 @@ export const FormStepTwo = () => {
                 {/* <ImgLoaded alt="uploaded" /> */}
                 <AddIcon />
               </InputFileIcon>
-              {errors.images && <Error>{errors.images.message}</Error>}
+              {errors.images && (
+                <ImgError>
+                  <Error>{errors.images.message}</Error>
+                </ImgError>
+              )}
               <AddWrap>
                 <AdditionalImg>
                   <AddIcon />
@@ -180,13 +185,13 @@ export const FormStepTwo = () => {
             <ButtonAhead color="a" p="9px 55px" type="submit">
               Done
             </ButtonAhead>
-            <ButtonBack type="button" onClick={() => navigate('/addpet')}>
+            <ButtonBack type="button" onClick={() => navigate(-1)}>
               Back
             </ButtonBack>
           </ButtonWrap>
         ) : (
           <ButtonWrap>
-            <ButtonBack type="button" onClick={() => navigate('/addpet')}>
+            <ButtonBack type="button" onClick={() => navigate(-1)}>
               Back
             </ButtonBack>
             <ButtonAhead color="a" p="9px 55px" type="submit">

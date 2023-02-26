@@ -476,3 +476,8 @@ export const AddWrap = styled.div`
     }
   }
 `;
+
+export const ImgError = styled.div`
+  padding-top: 20px;
+  /* x */
+`;
