@@ -53,7 +53,7 @@ flex-direction: column;
 gap: 30px;
 `;
  export const PostIcon = styled(AiOutlineLike)`
-  fill: red;
+ fill: ${p => p.theme.colors.a};
   width: 25px;
   height: 25px;
  `
