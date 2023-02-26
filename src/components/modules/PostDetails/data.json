@@ -1,0 +1,17 @@
+
+    {
+    "_id": "63f139e997fc630d8da1ff68",
+    "title": "Post title",
+    "text": "Jack: Lorem ipsum dolor sit amet, consecteturLorem ipsum dolor sit amet, consectetur  Lorem ipsum dolor sit amet, consectetur Lorem ipsum dolor sit amet, consectetur   Lorem ipsum dolor sit amet, consecteturLorem ipsum dolor sit amet, consectetur  Jack: Lorem ipsum dolor sit amet, consecteturLorem ipsum dolor sit amet, consectetur  Lorem ipsum dolor sit amet, consectetur Lorem ipsum dolor sit amet, consectetur   Lorem ipsum dolor sit amet, consecteturLorem ipsum dolor sit amet, consectetur  Jack: Lorem ipsum dolor sit amet, consecteturLorem ipsum dolor sit amet, consectetur  Lorem ipsum dolor sit amet, consectetur Lorem ipsum dolor sit amet, consectetur   Lorem ipsum dolor sit amet, consecteturLorem ipsum dolor sit amet, consectetur  ",
+    "category": "veterinary",
+    "image": "https://api.multiavatar.com/post.png",
+    "likes": [
+      "63f139e997fc630d8da1ff68"
+    ],
+
+    "author": "Jack",
+    "comments": [
+      "6373c0bca5a6e4c9556f1e7a"
+    ],
+    "date": "14.08.2022"
+  }
