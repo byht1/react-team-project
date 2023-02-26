@@ -142,7 +142,7 @@ export const FormStepOne = () => {
             type="button"
             onClick={() => navigate('/addpet/step2')}
           >
-            Next
+            Next1
           </ButtonAhead>
           <ButtonBack type="button" onClick={() => navigate('/')}>
             Cancel
@@ -158,7 +158,7 @@ export const FormStepOne = () => {
             p="9px 55px"
             type="button"
             onClick={() => {
-              trigger().then(isValid => {
+              trigger(['title', 'name', 'birthday', 'breed']).then(isValid => {
                 if (isValid) {
                   navigate('/addpet/step2');
                 } else {
@@ -167,7 +167,7 @@ export const FormStepOne = () => {
               });
             }}
           >
-            Next
+            Next2
           </ButtonAhead>
         </ButtonWrap>
       )}
