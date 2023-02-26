@@ -18,6 +18,7 @@ export const Background = styled.div`
     background-image: url(${imageDesk});
     background-position: 50% 100%;
     padding: 0 0 60px 0;
+    overflow-y: auto;
   }
 `;
 export const MaxBox = styled.div``;
@@ -42,7 +43,6 @@ export const Box = styled.div`
     align-content: space-between;
     flex-direction: row;
     height: 100%;
-    overflow-y: scroll;
   }
 `;
 export const MobileImage = styled.img`
