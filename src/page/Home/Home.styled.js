@@ -6,14 +6,10 @@ export const Background = styled.div`
   height: 100%;
   padding: 60px 20px;
   background-image: url(${image});
-  /* MaxBox background-image: url(/react-team-project/static/media/home-back.8a6d1d80765a0ee620beb0bdd1608a3c.svg); */
   background-repeat: no-repeat;
   background-size: 620px;
   background-position: 25% 150px;
   position: fixed;
-  /* @media (min-width: 480px) and (max-width: 767.9px) {
-    width: 480px;
-  } */
   @media (min-width: 630px) {
     background-size: 1449px;
   }
@@ -21,6 +17,7 @@ export const Background = styled.div`
     background-size: 1380px;
     background-image: url(${imageDesk});
     background-position: 50% 100%;
+    padding: 0 0 60px 0;
   }
 `;
 export const MaxBox = styled.div``;
@@ -43,8 +40,9 @@ export const Box = styled.div`
   @media (min-width: 1280px) {
     width: 1280px;
     align-content: space-between;
-    /* justify-content: unset; */
+    flex-direction: row;
     height: 100%;
+    overflow-y: scroll;
   }
 `;
 export const MobileImage = styled.img`
@@ -75,10 +73,7 @@ export const DesktopImage = styled.img`
   }
   display: block;
   width: 590px;
-  /* position: relative; */
   margin-left: auto;
-  /* margin-bottom: 10px; */
-  /* bottom: 0; */
   margin-top: auto;
 `;
 export const HomeTitle = styled.h2`
@@ -89,9 +84,7 @@ export const HomeTitle = styled.h2`
   width: 280px;
   position: relative;
   z-index: 9;
-  @media (min-width: 480px) and (max-width: 767.9px) {
-    /* width: 480px; */
-  }
+
   @media (min-width: 630px) {
     width: 414px;
     font-size: 49px;
@@ -104,5 +97,7 @@ export const HomeTitle = styled.h2`
   }
   @media (min-width: 1280px) {
     margin-right: auto;
+    margin-bottom: auto;
+    margin-top: 60px;
   }
 `;
