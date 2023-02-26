@@ -3,7 +3,6 @@ import * as yup from 'yup';
 export const schemaAddMyPetForm = yup.object({
   petName: yup
     .string()
-    // .matches(/^[a-zA-Z0-9А-Яа-яЁё ]+$/u, 'Name can contain only letters, spaces and numbers.')
     .matches(/^[a-zA-ZА-Яа-яЁёЇїІіЄєҐґ' ]+$/u, 'Name can contain only letters and spaces.')
     .min(2, 'The name must contain more than 2 characters')
     .max(20, 'Maximum name length 20 characters')
@@ -18,7 +17,7 @@ export const schemaAddMyPetForm = yup.object({
       // если дата не прошла преобразование, возвращаем null
       return isNaN(date) ? null : date;
     })
-    .min(new Date('1990-01-01'), 'Date must be after 01.01.1990')
+    .min(new Date('1989-12-01'), 'Date must be after 01.01.1990')
     .max(new Date(), 'Date cannot be in the future')
     .test('is-valid-date', 'Invalid date', function (value) {
       // проверяем, что дата не равна null и является допустимой

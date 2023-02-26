@@ -12,7 +12,6 @@ import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { addPet } from '../../../../api';
 import { schemaAddMyPetForm } from '../validationSchema';
 import { dateConverter } from '../../FormAddNotice/helpers/dateConverter';
-// import { schemaAddPet } from './helpers/schemaAppPet';
 import { FirstPage } from '../FormPages/FirstPage';
 import { SecondPage } from '../FormPages/SecondPage';
 import { ModalOverlay } from '../ModalOverlay/ModalOverlay';

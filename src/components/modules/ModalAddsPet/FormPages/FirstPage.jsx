@@ -3,7 +3,10 @@ import PropTypes from 'prop-types';
 import { useFormContext } from 'react-hook-form';
 import { useState, useEffect } from 'react';
 import TextField from '@mui/material/TextField';
+import { Autocomplete } from '@mui/material';
 import { DesktopDatePicker } from '@mui/x-date-pickers/DesktopDatePicker';
+import { dogBreeds } from '../../FormAddNotice/helpers/dogBreeds';
+
 import {
   Buttons,
   InputWrap,
@@ -14,6 +17,7 @@ import {
   ButtonDark,
   ButtonLight,
   LabelInputDate,
+  ErrorInputDate,
 } from './FormPages.styled';
 
 export const FirstPage = ({ nextStep, onClose }) => {
@@ -22,7 +26,6 @@ export const FirstPage = ({ nextStep, onClose }) => {
     trigger,
     formState: { errors },
     setValue,
-    getValues,
   } = useFormContext();
 
   const [date, setDate] = useState(null);
@@ -72,7 +75,6 @@ export const FirstPage = ({ nextStep, onClose }) => {
               <TextField
                 {...params}
                 {...register('birthday')}
-                // onClick={handleInputClick}
                 sx={{
                   '& .MuiOutlinedInput-root': {
                     '&:hover fieldset': {
@@ -87,66 +89,53 @@ export const FirstPage = ({ nextStep, onClose }) => {
               />
             )}
           />
-          {/* <Input
-            {...register('petBirth')}
-            id="petBirth"
-            type="text"
-            placeholder="Type date of birth"
-            onfocus="(this.type='date')"
-            onblur="(this.type='text')"
-          /> */}
-          {errors.petBirth && <ErrorInput>{errors.petBirth.message}</ErrorInput>}
-          {errors.birthday && <ErrorInput>{errors.birthday.message}</ErrorInput>}
+          {errors.birthday && <ErrorInputDate>{errors.birthday.message}</ErrorInputDate>}
         </LabelInputDate>
 
         {/* <LabelInput htmlFor="petBreed">
-          <LabelName>Breed</LabelName>
-          <InputSelect
+          <LabelName>Breed:</LabelName>
+          <Autocomplete
             disablePortal
             id="petBreed"
             options={dogBreeds}
-            color="red"
             sx={{
               width: '100%',
               display: 'inline-block',
-              marginTop: '12px',
-              '&  .css-1d3z3hw-MuiOutlinedInput-notchedOutline': {
-                borderColor: 'transparent',
+              '& .MuiOutlinedInput-root .MuiAutocomplete-input': {
+                padding: { xs: '1px 6px' },
               },
-              '& .css-md26zr-MuiInputBase-root-MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline, & .css-154xyx0-MuiInputBase-root-MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline ':
-                {
-                  border: '1px solid #f58138db',
-                },
-              '& .MuiInputBase-input.MuiOutlinedInput-input.MuiAutocomplete-input.MuiAutocomplete-inputFocused.css-1t8l2tu-MuiInputBase-input-MuiOutlinedInput-input':
-                {
-                  p: '0px',
-                },
-              '& .MuiAutocomplete-inputRoot': {
-                p: '11px 14px',
-                fontSize: { xs: '14px', md: '16px' },
+              '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
+                border: '20px solid #f58138db',
+                position: 'absolute',
+                top: -2,
+                bottom: -1.8,
+                left: -2,
+                right: -1.8,
               },
               '&  .MuiAutocomplete-inputRoot': {
                 bgcolor: '#FDF7F2',
                 borderRadius: '40px',
                 border: '1px solid #F5925680',
               },
-              '& input': {
-                '&::placeholder': { fontSize: { xs: '13.3px', md: '16px' }, color: '#11111199' },
+              '& .MuiOutlinedInput-notchedOutline': {
+                borderRadius: '40px',
+              },
+              '& fieldset': {
+                borderRadius: '40px',
+                border: '1px solid #F5925680',
+                transition: 'border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out',
+                '&:focus-within': {
+                  border: '2px solid red',
+                },
               },
             }}
             freeSolo={true}
             renderInput={params => (
-              <TextField
-                {...params}
-                {...register('petBreed')}
-                placeholder="Type breed"
-                sx={{ color: '#111111' }}
-              />
+              <TextField {...params} {...register('petBreed')} placeholder="Type breed" />
             )}
           />
-          {errors.petBreed && <ErrorInput>{errors.petBreed.message}</ErrorInput>}
-        </LabelInput>
-        </InputWrap> */}
+          {errors.brepetBreeded && <ErrorInput>{errors.petBreed.message}</ErrorInput>}
+        </LabelInput> */}
 
         <LabelInput htmlFor="petBreed">
           <LabelName>Breed</LabelName>

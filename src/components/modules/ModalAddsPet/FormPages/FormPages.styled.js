@@ -24,6 +24,7 @@ export const LabelInput = styled.label`
 `;
 
 export const LabelInputDate = styled.label`
+  position: relative;
   font-size: 18px;
   & .MuiInputBase-input:focus .MuiOutlinedInput-notchedOutline {
     border: 4px solid red;
@@ -31,11 +32,15 @@ export const LabelInputDate = styled.label`
   & .MuiFormControl-root {
     width: 100%;
     margin-top: 12px;
+    height: 49.55px;
   }
 
-  & .MuiInputBase-root.Muifocused {
-    /* border: 4px solid #f5925680;
-    outline: 4px solid #f5925680; */
+  & .css-1ozfgvy-MuiFormControl-root-MuiTextField-root .MuiOutlinedInput-root {
+    border-radius: 40px;
+  }
+
+  & .MuiInputBase-root {
+    height: 49.55px;
   }
 
   & .MuiOutlinedInput-notchedOutline {
@@ -57,12 +62,11 @@ export const LabelInputDate = styled.label`
   @media (min-width: 768px) {
     font-size: 24px;
   }
-  &:not(:last-child) {
-    margin-bottom: 16px;
-    @media (min-width: 768px) {
-      margin-bottom: 28px;
-      margin-bottom: 18px;
-    }
+
+  margin-bottom: 16px;
+
+  @media (min-width: 768px) {
+    margin-bottom: 28px;
   }
 `;
 
@@ -200,6 +204,18 @@ export const ButtonLight = styled.button`
 `;
 
 export const ErrorInput = styled.div`
+  position: absolute;
+  color: red;
+  font-size: 10px;
+  top: 80px;
+
+  @media (min-width: 768px) {
+    top: 90px;
+    font-size: ${p => p.theme.fontSizes.s};
+  }
+`;
+
+export const ErrorInputDate = styled.div`
   position: absolute;
   color: red;
   font-size: 10px;
