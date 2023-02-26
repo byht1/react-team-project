@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { useDispatch } from 'react-redux';
+// import { useDispatch } from 'react-redux';
 import { AiOutlineSearch } from 'react-icons/ai';
 // import { search } from 'redux/notices/notices-slice';
 import { SearchForm, SearchBar, SearchButton } from './BlogSearch.styled';

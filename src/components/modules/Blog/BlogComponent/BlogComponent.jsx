@@ -1,24 +1,23 @@
 import React from 'react';
 import { useEffect } from 'react';
-import { useLocation } from 'react-router-dom';
-import { useNavigate } from 'react-router-dom';
+import { useInfiniteQuery } from '@tanstack/react-query';
+import { useTheme } from 'styled-components';
+// import { useLocation, useNavigate } from 'react-router-dom';
 // import { Suspense } from 'react';
 // import { Outlet } from 'react-router-dom';
-import { BlogContainer, Title, LoadMoreBtn } from './BlogComponent.styled';
 import { BlogSearch } from './BlogSearch/BlogSearch';
 import { BlogCategoriesNav } from './BlogCategoriesNav';
 import { PostsList } from './PostsList';
-import { useQuery, useInfiniteQuery } from '@tanstack/react-query';
 import { fetchPosts } from 'api/posts';
 import { Loader } from 'components/global/Loader';
-import { useTheme } from 'styled-components';
 import { refresh } from 'api';
+import { BlogContainer, Title, LoadMoreBtn, ListBox } from './BlogComponent.styled';
 
 const PAGE_SIZE = 2; // number of items per page
 
 export const BlogComponent = () => {
-  const location = useLocation();
-  const navigate = useNavigate();
+  // const location = useLocation();
+  // const navigate = useNavigate();
   // const pathname = location.pathname;
   const theme = useTheme();
 
@@ -80,14 +79,14 @@ export const BlogComponent = () => {
 
       {/* {isSuccess && <PostsList data={data} />} */}
       {isSuccess && (
-        <>
+        <ListBox>
           {data?.pages?.flat()?.length === 0 && <p>No notices here yet...</p>}
           {data.pages.map((page, i) => (
             <React.Fragment key={i}>
               <PostsList data={page} />
             </React.Fragment>
           ))}
-        </>
+        </ListBox>
       )}
 
       {isError &&

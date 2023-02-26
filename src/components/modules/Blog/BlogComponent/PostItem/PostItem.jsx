@@ -17,7 +17,7 @@ import { Box } from 'components/global/Box';
 import { AiOutlineLike, AiOutlineComment } from 'react-icons/ai';
 
 export const Post = ({ post, isImageOnRight }) => {
-  const { image, author, title, category, text, createdAt, comments, likes, _id } = post;
+  const { image, author, title, category, text, createdAt, comments, likes } = post;
 
   const trimText = text => {
     const maxLength = 300;

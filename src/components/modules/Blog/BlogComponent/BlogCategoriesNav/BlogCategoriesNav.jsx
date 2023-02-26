@@ -2,8 +2,8 @@ import React from 'react';
 import { AiOutlinePlus } from 'react-icons/ai';
 import {
   CategoriesBox,
-  CategoryBtnWrapper,
-  CategoryBtn,
+  // CategoryBtnWrapper,
+  // CategoryBtn,
   FloatingAddPostBtn,
   FixedBtnWrapper,
   FixedAddPostText,

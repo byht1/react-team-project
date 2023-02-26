@@ -38,6 +38,8 @@ export const SearchForm = styled('form')`
   }
 `;
 
+export const ListBox = styled.ul``;
+
 export const LoadMoreBtn = styled(DarkBtn)`
   display: block;
   margin-left: auto;
