@@ -53,30 +53,6 @@ export const authSlice = createSlice({
       state.refresh_token = null;
     },
   },
-  extraReducers: {
-    [getUserData.pending]: handlePending,
-    [getUserData.rejected]: handleRejected,
-    [getUserData.fulfilled](state, action) {
-      state.loading = false;
-      state.error = null;
-      state.id = action.payload._id;
-      state.user = {
-        name: action.payload.name,
-        email: action.payload.email,
-        phone: action.payload.phone,
-        city: action.payload.city,
-        photo: action.payload.photo,
-        birthday: action.payload.birthday,
-      };
-    },
-    [editUserProfilePhoto.pending]: handlePending,
-    [editUserProfilePhoto.rejected]: handleRejected,
-    [editUserProfilePhoto.fulfilled](state, action) {
-      state.isLoading = false;
-      state.error = null;
-      state.user.photo = action.payload.photo;
-    },
-  },
 });
 
 export const { register, logout } = authSlice.actions;
