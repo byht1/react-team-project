@@ -1,2 +1,0 @@
-"use strict";(self.webpackChunkreact_team_project=self.webpackChunkreact_team_project||[]).push([[150],{2150:function(e,t,c){c.r(t);c(2791);var n=c(3329);t.default=function(){return(0,n.jsx)("div",{children:"Blog Component "})}}}]);
-//# sourceMappingURL=150.cae461a2.chunk.js.map
