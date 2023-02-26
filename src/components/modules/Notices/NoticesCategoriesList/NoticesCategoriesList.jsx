@@ -14,10 +14,9 @@ import { FormStepOne, FormStepTwo } from 'components/modules/FormAddNotice';
 export const NoticesCategoriesList = () => {
   const dispatch = useDispatch();
   const location = useLocation();
-  console.log('🚀  location:', location);
   const theme = useTheme();
   const pathname = location.pathname.split('/')[2];
- 
+
   let categoryName = '';
 
   useEffect(() => {

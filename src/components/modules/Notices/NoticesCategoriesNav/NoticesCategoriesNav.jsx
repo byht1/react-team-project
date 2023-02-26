@@ -1,5 +1,5 @@
 import React from 'react';
-import { getIsLogin } from 'redux/auth';
+import { getEmail, getIsLogin, getPhone, getCity } from 'redux/auth';
 import { useSelector } from 'react-redux';
 import { showLoginWarning } from 'helpers/showLoginWarning';
 import { AiOutlinePlus } from 'react-icons/ai';
@@ -16,14 +16,21 @@ import {
 
 export const NoticesCategoriesNav = () => {
   const isLoggedIn = useSelector(getIsLogin);
+  const email = useSelector(getEmail);
+  const city = useSelector(getCity);
   const navigate = useNavigate();
   const location = useLocation().pathname.split('/').pop();
 
   const handleAddPet = () => {
-    if (!isLoggedIn) showLoginWarning();
+    if (!isLoggedIn) {
+      showLoginWarning();
+      navigate('/login');
+      return;
+    }
+    if (!email || !city) return showLoginWarning('Fill in your contact information please');
+
     navigate(`${location}/addpet`);
     return;
-    // ----------------- Функцію для виклику додавання тваринки додавай знизу
   };
 
   return (
