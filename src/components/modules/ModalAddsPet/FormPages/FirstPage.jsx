@@ -1,6 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { useFormContext } from 'react-hook-form';
+import { useState, useEffect } from 'react';
+import TextField from '@mui/material/TextField';
+// import { Autocomplete } from '@mui/material';
+import { DesktopDatePicker } from '@mui/x-date-pickers/DesktopDatePicker';
+import { dogBreeds } from '../../FormAddNotice/helpers/dogBreeds';
 
 import {
   Buttons,
@@ -11,6 +16,9 @@ import {
   ErrorInput,
   ButtonDark,
   ButtonLight,
+  LabelInputDate,
+  ErrorInputDate,
+  Auto,
 } from './FormPages.styled';
 
 export const FirstPage = ({ nextStep, onClose }) => {
@@ -18,15 +26,30 @@ export const FirstPage = ({ nextStep, onClose }) => {
     register,
     trigger,
     formState: { errors },
+    setValue,
   } = useFormContext();
 
+  const [date, setDate] = useState(null);
+  // const [open, setOpen] = useState(false);
+
+  useEffect(() => {
+    setValue('birthday', date);
+  }, [date, setValue]);
+
   const checkInput = async () => {
-    const result = await trigger(['petName', 'petBirth', 'petBreed']);
+    const result = await trigger(['petName', 'birthday', 'petBreed']);
     if (result) {
-      console.log(result);
       nextStep();
     }
   };
+
+  const handleChange = newValue => {
+    setDate(newValue);
+  };
+
+  // const handleInputClick = () => {
+  //   setOpen(true);
+  // };
 
   return (
     <>
@@ -37,73 +60,81 @@ export const FirstPage = ({ nextStep, onClose }) => {
           {errors.petName && <ErrorInput>{errors.petName.message}</ErrorInput>}
         </LabelInput>
 
-        <LabelInput htmlFor="petBirth">
+        <LabelInputDate htmlFor="petBirth">
           <LabelName>Date of birth</LabelName>
-          <Input
-            {...register('petBirth')}
-            id="petBirth"
-            type="text"
-            placeholder="Type date of birth"
-            onfocus="(this.type='date')"
-            onblur="(this.type='text')"
+          <DesktopDatePicker
+            maxDate={new Date()}
+            minDate={new Date('1990-01-01')}
+            inputFormat="DD.MM.YYYY"
+            value={date}
+            // open={open}
+            // onOpen={() => setOpen(true)}
+            // onClose={() => setOpen(false)}
+            // disableTextInput={true}
+            onChange={handleChange}
+            renderInput={params => (
+              <TextField
+                {...params}
+                {...register('birthday')}
+                sx={{
+                  '& .MuiOutlinedInput-root': {
+                    '&:hover fieldset': {
+                      border: '0.1px solid #F5925680',
+                    },
+                    '&.Mui-focused fieldset': {
+                      border: '2px solid #f58138db',
+                    },
+                  },
+                }}
+                className="myDatePicker"
+              />
+            )}
           />
-          {errors.petBirth && <ErrorInput>{errors.petBirth.message}</ErrorInput>}
-        </LabelInput>
+          {errors.birthday && <ErrorInputDate>{errors.birthday.message}</ErrorInputDate>}
+        </LabelInputDate>
 
-        {/* <LabelInput htmlFor="petBreed">
+        <LabelInput htmlFor="petBreed">
           <LabelName>Breed</LabelName>
-          <InputSelect
+          <Auto
             disablePortal
             id="petBreed"
             options={dogBreeds}
-            color="red"
             sx={{
               width: '100%',
               display: 'inline-block',
-              marginTop: '12px',
-              '&  .css-1d3z3hw-MuiOutlinedInput-notchedOutline': {
-                borderColor: 'transparent',
-              },
-              '& .css-md26zr-MuiInputBase-root-MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline, & .css-154xyx0-MuiInputBase-root-MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline ':
-                {
-                  border: '1px solid #f58138db',
-                },
-              '& .MuiInputBase-input.MuiOutlinedInput-input.MuiAutocomplete-input.MuiAutocomplete-inputFocused.css-1t8l2tu-MuiInputBase-input-MuiOutlinedInput-input':
-                {
-                  p: '0px',
-                },
-              '& .MuiAutocomplete-inputRoot': {
-                p: '11px 14px',
-                fontSize: { xs: '14px', md: '16px' },
+              '& .MuiOutlinedInput-root .MuiAutocomplete-input': {
+                padding: { xs: '1px 6px' },
               },
               '&  .MuiAutocomplete-inputRoot': {
                 bgcolor: '#FDF7F2',
                 borderRadius: '40px',
                 border: '1px solid #F5925680',
               },
-              '& input': {
-                '&::placeholder': { fontSize: { xs: '13.3px', md: '16px' }, color: '#11111199' },
+              '& .MuiOutlinedInput-notchedOutline': {
+                borderRadius: '40px',
+              },
+              '& fieldset': {
+                borderRadius: '40px',
+                border: '1px solid #F5925680',
+                transition: 'border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out',
+                '&:focus-within': {
+                  border: '2px solid red',
+                },
               },
             }}
             freeSolo={true}
             renderInput={params => (
-              <TextField
-                {...params}
-                {...register('petBreed')}
-                placeholder="Type breed"
-                sx={{ color: '#111111' }}
-              />
+              <TextField {...params} {...register('petBreed')} placeholder="Type breed" />
             )}
           />
-          {errors.petBreed && <ErrorInput>{errors.petBreed.message}</ErrorInput>}
+          {errors.brepetBreeded && <ErrorInput>{errors.petBreed.message}</ErrorInput>}
         </LabelInput>
-        </InputWrap> */}
 
-        <LabelInput htmlFor="petBreed">
+        {/* <LabelInput htmlFor="petBreed">
           <LabelName>Breed</LabelName>
           <Input {...register('petBreed')} id="petBreed" type="text" placeholder="Type breed" />
-          {errors.petBreed && <ErrorInput>{errors.petBreed.message}</ErrorInput>}
-        </LabelInput>
+          {errors.petBreed && <ErrorInput>{errors.petBreed.message}</ErrorInput>} */}
+        {/* </LabelInput> */}
       </InputWrap>
 
       <Buttons>

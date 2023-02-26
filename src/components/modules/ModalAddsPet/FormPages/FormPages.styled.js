@@ -21,13 +21,93 @@ export const LabelInput = styled.label`
       margin-bottom: ${p => p.theme.space[8]}px;
     }
   }
+
+  & .MuiAutocomplete-root {
+    height: 49.55px;
+  }
+
+  & .MuiFormControl-root {
+    height: 49.55px;
+  }
+
+  & .MuiInputBase-root {
+    height: 100%;
+  }
+
+  &
+    .css-154xyx0-MuiInputBase-root-MuiOutlinedInput-root.Mui-focused
+    .MuiOutlinedInput-notchedOutline {
+    border-color: ${p => p.theme.colors.a};
+    border-width: 1px;
+  }
+
+  & .css-154xyx0-MuiInputBase-root-MuiOutlinedInput-root:hover .MuiOutlinedInput-notchedOutline {
+    border-color: ${p => p.theme.colors.a};
+  }
+`;
+
+export const Auto = styled(Autocomplete)`
+  &
+    .css-md26zr-MuiInputBase-root-MuiOutlinedInput-root.Mui-focused
+    .MuiOutlinedInput-notchedOutline {
+    border-color: ${p => p.theme.colors.a};
+    border-width: 1px;
+  }
+`;
+
+export const LabelInputDate = styled.label`
+  position: relative;
+  font-size: 18px;
+  & .MuiInputBase-input:focus .MuiOutlinedInput-notchedOutline {
+    border: 4px solid red;
+  }
+  & .MuiFormControl-root {
+    width: 100%;
+    height: 49.55px;
+  }
+
+  & .css-1ozfgvy-MuiFormControl-root-MuiTextField-root .MuiOutlinedInput-root {
+    border-radius: 40px;
+  }
+
+  & .MuiInputBase-root {
+    height: 49.55px;
+  }
+
+  & .MuiOutlinedInput-notchedOutline {
+    font-size: 14px;
+
+    border: 1px solid #f5925680;
+    border-radius: 40px;
+    background-color: #fdf7f2;
+    z-index: -1;
+  }
+  & .MuiInputBase-input {
+    font-size: 14px;
+    padding: 11px 14px;
+    @media (min-width: 768px) {
+      padding: 11px 16px;
+      font-size: 16px;
+    }
+  }
+  @media (min-width: 768px) {
+    font-size: 24px;
+  }
+
+  margin-bottom: 16px;
+
+  @media (min-width: 768px) {
+    margin-bottom: 28px;
+  }
 `;
 
 export const LabelName = styled.p`
   font-size: ${p => p.theme.fontSizes.l};
   line-height: 1.45;
+  margin-bottom: ${p => p.theme.space[3]}px;
 
   @media (min-width: 768px) {
+    margin-bottom: ${p => p.theme.space[4]}px;
     font-size: ${p => p.theme.fontSizes.xxl};
     line-height: ${p => p.theme.lineHeights.min};
   }
@@ -38,7 +118,6 @@ export const Input = styled.input`
   background-color: ${p => p.theme.colors.bg};
   border: 1px solid ${p => p.theme.colors.inputBdr};
   border-radius: ${p => p.theme.radii.inputRadius};
-  margin-top: ${p => p.theme.space[3]}px;
   font-size: ${p => p.theme.fontSizes.s};
   line-height: ${p => p.theme.lineHeights.heading};
   outline: none;
@@ -46,7 +125,7 @@ export const Input = styled.input`
 
   &:hover,
   &:focus {
-    border: 1px solid ${p => p.theme.colors.a};
+    border: 1.5px solid ${p => p.theme.colors.a};
   }
 
   &::placeholder {
@@ -61,7 +140,6 @@ export const Input = styled.input`
 
   @media (min-width: 768px) {
     padding: 11px 16px 10px;
-    margin-top: ${p => p.theme.space[4]}px;
     font-size: ${p => p.theme.fontSizes.m};
     font-size: 16px;
     line-height: 1.66;
@@ -157,6 +235,18 @@ export const ButtonLight = styled.button`
 `;
 
 export const ErrorInput = styled.div`
+  position: absolute;
+  color: red;
+  font-size: 10px;
+  top: 80px;
+
+  @media (min-width: 768px) {
+    top: 90px;
+    font-size: ${p => p.theme.fontSizes.s};
+  }
+`;
+
+export const ErrorInputDate = styled.div`
   position: absolute;
   color: red;
   font-size: 10px;
