@@ -1,6 +1,6 @@
 import server from 'api/basic';
 
-export const fetchAllPosts = async ({ category, offset = 0, count = 12, search }) => {
+export const fetchPosts = async ({ category, offset = 0, count = 12, search }) => {
   const isCategory = category ? `category=${category}` : '';
   const isSearch = search ? `&search=${search}` : '';
   try {

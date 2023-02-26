@@ -8,11 +8,13 @@ import { BlogContainer, Title, LoadMoreBtn } from './BlogComponent.styled';
 import { BlogSearch } from './BlogSearch/BlogSearch';
 import { BlogCategoriesNav } from './BlogCategoriesNav';
 import { PostsList } from './PostsList';
-import { useQuery } from '@tanstack/react-query';
-import { fetchAllPosts } from 'api/posts';
+import { useQuery, useInfiniteQuery } from '@tanstack/react-query';
+import { fetchPosts } from 'api/posts';
 import { Loader } from 'components/global/Loader';
 import { useTheme } from 'styled-components';
 import { refresh } from 'api';
+
+const PAGE_SIZE = 2; // number of items per page
 
 export const BlogComponent = () => {
   const location = useLocation();
@@ -48,18 +50,26 @@ export const BlogComponent = () => {
     fetchNextPage,
     hasNextPage,
     isFetchingNextPage,
-  } = useQuery(['posts', 'all'], fetchAllPosts, {
-    getNextPageParam: (lastPage, allPages) => {
-      if (lastPage && lastPage.data.length === 1) {
-        return lastPage.data[lastPage.data.length - 1].id;
-      } else {
-        return null;
-      }
-    },
-  });
+  } = useInfiniteQuery(
+    ['posts', 'all'],
+
+    async ({ pageParam = 0 }) => await fetchPosts({ offset: pageParam, count: PAGE_SIZE }),
+
+    {
+      getNextPageParam: (lastPage, allPages) => {
+        if (lastPage.length === 0) return undefined;
+        const lastPost = lastPage[lastPage.length - 1];
+        const totalPages = Math.ceil(lastPost.totalCount / PAGE_SIZE);
+        return allPages.length >= totalPages ? undefined : allPages.length * PAGE_SIZE;
+      },
+    }
+  );
 
   if (isLoading) {
     return <Loader />;
+  }
+
+  if (isSuccess) {
   }
 
   return (
@@ -68,16 +78,26 @@ export const BlogComponent = () => {
       <BlogSearch />
       <BlogCategoriesNav />
 
-      {isSuccess && <PostsList data={data} />}
+      {/* {isSuccess && <PostsList data={data} />} */}
+      {isSuccess && (
+        <>
+          {data?.pages?.flat()?.length === 0 && <p>No notices here yet...</p>}
+          {data.pages.map((page, i) => (
+            <React.Fragment key={i}>
+              <PostsList data={page} />
+            </React.Fragment>
+          ))}
+        </>
+      )}
 
       {isError &&
-        (error.response.status === 403 ? (
+        ([401, 403].includes(error.response.status) ? (
           <p>Please login...</p>
         ) : (
           <p>An error occurred while fetching the data. Please try again later.</p>
         ))}
 
-      {hasNextPage && (
+      {hasNextPage && data.pages[data.pages.length - 1].length === PAGE_SIZE && (
         <LoadMoreBtn
           type="button"
           onClick={() => fetchNextPage()}
