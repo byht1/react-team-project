@@ -28,8 +28,6 @@ export const FirstPage = ({ nextStep, onClose }) => {
     setValue,
   } = useFormContext();
 
-  console.log(errors);
-
   const [date, setDate] = useState(null);
 
   useEffect(() => {

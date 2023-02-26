@@ -48,14 +48,10 @@ export const AddMyPetForm = () => {
     mode: 'onBlur',
   });
 
-  const { reset, getValues } = methods;
+  const { reset } = methods;
 
   const nextStep = () => {
     setPage(2);
-
-    console.log('birthday', getValues('birthday'));
-    console.log('birthday', getValues('birthday').$d);
-
     navigate('/user/addmypet/page2');
   };
 
@@ -69,8 +65,6 @@ export const AddMyPetForm = () => {
   };
 
   const onSubmit = async data => {
-    console.log(data);
-
     data.birthday = dateConverter(data.birthday);
 
     const formInfo = new FormData();
