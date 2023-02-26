@@ -39,35 +39,33 @@ export const Content = styled.div`
  gap: 35px;
 `
 export const ButtonBlock = styled.div`
+position: relative;
 width: 100%;
 display: flex;
-padding-bottom: 5px;
 gap: 30px;
 flex-direction: column;
 align-items: flex-end;
-border-bottom: 1px solid rgba(245, 146, 86, 0.5);
-border-radius: ${p => p.theme.radii.normal};
 
 `
 export const Button = styled.button`
+position: absolute;
+right: 50px;
+bottom: 30px;
 display: block;
-margin-right: 40px;
-display: flex;
-align-items: center;
-justify-content: center;
-width: 44px;
-height: 44px;
+padding: 10px 30px;
+border-radius: ${p => p.theme.radii.buttonRadius};
 
-color: ${p => p.theme.colors.w};
-background-color: ${p => p.theme.colors.a};
+color: ${p => p.theme.colors.a};
+background-color: ${p => p.theme.colors.w};
 
-font-weight: ${p => p.theme.fontWeights.average};
-font-size: ${p => p.theme.fontSizes.min};
+font-weight: ${p => p.theme.fontWeights.semiBold};
+border: 2px solid ${p => p.theme.colors.a};
 
-border-radius: ${p => p.theme.radii.round};
-transition: transform 250ms linear;
+transition: var(----transition-border-color);
 &:hover {
-    transform: scale(1.05);
+  color: ${p => p.theme.colors.w};
+  background-color: ${p => p.theme.colors.a};
+    
   }
 `
 export const AddComent = styled.div`

@@ -1,8 +1,7 @@
 import data from '../data';
 import { Box } from 'components/global/Box';
 import { Text } from 'components/global/text';
-import { AiOutlinePlus } from 'react-icons/ai';
-import {Label, Input, ImgComment, Content, ButtonBlock, Button, AddComent  } from './PostComment.styled';
+import {Label, Input, ImgComment, Content, ButtonBlock, Button } from './PostComment.styled';
 
 
 export const PostComment = () =>{
@@ -15,11 +14,9 @@ export const PostComment = () =>{
         <Label>
             <Input placeholder="Type comment"></Input>
         </Label>
-        <AddComent>
-        <Button type='button'>
-            <AiOutlinePlus size={'32px'} color={'inherit'}/>
-        </Button>
-        </AddComent>
+        {/* <AddComent> */}
+        <Button type='button'> Send</Button>
+        {/* </AddComent> */}
         </ButtonBlock>
         </Content>
    </Box>
