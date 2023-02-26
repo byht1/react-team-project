@@ -42,9 +42,12 @@ export const FormAddNotice = () => {
   };
 
   const onSubmit = data => {
-    data.birthday = dateConverter(methods.getValues('birthday').$d);
+    // if (data.length > 10) {
+    //   data.birthday = dateConverter(methods.getValues('birthday').$d);
+    // }
+    data.birthday = dateConverter(data.birthday);
+    console.log(data.birthday);
     const files = data.images;
-    console.log(data);
     const formData = new FormData();
     for (const key in data) {
       if (key === 'images') {
