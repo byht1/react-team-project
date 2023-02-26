@@ -6,18 +6,18 @@ export const schemaAddPet = yup.object({
     .string()
     .min(2, 'Must be at least 2 letters')
     .max(48, 'Cannot be more than 48 letters')
-    .matches(/^[a-zA-Zа-яА-Я\s]*$/, 'Name must contain only letters and spaces')
+    .matches(/^[a-zA-Zа-яА-ЯёЁІіЇїҐґ\s-]*$/, 'Name must contain only letters and spaces')
     .required('Field is required'),
   name: yup
     .string()
     .min(2, 'Must be at least 2 letters')
     .max(16, 'Cannot be more than 16 letters')
-    .matches(/^[a-zA-Zа-яА-Я\s]*$/, 'Name must contain only letters and spaces'),
+    .matches(/^[a-zA-Zа-яА-ЯёЁІіЇїҐґ\s-]*$/, 'Name must contain only letters and spaces'),
   breed: yup
     .string()
     .min(2, 'Must be at least 2 letters')
     .max(50, 'Cannot be more than 50 letters')
-    .matches(/^[a-zA-Zа-яА-Я\s]*$/, 'Name must contain only letters and spaces'),
+    .matches(/^[a-zA-Zа-яА-ЯёЁІіЇїҐґ\s-]*$/, 'Name must contain only letters and spaces'),
   birthday: yup
     .date()
     .typeError('Date format must be dd.mm.yyyy')
@@ -27,6 +27,8 @@ export const schemaAddPet = yup.object({
       // если дата не прошла преобразование, возвращаем null
       return isNaN(date) ? null : date;
     })
+    .min(new Date('1989-12-01'), 'Date must be after 01.01.1990')
+    .max(new Date(), 'Date cannot be in the future')
     .test('is-valid-date', 'Invalid date', function (value) {
       // проверяем, что дата не равна null и является допустимой
       if (!value) return false;
@@ -43,45 +45,23 @@ export const schemaAddPet = yup.object({
       }
       return true;
     }),
-  ///////////// .matches(
-  //   /^(0[1-9]|[12]\d|3[01])\.(0[1-9]|1[012])\.\d{4}$/,
-  //   'Date is required and must be in the format DD.MM.YYYY'
-  // ),
-  // .test('birthday', 'Date must be after 01.01.1900 and before today', date => {
-  //   console.log(date);
-  //   const value = dateConverter(date);
-  //   const [day, month, year] = value.split('.');
-  //   const parsedDate = new Date(`${year}-${month}-${day}`);
-  //   const currentDate = new Date();
-  //   if (
-  //     isNaN(parsedDate.getTime()) ||
-  //     parsedDate < new Date('1900-01-01') ||
-  //     parsedDate > currentDate
-  //   ) {
-  //     return false;
-  //   }
-  //   return true;
-  // })
-  //////////////// .required('Date is required'),
   location: yup
     .string()
     .required('City and region are required')
     .matches(
-      /^[a-zA-Zа-яА-ЯёЁ\s]+,[a-zA-Zа-яА-ЯёЁ\s]+$/,
+      /^[a-zA-Zа-яА-ЯёЁІіЇїҐґ\s-]+,[a-zA-Zа-яА-ЯёЁІіЇїҐґ\s-]+$/,
       'Location must be in the format City, Region'
     )
     .required('Field is required'),
-  // price: yup.string().matches(/^\d+(\.\d{1,2})? uah$/, "Price must be in the format of '150 uah'"),
   category: yup.string(),
   price: yup
     .number()
-    .nullable()
-    .typeError('Invalid price')
-    .test(
-      'not-starting-with-zero',
-      'Price cannot start with zero',
-      value => value === null || value === undefined || value.toString()[0] !== '0'
-    ),
+    .min(1, 'The minimum amount is one')
+    .typeError('Price is invalid')
+    .required('Price is required')
+    .test('no-leading-zero', 'Leading zero is not allowed', (value, context) => {
+      return context.originalValue && !context.originalValue.startsWith('0');
+    }),
 
   comments: yup
     .string()
@@ -90,18 +70,6 @@ export const schemaAddPet = yup.object({
     .required('Comments are required'),
   images: yup
     .mixed()
-    //////////////// .test('required', 'You need to provide a file', file => {
-    //   // if (!file) return true;
-    //   // return false;
-    // })
-    // .test('fileSize', 'The file is too large', file => {
-    //   //if u want to allow only certain file sizes
-    //   return file && file.size <= 2000000;
-    // })
-    // .test('fileSize', 'File size is too large', value => {
-    //   if (!value) return true; // handle empty input
-    //   return value.size <= 1024 * 1024; // max size is 1 MB
-    /////////////////// })
     .test('fileType', 'You need to add photo or unsupported photo format', value => {
       if (!value) return true; // handle empty input
       const supportedFormats = ['image/jpeg', 'image/png', 'application/pdf'];

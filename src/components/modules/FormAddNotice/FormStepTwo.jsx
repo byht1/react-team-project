@@ -67,6 +67,7 @@ export const FormStepTwo = () => {
   //   console.log(value.radio);
   // }, [getValues, values]);
   // console.log(errors.sex.message);
+
   console.log(errors);
   return (
     <>
