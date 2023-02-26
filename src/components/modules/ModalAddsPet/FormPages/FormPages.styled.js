@@ -22,27 +22,36 @@ export const LabelInput = styled.label`
     }
   }
 
-  & .MuiAutocomplete-root {
-    height: 49.55px;
+  & .MuiInputBase-input:focus .MuiOutlinedInput-notchedOutline {
+    border: 4px solid red;
   }
-
   & .MuiFormControl-root {
-    height: 49.55px;
+    width: 100%;
   }
 
-  & .MuiInputBase-root {
-    height: 100%;
+  & .MuiOutlinedInput-notchedOutline {
+    font-size: 14px;
+    border: 1px solid #f5925680;
+    border-radius: 40px;
+    background-color: #fdf7f2;
+    z-index: -1;
   }
-
-  &
-    .css-154xyx0-MuiInputBase-root-MuiOutlinedInput-root.Mui-focused
-    .MuiOutlinedInput-notchedOutline {
-    border-color: ${p => p.theme.colors.a};
-    border-width: 1px;
+  & .MuiInputBase-input {
+    font-size: 14px;
+    padding: 11px 14px;
+    @media (min-width: 768px) {
+      padding: 11px 16px;
+      font-size: 16px;
+    }
   }
-
-  & .css-154xyx0-MuiInputBase-root-MuiOutlinedInput-root:hover .MuiOutlinedInput-notchedOutline {
-    border-color: ${p => p.theme.colors.a};
+  @media (min-width: 768px) {
+    font-size: 24px;
+  }
+  &:not(:last-child) {
+    margin-bottom: 16px;
+    @media (min-width: 768px) {
+      margin-bottom: 28px;
+    }
   }
 `;
 
@@ -63,15 +72,10 @@ export const LabelInputDate = styled.label`
   }
   & .MuiFormControl-root {
     width: 100%;
-    height: 49.55px;
   }
 
   & .css-1ozfgvy-MuiFormControl-root-MuiTextField-root .MuiOutlinedInput-root {
     border-radius: 40px;
-  }
-
-  & .MuiInputBase-root {
-    height: 49.55px;
   }
 
   & .MuiOutlinedInput-notchedOutline {
@@ -270,6 +274,7 @@ export const Subtitle = styled.p`
 
   @media (min-width: 768px) {
     font-size: ${p => p.theme.fontSizes.xl};
+   
   }
 `;
 
@@ -278,7 +283,6 @@ export const Textarea = styled.textarea`
   background-color: ${p => p.theme.colors.bg};
   border: 1px solid ${p => p.theme.colors.inputBdr};
   border-radius: ${p => p.theme.radii.normal};
-  margin-top: ${p => p.theme.space[3]}px;
   resize: none;
   height: 100px;
   outline: none;
@@ -286,7 +290,6 @@ export const Textarea = styled.textarea`
 
   @media (min-width: 768px) {
     padding: 11px 16px 10px;
-    margin-top: ${p => p.theme.space[4]}px;
     height: 116px;
     font-size: ${p => p.theme.fontSizes.m};
     line-height: ${p => p.theme.lineHeights.big};
