@@ -8,8 +8,8 @@ export const fetchAllPosts = async ({ category, offset = 0, count = 12, search }
 
     const r = await server.get(query);
     return r.data;
-  } catch (e) {
-    return e.message;
+  } catch (error) {
+    throw error;
   }
 };
 
@@ -17,8 +17,8 @@ export const fetchOnePost = async postId => {
   try {
     const r = await server.get(`/posts/${postId}`);
     return r.data;
-  } catch (e) {
-    return e.message;
+  } catch (error) {
+    throw error;
   }
 };
 

@@ -1,6 +1,7 @@
 import React from 'react';
 import {
   StyledPost,
+  StyledImageWrapper,
   StyledImage,
   StyledContent,
   StyledTitle,
@@ -28,16 +29,22 @@ export const Post = ({ post, isImageOnRight }) => {
 
   return (
     <StyledPost isImageOnRight={isImageOnRight}>
-      <StyledImage src={image} alt={author.name} isImageOnRight={isImageOnRight} />
+      <StyledImageWrapper>
+        <StyledImage
+          src={image ? image : ''}
+          alt={author.name ? author.name : ''}
+          isImageOnRight={isImageOnRight}
+        />
+        <StyledCategory>{category ? category : ''}</StyledCategory>
+      </StyledImageWrapper>
       <StyledContent isImageOnRight={isImageOnRight}>
-        <Box flex="1">
+        <Box flex="1" mb={4}>
           <Box display="flex" alignItems="flex-end" justifyContent="space-between" gridGap={7}>
             <StyledTitle>{title}</StyledTitle>
-            <StyledCategory>{category}</StyledCategory>
           </Box>
-          <StyledAuthor>{author.name}</StyledAuthor>
-          <StyledText>{trimText(text)}</StyledText>
-          <StyledDate>{createdAt}</StyledDate>
+          <StyledAuthor>{author.name ? author.name : ''}</StyledAuthor>
+          <StyledText>{trimText(text ? text : '')}</StyledText>
+          <StyledDate>{createdAt ? createdAt : ''}</StyledDate>
         </Box>
         <Box display="flex" alignItems="center" justifyContent="space-between">
           <Box display="flex" alignItems="center" p={3} gridGap={5}>

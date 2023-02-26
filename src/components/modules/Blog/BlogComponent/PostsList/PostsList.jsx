@@ -7,8 +7,6 @@ export const PostsList = ({ data, ...props }) => {
   return (
     <>
       <ListBox>
-        <p>Post</p>
-
         {data.map((post, index) => {
           const isImageOnRight = index % 2 === 0 ? true : false;
           return <Post key={post._id} post={post} isImageOnRight={isImageOnRight} />;

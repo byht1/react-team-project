@@ -10,6 +10,7 @@ import { UserPage } from 'page/UserPage';
 import { NoticesPage } from 'page/NoticesPage';
 import { NoticesCategoriesList } from 'components/modules/Notices/NoticesCategoriesList';
 import { Home } from 'page/Home';
+
 import { Blog } from 'page/Blog';
 import { PostDetails } from 'page/PostDetails';
 

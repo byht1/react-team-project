@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import { Container } from 'components/global/Container';
+import { DarkBtn } from 'components/global/button';
 
 export const BlogContainer = styled(Container)`
   padding-top: ${p => p.theme.space[12]}px;
@@ -35,4 +36,11 @@ export const SearchForm = styled('form')`
     margin-left: auto;
     margin-right: auto;
   }
+`;
+
+export const LoadMoreBtn = styled(DarkBtn)`
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 32px;
 `;
