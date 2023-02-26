@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import { useFormContext } from 'react-hook-form';
 import { useState, useEffect } from 'react';
 import TextField from '@mui/material/TextField';
-// import { Autocomplete } from '@mui/material';
 import { DesktopDatePicker } from '@mui/x-date-pickers/DesktopDatePicker';
 import { dogBreeds } from '../../FormAddNotice/helpers/dogBreeds';
 
@@ -29,8 +28,9 @@ export const FirstPage = ({ nextStep, onClose }) => {
     setValue,
   } = useFormContext();
 
+  console.log(errors);
+
   const [date, setDate] = useState(null);
-  // const [open, setOpen] = useState(false);
 
   useEffect(() => {
     setValue('birthday', date);
@@ -46,10 +46,6 @@ export const FirstPage = ({ nextStep, onClose }) => {
   const handleChange = newValue => {
     setDate(newValue);
   };
-
-  // const handleInputClick = () => {
-  //   setOpen(true);
-  // };
 
   return (
     <>
@@ -67,10 +63,6 @@ export const FirstPage = ({ nextStep, onClose }) => {
             minDate={new Date('1990-01-01')}
             inputFormat="DD.MM.YYYY"
             value={date}
-            // open={open}
-            // onOpen={() => setOpen(true)}
-            // onClose={() => setOpen(false)}
-            // disableTextInput={true}
             onChange={handleChange}
             renderInput={params => (
               <TextField
@@ -105,6 +97,14 @@ export const FirstPage = ({ nextStep, onClose }) => {
               '& .MuiOutlinedInput-root .MuiAutocomplete-input': {
                 padding: { xs: '1px 6px' },
               },
+              '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
+                border: '20px solid #f58138db',
+                position: 'absolute',
+                top: -0.5,
+                bottom: -0.8,
+                left: 0,
+                right: 0,
+              },
               '&  .MuiAutocomplete-inputRoot': {
                 bgcolor: '#FDF7F2',
                 borderRadius: '40px',
@@ -127,14 +127,8 @@ export const FirstPage = ({ nextStep, onClose }) => {
               <TextField {...params} {...register('petBreed')} placeholder="Type breed" />
             )}
           />
-          {errors.brepetBreeded && <ErrorInput>{errors.petBreed.message}</ErrorInput>}
+          {errors.petBreed && <ErrorInput>{errors.petBreed.message}</ErrorInput>}
         </LabelInput>
-
-        {/* <LabelInput htmlFor="petBreed">
-          <LabelName>Breed</LabelName>
-          <Input {...register('petBreed')} id="petBreed" type="text" placeholder="Type breed" />
-          {errors.petBreed && <ErrorInput>{errors.petBreed.message}</ErrorInput>} */}
-        {/* </LabelInput> */}
       </InputWrap>
 
       <Buttons>
