@@ -36,6 +36,7 @@ import {
   WrapInputs,
   InputAdd,
   WrapAddedImg,
+  AddWrap,
 } from './FormAddNotice.styled';
 
 export const FormStepTwo = () => {
@@ -158,12 +159,14 @@ export const FormStepTwo = () => {
                 <AddIcon />
               </InputFileIcon>
               {errors.images && <Error>{errors.images.message}</Error>}
-              <AdditionalImg>
-                <AddIcon />
-              </AdditionalImg>
-              <AdditionalImg>
-                <AddIcon />
-              </AdditionalImg>
+              <AddWrap>
+                <AdditionalImg>
+                  <AddIcon />
+                </AdditionalImg>
+                <AdditionalImg>
+                  <AddIcon />
+                </AdditionalImg>
+              </AddWrap>
             </ImgWrap>
           </LabelInput>
           <LabelInput htmlFor="comments">
@@ -177,13 +180,13 @@ export const FormStepTwo = () => {
             <ButtonAhead color="a" p="9px 55px" type="submit">
               Done
             </ButtonAhead>
-            <ButtonBack type="button" onClick={() => navigate('/addpet/step1')}>
+            <ButtonBack type="button" onClick={() => navigate('/addpet')}>
               Back
             </ButtonBack>
           </ButtonWrap>
         ) : (
           <ButtonWrap>
-            <ButtonBack type="button" onClick={() => navigate('/addpet/step1')}>
+            <ButtonBack type="button" onClick={() => navigate('/addpet')}>
               Back
             </ButtonBack>
             <ButtonAhead color="a" p="9px 55px" type="submit">

@@ -452,9 +452,27 @@ export const AdditionalImg = styled.div`
 export const ImgWrap = styled.div`
   display: flex;
   gap: 10px;
+  & div:nth-child(n + 4) {
+    display: none;
+  }
+  @media (max-width: 458px) {
+    & div:nth-child(n + 3) {
+      display: none;
+    }
+  }
 `;
 
 export const WrapAddedImg = styled.div`
   border-radius: 20px;
   overflow: hidden;
+`;
+
+export const AddWrap = styled.div`
+  display: flex;
+  & div:last-child {
+    margin-left: 10px;
+    @media (max-width: 480px) {
+      display: none;
+    }
+  }
 `;
