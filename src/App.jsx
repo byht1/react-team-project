@@ -1,6 +1,7 @@
-import { Navigate, Route, Routes, useNavigate, useSearchParams } from 'react-router-dom';
-import { useQuery } from '@tanstack/react-query';
-import { useDispatch } from 'react-redux';
+import { Navigate, Route, Routes } from 'react-router-dom';
+// import { useNavigate, useSearchParams } from 'react-router-dom';
+// import { useQuery } from '@tanstack/react-query';
+// import { useDispatch } from 'react-redux';
 
 import { SharedLayout } from 'page/SharedLayout';
 import { NewsPage } from 'page/NewsPage';
@@ -15,11 +16,11 @@ import { Blog } from 'page/Blog';
 import { PostDetails } from 'page/PostDetails';
 
 import { LoginPage } from 'page/LoginPage';
-import { googleIn, refresh } from 'api/auth';
+// import { googleIn, refresh } from 'api/auth';
 
 import { RestrictedRoute } from 'components/global/RestrictedRoute';
 import { PrivateRoute } from 'components/global/PrivateRoute';
-import { register } from 'redux/auth';
+// import { register } from 'redux/auth';
 import { Loader } from 'components/global/Loader';
 import FormAddNoticePage from 'page/AddNoticePage/AddNoticePage';
 import { FormStepOne } from 'components/modules/FormAddNotice';
