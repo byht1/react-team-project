@@ -15,13 +15,13 @@ export const schemaAddMyPetForm = yup.object({
       /^(?:(?:31(\/|-|\.)(?:0?[13578]|1[02]))\1|(?:(?:29|30)(\/|-|\.)(?:0?[1,3-9]|1[0-2])\2))(?:(?:1[6-9]|[2-9]\d)?\d{2})$|^(?:29(\/|-|\.)0?2\3(?:(?:(?:1[6-9]|[2-9]\d)?(?:0[48]|[2468][048]|[13579][26])|(?:(?:16|[2468][048]|[3579][26])00))))$|^(?:0?[1-9]|1\d|2[0-8])(\/|-|\.)(?:(?:0?[1-9])|(?:1[0-2]))\4(?:(?:1[6-9]|[2-9]\d)?\d{2})$/,
       'Date does not exist or date format not supported (DD.MM.YYYY)'
     )
-    .test('date', 'Date must be after 01.01.1990 and before today', value => {
+    .test('date', 'Date must be after 01.01.1900 and before today', value => {
       const [day, month, year] = value.split('.');
       const parsedDate = new Date(`${year}-${month}-${day}`);
       const currentDate = new Date();
       if (
         isNaN(parsedDate.getTime()) ||
-        parsedDate < new Date('1990-01-01') ||
+        parsedDate < new Date('1900-01-01') ||
         parsedDate > currentDate
       ) {
         return false;

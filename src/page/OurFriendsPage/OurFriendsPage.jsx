@@ -3,7 +3,7 @@ import { Container } from 'components/global/Container';
 import { CardBox, Title, Wrapper } from './OurFriendsPage.styled';
 import { useQuery } from '@tanstack/react-query';
 import { friendsList } from 'api/friends';
-import FriendsCard from './FriendsCard/FriendsCard';
+import FriendsCard from '../../components/modules/ourFriendsPage/FriendsCard/FriendsCard';
 const OurFriendsPage = () => {
   const { data, isSuccess } = useQuery({
     queryFn: () => friendsList(),

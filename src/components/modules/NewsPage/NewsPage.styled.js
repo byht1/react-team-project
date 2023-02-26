@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import { IoMdSearch, IoMdClose } from 'react-icons/io';
 import { TitleH2 } from 'components/global/text';
 import { Text } from 'components/global/text';
 
@@ -21,6 +20,7 @@ export const TitleNews = styled(TitleH2)`
     font-size: 48px;
   }
 `;
+
 export const LinkText = styled(Text)`
 transition: transform 250ms linear;
   &:hover {
@@ -28,34 +28,6 @@ transition: transform 250ms linear;
   }
 `;
 
-export const Input = styled.input`
-  width: 100%;
-  font-size: ${p => p.theme.fontSizes.m};
-  padding: 9px 12px 9px 12px;
-  color: #535353;
-  border: 2px solid ${p => p.theme.colors.trsp};
-  outline: none;
-  box-shadow: ${p => p.theme.shadows.s};
-  border-radius: ${p => p.theme.radii.normal};
-  &::placeholder {
-    color: #535353;
-  }
-  transition: var(----transition-border-color);
-  &:hover,
-  &:focus {
-    border: 2px solid rgba(245, 146, 86, 0.5);
-  }
-  @media (min-width: 768px) {
-    width: 608px;
-    font-size: ${p => p.theme.fontSizes.xl};
-    padding: 9px 12px 9px 20px;
-    border-radius: ${p => p.theme.radii.inputRadius};
-  }
-  @media (min-width: 1280px) {
-    padding: 10px 12px 10px 20px;
-    border-radius: ${p => p.theme.radii.normal};
-  }
-`;
 export const List = styled.ul`
   margin: 0 auto;
   padding: 0;
@@ -107,55 +79,5 @@ export const Line = styled.div`
   }
   @media (min-width: 1280px) {
     width: 340px;
-  }
-`;
-export const Block = styled.div`
-  position: relative;
-  @media (min-width: 768px) {
-    margin: 0 auto;
-  }
-  @media (min-width: 1280px) {
-  }
-`;
-export const Button = styled.button`
-  position: absolute;
-  top: 10px;
-  right: 12px;
-  width: 20px;
-  height: 20px;
-  border-radius: ${p => p.theme.radii.round};
-  background: ${p => p.theme.colors.trsp};
-
-  @media (min-width: 768px) {
-    width: 24px;
-    height: 24px;
-  }
-`;
-export const IconSearch = styled(IoMdSearch)`
-  width: 20px;
-  height: 20px;
-  fill: ${p => p.theme.colors.g};
-  transition: var(--transition-color);
-  &:hover,
-  &:focus {
-    fill: ${p => p.theme.colors.a};
-  }
-  @media (min-width: 768px) {
-    width: 24px;
-    height: 24px;
-  }
-`;
-export const IconClose = styled(IoMdClose)`
-  width: 20px;
-  height: 20px;
-  fill: ${p => p.theme.colors.g};
-  transition: var(--transition-color);
-  &:hover,
-  &:focus {
-    fill: ${p => p.theme.colors.a};
-  }
-  @media (min-width: 768px) {
-    width: 24px;
-    height: 24px;
   }
 `;

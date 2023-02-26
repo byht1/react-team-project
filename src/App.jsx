@@ -21,12 +21,17 @@ import { RestrictedRoute } from 'components/global/RestrictedRoute';
 import { PrivateRoute } from 'components/global/PrivateRoute';
 import { register } from 'redux/auth';
 import { Loader } from 'components/global/Loader';
-
-// import { NotFound } from 'page/NotFound';
-import { AddMyPetForm } from 'components/modules/ModalAddsPet/Form/AddMyPetForm';
+import FormAddNoticePage from 'page/AddNoticePage/AddNoticePage';
+import { FormStepOne } from 'components/modules/FormAddNotice';
+import { FormStepTwo } from 'components/modules/FormAddNotice';
+import { useAppLoading } from 'hooks/useAppLoading';
+import { AddMyPetForm } from 'components/modules/ModalAddsPet';
 import { FirstPage } from 'components/modules/ModalAddsPet/FormPages/FirstPage';
 import { SecondPage } from 'components/modules/ModalAddsPet/FormPages/SecondPage';
-import { useAppLoading } from 'hooks/useAppLoading';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
+// import { NotFound } from 'page/NotFound';
 
 function App() {
   const { isLoading } = useAppLoading();
@@ -36,42 +41,49 @@ function App() {
   }
 
   return (
-    <Routes>
-      <Route path="/" element={<SharedLayout />}>
-        <Route index element={<Home />} />
-        <Route path="news" element={<NewsPage />} />
-        <Route path="notices" element={<NoticesPage />}>
-          <Route path="sell" element={<NoticesCategoriesList />} />
-          <Route path="for-free" element={<NoticesCategoriesList />} />
-          <Route path="lost-found" element={<NoticesCategoriesList />} />
-          <Route path="favorite" element={<NoticesCategoriesList />} />
-          <Route path="own" element={<NoticesCategoriesList />} />
-        </Route>
-        <Route path="friends" element={<OurFriendsPage />} />
-        {/* Публічний шлях */}
-        <Route
-          path="register"
-          element={<RestrictedRoute component={RegisterPage} redirectTo="/user" />}
-        />
-        <Route
-          path="login"
-          element={<RestrictedRoute component={LoginPage} redirectTo="/user" />}
-        />
-        {/* Приватний шлях */}
-        <Route path="user" element={<PrivateRoute component={UserPage} redirectTo="/login" />}>
-          <Route path="addmypet" element={<AddMyPetForm />}>
-            <Route path="page1" element={<FirstPage />} />
-            <Route path="page2" element={<SecondPage />} />
+    <>
+      <Routes>
+        <Route path="/" element={<SharedLayout />}>
+          <Route index element={<Home />} />
+          <Route path="news" element={<NewsPage />} />
+          <Route path="notices" element={<NoticesPage />}>
+            <Route path="sell" element={<NoticesCategoriesList />} />
+            <Route path="for-free" element={<NoticesCategoriesList />} />
+            <Route path="lost-found" element={<NoticesCategoriesList />} />
+            <Route path="favorite" element={<NoticesCategoriesList />} />
+            <Route path="own" element={<NoticesCategoriesList />} />
+            <Route path=":any/addpet" element={<FormAddNoticePage />}>
+              <Route index element={<FormStepOne />}></Route>
+              <Route path="step2" element={<FormStepTwo />}></Route>
+            </Route>
           </Route>
+          <Route path="friends" element={<OurFriendsPage />} />
+          {/* Публічний шлях */}
+          <Route
+            path="register"
+            element={<RestrictedRoute component={RegisterPage} redirectTo="/user" />}
+          />
+          <Route
+            path="login"
+            element={<RestrictedRoute component={LoginPage} redirectTo="/user" />}
+          />
+          {/* Приватний шлях */}
+          <Route path="user" element={<PrivateRoute component={UserPage} redirectTo="/login" />}>
+            <Route path="addmypet" element={<AddMyPetForm />}>
+              <Route path="page1" element={<FirstPage />} />
+              <Route path="page2" element={<SecondPage />} />
+            </Route>
+          </Route>
+
+          <Route path="posts" element={<Blog />} />
+          <Route path="posts/:id" element={<PostDetails />} />
+
+          <Route path="*" element={<Navigate to="/" />} />
+          {/* <Route path="*" element={<NotFound />} /> */}
         </Route>
-
-        <Route path="posts" element={<Blog />} />
-        <Route path="posts/:id" element={<PostDetails />} />
-
-        <Route path="*" element={<Navigate to="/" />} />
-        {/* <Route path="*" element={<NotFound />} /> */}
-      </Route>
-    </Routes>
+      </Routes>
+      <ToastContainer />
+    </>
   );
 }
 

@@ -21,7 +21,6 @@ export const TitleBlock = styled.div`
     padding-right: 16px;
     width: 100%;
     margin: 40px 0 15px 0;
-    margin-left: auto;
   }
 `;
 export const Title = styled.h2`
@@ -118,6 +117,7 @@ export const Img = styled.img`
   height: 240px;
   border-radius: 20px;
   margin-bottom: 20px;
+  object-fit: cover;
   @media (min-width: 768px) {
     width: 161px;
     height: 161px;
@@ -185,13 +185,13 @@ export const AddPetBlock = styled.div`
     padding-right: 0px;
   }
   @media (min-width: 1280px) {
-    padding-right: 16px;
   }
 `;
 
 export const AddPetIc = styled(plus)`
   padding: 8px;
   margin-left: 15px;
+  padding: 8px;
   cursor: pointer;
   height: 40px;
   width: 40px;
@@ -227,7 +227,7 @@ export const TrashBinIc = styled(trashBin)`
 
 export const PandaImg = styled.img`
   border-radius: 20px;
-  box-shadow: 7px 4px 14px rgba(0, 0, 0, 0.11);
+  opacity: 50%;
   position: relative;
   max-width: 320px;
 
@@ -242,21 +242,27 @@ export const PandaImg = styled.img`
 `;
 
 export const PandaText = styled.span`
+  opacity: 50%;
   position: absolute;
   margin-top: 155px;
   font-family: 'Manrope';
   font-style: normal;
   font-weight: 500;
-  font-size: 14px;
+  max-width: 320px;
+  text-align: center;
+  font-size: 18px;
   line-height: 21px;
   @media (min-width: 768px) {
     margin-top: 360px;
     margin-left: 0px;
-    font-size: 18px;
+    font-size: 32px;
     line-height: 25px;
+    max-width: 700px;
   }
   @media (min-width: 1280px) {
+    max-width: 800px;
+    line-height: 44px;
+    font-size: 36px;
     margin-top: 430px;
-    margin-left: 440px;
   }
 `;

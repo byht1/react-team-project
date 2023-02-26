@@ -1,7 +1,8 @@
 import React from 'react';
-
+import { PostDetailsComponent } from 'components/modules/PostDetails';
 const PostDetails = () => {
-  return <div>PostDetails Component </div>;
+  return (
+  <PostDetailsComponent/>)
 };
 
 export default PostDetails;

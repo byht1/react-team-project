@@ -3,6 +3,15 @@ import FemaleIcon from '@mui/icons-material/Female';
 import MaleIcon from '@mui/icons-material/Male';
 import { IconButton } from '@mui/material';
 import { TextareaAutosize } from '@mui/base';
+import { Input } from 'components/global/FormInput/FormInput.styled';
+
+export const InputAdd = styled(Input)`
+  font-size: 14px;
+  @media (min-width: 768px) {
+    font-size: 16px;
+    padding: 11px 16px;
+  }
+`;
 
 export const Wrap = styled.div`
   position: absolute;
@@ -25,10 +34,13 @@ export const ButtonWrap = styled.div`
 `;
 
 export const TextTittle = styled.p`
-  font-size: 36px;
   font-weight: 600;
   text-align: center;
   margin-bottom: 20px;
+  font-size: 24px;
+  @media (min-width: 768px) {
+    font-size: 36px;
+  }
 `;
 
 export const RadioTwo = styled.input`
@@ -42,11 +54,8 @@ export const RadioTwo = styled.input`
 `;
 
 export const RadioMale = styled(MaleIcon)`
-  /* & .jjTjuI {
-    width: 60px;
-    height: 60px;
-  } */
-
+  width: 60px;
+  height: 60px;
   color: #23c2ef;
 
   filter: drop-shadow(1px 1px 1px #4778e9);
@@ -66,8 +75,14 @@ export const LabelMale = styled.label`
   align-items: center;
   justify-content: center;
   margin-right: 45px;
-  @media (min-width: 768px) {
-    margin-right: 65px;
+  & .MuiSvgIcon-root {
+    width: 54px;
+    height: 54px;
+    @media (min-width: 768px) {
+      width: 86px;
+      height: 85px;
+      padding-left: 6px;
+    }
   }
 `;
 
@@ -77,29 +92,37 @@ export const LabelFemale = styled.label`
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  & .MuiSvgIcon-root {
+    width: 56px;
+    height: 56px;
+    @media (min-width: 768px) {
+      width: 86px;
+      height: 85px;
+    }
+  }
 `;
 
-export const InputFile = styled(IconButton)`
-  width: 140px;
-  height: 140px;
+export const InputFileIcon = styled(IconButton)`
+  width: 116px;
+  height: 116px;
   & span {
-    background-color: #fdf7f2;
+    background-color: ${p => p.theme.colors.bg};
     border-radius: 20px;
   }
   & svg {
     z-index: 2;
-    width: 62px;
-    height: 62px;
+    width: 47px;
+    height: 47px;
     color: #6f6d6b;
   }
-`;
-
-export const ImgLoaded = styled.img`
-  position: absolute;
-  z-index: 4;
-  width: 140px;
-  max-height: 140px;
-  border-radius: 20px;
+  @media (min-width: 768px) {
+    width: 140px;
+    height: 140px;
+    & svg {
+      width: 62px;
+      height: 62px;
+    }
+  }
 `;
 
 export const LabelText = styled.p`
@@ -115,7 +138,7 @@ export const Label = styled.label`
   display: inline-block;
   border: 2px solid var(--accent);
   border-radius: 40px;
-  padding: 10px 28px;
+  padding: 8px 28px;
   background-color: ${props => (props.checked ? 'var(--accent)' : '#FFF')};
   color: ${props => (props.checked ? '#FFF' : '#000')};
 `;
@@ -123,11 +146,9 @@ export const Label = styled.label`
 export const RadioWrap = styled.div`
   display: flex;
   flex-wrap: wrap;
-  gap: 15px;
-  margin-top: 20px;
+  gap: 12px;
   margin-bottom: 32px;
   @media (min-width: 768px) {
-    margin-top: 28px;
     margin-bottom: 28px;
   }
 `;
@@ -142,6 +163,34 @@ export const Text = styled.p`
 
 export const LabelInput = styled.label`
   font-size: 18px;
+  & .MuiInputBase-input:focus .MuiOutlinedInput-notchedOutline {
+    border: 4px solid red;
+  }
+  & .MuiFormControl-root {
+    width: 100%;
+  }
+
+  & .MuiInputBase-root.Muifocused {
+    /* border: 4px solid #f5925680;
+    outline: 4px solid #f5925680; */
+  }
+
+  & .MuiOutlinedInput-notchedOutline {
+    font-size: 14px;
+
+    border: 1px solid #f5925680;
+    border-radius: 40px;
+    background-color: #fdf7f2;
+    z-index: -1;
+  }
+  & .MuiInputBase-input {
+    font-size: 14px;
+    padding: 11px 14px;
+    @media (min-width: 768px) {
+      padding: 11px 16px;
+      font-size: 16px;
+    }
+  }
   @media (min-width: 768px) {
     font-size: 24px;
   }
@@ -149,6 +198,7 @@ export const LabelInput = styled.label`
     margin-bottom: 16px;
     @media (min-width: 768px) {
       margin-bottom: 28px;
+      margin-bottom: 18px;
     }
   }
 `;
@@ -165,13 +215,15 @@ export const LabelSex = styled.p`
 
 export const LabelWrap = styled.div`
   display: flex;
-  margin-left: -10px;
+  margin-left: -5px;
   margin-bottom: 32px;
   margin-top: -5px;
   @media (min-width: 768px) {
     font-size: 24px;
+    margin-left: -20px;
     margin-bottom: 40px;
     margin-top: -10px;
+    margin-bottom: 28px;
   }
 `;
 
@@ -181,21 +233,24 @@ export const Sex = styled.p`
   margin-top: 10px;
   @media (min-width: 768px) {
     font-size: 20px;
-    margin-top: 18px;
+    margin-top: 13px;
   }
 `;
 
 export const Comments = styled(TextareaAutosize)`
   display: flex;
   background-color: #fdf7f2;
-  padding: 16px 18px;
+  padding: 11px 14px;
   resize: none;
   width: 100%;
   border: 1px solid var(--accent);
   border-radius: 40px;
-  height: 43px;
+  height: 41px;
   font-family: 'Manrope';
+  font-size: 14px;
+  display: flex;
   @media (min-width: 768px) {
+    padding: 16px 18px;
     min-height: 113px;
     font-size: 16px;
     border-radius: 20px;
@@ -277,7 +332,7 @@ export const Accent = styled.span`
 export const Error = styled.p`
   color: var(--dark-accent);
   margin-top: 6px;
-  padding-left: 11px;
+
   font-size: 12px;
   font-weight: 400;
   position: absolute;
@@ -294,7 +349,7 @@ export const FormWrap = styled.div`
   padding: 20px;
   background: #fff;
   border-radius: 20px;
-  width: 93.7vw;
+  width: 87vw;
   height: 76.5vh;
   overflow-y: auto;
   padding: 40px 20px;
@@ -303,10 +358,6 @@ export const FormWrap = styled.div`
     min-height: 885;
     padding: 40px 80px;
   }
-  /* @media (min-width: 1280px) {
-    padding: 10px 12px 10px 20px;
-    border-radius: 20px;
-  } */
 `;
 
 export const BackDrop = styled.div`
@@ -330,8 +381,80 @@ export const MainText = styled.p`
 
 export const HeaderWrap = styled.div`
   text-align: center;
-  margin-bottom: 28px;
+  margin-bottom: 20px;
   @media (min-width: 768px) {
     margin-bottom: 28px;
   }
+`;
+
+export const ErrorSex = styled.p`
+  color: var(--dark-accent);
+  margin-top: 125px;
+  font-size: 12px;
+  font-weight: 400;
+  position: absolute;
+  @media (min-width: 768px) {
+    margin-top: 175px;
+  }
+  @media (min-width: 1280px) {
+    margin-top: 176px;
+  }
+`;
+
+export const WrapInputs = styled.div`
+  position: absolute;
+  display: flex;
+  width: 368px;
+  height: 116px;
+  left: 140;
+  gap: 10px;
+  z-index: 5;
+  @media (min-width: 768px) {
+    width: 540px;
+    height: 140px;
+  }
+`;
+export const ImgLoaded = styled.img`
+  /* position: absolute;
+  z-index: 4; */
+  width: 116px;
+  height: 116px;
+  border-radius: 20px;
+  @media (min-width: 768px) {
+    width: 140px;
+    height: 140px;
+  }
+`;
+
+export const AdditionalImg = styled.div`
+  width: 116px;
+  height: 116px;
+  background-color: ${p => p.theme.colors.bg};
+  border-radius: 20px;
+  padding: 35px;
+  & svg {
+    z-index: 2;
+    width: 47px;
+    height: 47px;
+    color: #6f6d6b;
+  }
+  @media (min-width: 768px) {
+    padding: 39px;
+    width: 140px;
+    height: 140px;
+    & svg {
+      width: 62px;
+      height: 62px;
+    }
+  }
+`;
+
+export const ImgWrap = styled.div`
+  display: flex;
+  gap: 10px;
+`;
+
+export const WrapAddedImg = styled.div`
+  border-radius: 20px;
+  overflow: hidden;
 `;

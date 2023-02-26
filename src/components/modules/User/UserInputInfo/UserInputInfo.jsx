@@ -1,14 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import {
-  getName,
-  getEmail,
-  getBirthday,
-  getPhone,
-  getCity,
-  getUserData,
-  editUserInfo,
-} from 'redux/user';
+import { getName, getEmail, getBirthday, getPhone, getCity } from 'redux/auth';
+
 import {
   Item,
   Input,
@@ -20,6 +13,9 @@ import {
   InputErrMessage,
 } from './UserInputInfo.styled';
 import PropTypes from 'prop-types';
+import { updateUserInfo } from 'redux/auth';
+import { editUserInfo } from 'api';
+import { useMutation } from '@tanstack/react-query';
 
 export function UserInputInfo({
   fildName,
@@ -30,6 +26,7 @@ export function UserInputInfo({
 }) {
   const dispatch = useDispatch();
   const [value, setValue] = useState('');
+
   const [obj, setObj] = useState({});
   const [valueBeforEdited, setValueBeforEdited] = useState('');
   const [inputErr, setInputErr] = useState(false);
@@ -49,8 +46,18 @@ export function UserInputInfo({
   const regExpBirthdayInputNumber = new RegExp(/^\d{1,2}\.\d{1,2}\.\d{4}$/);
   const regExpPhoneInputNumber = new RegExp(/^\+380\d{9}$/);
 
+  const { mutate: sendEditUserInfo } = useMutation({
+    mutationKey: ['user'],
+    mutationFn: data => editUserInfo(data),
+    onSuccess: data => {
+      dispatch(updateUserInfo(data));
+    },
+    onError: error => {
+      console.log(error);
+    },
+  });
+
   useEffect(() => {
-    dispatch(getUserData());
     if (fildName === 'Name') {
       setValue(name);
       setValueBeforEdited(name);
@@ -75,7 +82,7 @@ export function UserInputInfo({
       setValue(city);
       setValueBeforEdited(city);
     } // eslint-disable-next-line
-  }, [name]);
+  }, []);
 
   useEffect(() => {
     setObj({ [fildName.toLowerCase()]: value });
@@ -215,7 +222,7 @@ export function UserInputInfo({
   };
 
   const saveEditing = () => {
-    dispatch(editUserInfo(obj));
+    sendEditUserInfo(obj);
   };
 
   return (
@@ -239,7 +246,9 @@ export function UserInputInfo({
             if (!inputErr) {
               setWhichIconToShow('orange');
               setWhatInputIsEditing('');
-              if (valueBeforEdited !== value) saveEditing();
+              if (valueBeforEdited !== value) {
+                saveEditing();
+              }
             }
           }}
         />
