@@ -52,7 +52,11 @@ position: absolute;
 right: 50px;
 bottom: 30px;
 display: block;
-padding: 10px 40px;
+display: flex;
+align-items: center;
+font-size: 18px;
+gap: 5px;
+padding: 5px 15px;
 border-radius: ${p => p.theme.radii.buttonRadius};
 
 color: ${p => p.theme.colors.a};
@@ -67,9 +71,8 @@ transition: var(----transition-border-color);
   background-color: ${p => p.theme.colors.a};
     
   }
-`
-export const AddComent = styled.div`
-display: flex;
-align-items: center;
-gap: 20px;
+  @media (min-width: 768px) {
+    padding: 10px 40px;
+    
+  }
 `
