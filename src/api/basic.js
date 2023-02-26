@@ -1,4 +1,3 @@
-
 import axios from 'axios';
 
 // https://node-team-project.onrender.com/docs Документаці як в 8 дз по React

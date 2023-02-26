@@ -1,12 +1,13 @@
+import { useState, useEffect } from 'react';
 import { useFormContext } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
-import { Autocomplete, TextField } from '@mui/material';
 import { IoCloseOutline } from 'react-icons/io5';
+import TextField from '@mui/material/TextField';
+import { DesktopDatePicker } from '@mui/x-date-pickers/DesktopDatePicker';
+import { Autocomplete } from '@mui/material';
 
 import { dogBreeds } from './helpers/dogBreeds';
 import useWindowDimensions from './helpers/getWidth';
-
-import { Input } from 'components/global/FormInput/FormInput.styled';
 import { CloseModalBtn } from 'components/modules/Notices/NoticeModal/NoticeModal.styled';
 import {
   Accent,
@@ -17,14 +18,29 @@ import {
   Text,
   ButtonAhead,
   ButtonBack,
+  InputAdd,
 } from './FormAddNotice.styled';
 
 export const FormStepOne = () => {
   const navigate = useNavigate();
+
+  const [date, setDate] = useState(null);
+
+  const handleChange = newValue => {
+    setDate(newValue);
+  };
+
   const {
     register,
     formState: { errors },
+    setValue,
+    trigger,
   } = useFormContext();
+
+  useEffect(() => {
+    setValue('birthday', date);
+  }, [date, setValue]);
+  console.log(errors);
 
   return (
     <>
@@ -37,19 +53,41 @@ export const FormStepOne = () => {
             Tittle of ad
             <Accent>*</Accent>:
           </Text>
-          <Input {...register('title')} placeholder="Type name" id="tittle" />
+          <InputAdd {...register('title')} placeholder="Type name" id="tittle" />
           {errors.title && <Error>{errors.title.message}</Error>}
         </LabelInput>
         <LabelInput htmlFor="petName">
           <Text>Name pet:</Text>
-          <Input {...register('name')} placeholder="Type name pet" id="petName" />
+          <InputAdd {...register('name')} placeholder="Type name pet" id="petName" />
           {errors.name && <Error>{errors.name.message}</Error>}
         </LabelInput>
-
         <LabelInput htmlFor="petBirth">
           <Text>Date of birth:</Text>
-          <Input {...register('birthday')} placeholder="Type date of birth" id="petBirth" />
-          {errors.birthday && <Error>{errors.birthday.message}</Error>}
+          <DesktopDatePicker
+            maxDate={new Date()}
+            minDate={'01.01.1900'}
+            inputFormat="DD.MM.YYYY"
+            value={date}
+            onChange={handleChange}
+            renderInput={params => (
+              <TextField
+                {...params}
+                {...register('birthday')}
+                sx={{
+                  '& .MuiOutlinedInput-root': {
+                    '&:hover fieldset': {
+                      border: '0.1px solid #F5925680',
+                    },
+                    '&.Mui-focused fieldset': {
+                      border: '2px solid #f58138db',
+                    },
+                  },
+                }}
+                className="myDatePicker"
+              />
+            )}
+          />
+          {errors.birthday && <Error>Invalid date</Error>}
         </LabelInput>
         <LabelInput htmlFor="petBreed">
           <Text>Breed:</Text>
@@ -57,38 +95,40 @@ export const FormStepOne = () => {
             disablePortal
             id="petBreed"
             options={dogBreeds}
-            color="red"
             sx={{
               width: '100%',
               display: 'inline-block',
-              '&  .css-1d3z3hw-MuiOutlinedInput-notchedOutline': {
-                borderColor: 'transparent',
+              '& .MuiOutlinedInput-root .MuiAutocomplete-input': {
+                padding: { xs: '1px 6px' },
               },
-              '& .css-md26zr-MuiInputBase-root-MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline, & .css-154xyx0-MuiInputBase-root-MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline ':
-                {
-                  border: '1px solid #f58138db',
-                },
-              '& .MuiAutocomplete-inputRoot': {
-                p: '2px 10px',
-                fontSize: { xs: '14px', md: '16px' },
+              '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
+                border: '20px solid #f58138db',
+                position: 'absolute',
+                top: -2,
+                bottom: -1.8,
+                left: -2,
+                right: -1.8,
               },
               '&  .MuiAutocomplete-inputRoot': {
                 bgcolor: '#FDF7F2',
                 borderRadius: '40px',
                 border: '1px solid #F5925680',
               },
-              '& input': {
-                '&::placeholder': { fontSize: { xs: '13.3px', md: '16px' }, color: '#111111' },
+              '& .MuiOutlinedInput-notchedOutline': {
+                borderRadius: '40px',
+              },
+              '& fieldset': {
+                borderRadius: '40px',
+                border: '1px solid #F5925680',
+                transition: 'border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out',
+                '&:focus-within': {
+                  border: '2px solid red',
+                },
               },
             }}
             freeSolo={true}
             renderInput={params => (
-              <TextField
-                {...params}
-                {...register('breed')}
-                placeholder="Type breed"
-                sx={{ color: '#111111' }}
-              />
+              <TextField {...params} {...register('breed')} placeholder="Type breed" />
             )}
           />
           {errors.breed && <Error>{errors.breed.message}</Error>}
@@ -102,7 +142,7 @@ export const FormStepOne = () => {
             type="button"
             onClick={() => navigate('/addpet/step2')}
           >
-            Next
+            Next1
           </ButtonAhead>
           <ButtonBack type="button" onClick={() => navigate('/')}>
             Cancel
@@ -117,9 +157,17 @@ export const FormStepOne = () => {
             color="a"
             p="9px 55px"
             type="button"
-            onClick={() => navigate('/addpet/step2')}
+            onClick={() => {
+              trigger(['title', 'name', 'birthday', 'breed']).then(isValid => {
+                if (isValid) {
+                  navigate('/addpet/step2');
+                } else {
+                  console.log('Form is invalid');
+                }
+              });
+            }}
           >
-            Next
+            Next2
           </ButtonAhead>
         </ButtonWrap>
       )}

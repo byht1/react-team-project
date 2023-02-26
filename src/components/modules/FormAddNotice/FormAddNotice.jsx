@@ -1,25 +1,18 @@
 import React, { useState, useEffect } from 'react';
 import { useForm, FormProvider } from 'react-hook-form';
 import { Outlet, useNavigate } from 'react-router-dom';
-// import { useQueryClient } from '@tanstack/react-query';
-// import { addNewNotice } from 'services/notices';
-// import { useMutation } from '@tanstack/react-query';
+import { useQueryClient } from '@tanstack/react-query';
+import { useMutation } from '@tanstack/react-query';
 import { yupResolver } from '@hookform/resolvers/yup';
-import { schemaAddPet } from './helpers/schemaAppPet';
+import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
+import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 
-// import {
-//   FormWrap,
-//   BackDrop,
-//   MainText,
-//   RadioTwo,
-//   LabelText,
-//   RadioWrap,
-//   Label,
-//   TextTittle,
-// } from './FormAddNotice.styled';
-import { FormWrap, BackDrop, RadioTwo, LabelText, RadioWrap, Label } from './FormAddNotice.styled';
+import { addNewNotice } from 'api';
+import { dateConverter } from './helpers/dateConverter';
+import { schemaAddPet } from './helpers/schemaAppPet';
 import { FormHeader } from './FormHeader';
-// import { Categories } from './Categories';
+import { FormWrap, BackDrop, RadioTwo, LabelText, RadioWrap, Label } from './FormAddNotice.styled';
+
 export const FormAddNotice = () => {
   const [selectedValue, setSelectedValue] = useState('lost/found');
   // const [isModalOpen, setIsModalOpen] = useState(false);
@@ -27,47 +20,43 @@ export const FormAddNotice = () => {
   const navigate = useNavigate();
 
   const methods = useForm({
-    defaultValues: {
-      //  category: selectedValue,
-      // category: 'sell',
-
-      petType: 'dog',
-      // breed: 'Bulldog',
-      birthday: '12.12.12',
-      title: 'Notice',
-      price: '150',
-      comments: 'The best dog ever',
-      location: 'Odesa',
-      name: 'Linsy',
-      sex: 'female',
-    },
     resolver: yupResolver(schemaAddPet),
-    mode: 'onBlur',
+    mode: 'all',
   });
 
   const categoryName = methods.getValues().category;
-  console.log('hkjhjkhnbkj');
-  console.log(categoryName);
 
-  // const client = useQueryClient();
+  const client = useQueryClient();
   // const { data, isLoading } = useQuery({ queryFn: postNotice(value), queryKey: 'noticeі' });
-  // const { mutate: create } = useMutation({
-  //   mutationFn: addNewNotice,
-  //   onSuccess: () => {
-  //     client.invalidateQueries({ queryKey: ['notices', 'all', categoryName] });
-  //   },
-  // });
+  const { mutate: create } = useMutation({
+    mutationKey: ['notices', 'all', categoryName],
+    mutationFn: addNewNotice,
+    onSuccess: () => {
+      client.invalidateQueries({ queryKey: ['notices', 'all', categoryName] });
+    },
+  });
 
   const handleRadioInputChange = event => {
     setSelectedValue(event.target.value);
     methods.setValue('category', event.target.value);
-    methods.reset();
   };
 
   const onSubmit = data => {
-    console.log('first');
-    // console.log(data);
-    // create(data);
+    data.birthday = dateConverter(methods.getValues('birthday').$d);
+    const files = data.images;
+    console.log(data);
+    const formData = new FormData();
+    for (const key in data) {
+      if (key === 'images') {
+        for (const file of files) {
+          formData.append(key, file);
+        }
+        continue;
+      }
+
+      formData.append(key, data[key]);
+    }
+    create(formData);
     navigate('/');
   };
 
@@ -91,7 +80,6 @@ export const FormAddNotice = () => {
       <BackDrop onClick={closeModal} id="backdrop-notice">
         <FormWrap>
           <FormHeader />
-          {/* <Categories></Categories> */}
           <RadioWrap>
             <Label checked={selectedValue === 'lost/found'}>
               <RadioTwo
@@ -124,7 +112,9 @@ export const FormAddNotice = () => {
               <LabelText>sell</LabelText>
             </Label>
           </RadioWrap>
-          <form onSubmit={methods.handleSubmit(onSubmit)}>{<Outlet />}</form>
+          <LocalizationProvider dateAdapter={AdapterDayjs}>
+            <form onSubmit={methods.handleSubmit(onSubmit)}>{<Outlet />}</form>
+          </LocalizationProvider>
         </FormWrap>
       </BackDrop>
     </FormProvider>

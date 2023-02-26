@@ -13,6 +13,9 @@ import { PrivateRoute } from 'components/global/PrivateRoute';
 import { Loader } from 'components/global/Loader';
 import { Blog } from 'page/Blog';
 import { PostDetails } from 'page/PostDetails';
+import FormAddNoticePage from 'page/AddNoticePage/AddNoticePage';
+import { FormStepOne } from 'components/modules/FormAddNotice';
+import { FormStepTwo } from 'components/modules/FormAddNotice';
 import { useAppLoading } from 'hooks/useAppLoading';
 import { AddMyPetForm } from 'components/modules/ModalAddsPet';
 import { FirstPage } from 'components/modules/ModalAddsPet/FormPages/FirstPage';
@@ -62,6 +65,11 @@ function App() {
 
         <Route path="*" element={<Navigate to="/" />} />
         {/* <Route path="*" element={<NotFound />} /> */}
+        <Route path="addpet" element={<FormAddNoticePage />}>
+          <Route path="step1" element={<FormStepOne />}></Route>
+          <Route path="step2" element={<FormStepTwo />}></Route>
+          {/* // <Route path="step2" element={<FormSellStepTwo />}></Route> */} */
+        </Route>
       </Route>
     </Routes>
   );
