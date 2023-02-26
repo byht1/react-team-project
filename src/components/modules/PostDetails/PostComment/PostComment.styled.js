@@ -38,3 +38,36 @@ export const Content = styled.div`
  display: flex;
  gap: 35px;
 `
+export const ButtonBlock = styled.div`
+width: 100%;
+display: flex;
+gap: 30px;
+flex-direction: column;
+align-items: flex-end;
+`
+export const Button = styled.button`
+display: block;
+margin-right: 40px;
+display: flex;
+align-items: center;
+justify-content: center;
+width: 44px;
+height: 44px;
+
+color: ${p => p.theme.colors.w};
+background-color: ${p => p.theme.colors.a};
+
+font-weight: ${p => p.theme.fontWeights.average};
+font-size: ${p => p.theme.fontSizes.min};
+
+border-radius: ${p => p.theme.radii.round};
+transition: transform 250ms linear;
+&:hover {
+    transform: scale(1.05);
+  }
+`
+export const AddComent = styled.div`
+display: flex;
+align-items: center;
+gap: 20px;
+`
