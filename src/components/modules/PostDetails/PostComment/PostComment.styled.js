@@ -52,7 +52,7 @@ position: absolute;
 right: 50px;
 bottom: 30px;
 display: block;
-padding: 10px 30px;
+padding: 10px 40px;
 border-radius: ${p => p.theme.radii.buttonRadius};
 
 color: ${p => p.theme.colors.a};
