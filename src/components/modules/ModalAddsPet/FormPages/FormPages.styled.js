@@ -23,6 +23,49 @@ export const LabelInput = styled.label`
   }
 `;
 
+export const LabelInputDate = styled.label`
+  font-size: 18px;
+  & .MuiInputBase-input:focus .MuiOutlinedInput-notchedOutline {
+    border: 4px solid red;
+  }
+  & .MuiFormControl-root {
+    width: 100%;
+    margin-top: 12px;
+  }
+
+  & .MuiInputBase-root.Muifocused {
+    /* border: 4px solid #f5925680;
+    outline: 4px solid #f5925680; */
+  }
+
+  & .MuiOutlinedInput-notchedOutline {
+    font-size: 14px;
+
+    border: 1px solid #f5925680;
+    border-radius: 40px;
+    background-color: #fdf7f2;
+    z-index: -1;
+  }
+  & .MuiInputBase-input {
+    font-size: 14px;
+    padding: 11px 14px;
+    @media (min-width: 768px) {
+      padding: 11px 16px;
+      font-size: 16px;
+    }
+  }
+  @media (min-width: 768px) {
+    font-size: 24px;
+  }
+  &:not(:last-child) {
+    margin-bottom: 16px;
+    @media (min-width: 768px) {
+      margin-bottom: 28px;
+      margin-bottom: 18px;
+    }
+  }
+`;
+
 export const LabelName = styled.p`
   font-size: ${p => p.theme.fontSizes.l};
   line-height: 1.45;

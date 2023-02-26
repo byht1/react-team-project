@@ -1,7 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { useFormContext } from 'react-hook-form';
-
+import { useState, useEffect } from 'react';
+import TextField from '@mui/material/TextField';
+import { DesktopDatePicker } from '@mui/x-date-pickers/DesktopDatePicker';
 import {
   Buttons,
   InputWrap,
@@ -11,6 +13,7 @@ import {
   ErrorInput,
   ButtonDark,
   ButtonLight,
+  LabelInputDate,
 } from './FormPages.styled';
 
 export const FirstPage = ({ nextStep, onClose }) => {
@@ -18,15 +21,31 @@ export const FirstPage = ({ nextStep, onClose }) => {
     register,
     trigger,
     formState: { errors },
+    setValue,
+    getValues,
   } = useFormContext();
 
+  const [date, setDate] = useState(null);
+  // const [open, setOpen] = useState(false);
+
+  useEffect(() => {
+    setValue('birthday', date);
+  }, [date, setValue]);
+
   const checkInput = async () => {
-    const result = await trigger(['petName', 'petBirth', 'petBreed']);
+    const result = await trigger(['petName', 'birthday', 'petBreed']);
     if (result) {
-      console.log(result);
       nextStep();
     }
   };
+
+  const handleChange = newValue => {
+    setDate(newValue);
+  };
+
+  // const handleInputClick = () => {
+  //   setOpen(true);
+  // };
 
   return (
     <>
@@ -37,18 +56,48 @@ export const FirstPage = ({ nextStep, onClose }) => {
           {errors.petName && <ErrorInput>{errors.petName.message}</ErrorInput>}
         </LabelInput>
 
-        <LabelInput htmlFor="petBirth">
+        <LabelInputDate htmlFor="petBirth">
           <LabelName>Date of birth</LabelName>
-          <Input
+          <DesktopDatePicker
+            maxDate={new Date()}
+            minDate={new Date('1990-01-01')}
+            inputFormat="DD.MM.YYYY"
+            value={date}
+            // open={open}
+            // onOpen={() => setOpen(true)}
+            // onClose={() => setOpen(false)}
+            // disableTextInput={true}
+            onChange={handleChange}
+            renderInput={params => (
+              <TextField
+                {...params}
+                {...register('birthday')}
+                // onClick={handleInputClick}
+                sx={{
+                  '& .MuiOutlinedInput-root': {
+                    '&:hover fieldset': {
+                      border: '0.1px solid #F5925680',
+                    },
+                    '&.Mui-focused fieldset': {
+                      border: '2px solid #f58138db',
+                    },
+                  },
+                }}
+                className="myDatePicker"
+              />
+            )}
+          />
+          {/* <Input
             {...register('petBirth')}
             id="petBirth"
             type="text"
             placeholder="Type date of birth"
             onfocus="(this.type='date')"
             onblur="(this.type='text')"
-          />
+          /> */}
           {errors.petBirth && <ErrorInput>{errors.petBirth.message}</ErrorInput>}
-        </LabelInput>
+          {errors.birthday && <ErrorInput>{errors.birthday.message}</ErrorInput>}
+        </LabelInputDate>
 
         {/* <LabelInput htmlFor="petBreed">
           <LabelName>Breed</LabelName>
