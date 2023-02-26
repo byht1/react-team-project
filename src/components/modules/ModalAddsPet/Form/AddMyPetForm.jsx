@@ -53,10 +53,10 @@ export const AddMyPetForm = () => {
 
   const nextStep = () => {
     setPage(2);
- 
+
     console.log('birthday', getValues('birthday'));
     console.log('birthday', getValues('birthday').$d);
-   
+
     navigate('/user/addmypet/page2');
   };
 
@@ -72,8 +72,7 @@ export const AddMyPetForm = () => {
   const onSubmit = async data => {
     console.log(data);
 
-    data.birthday = dateConverter(methods.getValues('birthday').$d);
-    console.log(data.birthday);
+    data.birthday = dateConverter(data.birthday);
 
     const formInfo = new FormData();
     formInfo.append('name', data.petName);
