@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { Autocomplete } from '@mui/material';
 
 export const InputWrap = styled.div`
   display: flex;
@@ -33,7 +34,7 @@ export const LabelName = styled.p`
 `;
 
 export const Input = styled.input`
-  padding: 11px 14px 12px;
+  padding: 11px 14px;
   background-color: ${p => p.theme.colors.bg};
   border: 1px solid ${p => p.theme.colors.inputBdr};
   border-radius: ${p => p.theme.radii.inputRadius};
@@ -62,7 +63,24 @@ export const Input = styled.input`
     padding: 11px 16px 10px;
     margin-top: ${p => p.theme.space[4]}px;
     font-size: ${p => p.theme.fontSizes.m};
+    font-size: 16px;
     line-height: 1.66;
+  }
+`;
+
+export const InputSelect = styled(Autocomplete)`
+  &.css-zrexw9-MuiAutocomplete-root .MuiAutocomplete-inputRoot {
+    &:hover {
+      border: transparent;
+    }
+  }
+
+  & input {
+    &::placeholder {
+      color: ${p => p.theme.colors.phc};
+      font-size: ${p => p.theme.fontSizes.s};
+      font-family: ${p => p.theme.fonts.manrope};
+    }
   }
 `;
 

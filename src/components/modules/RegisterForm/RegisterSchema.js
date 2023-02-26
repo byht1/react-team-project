@@ -8,7 +8,7 @@ export const registerSchema = yup.object({
     .email('minimum 2 characters before @, cannot start with a dash, only Latin letters')
     .required('The field is mandatory')
     .matches(
-      /^(?!-)\w{2,}(\.\w+)*@[\w-]+(\.[\w-]+)*\.[a-zA-Z]{2,}$/,
+      /^(?!-)[\w.-]{2,}@[\w-]+(\.[\w-]+)*\.[a-zA-Z]{2,}$/u,
       'minimum 2 characters before @, cannot start with a dash, only Latin letters'
     ),
   password: yup
@@ -27,13 +27,16 @@ export const registerSchema = yup.object({
     .string()
     .min(2, 'Must be more than 2 characters')
     .max(40, 'Must be less than 40 characters')
-    .matches(/^[A-Za-zА-Яа-яЁёҐґІіЇїЄє\s,'"'-.]+(?:\s+[A-Za-zА-Яа-яЁё]+){0,3}$/, 'Not a valid name')
+    .matches(
+      /^[A-Za-zА-Яа-яЁёҐґІіЇїЄє\s,'"'-.]+(?:\s+[A-Za-zА-Яа-яЁёҐґІіЇїЄє]+){0,3}$/u,
+      'Not a valid name'
+    )
     .required('The field is mandatory'),
   city: yup
     .string()
     .min(2, 'Must be more than 2 characters')
     .max(50, 'Must be less than 50 characters')
-    .matches(/^[a-zA-Zа-яА-Я\s,'"'-.]+$/, 'Not a valid city')
+    .matches(/^(?!\s)[a-zA-Zа-яА-ЯЁёҐґІіЇїЄє\s,'"'-.]+$/, 'Not a valid city')
     .required('The field is mandatory'),
   phone: yup
     .string()

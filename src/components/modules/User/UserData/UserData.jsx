@@ -11,11 +11,26 @@ import {
 } from './UserData.styled';
 import { UserInfo } from '../UserInfo';
 import { useDispatch, useSelector } from 'react-redux';
-import { editUserProfilePhoto, getUserPhoto } from 'redux/user';
+import { getUserPhoto, updateUserInfo } from 'redux/auth';
+import { useMutation } from '@tanstack/react-query';
+import { editUserProfilePhoto } from 'api';
 
 export const UserData = () => {
-  const img = useSelector(getUserPhoto);
   const dispatch = useDispatch();
+  const img = useSelector(getUserPhoto);
+
+  const { mutate: changeUserProfilePhoto } = useMutation({
+    mutationKey: ['user'],
+    mutationFn: data => editUserProfilePhoto(data),
+    onSuccess: data => {
+      console.log(data);
+      dispatch(updateUserInfo(data));
+    },
+    onError: error => {
+      console.log(error);
+    },
+  });
+
   return (
     <Container>
       <Title>My information:</Title>
@@ -29,9 +44,8 @@ export const UserData = () => {
                 e.preventDefault();
                 if (e.target.files[0]) {
                   const formData = new FormData();
-                  console.log(e.target.value);
                   formData.append('file', e.target.files[0]);
-                  dispatch(editUserProfilePhoto(formData));
+                  changeUserProfilePhoto(formData);
                 }
               }}
               accept="image/*"

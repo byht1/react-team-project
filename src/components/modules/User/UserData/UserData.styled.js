@@ -31,6 +31,7 @@ export const ProfileImage = styled.img`
   width: 233px;
   height: 233px;
   border-radius: ${theme.radii.round};
+  object-fit: cover;
 `;
 
 export const Div = styled.div`
@@ -91,10 +92,11 @@ export const SpanEditPhoto = styled.label`
 
 export const Container = styled.div`
   margin: 0px 20px;
-  max-width: 280px;
+  max-width: 380px;
+  margin-bottom: 80px;
   @media (min-width: 768px) {
     max-width: 736px;
-    margin: 0px 32px 0px 0px;
+    margin: 0px 32px 40px 0px;
   }
   @media (min-width: 1280px) {
     max-width: 411px;

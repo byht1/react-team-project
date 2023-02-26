@@ -13,11 +13,6 @@ export const CardBox = styled(Box)`
   @media (max-width: 767px) {
     margin-top: 32px;
   }
-`;
-
-export const ThumbWrapper = styled(Box)`
-  position: relative;
-  height: 288px;
 
   @media (min-width: 768px) {
     width: 336px;
@@ -28,9 +23,23 @@ export const ThumbWrapper = styled(Box)`
   }
 `;
 
+export const ThumbWrapper = styled(Box)`
+  position: relative;
+  height: 288px;
+
+  /* @media (min-width: 768px) {
+    width: 336px;
+  }
+
+  @media (min-width: 1280px) {
+    width: 288px;
+  }  */
+`;
+
 export const ThumbImage = styled('img')`
   width: 100%;
   height: 100%;
+  object-fit: cover;
 `;
 
 export const ThumbTag = styled('span')`
@@ -82,6 +91,7 @@ export const CardInfoWrapper = styled(Box)`
 
 export const CardTitle = styled('h3')`
   flex-grow: 1;
+  overflow-wrap: anywhere;
   overflow-y: hidden;
   font-size: ${p => p.theme.fontSizes.xxxl};
   line-height: ${p => p.theme.lineHeights.heading};

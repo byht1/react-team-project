@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { useFormContext } from 'react-hook-form';
 import { FileInput } from './FileInput';
 
@@ -39,4 +40,8 @@ export const SecondPage = ({ prevStep }) => {
       </Buttons>
     </>
   );
+};
+
+SecondPage.propTypes = {
+  prevStep: PropTypes.func,
 };

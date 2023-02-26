@@ -65,15 +65,3 @@ export const logOutUser = async () => {
     throw error;
   }
 };
-
-// export const refresh = async () => {
-//   try {
-//     const { data } = await server.get('/auth/current');
-//     console.log('🚀  data:', data);
-
-//     return data;
-//   } catch (error) {
-//     console.log('🚀  error:', error);
-//     throw error;
-//   }
-// };

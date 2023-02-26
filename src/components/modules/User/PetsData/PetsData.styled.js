@@ -14,12 +14,13 @@ export const TitleBlock = styled.div`
   align-items: center;
 
   @media (min-width: 768px) {
-    max-width: none;
+    max-width: 821px;
     width: 704px;
   }
   @media (min-width: 1280px) {
-    width: 821px;
-    margin: 0 0 15px 0;
+    padding-right: 16px;
+    width: 100%;
+    margin: 40px 0 15px 0;
   }
 `;
 export const Title = styled.h2`
@@ -53,11 +54,11 @@ export const TitleSpan = styled.span`
   color: ${theme.colors.b};
 
   @media (min-width: 768px) {
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 27px;
   }
   @media (min-width: 1280px) {
-    font-weight: 500;
-    font-size: 28px;
-    line-height: 38px;
   }
 `;
 export const PetBlcok = styled.div`
@@ -88,6 +89,7 @@ export const PetCard = styled.div`
     width: 704px;
   }
   @media (min-width: 1280px) {
+    margin-left: auto;
     width: 821px;
   }
 `;
@@ -115,6 +117,7 @@ export const Img = styled.img`
   height: 240px;
   border-radius: 20px;
   margin-bottom: 20px;
+  object-fit: cover;
   @media (min-width: 768px) {
     width: 161px;
     height: 161px;
@@ -178,10 +181,17 @@ export const PhotoBlock = styled.div``;
 export const AddPetBlock = styled.div`
   display: flex;
   align-items: center;
+  @media (min-width: 768px) {
+    padding-right: 0px;
+  }
+  @media (min-width: 1280px) {
+  }
 `;
 
 export const AddPetIc = styled(plus)`
+  padding: 8px;
   margin-left: 15px;
+  padding: 8px;
   cursor: pointer;
   height: 40px;
   width: 40px;
@@ -212,5 +222,47 @@ export const TrashBinIc = styled(trashBin)`
 
   &:hover path {
     fill: ${theme.colors.a};
+  }
+`;
+
+export const PandaImg = styled.img`
+  border-radius: 20px;
+  opacity: 50%;
+  position: relative;
+  max-width: 320px;
+
+  @media (min-width: 768px) {
+    max-width: fit-content;
+  }
+  @media (min-width: 1280px) {
+    width: 821px;
+    height: 462px;
+    margin-left: auto;
+  }
+`;
+
+export const PandaText = styled.span`
+  opacity: 50%;
+  position: absolute;
+  margin-top: 155px;
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 500;
+  max-width: 320px;
+  text-align: center;
+  font-size: 18px;
+  line-height: 21px;
+  @media (min-width: 768px) {
+    margin-top: 360px;
+    margin-left: 0px;
+    font-size: 32px;
+    line-height: 25px;
+    max-width: 700px;
+  }
+  @media (min-width: 1280px) {
+    max-width: 800px;
+    line-height: 44px;
+    font-size: 36px;
+    margin-top: 430px;
   }
 `;

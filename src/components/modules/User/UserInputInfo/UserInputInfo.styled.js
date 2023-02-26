@@ -15,6 +15,7 @@ export const Item = styled.label`
 `;
 
 export const Input = styled.input`
+  position: relative;
   scroll-margin-top: 200px;
   overflow-anchor: none;
   width: 159px;
@@ -135,5 +136,25 @@ export const EditIcBlack = styled(edit)`
     width: 22px;
   }
   @media (min-width: 1280px) {
+  }
+`;
+
+export const InputErrMessage = styled.span`
+  position: absolute;
+  top: 400px;
+  width: 280px;
+  color: red;
+  margin: 0 0 0 -60px;
+  z-index: 333;
+  font-size: 14px;
+  @media (min-width: 768px) {
+    width: 100%;
+    top: 240px;
+    margin: 0 0 0 -80px;
+  }
+  @media (min-width: 1280px) {
+    width: 375px;
+    top: 260px;
+    margin: 0 0 0 -80px;
   }
 `;
