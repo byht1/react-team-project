@@ -4,8 +4,7 @@ import { useLocation } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 import { Suspense } from 'react';
 import { Outlet } from 'react-router-dom';
-import { ToastContainer } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+
 import { NoticesSearch } from 'components/modules/Notices/NoticesSearch';
 import { NoticesCategoriesNav } from 'components/modules/Notices/NoticesCategoriesNav';
 import { NoticesContainer } from './NoticesPage.styled';
@@ -22,7 +21,6 @@ const NoticesPage = () => {
 
   return (
     <NoticesContainer>
-      <ToastContainer />
       <NoticesSearch />
       <NoticesCategoriesNav />
       <Suspense>

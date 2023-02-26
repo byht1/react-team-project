@@ -1,9 +1,8 @@
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
-export const showLoginWarning = () => {
-  console.log('warning: showLoginWarning');
-  toast.warn('You must login first', {
+export const showLoginWarning = (message = 'You must login first') => {
+  toast.warn(message, {
     position: 'top-right',
     autoClose: 5000,
     hideProgressBar: true,
