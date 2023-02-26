@@ -20,6 +20,7 @@ export const TitleNews = styled(TitleH2)`
     font-size: 48px;
   }
 `;
+
 export const LinkText = styled(Text)`
 transition: transform 250ms linear;
   &:hover {
