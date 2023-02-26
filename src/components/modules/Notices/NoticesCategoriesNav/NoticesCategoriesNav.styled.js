@@ -90,6 +90,8 @@ export const FloatingAddPetBtn = styled('span')`
 export const FixedBtnWrapper = styled('button')`
   display: none;
 
+  background-color: transparent;
+
   @media (min-width: 768px) {
     display: flex;
 
