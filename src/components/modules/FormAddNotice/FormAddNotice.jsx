@@ -24,15 +24,13 @@ export const FormAddNotice = () => {
     mode: 'all',
   });
 
-  const categoryName = methods.getValues().category;
-
   const client = useQueryClient();
   // const { data, isLoading } = useQuery({ queryFn: postNotice(value), queryKey: 'noticeі' });
   const { mutate: create } = useMutation({
-    mutationKey: ['notices', 'all', categoryName],
+    mutationKey: ['notices'],
     mutationFn: addNewNotice,
     onSuccess: () => {
-      client.invalidateQueries({ queryKey: ['notices', 'all', categoryName] });
+      client.invalidateQueries({ queryKey: ['notices'] });
     },
   });
 
@@ -42,9 +40,6 @@ export const FormAddNotice = () => {
   };
 
   const onSubmit = data => {
-    // if (data.length > 10) {
-    //   data.birthday = dateConverter(methods.getValues('birthday').$d);
-    // }
     data.birthday = dateConverter(data.birthday);
     console.log(data.birthday);
     const files = data.images;
