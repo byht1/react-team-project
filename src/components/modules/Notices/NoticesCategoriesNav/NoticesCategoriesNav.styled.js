@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { NavLink, Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import { Box } from 'components/global/Box';
 
 export const CategoriesBox = styled(Box)`

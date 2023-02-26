@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { useLocation, Route, Routes } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 import { useInfiniteQuery } from '@tanstack/react-query';
 import { useTheme } from 'styled-components';
 import { fetchAllNotices, fetchFavoriteNotices, fetchOwnNotices, refresh } from 'api';
@@ -8,8 +8,6 @@ import { NoticesCategoryItem } from '../NoticesCategoryItem';
 import { DarkBtn as LoadMoreBtn } from 'components/global/button';
 import { ListBox } from './NoticesCategoriesList.styled';
 import { selectSearchQuery, setFavorites, setOwn } from 'redux/notices';
-import FormAddNoticePage from 'page/AddNoticePage/AddNoticePage';
-import { FormStepOne, FormStepTwo } from 'components/modules/FormAddNotice';
 
 export const NoticesCategoriesList = () => {
   const dispatch = useDispatch();

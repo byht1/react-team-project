@@ -1,5 +1,5 @@
 import React from 'react';
-import { getEmail, getIsLogin, getPhone, getCity } from 'redux/auth';
+import { getEmail, getIsLogin, getCity } from 'redux/auth';
 import { useSelector } from 'react-redux';
 import { showLoginWarning } from 'helpers/showLoginWarning';
 import { AiOutlinePlus } from 'react-icons/ai';
