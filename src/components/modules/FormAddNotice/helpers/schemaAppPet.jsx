@@ -6,18 +6,18 @@ export const schemaAddPet = yup.object({
     .string()
     .min(2, 'Must be at least 2 letters')
     .max(48, 'Cannot be more than 48 letters')
-    .matches(/^[a-zA-Zа-яА-Я\s]*$/, 'Name must contain only letters and spaces')
+    .matches(/^[a-zA-Zа-яА-ЯёЁІіЇїҐґ\s-]*$/, 'Name must contain only letters and spaces')
     .required('Field is required'),
   name: yup
     .string()
     .min(2, 'Must be at least 2 letters')
     .max(16, 'Cannot be more than 16 letters')
-    .matches(/^[a-zA-Zа-яА-Я\s]*$/, 'Name must contain only letters and spaces'),
+    .matches(/^[a-zA-Zа-яА-ЯёЁІіЇїҐґ\s-]*$/, 'Name must contain only letters and spaces'),
   breed: yup
     .string()
     .min(2, 'Must be at least 2 letters')
     .max(50, 'Cannot be more than 50 letters')
-    .matches(/^[a-zA-Zа-яА-Я\s]*$/, 'Name must contain only letters and spaces'),
+    .matches(/^[a-zA-Zа-яА-ЯёЁІіЇїҐґ\s-]*$/, 'Name must contain only letters and spaces'),
   birthday: yup
     .date()
     .typeError('Date format must be dd.mm.yyyy')
@@ -69,7 +69,7 @@ export const schemaAddPet = yup.object({
     .string()
     .required('City and region are required')
     .matches(
-      /^[a-zA-Zа-яА-ЯёЁ\s-]+,[a-zA-Zа-яА-ЯёЁ\s-]+$/,
+      /^[a-zA-Zа-яА-ЯёЁІіЇїҐґ\s-]+,[a-zA-Zа-яА-ЯёЁІіЇїҐґ\s-]+$/,
       'Location must be in the format City, Region'
     )
     .required('Field is required'),
