@@ -15,9 +15,6 @@ const Home = () => {
   return (
     <MaxBox>
       <Background>
-        <button type="button" onClick={() => navigate('/addpet/step1')}>
-          Button
-        </button>
         <Box>
           <HomeTitle>Take good care of your small pets</HomeTitle>
           <MobileImage src={require('../../img/home/girl_mobile.png')} />
