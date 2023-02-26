@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { useFormContext } from 'react-hook-form';
 import { useState, useEffect } from 'react';
 import TextField from '@mui/material/TextField';
-import { Autocomplete } from '@mui/material';
+// import { Autocomplete } from '@mui/material';
 import { DesktopDatePicker } from '@mui/x-date-pickers/DesktopDatePicker';
 import { dogBreeds } from '../../FormAddNotice/helpers/dogBreeds';
 
@@ -18,6 +18,7 @@ import {
   ButtonLight,
   LabelInputDate,
   ErrorInputDate,
+  Auto,
 } from './FormPages.styled';
 
 export const FirstPage = ({ nextStep, onClose }) => {
@@ -92,9 +93,9 @@ export const FirstPage = ({ nextStep, onClose }) => {
           {errors.birthday && <ErrorInputDate>{errors.birthday.message}</ErrorInputDate>}
         </LabelInputDate>
 
-        {/* <LabelInput htmlFor="petBreed">
-          <LabelName>Breed:</LabelName>
-          <Autocomplete
+        <LabelInput htmlFor="petBreed">
+          <LabelName>Breed</LabelName>
+          <Auto
             disablePortal
             id="petBreed"
             options={dogBreeds}
@@ -103,14 +104,6 @@ export const FirstPage = ({ nextStep, onClose }) => {
               display: 'inline-block',
               '& .MuiOutlinedInput-root .MuiAutocomplete-input': {
                 padding: { xs: '1px 6px' },
-              },
-              '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
-                border: '20px solid #f58138db',
-                position: 'absolute',
-                top: -2,
-                bottom: -1.8,
-                left: -2,
-                right: -1.8,
               },
               '&  .MuiAutocomplete-inputRoot': {
                 bgcolor: '#FDF7F2',
@@ -135,13 +128,13 @@ export const FirstPage = ({ nextStep, onClose }) => {
             )}
           />
           {errors.brepetBreeded && <ErrorInput>{errors.petBreed.message}</ErrorInput>}
-        </LabelInput> */}
+        </LabelInput>
 
-        <LabelInput htmlFor="petBreed">
+        {/* <LabelInput htmlFor="petBreed">
           <LabelName>Breed</LabelName>
           <Input {...register('petBreed')} id="petBreed" type="text" placeholder="Type breed" />
-          {errors.petBreed && <ErrorInput>{errors.petBreed.message}</ErrorInput>}
-        </LabelInput>
+          {errors.petBreed && <ErrorInput>{errors.petBreed.message}</ErrorInput>} */}
+        {/* </LabelInput> */}
       </InputWrap>
 
       <Buttons>
