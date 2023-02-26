@@ -1,14 +1,4 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { getUserData, editUserProfilePhoto } from './user-operations';
-
-const handlePending = state => {
-  state.loading = true;
-};
-
-const handleRejected = (state, action) => {
-  state.loading = false;
-  state.error = action.payload;
-};
 
 const initialState = {
   id: null,
@@ -52,7 +42,22 @@ export const authSlice = createSlice({
       state.access_token = null;
       state.refresh_token = null;
     },
+    updateUserInfo(state, { payload }) {
+      // eslint-disable-next-line
+      state.id = state.id;
+      state.user = {
+        name: payload.name,
+        email: payload.email,
+        phone: payload.phone,
+        city: payload.city,
+        photo: payload.photo,
+        birthday: payload.birthday,
+      }; // eslint-disable-next-line
+      state.isLogin = state.isLogin; // eslint-disable-next-line
+      state.access_token = state.access_token; // eslint-disable-next-line
+      state.refresh_token = state.refresh_token;
+    },
   },
 });
 
-export const { register, logout } = authSlice.actions;
+export const { register, logout, updateUserInfo } = authSlice.actions;

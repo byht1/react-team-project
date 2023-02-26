@@ -1,6 +1,5 @@
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import { deletePetFromUserPetList, getPetList } from 'api';
-import { Container } from 'components/global/Container';
 
 import {
   TitleBlock,
@@ -29,9 +28,7 @@ export const PetsData = () => {
   const { data, isLoading, isSuccess } = useQuery({
     queryFn: () => getPetList(),
     queryKey: ['myPet'],
-    onSuccess: data => {
-      console.log(data);
-    },
+    onSuccess: data => {},
   });
 
   const { mutate } = useMutation({
@@ -52,7 +49,7 @@ export const PetsData = () => {
     navigate('addmypet/page1');
   };
   return (
-    <Container>
+    <div>
       <TitleBlock>
         <Title>My pets:</Title>
         <AddPetBlock>
@@ -97,10 +94,10 @@ export const PetsData = () => {
         {!data?.length && (
           <>
             <PandaImg src={require('../../../../img/User/panda.png')} />
-            <PandaText>You have not added an pets to favorite list yet</PandaText>
+            <PandaText>You have not added pets to favorite list yet</PandaText>
           </>
         )}
       </PetBlcok>
-    </Container>
+    </div>
   );
 };

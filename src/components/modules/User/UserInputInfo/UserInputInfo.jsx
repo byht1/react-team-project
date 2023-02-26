@@ -1,14 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import {
-  getName,
-  getEmail,
-  getBirthday,
-  getPhone,
-  getCity,
-  getUserData,
-  editUserInfo,
-} from 'redux/auth';
+import { getName, getEmail, getBirthday, getPhone, getCity } from 'redux/auth';
+
 import {
   Item,
   Input,
@@ -20,6 +13,9 @@ import {
   InputErrMessage,
 } from './UserInputInfo.styled';
 import PropTypes from 'prop-types';
+import { updateUserInfo } from 'redux/auth';
+import { editUserInfo } from 'api';
+import { useMutation } from '@tanstack/react-query';
 
 export function UserInputInfo({
   fildName,
@@ -49,8 +45,19 @@ export function UserInputInfo({
   const regExpCityInputNumber = new RegExp(/^(?!\s)[a-zA-Zа-яА-ЯЁёҐґІіЇїЄє\s,'"'-.]+$/);
   const regExpBirthdayInputNumber = new RegExp(/^\d{1,2}\.\d{1,2}\.\d{4}$/);
   const regExpPhoneInputNumber = new RegExp(/^\+380\d{9}$/);
+
+  const { mutate: sendEditUserInfo } = useMutation({
+    mutationKey: ['user'],
+    mutationFn: data => editUserInfo(data),
+    onSuccess: data => {
+      dispatch(updateUserInfo(data));
+    },
+    onError: error => {
+      console.log(error);
+    },
+  });
+
   useEffect(() => {
-    dispatch(getUserData());
     if (fildName === 'Name') {
       setValue(name);
       setValueBeforEdited(name);
@@ -82,8 +89,6 @@ export function UserInputInfo({
   }, [value, fildName]);
 
   const onChange = e => {
-    console.log('🚀  value:', value);
-    console.log('🚀  e.target.value:', e.target.value);
     setValue(e.target.value);
     const valueLength = e.target.value.length;
     let stepOne = regExpNameInput.test(value);
@@ -217,7 +222,7 @@ export function UserInputInfo({
   };
 
   const saveEditing = () => {
-    dispatch(editUserInfo(obj));
+    sendEditUserInfo(obj);
   };
 
   return (
@@ -241,7 +246,9 @@ export function UserInputInfo({
             if (!inputErr) {
               setWhichIconToShow('orange');
               setWhatInputIsEditing('');
-              if (valueBeforEdited !== value) saveEditing();
+              if (valueBeforEdited !== value) {
+                saveEditing();
+              }
             }
           }}
         />
