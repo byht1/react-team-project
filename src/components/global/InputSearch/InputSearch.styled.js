@@ -3,11 +3,11 @@ import { IoMdSearch, IoMdClose } from 'react-icons/io';
 
 export const Block = styled.div`
   position: relative;
-  
+  display: inline-block;
+
   @media (min-width: 768px) {
     margin: 0 auto;
   }
-  
 `;
 
 export const Button = styled.button`
@@ -75,7 +75,7 @@ export const Input = styled.input`
     color: #535353;
   }
   transition: var(----transition-border-color);
- 
+
   &:focus {
     border: 2px solid ${p => p.theme.colors.a};
   }
@@ -83,7 +83,5 @@ export const Input = styled.input`
     width: 608px;
     font-size: ${p => p.theme.fontSizes.xl};
     padding: 10px 12px 10px 20px;
-    
   }
- 
 `;

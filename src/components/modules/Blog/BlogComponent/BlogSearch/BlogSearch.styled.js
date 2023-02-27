@@ -47,13 +47,13 @@ export const SearchBar = styled('input')`
 `;
 
 export const SearchButton = styled('button')`
-  position: absolute;
+  /* position: absolute;
   bottom: 8px;
-  right: 11px;
+  right: 55px; */
 
-  background-color: transparent;
+  /* background-color: transparent;
 
   @media (min-width: 768px) {
     right: 15px;
-  }
+  } */
 `;

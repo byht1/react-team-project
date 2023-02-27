@@ -2,12 +2,12 @@ import server from 'api/basic';
 
 export const fetchPosts = async ({ category, offset = 0, count = 12, search }) => {
   const isCategory = category ? `category=${category}` : '';
-  const isSearch = search ? `&search=${search}` : '';
+  const isSearch = search ? `&searchQuery=${search}` : '';
+  const query = `/posts?${isCategory}&offset=${offset}&count=${count}${isSearch}`;
+  console.log('query send', query);
   try {
-    let query = `/posts?${isCategory}&offset=${offset}&count=${count}${isSearch}`;
-
-    const r = await server.get(query);
-    return r.data;
+    const response = await server.get(query);
+    return response.data;
   } catch (error) {
     throw error;
   }
@@ -15,8 +15,8 @@ export const fetchPosts = async ({ category, offset = 0, count = 12, search }) =
 
 export const fetchOnePost = async postId => {
   try {
-    const r = await server.get(`/posts/${postId}`);
-    return r.data;
+    const response = await server.get(`/posts/${postId}`);
+    return response.data;
   } catch (error) {
     throw error;
   }

@@ -1,44 +1,34 @@
 import React from 'react';
-import { useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { useInfiniteQuery } from '@tanstack/react-query';
 import { useTheme } from 'styled-components';
 // import { useLocation, useNavigate } from 'react-router-dom';
 // import { Suspense } from 'react';
 // import { Outlet } from 'react-router-dom';
-import { BlogSearch } from './BlogSearch/BlogSearch';
 import { BlogCategoriesNav } from './BlogCategoriesNav';
 import { PostsList } from './PostsList';
 import { fetchPosts } from 'api/posts';
 import { Loader } from 'components/global/Loader';
-import { refresh } from 'api';
 import { BlogContainer, Title, LoadMoreBtn, ListBox } from './BlogComponent.styled';
+import { InputSearch } from 'components/global/InputSearch';
+import { Container } from 'components/global/Container';
+import { Box } from 'components/global/Box';
 
-const PAGE_SIZE = 2; // number of items per page
+const PAGE_SIZE = 5; // number of items per page
 
 export const BlogComponent = () => {
   // const location = useLocation();
   // const navigate = useNavigate();
   // const pathname = location.pathname;
   const theme = useTheme();
+  const [searchQuery, setSearchQuery] = useState('');
 
-  useEffect(
-    () => {
-      const refreshToken = async () => {
-        await refresh();
-      };
+  useEffect(() => {
+    console.log(searchQuery);
+    setSearchQuery(searchQuery);
 
-      refreshToken();
-      // console.log(navigate, location);
-      // if (location.pathname === '/notices') {
-      //   navigate('/notices/sell', { replace: true });
-      // }
-    },
-    [
-      // navigate,
-      // location,
-      // location.pathname, navigate
-    ]
-  );
+    return () => {};
+  }, [searchQuery]);
 
   const {
     data,
@@ -50,10 +40,9 @@ export const BlogComponent = () => {
     hasNextPage,
     isFetchingNextPage,
   } = useInfiniteQuery(
-    ['posts', 'all'],
-
-    async ({ pageParam = 0 }) => await fetchPosts({ offset: pageParam, count: PAGE_SIZE }),
-
+    ['searchPosts', searchQuery],
+    async ({ pageParam = 0 }) =>
+      await fetchPosts({ offset: pageParam, count: PAGE_SIZE, search: searchQuery }),
     {
       getNextPageParam: (lastPage, allPages) => {
         if (lastPage.length === 0) return undefined;
@@ -61,57 +50,65 @@ export const BlogComponent = () => {
         const totalPages = Math.ceil(lastPost.totalCount / PAGE_SIZE);
         return allPages.length >= totalPages ? undefined : allPages.length * PAGE_SIZE;
       },
+      staleTime: 5 * 60 * 1000,
     }
   );
 
-  if (isLoading) {
-    return <Loader />;
-  }
+  // if (isLoading) {
+  //   return <Loader />;
+  // }
 
   if (isSuccess) {
   }
 
   return (
-    <BlogContainer>
-      <Title>Community</Title>
-      <BlogSearch />
-      <BlogCategoriesNav />
+    <Container pb={100} pt={26}>
+      <BlogContainer>
+        <Box display="flex" flexDirection="column" justifyContent="center">
+          <Title>Community</Title>
+          <InputSearch change={setSearchQuery} value={searchQuery} debounceDelay={300} />
 
-      {/* {isSuccess && <PostsList data={data} />} */}
-      {isSuccess && (
-        <ListBox>
-          {data?.pages?.flat()?.length === 0 && <p>No notices here yet...</p>}
-          {data.pages.map((page, i) => (
-            <React.Fragment key={i}>
-              <PostsList data={page} />
-            </React.Fragment>
-          ))}
-        </ListBox>
-      )}
+          {/* <BlogSearch /> */}
+          <BlogCategoriesNav />
 
-      {isError &&
-        ([401, 403].includes(error.response.status) ? (
-          <p>Please login...</p>
-        ) : (
-          <p>An error occurred while fetching the data. Please try again later.</p>
-        ))}
+          {/* {isSuccess && <PostsList data={data} />} */}
+          {isSuccess && (
+            <ListBox>
+              {isLoading && <Loader />}
+              {data?.pages?.flat()?.length === 0 && <p>No notices here yet...</p>}
+              {data.pages.map((page, i) => (
+                <React.Fragment key={i}>
+                  <PostsList data={page} />
+                </React.Fragment>
+              ))}
+            </ListBox>
+          )}
 
-      {hasNextPage && data.pages[data.pages.length - 1].length === PAGE_SIZE && (
-        <LoadMoreBtn
-          type="button"
-          onClick={() => fetchNextPage()}
-          disabled={isFetchingNextPage}
-          style={{
-            backgroundColor: isFetchingNextPage && theme.colors.tagBg,
-            color: isFetchingNextPage && theme.colors.bt,
-            border: isFetchingNextPage && `2px solid ${theme.colors.trsp}`,
-            pointerEvents: isFetchingNextPage && 'none',
-            cursor: isFetchingNextPage ? 'not-allowed' : 'pointer',
-          }}
-        >
-          {isFetchingNextPage ? 'Loading more...' : 'Load More'}
-        </LoadMoreBtn>
-      )}
-    </BlogContainer>
+          {isError &&
+            ([401, 403].includes(error.response.status) ? (
+              <p>Please login...</p>
+            ) : (
+              <p>An error occurred while fetching the data. Please try again later.</p>
+            ))}
+
+          {hasNextPage && data.pages[data.pages.length - 1].length === PAGE_SIZE && (
+            <LoadMoreBtn
+              type="button"
+              onClick={() => fetchNextPage()}
+              disabled={isFetchingNextPage}
+              style={{
+                backgroundColor: isFetchingNextPage && theme.colors.tagBg,
+                color: isFetchingNextPage && theme.colors.bt,
+                border: isFetchingNextPage && `2px solid ${theme.colors.trsp}`,
+                pointerEvents: isFetchingNextPage && 'none',
+                cursor: isFetchingNextPage ? 'not-allowed' : 'pointer',
+              }}
+            >
+              {isFetchingNextPage ? 'Loading more...' : 'Load More'}
+            </LoadMoreBtn>
+          )}
+        </Box>
+      </BlogContainer>
+    </Container>
   );
 };

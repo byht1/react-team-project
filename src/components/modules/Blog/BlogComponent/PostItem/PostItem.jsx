@@ -27,6 +27,14 @@ export const Post = ({ post, isImageOnRight }) => {
     return text;
   };
 
+  const convertCreationPostToDateAndTime = date => {
+    const convertedDate = new Date(date);
+    return `${convertedDate.toLocaleDateString('uk')} | ${convertedDate.toLocaleTimeString('uk', {
+      hour: '2-digit',
+      minute: '2-digit',
+    })}`;
+  };
+
   return (
     <StyledPost isImageOnRight={isImageOnRight}>
       <StyledImageWrapper>
@@ -44,7 +52,7 @@ export const Post = ({ post, isImageOnRight }) => {
           </Box>
           <StyledAuthor>{author.name ? author.name : ''}</StyledAuthor>
           <StyledText>{trimText(text ? text : '')}</StyledText>
-          <StyledDate>{createdAt ? createdAt : ''}</StyledDate>
+          <StyledDate>{createdAt ? convertCreationPostToDateAndTime(createdAt) : ''}</StyledDate>
         </Box>
         <Box display="flex" alignItems="center" justifyContent="space-between">
           <Box display="flex" alignItems="center" p={3} gridGap={5}>
