@@ -67,6 +67,7 @@ export const Auto = styled(Autocomplete)`
 export const LabelInputDate = styled.label`
   position: relative;
   font-size: 18px;
+
   & .MuiInputBase-input:focus .MuiOutlinedInput-notchedOutline {
     border: 4px solid red;
   }
@@ -78,10 +79,6 @@ export const LabelInputDate = styled.label`
     border-radius: 40px;
   }
 
-  & .css-1ozfgvy-MuiFormControl-root-MuiTextField-root .MuiOutlinedInput-root.Mui-focused fieldset {
-    border: 1px solid #f58138db;
-  }
-
   & .MuiOutlinedInput-notchedOutline {
     font-size: 14px;
 
@@ -89,6 +86,9 @@ export const LabelInputDate = styled.label`
     border-radius: 40px;
     background-color: #fdf7f2;
     z-index: -1;
+  }
+  & .css-1ozfgvy-MuiFormControl-root-MuiTextField-root .MuiOutlinedInput-root.Mui-focused fieldset {
+    border: 1px solid #f58138db;
   }
   & .MuiInputBase-input {
     font-size: 14px;
