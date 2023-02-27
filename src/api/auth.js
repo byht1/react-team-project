@@ -2,10 +2,11 @@ import server, { token } from './basic';
 
 const UrlRegister = Object.freeze({
   signUp: '/auth/sign-up',
-  logIn: '/auth/log-in',
+  logIn: '/auth/log-in1',
   refresh: '/auth/current',
   google: '/auth/current?type=google',
   logOut: '/auth/logout',
+  newpass: '/auth/forgotten-password/new',
 });
 
 export const signUp = async body => {
@@ -61,6 +62,19 @@ export const logOutUser = async () => {
     });
     token.unset();
     localStorage.removeItem('refreshToken');
+  } catch (error) {
+    throw error;
+  }
+};
+
+export const newPass = async (accessToken, body) => {
+  try {
+    token.set(accessToken);
+    const { data } = await server.patch(UrlRegister.newpass, body);
+    token.set(data.access_token);
+    localStorage.setItem('refreshToken', data.refresh_token);
+
+    return data;
   } catch (error) {
     throw error;
   }

@@ -58,7 +58,7 @@ export const FormWrapper = styled.div`
   @media (min-width: 768px) {
     position: absolute;
     left: 50%;
-    top: 45%;
+    top: 43%;
     transform: translate(-50%, -50%);
     background-color: ${p => p.theme.colors.w};
     width: 608px;

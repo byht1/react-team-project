@@ -20,6 +20,8 @@ import { useAppLoading } from 'hooks/useAppLoading';
 import { AddMyPetForm } from 'components/modules/ModalAddsPet';
 import { FirstPage } from 'components/modules/ModalAddsPet/FormPages/FirstPage';
 import { SecondPage } from 'components/modules/ModalAddsPet/FormPages/SecondPage';
+import { ForgotPassword } from 'page/ForgotPassword';
+import { NewPassword } from 'page/NewPassword';
 
 // import { NotFound } from 'page/NotFound';
 
@@ -51,6 +53,14 @@ function App() {
         <Route
           path="login"
           element={<RestrictedRoute component={LoginPage} redirectTo="/user" />}
+        />
+        <Route
+          path="forgot-password"
+          element={<RestrictedRoute component={ForgotPassword} redirectTo="/user" />}
+        />
+        <Route
+          path="forgotten-password"
+          element={<RestrictedRoute component={NewPassword} redirectTo="/user" />}
         />
         {/* Приватний шлях */}
         <Route path="user" element={<PrivateRoute component={UserPage} redirectTo="/login" />}>

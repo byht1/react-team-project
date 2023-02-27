@@ -23,8 +23,11 @@ import { FormInput } from '../../global/FormInput';
 import { FormContext } from 'components/global/FormContext';
 import { logIn } from 'api';
 import { register } from 'redux/auth';
-import { Alert } from '@mui/material';
+// import { Alert } from '@mui/material';
 import { Loader } from 'components/global/Loader';
+
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 export const LoginForm = () => {
   const [err, setErr] = useState(null);
@@ -41,7 +44,7 @@ export const LoginForm = () => {
     mutationKey: ['user'],
     mutationFn: data => logIn(data),
     onSuccess: logData => {
-      console.log(logData);
+      // console.log(logData);
       setErr(null);
       dispatch(register(logData));
       reset();
@@ -49,28 +52,32 @@ export const LoginForm = () => {
 
     onError: error => {
       setErr(error.response.data.message);
+      console.log(err);
+      // console.log(error.response.data.message);
+      toast.error(error.response.data.message, { hideProgressBar: true });
     },
   });
 
   const onSubmit = data => {
-    console.log(data);
+    // console.log(data);
     logUser(data);
   };
 
   return (
     <BgWrapper>
+      <ToastContainer />
       {isLoading && <Loader opacity={0.5} />}
       <AuthContainer>
         <FormWrapper>
           <LoginFormTitle>Login</LoginFormTitle>
-          {err && (
+          {/* {err && (
             <Alert style={{ marginBottom: 16 }} severity="error" onClose={() => setErr(null)}>
               {err}
             </Alert>
-          )}
+          )} */}
           <FormContext methods={method} submit={onSubmit}>
             <InputsWrapper>
-              <FormInput name="email" type="text" placeholder="Email" mb={16} />
+              <FormInput name="email" type="text" placeholder="Email" mb={20} />
               <FormInput
                 name="password"
                 type="password"
@@ -79,7 +86,7 @@ export const LoginForm = () => {
                 showhide={true}
               />
 
-              <Button theme={'dark'} type={'submit'} fn={() => console.log('click')}>
+              <Button theme={'dark'} type={'submit'}>
                 Login
               </Button>
             </InputsWrapper>
@@ -88,6 +95,7 @@ export const LoginForm = () => {
             <LoginText>Don't have an account?</LoginText>
             <Link to="/register">Register</Link>
           </Box>
+          <Link to="/forgot-password">I forgot password</Link>
           <a href="https://node-team-project.onrender.com/api/auth/google">
             <GoogleBox>
               <LoginText>Sign in with Google</LoginText>
