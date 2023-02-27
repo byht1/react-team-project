@@ -80,6 +80,7 @@ export const StyledContent = styled.div`
   min-height: 100%;
   flex-direction: column;
   align-self: stretch;
+  width: 100%;
 
   @media only screen and (max-width: 480px) {
     margin: 0;

@@ -1,6 +1,6 @@
-import data from '../data.json';
 import { TitleH2 } from 'components/global/text';
 import { Text } from 'components/global/text';
+import { convertCreationDateToDateAndTime } from '../../helpers';
 import {
   ImgPost,
   ContentBlock,
@@ -10,25 +10,26 @@ import {
   PostInfo,
   BoxCard,
 } from './PostCard.styled';
-export const PostCard = () => {
+export const PostCard = ({ post }) => {
+  const { title, text, category, image, likes, author, createdAt } = post;
   return (
     <BoxCard>
       <ImgBlock>
-        <ImgPost src={data.image} alt="" />
-        <Text weight={600}>Author: {data.author}</Text>
-        <Text weight={600}>Category: {data.category}</Text>
+        <ImgPost src={image} alt="title" />
+        <Text weight={600}>Author: {author}</Text>
+        <Text weight={600}>Category: {category}</Text>
       </ImgBlock>
       <ContentBlock>
-        <TitleH2 size={32}>{data.title}</TitleH2>
+        <TitleH2 size={32}>{title}</TitleH2>
         <Text weight={'400'} lh="big">
-          {data.text}
+          {text}
         </Text>
         <PostInfo>
           <LikeBlock>
             <PostIcon />
-            {data.likes.length}
+            {likes.length}
           </LikeBlock>
-          <Text>Date of publication: {data.date}</Text>
+          <Text>Date of publication: {convertCreationDateToDateAndTime(createdAt)}</Text>
         </PostInfo>
       </ContentBlock>
     </BoxCard>

@@ -67,14 +67,19 @@ export const BlogComponent = () => {
         <Box display="flex" flexDirection="column" justifyContent="center">
           <Title>Community</Title>
           <InputSearch change={setSearchQuery} value={searchQuery} debounceDelay={300} />
-
-          {/* <BlogSearch /> */}
           <BlogCategoriesNav />
 
-          {/* {isSuccess && <PostsList data={data} />} */}
+          {isLoading && <Loader />}
+
+          {isError &&
+            ([401, 403].includes(error.response.status) ? (
+              <p>Please login...</p>
+            ) : (
+              <p>An error occurred while fetching the data. Please try again later.</p>
+            ))}
+
           {isSuccess && (
             <ListBox>
-              {isLoading && <Loader />}
               {data?.pages?.flat()?.length === 0 && <p>No notices here yet...</p>}
               {data.pages.map((page, i) => (
                 <React.Fragment key={i}>
@@ -83,13 +88,6 @@ export const BlogComponent = () => {
               ))}
             </ListBox>
           )}
-
-          {isError &&
-            ([401, 403].includes(error.response.status) ? (
-              <p>Please login...</p>
-            ) : (
-              <p>An error occurred while fetching the data. Please try again later.</p>
-            ))}
 
           {hasNextPage && data.pages[data.pages.length - 1].length === PAGE_SIZE && (
             <LoadMoreBtn

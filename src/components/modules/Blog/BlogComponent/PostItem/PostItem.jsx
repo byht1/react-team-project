@@ -1,4 +1,5 @@
 import React from 'react';
+import { AiOutlineLike, AiOutlineComment } from 'react-icons/ai';
 import {
   StyledPost,
   StyledImageWrapper,
@@ -14,7 +15,7 @@ import {
 } from './PostItem.styled';
 
 import { Box } from 'components/global/Box';
-import { AiOutlineLike, AiOutlineComment } from 'react-icons/ai';
+import { convertCreationDateToDateAndTime } from '../../helpers';
 
 export const Post = ({ post, isImageOnRight }) => {
   const { image, author, title, category, text, createdAt, comments, likes, _id } = post;
@@ -25,14 +26,6 @@ export const Post = ({ post, isImageOnRight }) => {
       return text.substring(0, maxLength) + '...';
     }
     return text;
-  };
-
-  const convertCreationPostToDateAndTime = date => {
-    const convertedDate = new Date(date);
-    return `${convertedDate.toLocaleDateString('uk')} | ${convertedDate.toLocaleTimeString('uk', {
-      hour: '2-digit',
-      minute: '2-digit',
-    })}`;
   };
 
   return (
@@ -52,7 +45,7 @@ export const Post = ({ post, isImageOnRight }) => {
           </Box>
           <StyledAuthor>{author.name ? author.name : ''}</StyledAuthor>
           <StyledText>{trimText(text ? text : '')}</StyledText>
-          <StyledDate>{createdAt ? convertCreationPostToDateAndTime(createdAt) : ''}</StyledDate>
+          <StyledDate>{createdAt ? convertCreationDateToDateAndTime(createdAt) : ''}</StyledDate>
         </Box>
         <Box display="flex" alignItems="center" justifyContent="space-between">
           <Box display="flex" alignItems="center" p={3} gridGap={5}>
