@@ -56,18 +56,16 @@ export const schemaAddPet = yup.object({
   category: yup.string(),
   price: yup
     .number()
-    .min(1, 'The minimum amount is one')
-    .typeError('Price is invalid')
-    .required('Price is required')
+    .typeError('Price is required and must be a number')
+    .nullable()
     .test('no-leading-zero', 'Leading zero is not allowed', (value, context) => {
+      if (context.originalValue === undefined) return true;
       return context.originalValue && !context.originalValue.startsWith('0');
     }),
-
   comments: yup
     .string()
     .min(8, 'Must be at least 8 letters')
-    .max(120, 'Cannot be more than 120 letters')
-    .required('Comments are required'),
+    .max(120, 'Cannot be more than 120 letters'),
   images: yup
     .mixed()
     .test('fileType', 'You need to add photo or unsupported photo format', value => {

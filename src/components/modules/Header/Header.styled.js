@@ -133,7 +133,7 @@ export const AuthLink = styled(NavLink)`
   align-items: center;
   padding: 8px 28px;
   background-color: ${p => p.theme.colors.w};
-  color: ${p => p.theme.colors.a};
+  color: ${p => p.theme.colors.b};
   border: 2px solid ${p => p.theme.colors.a};
   border-radius: 40px;
   font-family: 'Manrope';
@@ -197,32 +197,6 @@ export const MenuNavigationLink = styled(NavLink)`
     }
   }
 `;
-// export const AccentNavigationLink = styled(NavLink)`
-//   font-family: 'Manrope';
-//   font-style: normal;
-//   font-weight: 700;
-//   font-size: 32px;
-//   line-height: 1.38;
-//   letter-spacing: 0.04em;
-//   text-decoration-line: underline;
-
-//   color: ${p => p.theme.colors.a};
-//   @media (min-width: 768px) {
-//     font-size: 42px;
-//     line-height: 1.38;
-//   }
-//   @media (min-width: 1280px) {
-//     font-size: 20px;
-//     line-height: 1.38;
-//     transition: all var(--transition-transform);
-//     &:hover {
-//       transform: scale(1.05);
-//     }
-//     @media (min-width: 768px) {
-//       padding: 24px 0;
-//     }
-//   }
-// `;
 export const LinksBox = styled.div`
   display: flex;
   align-items: center;

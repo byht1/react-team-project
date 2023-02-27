@@ -93,7 +93,7 @@ export const AuthLink = styled(NavLink)`
   }
 
   background-color: ${p => p.theme.colors.w};
-  color: ${p => p.theme.colors.a};
+  color: ${p => p.theme.colors.b};
   border: 2px solid ${p => p.theme.colors.a};
   border-radius: 40px;
   font-family: 'Manrope';

@@ -55,6 +55,7 @@ export const FormAddNotice = () => {
       formData.append(key, data[key]);
     }
     create(formData);
+    console.log(data);
     navigate(`/notices/${location}`);
   };
 

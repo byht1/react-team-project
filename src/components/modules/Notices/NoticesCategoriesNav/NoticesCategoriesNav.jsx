@@ -27,10 +27,12 @@ export const NoticesCategoriesNav = () => {
       navigate('/login');
       return;
     }
-    if (!email || !city) return showLoginWarning('Fill in your contact information please');
+    if (!email || !city) {
+      showLoginWarning('Fill in your contact information please');
+      return;
+    }
 
     navigate(`${location}/addpet`);
-    return;
   };
 
   return (
