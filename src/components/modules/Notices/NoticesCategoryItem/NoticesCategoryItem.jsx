@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
+import { useLocation } from 'react-router-dom';
 import { useTheme } from 'styled-components';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { AiOutlineHeart, AiFillHeart } from 'react-icons/ai';
+import { BiMaleSign, BiFemaleSign } from 'react-icons/bi';
 import { HiTrash } from 'react-icons/hi';
 import { selectFavorites, selectOwn } from 'redux/notices';
 import { useFavManagement } from 'hooks/useFavManagement';
@@ -16,6 +18,7 @@ import {
   ThumbTag,
   ThumbAddBtn,
   ThumbRemoveBtn,
+  ThumbSexIcon,
   CardInfoWrapper,
   CardTitle,
   CardDescriptionTable,
@@ -33,6 +36,8 @@ export const NoticesCategoryItem = ({ noticesItem }) => {
   const [handleAddToFav, handleRemoveFromFav] = useFavManagement();
   const handleRemoveFromOwn = useOwnCardsManagement();
 
+  const location = useLocation();
+  const pathname = location.pathname.split('/')[2];
   const client = useQueryClient();
   const theme = useTheme();
   const favorites = useSelector(selectFavorites);
@@ -95,6 +100,13 @@ export const NoticesCategoryItem = ({ noticesItem }) => {
               <AiFillHeart size={'28px'} color={theme.colors.a} />
             </ThumbRemoveBtn>
           )}
+          <ThumbSexIcon>
+            {noticesItem.sex === 'male' ? (
+              <BiMaleSign size={'28px'} color={'deepskyblue'} />
+            ) : (
+              <BiFemaleSign size={'28px'} color={'hotpink'} />
+            )}
+          </ThumbSexIcon>
         </ThumbWrapper>
         <CardInfoWrapper>
           <CardTitle>{noticesItem.title}</CardTitle>
@@ -112,6 +124,12 @@ export const NoticesCategoryItem = ({ noticesItem }) => {
                 <CardDescriptionKey>Age:</CardDescriptionKey>
                 <CardDescriptionValue>{petAge}</CardDescriptionValue>
               </CardDescriptionRow>
+              {pathname === 'sell' && (
+                <CardDescriptionRow>
+                  <CardDescriptionKey>Price:</CardDescriptionKey>
+                  <CardDescriptionValue>${noticesItem.price}</CardDescriptionValue>
+                </CardDescriptionRow>
+              )}
             </TableBody>
           </CardDescriptionTable>
           <BtnWrapper>

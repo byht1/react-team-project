@@ -67,6 +67,14 @@ export const ModalCardDescriptionValue = styled(CardDescriptionValue)`
   }
 `;
 
+export const ModalCardDescriptionLink = styled('a')`
+  color: ${p => p.theme.colors.bt};
+
+  &:hover {
+    text-decoration: underline;
+  }
+`;
+
 export const ModalCommentTitle = styled('span')`
   font-weight: ${p => p.theme.fontWeights.semiBold};
   font-size: ${p => p.theme.fontSizes.s};

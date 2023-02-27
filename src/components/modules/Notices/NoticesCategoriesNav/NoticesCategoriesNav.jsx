@@ -8,7 +8,7 @@ import {
   CategoriesBox,
   CategoryBtnWrapper,
   CategoryBtn,
-  // FloatingAddPetBtn,
+  FloatingAddPetBtn,
   FixedBtnWrapper,
   FixedAddPetText,
   FixedAddPetBtn,
@@ -36,9 +36,9 @@ export const NoticesCategoriesNav = () => {
   return (
     <CategoriesBox>
       <CategoryBtnWrapper>
+        <CategoryBtn to="sell">sell</CategoryBtn>
         <CategoryBtn to="lost-found">lost/found</CategoryBtn>
         <CategoryBtn to="for-free">in good hands</CategoryBtn>
-        <CategoryBtn to="sell">sell</CategoryBtn>
         {isLoggedIn && (
           <>
             <CategoryBtn to="favorite">favorite ads</CategoryBtn>
@@ -46,14 +46,7 @@ export const NoticesCategoriesNav = () => {
           </>
         )}
       </CategoryBtnWrapper>
-      <FixedBtnWrapper onClick={handleAddPet}>
-        <FixedAddPetText>Add pet</FixedAddPetText>
-        {/* */}
-        <FixedAddPetBtn>
-          <AiOutlinePlus size={'24px'} color={'inherit'} />
-        </FixedAddPetBtn>
-      </FixedBtnWrapper>
-      {/* <FixedBtnWrapper>
+      <FixedBtnWrapper>
         <FixedAddPetText>Add pet</FixedAddPetText>
         <FixedAddPetBtn onClick={handleAddPet}>
           <AiOutlinePlus size={'24px'} color={'inherit'} />
@@ -62,7 +55,7 @@ export const NoticesCategoriesNav = () => {
       <FloatingAddPetBtn onClick={handleAddPet} type="button">
         Add pet
         <AiOutlinePlus size={'32px'} color={'inherit'} />
-      </FloatingAddPetBtn> */}
+      </FloatingAddPetBtn>
     </CategoriesBox>
   );
 };

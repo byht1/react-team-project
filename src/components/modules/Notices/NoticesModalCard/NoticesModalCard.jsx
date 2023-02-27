@@ -1,10 +1,14 @@
 import React from 'react';
 import { useQuery } from '@tanstack/react-query';
 import { useSelector } from 'react-redux';
+import { useLocation } from 'react-router-dom';
 import { useFavManagement } from 'hooks/useFavManagement';
 import { selectFavorites } from 'redux/notices';
 import { fetchOneNotice } from 'api';
 import { AiFillHeart } from 'react-icons/ai';
+// import SimpleSlider from 'components/modules/NoticesSlider/NoticesSlider';
+// import 'slick-carousel/slick/slick.css';
+// import 'slick-carousel/slick/slick-theme.css';
 import {
   ThumbTag,
   TableBody,
@@ -18,6 +22,7 @@ import {
   ModalCardDescriptionTable,
   ModalCardTitle,
   ModalCardDescriptionKey,
+  ModalCardDescriptionLink,
   ModalCardDescriptionValue,
   ModalCommentTitle,
   ModalCommentText,
@@ -31,6 +36,8 @@ import {
 export const NoticesModalCard = ({ noticeId }) => {
   const favorites = useSelector(selectFavorites);
   const [handleAddToFav, handleRemoveFromFav] = useFavManagement();
+  const location = useLocation();
+  const pathname = location.pathname.split('/')[2];
 
   const { data, isSuccess } = useQuery({
     queryFn: () => fetchOneNotice(noticeId),
@@ -90,21 +97,31 @@ export const NoticesModalCard = ({ noticeId }) => {
                   <CardDescriptionRow>
                     <ModalCardDescriptionKey>Email:</ModalCardDescriptionKey>
                     <ModalCardDescriptionValue>
-                      {data.owner ? data.owner.email : ''}
+                      <ModalCardDescriptionLink
+                        {...(data.owner && { href: `mailto:${data.owner.email}` })}
+                      >
+                        {data.owner ? data.owner.email : ''}
+                      </ModalCardDescriptionLink>
                     </ModalCardDescriptionValue>
                   </CardDescriptionRow>
                   <CardDescriptionRow>
                     <ModalCardDescriptionKey>Phone:</ModalCardDescriptionKey>
                     <ModalCardDescriptionValue>
-                      {data.owner ? data.owner.phone : ''}
+                      <ModalCardDescriptionLink
+                        {...(data.owner && { href: `tel:${data.owner.phone}` })}
+                      >
+                        {data.owner ? data.owner.phone : ''}
+                      </ModalCardDescriptionLink>
                     </ModalCardDescriptionValue>
                   </CardDescriptionRow>
-                  <CardDescriptionRow>
-                    <ModalCardDescriptionKey>Price:</ModalCardDescriptionKey>
-                    <ModalCardDescriptionValue>
-                      ${data.price ? data.price : ''}
-                    </ModalCardDescriptionValue>
-                  </CardDescriptionRow>
+                  {pathname === 'sell' && (
+                    <CardDescriptionRow>
+                      <ModalCardDescriptionKey>Price:</ModalCardDescriptionKey>
+                      <ModalCardDescriptionValue>
+                        ${data.price ? data.price : ''}
+                      </ModalCardDescriptionValue>
+                    </CardDescriptionRow>
+                  )}
                 </TableBody>
               </ModalCardDescriptionTable>
             </ModalCardTextWrapper>
@@ -126,7 +143,7 @@ export const NoticesModalCard = ({ noticeId }) => {
               </AddToFavBtn>
             ) : (
               <RemoveFromFavBtn onClick={() => handleRemoveFromFav(data._id)}>
-                Remove from <AiFillHeart size={'16px'} />
+                Remove <AiFillHeart size={'16px'} />
               </RemoveFromFavBtn>
             )}
           </ModalCardBtnWrapper>
