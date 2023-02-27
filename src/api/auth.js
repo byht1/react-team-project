@@ -2,7 +2,7 @@ import server, { token } from './basic';
 
 const UrlRegister = Object.freeze({
   signUp: '/auth/sign-up',
-  logIn: '/auth/log-in1',
+  logIn: '/auth/log-in',
   refresh: '/auth/current',
   google: '/auth/current?type=google',
   logOut: '/auth/logout',
