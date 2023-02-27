@@ -3,13 +3,7 @@ import { useDropzone } from 'react-dropzone';
 import { useFormContext } from 'react-hook-form';
 import { TfiPlus } from 'react-icons/tfi';
 
-import {
-  InputFile,
-  LabelFile,
-  InputFileWrap,
-  PreviewPhoto,
-  ErrorInputFile,
-} from './FormPages.styled';
+import { InputFile, InputFileWrap, PreviewPhoto, ErrorInputFile } from './FormPages.styled';
 
 export const FileInput = props => {
   const { name } = props;
@@ -39,18 +33,19 @@ export const FileInput = props => {
     };
   }, [register, unregister, name]);
 
-  const fileRejectionItems = fileRejections.map(({ file, errors }) =>
-    errors.map(e => {
+  const fileRejectionItems = fileRejections.map(({ file, errors }) => {
+    console.log(errors);
+    return errors.map(e => {
       return <p key={e.code}>{e.message}</p>;
-    })
-  );
+    });
+  });
 
   const Errors = () => {
     if (fileRejections.length > 1) {
       return (
         <>
           <ErrorInputFile>
-            <p>Please select only 1 file</p>
+            <span>Please select only 1 file</span>
           </ErrorInputFile>
         </>
       );
@@ -60,7 +55,7 @@ export const FileInput = props => {
       return (
         <>
           <ErrorInputFile>
-            <p>{fileRejectionItems}</p>
+            <span>{fileRejectionItems}</span>
           </ErrorInputFile>
         </>
       );
@@ -69,16 +64,14 @@ export const FileInput = props => {
 
   return (
     <>
-      <LabelFile htmlFor={name}>
-        <InputFileWrap {...getRootProps()} type="file" role="button" aria-label="" id={name}>
-          <InputFile {...props} {...getInputProps()} />
-          {acceptedFiles?.length === 0 && <TfiPlus color="rgba(17, 17, 17, 0.6)" size="48px" />}
-          {!!acceptedFiles?.length && (
-            <PreviewPhoto src={URL.createObjectURL(files[0])} alt={files[0].name} />
-          )}
-          <Errors />
-        </InputFileWrap>
-      </LabelFile>
+      <InputFileWrap {...getRootProps()} type="file" role="button" aria-label="" id={name}>
+        <InputFile {...props} {...getInputProps()} />
+        {acceptedFiles?.length === 0 && <TfiPlus color="rgba(17, 17, 17, 0.6)" size="48px" />}
+        {!!acceptedFiles?.length && (
+          <PreviewPhoto src={URL.createObjectURL(files[0])} alt={files[0].name} />
+        )}
+        <Errors />
+      </InputFileWrap>
     </>
   );
 };
