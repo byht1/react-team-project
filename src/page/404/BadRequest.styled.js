@@ -31,12 +31,13 @@ export const HomeTitle = styled.h2`
   line-height: 1.38;
   /* position: relative;
   z-index: 9; */
-
+  margin-bottom: 50px;
   @media (min-width: 630px) {
-    font-size: 48px;
+    font-size: 31px;
     line-height: 1.47;
   }
   @media (min-width: 768px) {
+    font-size: 48px;
     margin-bottom: 90px;
   }
   @media (min-width: 1280px) {
@@ -60,15 +61,15 @@ export const AuthLink = styled(NavLink)`
   &:not(:last-child) {
     margin-right: 18px;
   }
-
+  max-width: 160px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: auto;
   @media (min-width: 768px) {
     font-size: 20px;
     line-height: 27px;
     padding: 10px 28px;
     max-width: 350px;
-    margin-left: auto;
-    margin-right: auto;
-    margin-bottom: auto;
   }
   transition: var(--transition-bg), var(--transition-color), var(--transition-border-color);
   &:active,
