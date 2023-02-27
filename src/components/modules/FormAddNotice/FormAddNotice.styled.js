@@ -478,6 +478,17 @@ export const AddWrap = styled.div`
 `;
 
 export const ImgError = styled.div`
-  padding-top: 20px;
+  position: absolute;
+  width: 500px;
+  height: 180px;
+  & p {
+    bottom: 45px;
+  }
+  @media (min-width: 768px) {
+    & p {
+      bottom: 15px;
+    }
+  }
+  /* padding-top: 20px; */
   /* x */
 `;

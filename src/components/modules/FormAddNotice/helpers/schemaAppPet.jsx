@@ -6,50 +6,50 @@ export const schemaAddPet = yup.object({
     .string()
     .min(2, 'Must be at least 2 letters')
     .max(48, 'Cannot be more than 48 letters')
-    .matches(/^[a-zA-Zа-яА-ЯёЁІіЇїҐґ\s-]*$/, 'Name must contain only letters and spaces')
+    .matches(/^[a-zA-Zа-яА-ЯёЁІєЄіЇїҐґ\s`'-]*$/, 'Name must contain only letters and spaces')
     .required('Field is required'),
   name: yup
     .string()
     .min(2, 'Must be at least 2 letters')
     .max(16, 'Cannot be more than 16 letters')
-    .matches(/^[a-zA-Zа-яА-ЯёЁІіЇїҐґ\s-]*$/, 'Name must contain only letters and spaces'),
+    .matches(/^[a-zA-Zа-яА-ЯёЁІієЄЇїҐґ\s'`-]*$/, 'Name must contain only letters and spaces'),
   breed: yup
     .string()
     .min(2, 'Must be at least 2 letters')
     .max(50, 'Cannot be more than 50 letters')
-    .matches(/^[a-zA-Zа-яА-ЯёЁІіЇїҐґ\s-]*$/, 'Name must contain only letters and spaces'),
-  birthday: yup
-    .date()
-    .typeError('Date format must be dd.mm.yyyy')
-    .transform((value, originalValue) => {
-      // преобразуем значение даты из строки в объект Date
-      const date = new Date(originalValue);
-      // если дата не прошла преобразование, возвращаем null
-      return isNaN(date) ? null : date;
-    })
-    .min(new Date('1989-12-01'), 'Date must be after 01.01.1990')
-    .max(new Date(), 'Date cannot be in the future')
-    .test('is-valid-date', 'Invalid date', function (value) {
-      // проверяем, что дата не равна null и является допустимой
-      if (!value) return false;
-      const day = value.getDate();
-      const month = value.getMonth() + 1;
-      const year = value.getFullYear();
-      if (month === 2 && day > 29) {
-        // проверяем, что високосный год
-        if ((year % 4 === 0 && year % 100 !== 0) || year % 400 === 0) {
-          return false;
-        }
-        // иначе некорректная дата
-        return true;
-      }
-      return true;
-    }),
+    .matches(/^[a-zA-Zа-яА-ЯёЁІєЄіЇїҐґ\s`'-]*$/, 'Name must contain only letters and spaces'),
+  // birthday: yup
+  //   .date()
+  //   .typeError('Date format must be dd.mm.yyyy')
+  //   .transform((value, originalValue) => {
+  //     // преобразуем значение даты из строки в объект Date
+  //     const date = new Date(originalValue);
+  //     // если дата не прошла преобразование, возвращаем null
+  //     return isNaN(date) ? null : date;
+  //   })
+  //   .min(new Date('1989-12-01'), 'Date must be after 01.01.1990')
+  //   .max(new Date(), 'Date cannot be in the future')
+  //   .test('is-valid-date', 'Invalid date', function (value) {
+  //     // проверяем, что дата не равна null и является допустимой
+  //     if (!value) return false;
+  //     const day = value.getDate();
+  //     const month = value.getMonth() + 1;
+  //     const year = value.getFullYear();
+  //     if (month === 2 && day > 29) {
+  //       // проверяем, что високосный год
+  //       if ((year % 4 === 0 && year % 100 !== 0) || year % 400 === 0) {
+  //         return false;
+  //       }
+  //       // иначе некорректная дата
+  //       return true;
+  //     }
+  //     return true;
+  //   }),
   location: yup
     .string()
     .required('City and region are required')
     .matches(
-      /^[a-zA-Zа-яА-ЯёЁІіЇїҐґ\s-]+,[a-zA-Zа-яА-ЯёЁІіЇїҐґ\s-]+$/,
+      /^[a-zA-Zа-яА-ЯёЁІЄєіЇїҐґ\s-]+,[a-zA-Zа-яА-ЯёЁЄєІіЇїҐґ\s`'-]+$/,
       'Location must be in the format City, Region'
     )
     .required('Field is required'),
