@@ -17,6 +17,7 @@ import { selectSearchQuery, setFavorites, setOwn } from 'redux/notices';
 import { getIsLogin } from 'redux/auth';
 
 export const NoticesCategoriesList = () => {
+  // const
   const dispatch = useDispatch();
   const location = useLocation();
   const isLoggedIn = useSelector(getIsLogin);
@@ -90,8 +91,8 @@ export const NoticesCategoriesList = () => {
             {data?.pages?.flat()?.length === 0 && <p>No notices here yet...</p>}
             {data.pages.map((page, i) => (
               <React.Fragment key={i}>
-                {page.map(noticesItem => (
-                  <NoticesCategoryItem key={noticesItem._id} noticesItem={noticesItem} />
+                {page?.map(noticesItem => (
+                  <NoticesCategoryItem key={noticesItem._id + i} noticesItem={noticesItem} />
                 ))}
               </React.Fragment>
             ))}

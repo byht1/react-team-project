@@ -23,7 +23,6 @@ export const UserData = () => {
     mutationKey: ['user'],
     mutationFn: data => editUserProfilePhoto(data),
     onSuccess: data => {
-      console.log(data);
       dispatch(updateUserInfo(data));
     },
     onError: error => {
