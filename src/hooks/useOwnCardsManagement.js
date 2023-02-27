@@ -5,9 +5,9 @@ import { removeNotice } from 'api';
 export const useOwnCardsManagement = () => {
   const dispatch = useDispatch();
 
-  const handleRemoveFromOwn = itemId => {
+  const handleRemoveFromOwn = async itemId => {
+    await removeNotice(itemId);
     dispatch(removeOwn(itemId));
-    removeNotice(itemId);
   };
 
   return handleRemoveFromOwn;

@@ -3,6 +3,7 @@ import { useSelector } from 'react-redux';
 import { useLocation } from 'react-router-dom';
 import { useTheme } from 'styled-components';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
+import { Rings, ThreeDots } from 'react-loader-spinner';
 import { AiOutlineHeart, AiFillHeart } from 'react-icons/ai';
 import { BiMaleSign, BiFemaleSign } from 'react-icons/bi';
 import { HiTrash } from 'react-icons/hi';
@@ -43,19 +44,19 @@ export const NoticesCategoryItem = ({ noticesItem }) => {
   const favorites = useSelector(selectFavorites);
   const own = useSelector(selectOwn);
 
-  const { mutate: addToFav } = useMutation({
+  const { mutate: addToFav, isLoading: addToFavLoading } = useMutation({
     mutationFn: handleAddToFav,
     onSuccess: () => {
       client.invalidateQueries({ queryKey: ['notices'] });
     },
   });
-  const { mutate: removeFromFav } = useMutation({
+  const { mutate: removeFromFav, isLoading: removeFromFavLoading } = useMutation({
     mutationFn: handleRemoveFromFav,
     onSuccess: () => {
       client.invalidateQueries({ queryKey: ['notices'] });
     },
   });
-  const { mutate: removeFromOwn } = useMutation({
+  const { mutate: removeFromOwn, isLoading: removeFromOwnLoading } = useMutation({
     mutationFn: handleRemoveFromOwn,
     onSuccess: () => {
       client.invalidateQueries({ queryKey: ['notices'] });
@@ -91,14 +92,39 @@ export const NoticesCategoryItem = ({ noticesItem }) => {
             }
           ></ThumbImage>
           <ThumbTag>{noticesItem.category}</ThumbTag>
-          {!favorites.includes(noticesItem._id) ? (
-            <ThumbAddBtn onClick={() => addToFav(noticesItem._id)}>
-              <AiOutlineHeart size={'28px'} color={theme.colors.a} />
-            </ThumbAddBtn>
-          ) : (
-            <ThumbRemoveBtn onClick={() => removeFromFav(noticesItem._id)}>
-              <AiFillHeart size={'28px'} color={theme.colors.a} />
-            </ThumbRemoveBtn>
+          {!addToFavLoading &&
+            !removeFromFavLoading &&
+            (favorites.includes(noticesItem._id) ? (
+              <ThumbRemoveBtn onClick={() => removeFromFav(noticesItem._id)}>
+                <AiFillHeart size={'28px'} color={theme.colors.a} />
+              </ThumbRemoveBtn>
+            ) : (
+              <ThumbAddBtn onClick={() => addToFav(noticesItem._id)}>
+                <AiOutlineHeart size={'28px'} color={theme.colors.a} />
+              </ThumbAddBtn>
+            ))}
+          {(addToFavLoading || removeFromFavLoading) && (
+            <Rings
+              height="80"
+              width="80"
+              color={theme.colors.a}
+              radius="6"
+              visible={true}
+              ariaLabel="rings-loading"
+              wrapperStyle={{
+                position: 'absolute',
+                top: '12px',
+                right: '12px',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                width: '44px',
+                height: '44px',
+                backgroundColor: theme.colors.tagBg,
+                backdropFilter: 'blur(2px)',
+                borderRadius: theme.radii.round,
+              }}
+            />
           )}
           <ThumbSexIcon>
             {noticesItem.sex === 'male' ? (
@@ -134,7 +160,7 @@ export const NoticesCategoryItem = ({ noticesItem }) => {
           </CardDescriptionTable>
           <BtnWrapper>
             <ViewMoreBtn onClick={openModal}>Learn more</ViewMoreBtn>
-            {own.includes(noticesItem._id) && (
+            {!removeFromOwnLoading && own.includes(noticesItem._id) && (
               <DeleteBtn
                 onClick={() => {
                   removeFromOwn(noticesItem._id);
@@ -143,6 +169,21 @@ export const NoticesCategoryItem = ({ noticesItem }) => {
                 Delete
                 <HiTrash size={'20px'} color={'inherit'} style={{ marginLeft: '13px' }} />
               </DeleteBtn>
+            )}
+            {removeFromOwnLoading && (
+              <ThreeDots
+                height="60"
+                width="60"
+                radius="9"
+                ariaLabel="three-dots-loading"
+                wrapperStyle={{
+                  display: 'flex',
+                  justifyContent: 'center',
+                  alignItems: 'center',
+                  color: theme.colors.a,
+                }}
+                visible={true}
+              />
             )}
           </BtnWrapper>
         </CardInfoWrapper>

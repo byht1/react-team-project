@@ -3,7 +3,13 @@ import { useSelector, useDispatch } from 'react-redux';
 import { useLocation } from 'react-router-dom';
 import { useInfiniteQuery } from '@tanstack/react-query';
 import { useTheme } from 'styled-components';
-import { fetchAllNotices, fetchFavoriteNotices, fetchOwnNotices, current } from 'api';
+import {
+  fetchAllNotices,
+  fetchFavoriteNotices,
+  fetchOwnNotices,
+  // current,
+  fetchPrivateCards,
+} from 'api';
 import { NoticesCategoryItem } from '../NoticesCategoryItem';
 import { DarkBtn as LoadMoreBtn } from 'components/global/button';
 import { ListBox } from './NoticesCategoriesList.styled';
@@ -22,12 +28,12 @@ export const NoticesCategoriesList = () => {
   useEffect(() => {
     if (!isLoggedIn) return;
     const setFavoritesArray = async () => {
-      const result = await current();
-      dispatch(setFavorites(result.favorite));
-      dispatch(setOwn(result.advertisement));
+      const { favorite, advertisement } = await fetchPrivateCards();
+      dispatch(setFavorites(favorite));
+      dispatch(setOwn(advertisement));
     };
     setFavoritesArray();
-  }, [pathname, isLoggedIn, dispatch]);
+  }, [isLoggedIn, dispatch]);
 
   const searchQuery = useSelector(selectSearchQuery);
 

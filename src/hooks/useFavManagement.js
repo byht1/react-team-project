@@ -8,19 +8,19 @@ export const useFavManagement = () => {
   const dispatch = useDispatch();
   const isLoggedIn = useSelector(getIsLogin);
 
-  const handleAddToFav = itemId => {
+  const handleAddToFav = async itemId => {
     if (!isLoggedIn) {
       showLoginWarning();
       return;
     }
 
+    await addNoticeToFav(itemId);
     dispatch(addFavorite(itemId));
-    addNoticeToFav(itemId);
   };
 
-  const handleRemoveFromFav = itemId => {
+  const handleRemoveFromFav = async itemId => {
+    await removeNoticeFromFav(itemId);
     dispatch(removeFavorite(itemId));
-    removeNoticeFromFav(itemId);
   };
 
   return [handleAddToFav, handleRemoveFromFav];

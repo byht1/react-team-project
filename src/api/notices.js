@@ -22,6 +22,15 @@ export const fetchOneNotice = async noticeId => {
   }
 };
 
+export const fetchPrivateCards = async () => {
+  try {
+    const r = await server.get('/auth/current?fields=advertisement,cards');
+    return r.data;
+  } catch (e) {
+    return e.message;
+  }
+};
+
 export const fetchFavoriteNotices = async () => {
   try {
     const r = await server.get(`/notices/favorite`);
