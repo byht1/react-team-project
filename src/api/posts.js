@@ -4,7 +4,6 @@ export const fetchPosts = async ({ category, offset = 0, count = 12, search }) =
   const isCategory = category ? `category=${category}` : '';
   const isSearch = search ? `&searchQuery=${search}` : '';
   const query = `/posts?${isCategory}&offset=${offset}&count=${count}${isSearch}`;
-  console.log('query send', query);
   try {
     const response = await server.get(query);
     return response.data;

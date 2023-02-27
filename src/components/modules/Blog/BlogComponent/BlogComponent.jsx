@@ -24,7 +24,6 @@ export const BlogComponent = () => {
   const [searchQuery, setSearchQuery] = useState('');
 
   useEffect(() => {
-    console.log(searchQuery);
     setSearchQuery(searchQuery);
 
     return () => {};
