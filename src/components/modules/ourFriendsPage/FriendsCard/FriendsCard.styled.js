@@ -111,6 +111,30 @@ export const InfoItem = styled.div`
   }
 `;
 
+export const InfoTimeItemNotActive = styled.button`
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 16px;
+  background-color: ${p => p.theme.colors.trsp};
+  color: ${p => p.theme.colors.b};
+  text-align: left;
+  margin-bottom: 4px;
+  cursor: auto;
+  @media screen and (min-width: 768px) {
+    font-size: 14px;
+    line-height: 1.36;
+    margin-bottom: 8px;
+  }
+  @media screen and (min-width: 1280px) {
+    font-size: 16px;
+    line-height: 1.4;
+  }
+  & span {
+    display: block;
+  }
+`;
 export const InfoTimeItem = styled.button`
   font-family: 'Manrope';
   font-style: normal;

@@ -11,6 +11,7 @@ import { UserPage } from 'page/UserPage';
 import { NoticesPage } from 'page/NoticesPage';
 import { NoticesCategoriesList } from 'components/modules/Notices/NoticesCategoriesList';
 import { Home } from 'page/Home';
+import BadRequestPage from './page/404/BadRequest';
 
 import { Blog } from 'page/Blog';
 import { PostDetails } from 'page/PostDetails';
@@ -46,6 +47,7 @@ function App() {
       <Routes>
         <Route path="/" element={<SharedLayout />}>
           <Route index element={<Home />} />
+          <Route path="error" element={<BadRequestPage />} />
           <Route path="news" element={<NewsPage />} />
           <Route path="notices" element={<NoticesPage />}>
             <Route path="sell" element={<NoticesCategoriesList />} />
