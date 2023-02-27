@@ -18,7 +18,6 @@ import {
 } from './FormPages.styled';
 
 export const SecondPage = ({ prevStep }) => {
-  // const [state, setState] = setState;
   const {
     register,
     formState: { errors },

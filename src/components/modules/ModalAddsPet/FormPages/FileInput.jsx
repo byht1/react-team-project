@@ -33,12 +33,11 @@ export const FileInput = props => {
     };
   }, [register, unregister, name]);
 
-  const fileRejectionItems = fileRejections.map(({ file, errors }) => {
-    console.log(errors);
-    return errors.map(e => {
+  const fileRejectionItems = fileRejections.map(({ file, errors }) =>
+    errors.map(e => {
       return <p key={e.code}>{e.message}</p>;
-    });
-  });
+    })
+  );
 
   const Errors = () => {
     if (fileRejections.length > 1) {
