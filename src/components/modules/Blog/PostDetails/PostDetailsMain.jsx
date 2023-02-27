@@ -8,7 +8,6 @@ import { PostDetailsComponent } from 'components/modules/Blog/PostDetails';
 
 export const PostDetailsMain = () => {
   const { id: postId } = useParams();
-  console.log('🚀 ~ file: PostDetails.jsx:13 ~ PostDetailsComponent ~ id:', postId);
 
   const { data, isSuccess, isLoading, isError, error } = useQuery({
     queryKey: ['post', postId],

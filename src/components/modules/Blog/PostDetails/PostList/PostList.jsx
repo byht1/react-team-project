@@ -7,9 +7,12 @@ export const PostList = ({ comments }) => {
     <Box pl={6}>
       <List>
         {comments.map(({ _id, author, text }) => {
-          return <PostItem key={_id} src={author.photo} text={text} />;
+          const photoUrl = author?.photo ?? `https://api.multiavatar.com/${_id}.png`;
+          return <PostItem key={_id} src={photoUrl} text={text} />;
         })}
       </List>
     </Box>
   );
 };
+
+//

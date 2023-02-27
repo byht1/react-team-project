@@ -16,11 +16,11 @@ export const PostCard = ({ post }) => {
     <BoxCard>
       <ImgBlock>
         <ImgPost src={image} alt="title" />
-        <Text weight={600}>Author: {author}</Text>
-        <Text weight={600}>Category: {category}</Text>
+        <Text weight={'600'}>Author: {author}</Text>
+        <Text weight={'600'}>Category: {category}</Text>
       </ImgBlock>
       <ContentBlock>
-        <TitleH2 size={32}>{title}</TitleH2>
+        <TitleH2 size={'32'}>{title}</TitleH2>
         <Text weight={'400'} lh="big">
           {text}
         </Text>
