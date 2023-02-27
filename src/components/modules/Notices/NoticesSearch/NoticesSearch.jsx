@@ -1,15 +1,29 @@
+import { useState, useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { AiOutlineSearch } from 'react-icons/ai';
 import { search } from 'redux/notices/notices-slice';
 import { selectSearchQuery } from 'redux/notices';
+import {
+  IconSearch,
+  IconSearchHover,
+  IconClose,
+  IconCloseHover,
+} from 'components/global/InputSearch/InputSearch.styled';
 import { Title, SearchForm, SearchBar, SearchButton } from './NoticesSearch.styled';
 
 export const NoticesSearch = () => {
+  const [inFocus, setInFocus] = useState(false);
+  const inputRef = useRef(null);
   const dispatch = useDispatch();
   const searchQuery = useSelector(selectSearchQuery);
 
   const onInputChange = e => {
     dispatch(search(e.target.value));
+  };
+
+  const clearInput = () => {
+    if (inputRef.current) {
+      dispatch(search(''));
+    }
   };
 
   const onFormSubmit = e => {
@@ -27,10 +41,19 @@ export const NoticesSearch = () => {
           name="search"
           value={searchQuery}
           onChange={onInputChange}
+          onFocus={() => setInFocus(true)}
+          onBlur={() => setInFocus(false)}
+          ref={inputRef}
         />
-        <SearchButton type="submit">
-          <AiOutlineSearch size={20} />
-        </SearchButton>
+        {searchQuery ? (
+          <SearchButton type="button" onClick={clearInput}>
+            {inFocus ? <IconCloseHover /> : <IconClose />}
+          </SearchButton>
+        ) : (
+          <SearchButton type="submit">
+            {inFocus ? <IconSearchHover /> : <IconSearch />}
+          </SearchButton>
+        )}
       </SearchForm>
     </>
   );
