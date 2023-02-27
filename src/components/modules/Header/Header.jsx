@@ -46,7 +46,11 @@ export const Header = () => {
               </Title>
             </NavigationLink>
             <MobileBox>
-              {!(location.pathname === '/login' || location.pathname === '/register') && (
+              {!(
+                location.pathname === '/login' ||
+                location.pathname === '/register' ||
+                authorized === true
+              ) && (
                 <LoginButton to="login">
                   <LoginIcon />
                 </LoginButton>

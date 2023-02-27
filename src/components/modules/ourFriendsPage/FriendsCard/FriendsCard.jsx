@@ -8,9 +8,9 @@ import {
   InfoItem,
   Wrapper,
   InfoTimeItem,
+  InfoTimeItemNotActive,
 } from './FriendsCard.styled';
 import TimeSchedule from './TimeSchedule';
-import NoTimeSchedule from './NoTimeSchedule';
 const FriendsCard = ({ data }) => {
   const [openDrop, setOpenDrop] = useState(false);
 
@@ -43,11 +43,10 @@ const FriendsCard = ({ data }) => {
             </>
           ) : (
             <>
-              <InfoTimeItem onClick={notShown} data={data.workDays}>
+              <InfoTimeItemNotActive onClick={notShown} data={data.workDays} disabled={true}>
                 <span>Time:</span>
                 -----------------------------------
-              </InfoTimeItem>
-              {openDrop && <NoTimeSchedule notShown={notShown} />}
+              </InfoTimeItemNotActive>
             </>
           )}
           {data.address ? (
