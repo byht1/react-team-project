@@ -31,6 +31,14 @@ export const FormStepOne = () => {
     setDate(newValue);
   };
 
+  const [value, setVal] = useState(null);
+
+  const change = (event, newValue) => {
+    event.preventDefault();
+    event.stopPropagation();
+    setVal(newValue);
+    console.log(newValue);
+  };
   const {
     register,
     formState: { errors },
@@ -91,7 +99,49 @@ export const FormStepOne = () => {
         </LabelInput>
         <LabelInput htmlFor="petBreed">
           <Text>Breed:</Text>
+          {/* <Autocomplete
+            disablePortal
+            id="petBreed"
+            options={dogBreeds}
+            sx={{
+              width: '100%',
+              display: 'inline-block',
+              '& .MuiOutlinedInput-root .MuiAutocomplete-input': {
+                padding: { xs: '1px 6px' },
+              },
+              // '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
+              //   border: '20px solid #f58138db',
+              //   position: 'absolute',
+              //   top: -2,
+              //   bottom: -1.8,
+              //   left: -2,
+              //   right: -1.8,
+              // },
+              '&  .MuiAutocomplete-inputRoot': {
+                bgcolor: '#FDF7F2',
+                borderRadius: '40px',
+                border: '1px solid #F5925680',
+              },
+              '& .MuiOutlinedInput-notchedOutline': {
+                borderRadius: '40px',
+              },
+              '& fieldset': {
+                borderRadius: '40px',
+                border: '1px solid #F5925680',
+                transition: 'border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out',
+                '&:focus-within': {
+                  border: '2px solid red',
+                },
+              },
+            }}
+            freeSolo={true}
+            renderInput={params => (
+              <TextField {...params} {...register('breed')} placeholder="Type breed" />
+            )}
+          /> */}
           <Autocomplete
+            value={value}
+            onChange={change}
             disablePortal
             id="petBreed"
             options={dogBreeds}
