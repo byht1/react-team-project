@@ -38,3 +38,41 @@ export const Content = styled.div`
  display: flex;
  gap: 35px;
 `
+export const ButtonBlock = styled.div`
+position: relative;
+width: 100%;
+display: flex;
+gap: 30px;
+flex-direction: column;
+align-items: flex-end;
+
+`
+export const Button = styled.button`
+position: absolute;
+right: 50px;
+bottom: 30px;
+display: block;
+display: flex;
+align-items: center;
+font-size: 18px;
+gap: 5px;
+padding: 5px 15px;
+border-radius: ${p => p.theme.radii.buttonRadius};
+
+color: ${p => p.theme.colors.a};
+background-color: ${p => p.theme.colors.w};
+
+font-weight: ${p => p.theme.fontWeights.semiBold};
+border: 2px solid ${p => p.theme.colors.a};
+
+transition: var(----transition-border-color);
+&:hover {
+  color: ${p => p.theme.colors.w};
+  background-color: ${p => p.theme.colors.a};
+    
+  }
+  @media (min-width: 768px) {
+    padding: 10px 40px;
+    
+  }
+`
