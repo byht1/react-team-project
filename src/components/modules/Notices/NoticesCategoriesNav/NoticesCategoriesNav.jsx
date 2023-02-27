@@ -24,7 +24,6 @@ export const NoticesCategoriesNav = () => {
   const handleAddPet = () => {
     if (!isLoggedIn) {
       showLoginWarning();
-      navigate('/login');
       return;
     }
     if (!email || !city) {
