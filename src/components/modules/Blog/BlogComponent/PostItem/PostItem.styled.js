@@ -27,7 +27,7 @@ export const StyledImageWrapper = styled(Box)`
   height: 288px;
   width: 100%;
 
-  border-radius: ${p => p.theme.space[10]}px;
+  border-radius: ${p => p.theme.space[7]}px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   overflow: hidden;
   transition: transform 0.2s ease-in-out;
@@ -128,7 +128,7 @@ export const StyledMetaIcon = styled.span`
   color: #999;
 
   &:hover {
-    color: red;
+    color: ${p => p.theme.colors.a};
   }
 `;
 
