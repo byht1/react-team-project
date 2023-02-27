@@ -148,7 +148,7 @@ export const AddToFavBtn = styled(ViewMoreBtn)`
   justify-content: center;
   align-items: center;
 
-  @media (max-width: 767px) {
+  @media (max-width: 767.98px) {
     margin-top: 12px;
   }
 

@@ -10,7 +10,7 @@ export const CardBox = styled(Box)`
 
   box-shadow: ${p => p.theme.shadows.s};
 
-  @media (max-width: 767px) {
+  @media (max-width: 767.98px) {
     margin-top: 32px;
   }
 
