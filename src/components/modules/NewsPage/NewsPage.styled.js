@@ -1,14 +1,12 @@
 import styled from 'styled-components';
 import { TitleH2 } from 'components/global/text';
 import { Text } from 'components/global/text';
+import { DarkBtn } from 'components/global/button';
 
 export const NewBlock = styled.div`
   margin: 0 auto;
-  @media (min-width: 768px) {
-    padding-top: 40px;
-  }
+ 
   @media (min-width: 1280px) {
-    padding-top: 19px;
     padding-bottom: 100px;
   }
 `;
@@ -39,12 +37,12 @@ export const List = styled.ul`
   max-width: 1248px;
   margin-top: 40px;
   gap: 40px;
-
-  @media (min-width: 768px) {
+  
+   @media (min-width: 768px) {
     flex-direction: row;
     justify-content: space-between;
     margin-top: 60px;
-    gap: 60px 0px;
+    gap: 30px;
   }
 `;
 export const Item = styled.li`
@@ -52,14 +50,19 @@ export const Item = styled.li`
   flex-direction: column;
   justify-content: space-between;
   width: 100%;
+  min-height: 288px;
 
   @media (min-width: 768px) {
     width: 336px;
-    height: 288px;
+    min-height: 288px;
+    margin-bottom: 30px;
+    
+    
   }
   @media (min-width: 1280px) {
     width: 395px;
-    height: 266px;
+    min-height: 266px;
+  
   }
 `;
 export const NewsMore = styled.div`
@@ -80,4 +83,10 @@ export const Line = styled.div`
   @media (min-width: 1280px) {
     width: 340px;
   }
+`;
+export const LoadMoreBtn = styled(DarkBtn)`
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 70px;
 `;
