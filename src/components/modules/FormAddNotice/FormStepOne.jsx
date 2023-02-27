@@ -101,14 +101,14 @@ export const FormStepOne = () => {
               '& .MuiOutlinedInput-root .MuiAutocomplete-input': {
                 padding: { xs: '1px 6px' },
               },
-              '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
-                border: '20px solid #f58138db',
-                position: 'absolute',
-                top: -2,
-                bottom: -1.8,
-                left: -2,
-                right: -1.8,
-              },
+              // '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
+              //   border: '20px solid #f58138db',
+              //   position: 'absolute',
+              //   top: -2,
+              //   bottom: -1.8,
+              //   left: -2,
+              //   right: -1.8,
+              // },
               '&  .MuiAutocomplete-inputRoot': {
                 bgcolor: '#FDF7F2',
                 borderRadius: '40px',
