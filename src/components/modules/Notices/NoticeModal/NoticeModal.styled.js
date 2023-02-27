@@ -32,7 +32,7 @@ export const Modal = styled(Box)`
 
   border-radius: ${p => p.theme.radii.normal};
 
-  @media (max-width: 767px) {
+  @media (max-width: 767.98px) {
     max-width: 480px;
 
     margin-left: auto;

@@ -8,11 +8,10 @@ import {
   CategoriesBox,
   CategoryBtnWrapper,
   CategoryBtn,
-  // FloatingAddPetBtn,
+  FloatingAddPetBtn,
   FixedBtnWrapper,
   FixedAddPetText,
   FixedAddPetBtn,
-  FloatingAddPetBtn,
 } from './NoticesCategoriesNav.styled';
 
 export const NoticesCategoriesNav = () => {
@@ -28,18 +27,20 @@ export const NoticesCategoriesNav = () => {
       navigate('/login');
       return;
     }
-    if (!email || !city) return showLoginWarning('Fill in your contact information please');
+    if (!email || !city) {
+      showLoginWarning('Fill in your contact information please');
+      return;
+    }
 
     navigate(`${location}/addpet`);
-    return;
   };
 
   return (
     <CategoriesBox>
       <CategoryBtnWrapper>
+        <CategoryBtn to="sell">sell</CategoryBtn>
         <CategoryBtn to="lost-found">lost/found</CategoryBtn>
         <CategoryBtn to="for-free">in good hands</CategoryBtn>
-        <CategoryBtn to="sell">sell</CategoryBtn>
         {isLoggedIn && (
           <>
             <CategoryBtn to="favorite">favorite ads</CategoryBtn>
@@ -47,10 +48,9 @@ export const NoticesCategoriesNav = () => {
           </>
         )}
       </CategoryBtnWrapper>
-      <FixedBtnWrapper onClick={handleAddPet}>
+      <FixedBtnWrapper>
         <FixedAddPetText>Add pet</FixedAddPetText>
-        {/* */}
-        <FixedAddPetBtn>
+        <FixedAddPetBtn onClick={handleAddPet}>
           <AiOutlinePlus size={'24px'} color={'inherit'} />
         </FixedAddPetBtn>
       </FixedBtnWrapper>

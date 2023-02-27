@@ -67,6 +67,14 @@ export const ModalCardDescriptionValue = styled(CardDescriptionValue)`
   }
 `;
 
+export const ModalCardDescriptionLink = styled('a')`
+  color: ${p => p.theme.colors.bt};
+
+  &:hover {
+    text-decoration: underline;
+  }
+`;
+
 export const ModalCommentTitle = styled('span')`
   font-weight: ${p => p.theme.fontWeights.semiBold};
   font-size: ${p => p.theme.fontSizes.s};
@@ -140,7 +148,7 @@ export const AddToFavBtn = styled(ViewMoreBtn)`
   justify-content: center;
   align-items: center;
 
-  @media (max-width: 767px) {
+  @media (max-width: 767.98px) {
     margin-top: 12px;
   }
 

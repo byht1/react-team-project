@@ -3,28 +3,37 @@ import { useSelector, useDispatch } from 'react-redux';
 import { useLocation } from 'react-router-dom';
 import { useInfiniteQuery } from '@tanstack/react-query';
 import { useTheme } from 'styled-components';
-import { fetchAllNotices, fetchFavoriteNotices, fetchOwnNotices, refresh } from 'api';
+import {
+  fetchAllNotices,
+  fetchFavoriteNotices,
+  fetchOwnNotices,
+  // current,
+  fetchPrivateCards,
+} from 'api';
 import { NoticesCategoryItem } from '../NoticesCategoryItem';
 import { DarkBtn as LoadMoreBtn } from 'components/global/button';
 import { ListBox } from './NoticesCategoriesList.styled';
 import { selectSearchQuery, setFavorites, setOwn } from 'redux/notices';
+import { getIsLogin } from 'redux/auth';
 
 export const NoticesCategoriesList = () => {
   const dispatch = useDispatch();
   const location = useLocation();
+  const isLoggedIn = useSelector(getIsLogin);
   const theme = useTheme();
   const pathname = location.pathname.split('/')[2];
 
   let categoryName = '';
 
   useEffect(() => {
+    if (!isLoggedIn) return;
     const setFavoritesArray = async () => {
-      const result = await refresh();
-      dispatch(setFavorites(result.favorite));
-      dispatch(setOwn(result.advertisement));
+      const { favorite, advertisement } = await fetchPrivateCards();
+      dispatch(setFavorites(favorite));
+      dispatch(setOwn(advertisement));
     };
     setFavoritesArray();
-  }, [pathname, dispatch]);
+  }, [isLoggedIn, dispatch]);
 
   const searchQuery = useSelector(selectSearchQuery);
 
