@@ -76,7 +76,7 @@ function App() {
             </Route>
           </Route>
 
-          <Route path="posts" element={<Blog />} />
+          <Route path="posts" element={<Blog />}></Route>
           <Route path="posts/:id" element={<PostDetails />} />
 
           <Route path="*" element={<Navigate to="/" />} />

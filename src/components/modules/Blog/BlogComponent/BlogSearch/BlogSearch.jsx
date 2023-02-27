@@ -15,7 +15,6 @@ export const BlogSearch = () => {
   const onFormSubmit = e => {
     e.preventDefault();
     // dispatch(search(e.target.elements.search.value));
-    console.log('onFormSubmit search Blog', e);
   };
 
   return (

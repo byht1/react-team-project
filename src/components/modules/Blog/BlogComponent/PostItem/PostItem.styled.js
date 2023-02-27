@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import { TitleH3 } from 'components/global/text';
 import { Box } from 'components/global/Box';
-import { LightBtn } from 'components/global/button/Button.styled';
+import { Link } from 'react-router-dom';
 
 export const StyledPost = styled.li`
   display: flex;
@@ -27,7 +27,7 @@ export const StyledImageWrapper = styled(Box)`
   height: 288px;
   width: 100%;
 
-  border-radius: ${p => p.theme.space[10]}px;
+  border-radius: ${p => p.theme.space[7]}px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   overflow: hidden;
   transition: transform 0.2s ease-in-out;
@@ -80,6 +80,7 @@ export const StyledContent = styled.div`
   min-height: 100%;
   flex-direction: column;
   align-self: stretch;
+  width: 100%;
 
   @media only screen and (max-width: 480px) {
     margin: 0;
@@ -127,14 +128,45 @@ export const StyledMetaIcon = styled.span`
   color: #999;
 
   &:hover {
-    color: red;
+    color: ${p => p.theme.colors.a};
   }
 `;
 
-export const StyledButton = styled(LightBtn)`
-  /* display: block; */
+export const StyledButton = styled(Link)`
+  display: flex;
+  justify-content: center;
+  align-items: center;
 
-  /* width: ${p => p.theme.size.max}; */
+  padding: 10px 28px;
+  outline: none;
+
+  border: 2px solid ${p => p.theme.colors.a};
+  border-radius: ${p => p.theme.radii.buttonRadius};
+
+  font-family: ${p => p.theme.fonts.manrope};
+  font-weight: ${p => p.theme.fontWeights.average};
+  font-size: 16px;
+  line-height: ${p => p.theme.lineHeights.heading};
+
+  transition: var(--transition-bg), var(--transition-color), var(--transition-border-color);
+
+  background-color: ${p => p.theme.colors.w};
+  color: ${p => p.theme.colors.bt};
+
+  &:hover,
+  &:focus {
+    background-color: ${p => p.theme.colors.a};
+    color: ${p => p.theme.colors.wt};
+  }
+
+  background-color: ${p => p.theme.colors.w};
+  color: ${p => p.theme.colors.bt};
+
+  &:hover,
+  &:focus {
+    background-color: ${p => p.theme.colors.a};
+    color: ${p => p.theme.colors.wt};
+  }
 
   padding-top: 8px;
   padding-bottom: 8px;
