@@ -6,9 +6,6 @@ import { useFavManagement } from 'hooks/useFavManagement';
 import { selectFavorites } from 'redux/notices';
 import { fetchOneNotice } from 'api';
 import { AiFillHeart } from 'react-icons/ai';
-// import SimpleSlider from 'components/modules/NoticesSlider/NoticesSlider';
-// import 'slick-carousel/slick/slick.css';
-// import 'slick-carousel/slick/slick-theme.css';
 import {
   ThumbTag,
   TableBody,

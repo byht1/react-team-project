@@ -15,6 +15,7 @@ html {
 
   --white: #ffffff;
   --black: #111111;
+  --search-text: #535353;
 
   --shadow: 7px 4px 14px rgba(49, 21, 4, 0.07);
   --gradient: linear-gradient(90deg, #ff634e 0%, #ffdf48 105.44%);

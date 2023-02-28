@@ -25,17 +25,17 @@ export const SearchForm = styled('form')`
 export const SearchBar = styled('input')`
   width: ${p => p.theme.size.max};
 
-  padding-top: 10px;
-  padding-bottom: 10px;
+  padding-top: 9px;
+  padding-bottom: 9px;
   padding-left: 12px;
   padding-right: 12px;
 
-  font-family: inherit;
-  font-size: inherit;
-  font-weight: inherit;
-  line-height: inherit;
+  font-family: ${p => p.theme.fonts.manrope};
+  font-size: ${p => p.theme.fontSizes.xl};
+  font-weight: ${p => p.theme.fontWeights.average};
+  line-height: ${p => p.theme.lineHeights.heading};
 
-  color: ${p => p.theme.colors.white};
+  color: ${p => p.theme.colors.sf};
   border: 2px solid;
   border-color: transparent;
   border-radius: ${p => p.theme.radii.inputRadius};
@@ -43,14 +43,15 @@ export const SearchBar = styled('input')`
 
   outline: none;
 
-  transition: border 250ms linear;
-
   &:focus {
     border-color: ${p => p.theme.colors.a};
   }
 
   @media (min-width: 768px) {
+    padding-top: 10px;
+    padding-bottom: 10px;
     padding-left: 20px;
+    padding-right: 12px;
   }
 
   &::placeholder {

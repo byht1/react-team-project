@@ -43,7 +43,6 @@ export const fetchFavoriteNotices = async () => {
 export const fetchOwnNotices = async () => {
   try {
     const r = await server.get(`/notices/user`);
-    console.log('fetched own');
     return r.data;
   } catch (e) {
     return e.message;
