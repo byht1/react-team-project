@@ -9,8 +9,11 @@ export const NoticeModal = ({ noticeId, closeModal }) => {
   useEffect(() => {
     window.addEventListener('keydown', closeModal);
 
+    document.querySelector('body').classList.add('hidden');
+
     return () => {
       window.removeEventListener('keydown', closeModal);
+      document.querySelector('body').classList.remove('hidden');
     };
   }, [closeModal]);
 
