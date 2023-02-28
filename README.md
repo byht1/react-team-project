@@ -11,7 +11,7 @@
  <a href='https://github.com/byht1/node-team-project'>Полинання на back-end</a>
 </h2>
 
-<h2>Учасники еоманди</h2>
+<h2>Учасники команди</h2>
 
 <ul>
     <li>
