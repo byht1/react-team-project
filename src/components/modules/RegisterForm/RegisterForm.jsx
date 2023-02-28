@@ -36,6 +36,7 @@ import server from 'api/basic';
 
 export const RegisterForm = () => {
   const [step, setStep] = useState(1);
+  // eslint-disable-next-line no-unused-vars
   const [err, setErr] = useState(null);
   const dispatch = useDispatch();
 

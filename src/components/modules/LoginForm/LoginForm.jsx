@@ -30,6 +30,7 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 export const LoginForm = () => {
+  // eslint-disable-next-line no-unused-vars
   const [err, setErr] = useState(null);
   const dispatch = useDispatch();
 
