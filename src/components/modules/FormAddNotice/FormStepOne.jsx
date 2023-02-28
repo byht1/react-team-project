@@ -39,7 +39,11 @@ export const FormStepOne = () => {
   const [custErr, setCustErr] = useState(false);
 
   useEffect(() => {
+    if (date === undefined) {
+      setDate(null);
+    }
     if (date && date !== 'NaN.NaN.NaN') {
+      console.log(date);
       const newDate = dateConverter(date);
       if (validateDate(newDate) === false) {
         setError('birthday', { message: 'Enter valid date' });
@@ -62,7 +66,7 @@ export const FormStepOne = () => {
     }
   };
 
-  const [value, setVal] = useState(getValues('breed'));
+  const [value] = useState(getValues('breed'));
   console.log(value);
   const change = (event, newValue) => {
     event.preventDefault();
