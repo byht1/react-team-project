@@ -63,19 +63,12 @@ export const FormStepTwo = () => {
   } = useFormContext();
 
   const values = getValues();
-  // console.log(values);
-  // useEffect(() => {
-  //   const value = getValues();
-  //   console.log(value.radio);
-  // }, [getValues, values]);
-  // console.log(errors.sex.message);
-
-  console.log(errors);
+  
   return (
     <>
       <FormWrap>
         <TextTittle>Add pet</TextTittle>
-        <CloseModalBtn id="modal-close" type="button" onClick={() => navigate('/')}>
+        <CloseModalBtn id="modal-close" type="button" onClick={() => navigate(-2)}>
           <IoCloseOutline id="close-svg" size={'28px'} />
         </CloseModalBtn>
         {errors.sex && <ErrorSex>{errors.sex.message}</ErrorSex>}

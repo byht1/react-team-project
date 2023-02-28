@@ -15,7 +15,11 @@ export const UserInfo = () => {
     mutationKey: ['user'],
     mutationFn: () => logOutUser(),
     onSuccess: () => dispatch(logout()),
-    onError: error => console.log(error),
+    onError: error => {
+      if (error.response.data.message === 'Invalid token') {
+        dispatch(logout());
+      }
+    },
     staleTime: Infinity,
     refetchOnWindowFocus: false,
   });

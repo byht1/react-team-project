@@ -37,28 +37,22 @@ export const NewPassForm = () => {
   const { mutate: saveNewPass, isLoading } = useMutation({
     mutationKey: ['user'],
     mutationFn: ({ token, data }) => {
-      // console.log(token);
-      // console.log(data);
       return newPass(token, data);
     },
     onSuccess: newData => {
-      // console.log(newData);
       setErr(null);
       dispatch(register(newData));
       setSearchParams({});
       reset();
     },
     onError: error => {
-      // console.log(error);
       setErr(error.response.data.message);
     },
   });
 
   const onSubmit = () => {
-    // console.log(data.password);
 
     const password = getValues('password');
-    // console.log(password);
     saveNewPass({ token: accessToken, data: { password } });
   };
 

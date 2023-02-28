@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { getName, getEmail, getBirthday, getPhone, getCity } from 'redux/auth';
+import { getName, getEmail, getBirthday, getPhone, getCity, logout } from 'redux/auth';
 
 import {
   Item,
@@ -53,7 +53,9 @@ export function UserInputInfo({
       dispatch(updateUserInfo(data));
     },
     onError: error => {
-      console.log(error);
+      if (error.response.data.message === 'Invalid token') {
+        dispatch(logout());
+      }
     },
   });
 

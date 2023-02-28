@@ -36,6 +36,7 @@ import server from 'api/basic';
 
 export const RegisterForm = () => {
   const [step, setStep] = useState(1);
+  // eslint-disable-next-line no-unused-vars
   const [err, setErr] = useState(null);
   const dispatch = useDispatch();
 
@@ -49,7 +50,6 @@ export const RegisterForm = () => {
     mutationKey: ['user'],
     mutationFn: data => signUp(data),
     onSuccess: signData => {
-      // console.log(signData);
       setErr(null);
       dispatch(register(signData));
       reset();
@@ -61,8 +61,6 @@ export const RegisterForm = () => {
       toast.error(error.response.data.name, { hideProgressBar: true, autoClose: 5000 });
       toast.error(error.response.data.password, { hideProgressBar: true, autoClose: 5000 });
       toast.error(error.response.data.phone, { hideProgressBar: true, autoClose: 5000 });
-      // setErr(Object.values(error.response.data));
-      console.log(err);
       setErr(error.response.data.message);
     },
   });
@@ -80,12 +78,10 @@ export const RegisterForm = () => {
     }
 
     const result = await trigger(['email', 'password', 'confirmpassword']);
-    // console.log(result);
     result && setStep(2);
   };
 
   const onSubmit = data => {
-    // console.log(data);
     regUser(data);
   };
 
