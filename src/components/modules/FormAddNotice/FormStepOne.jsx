@@ -57,9 +57,7 @@ export const FormStepOne = () => {
     console.log(newValue);
 
     if (newValue !== null) {
-      // const newDate = dateConverter(newValue.$d);
       setValue('birthday', newValue?.$d);
-      console.log(getValues('birthday'));
       setDate(getValues('birthday'));
     }
   };
@@ -69,43 +67,8 @@ export const FormStepOne = () => {
   const change = (event, newValue) => {
     event.preventDefault();
     event.stopPropagation();
-    // setVal(newValue);
     setValue('breed', newValue);
   };
-
-  console.log(errors);
-  // useEffect(() => {
-  //   setValue('birthday', date);
-  // }, [date, setValue]);
-  // let dateStr = '28.02.2023';
-  // let [day, month, year] = dateStr.split('.');
-  // let newDateStr = `${year}-${month}-${day}`;
-  // let data = new Date('2023-02-12');
-
-  // // Создайте массив с названиями месяцев на английском языке
-  // let monthNames = [
-  //   'Jan',
-  //   'Feb',
-  //   'Mar',
-  //   'Apr',
-  //   'May',
-  //   'Jun',
-  //   'Jul',
-  //   'Aug',
-  //   'Sep',
-  //   'Oct',
-  //   'Nov',
-  //   'Dec',
-  // ];
-
-  // // Получите отформатированную дату
-  // let formattedDate = data.toString();
-
-  // // Замените название месяца на его аббревиатуру
-  // formattedDate = formattedDate.replace(formattedDate.substr(4, 3), monthNames[data.getMonth()]);
-
-  // // Выведите отформатированную дату
-  // console.log(formattedDate);
 
   return (
     <>
@@ -156,46 +119,6 @@ export const FormStepOne = () => {
         </LabelInput>
         <LabelInput htmlFor="petBreed">
           <Text>Breed:</Text>
-          {/* <Autocomplete
-            disablePortal
-            id="petBreed"
-            options={dogBreeds}
-            sx={{
-              width: '100%',
-              display: 'inline-block',
-              '& .MuiOutlinedInput-root .MuiAutocomplete-input': {
-                padding: { xs: '1px 6px' },
-              },
-              // '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
-              //   border: '20px solid #f58138db',
-              //   position: 'absolute',
-              //   top: -2,
-              //   bottom: -1.8,
-              //   left: -2,
-              //   right: -1.8,
-              // },
-              '&  .MuiAutocomplete-inputRoot': {
-                bgcolor: '#FDF7F2',
-                borderRadius: '40px',
-                border: '1px solid #F5925680',
-              },
-              '& .MuiOutlinedInput-notchedOutline': {
-                borderRadius: '40px',
-              },
-              '& fieldset': {
-                borderRadius: '40px',
-                border: '1px solid #F5925680',
-                transition: 'border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out',
-                '&:focus-within': {
-                  border: '2px solid red',
-                },
-              },
-            }}
-            freeSolo={true}
-            renderInput={params => (
-              <TextField {...params} {...register('breed')} placeholder="Type breed" />
-            )}
-          /> */}
           <Autocomplete
             value={value}
             onChange={change}
