@@ -7,7 +7,10 @@ import { DesktopDatePicker } from '@mui/x-date-pickers/DesktopDatePicker';
 import { Autocomplete } from '@mui/material';
 
 import { dogBreeds } from './helpers/dogBreeds';
+import { dateParse } from './helpers/dateParse';
+import { dateConverter } from './helpers/dateConverter';
 import useWindowDimensions from './helpers/getWidth';
+import { validateDate } from 'helpers';
 import { CloseModalBtn } from 'components/modules/Notices/NoticeModal/NoticeModal.styled';
 import {
   Accent,
@@ -24,23 +27,49 @@ import {
 export const FormStepOne = () => {
   const location = useLocation().pathname.split('/')[2];
   const navigate = useNavigate();
-
-  const [date, setDate] = useState(null);
-
-  const handleChange = newValue => {
-    setDate(newValue);
-  };
-
   const {
     register,
     formState: { errors },
+    getValues,
     setValue,
     trigger,
+    setError,
   } = useFormContext();
+  const [date, setDate] = useState(getValues('birthday'));
+  const [custErr, setCustErr] = useState(false);
 
   useEffect(() => {
-    setValue('birthday', date);
-  }, [date, setValue]);
+    if (date === undefined) {
+      setDate(null);
+    }
+    if (date && date !== 'NaN.NaN.NaN') {
+      const newDate = dateConverter(date);
+      if (validateDate(newDate) === false) {
+        setError('birthday', { message: 'Enter valid date' });
+        setCustErr(true);
+      } else {
+        setCustErr(false);
+      }
+    }
+  }, [date, setError]);
+
+  if (date?.length === 10) {
+    setDate(dateParse(date));
+  }
+
+  const handleChange = newValue => {
+    if (newValue !== null) {
+      setValue('birthday', newValue?.$d);
+      setDate(getValues('birthday'));
+    }
+  };
+
+  const [value] = useState(getValues('breed'));
+  const change = (event, newValue) => {
+    event.preventDefault();
+    event.stopPropagation();
+    setValue('breed', newValue);
+  };
 
   return (
     <>
@@ -67,8 +96,8 @@ export const FormStepOne = () => {
             maxDate={new Date()}
             minDate={'01.01.1900'}
             inputFormat="DD.MM.YYYY"
-            value={date}
             onChange={handleChange}
+            value={date}
             renderInput={params => (
               <TextField
                 {...params}
@@ -87,11 +116,13 @@ export const FormStepOne = () => {
               />
             )}
           />
-          {errors.birthday && <Error>Invalid date</Error>}
+          {custErr && <Error>Enter valid date in format dd.mm.yyyy</Error>}
         </LabelInput>
         <LabelInput htmlFor="petBreed">
           <Text>Breed:</Text>
           <Autocomplete
+            value={value}
+            onChange={change}
             disablePortal
             id="petBreed"
             options={dogBreeds}
@@ -101,14 +132,14 @@ export const FormStepOne = () => {
               '& .MuiOutlinedInput-root .MuiAutocomplete-input': {
                 padding: { xs: '1px 6px' },
               },
-              '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
-                border: '20px solid #f58138db',
-                position: 'absolute',
-                top: -2,
-                bottom: -1.8,
-                left: -2,
-                right: -1.8,
-              },
+              // '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
+              //   border: '20px solid #f58138db',
+              //   position: 'absolute',
+              //   top: -2,
+              //   bottom: -1.8,
+              //   left: -2,
+              //   right: -1.8,
+              // },
               '&  .MuiAutocomplete-inputRoot': {
                 bgcolor: '#FDF7F2',
                 borderRadius: '40px',
@@ -152,13 +183,13 @@ export const FormStepOne = () => {
           >
             Next
           </ButtonAhead>
-          <ButtonBack type="button" onClick={() => navigate('/')}>
+          <ButtonBack type="button" onClick={() => navigate(-1)}>
             Cancel
           </ButtonBack>
         </ButtonWrap>
       ) : (
         <ButtonWrap>
-          <ButtonBack type="button" onClick={() => navigate('/')}>
+          <ButtonBack type="button" onClick={() => navigate(-1)}>
             Cancel
           </ButtonBack>
           <ButtonAhead

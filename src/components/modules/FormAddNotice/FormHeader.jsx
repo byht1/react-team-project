@@ -3,15 +3,12 @@ import { useLocation } from 'react-router-dom';
 
 export const FormHeader = () => {
   const location = useLocation().pathname.split('/').pop();
-  console.log('🚀  location:', location);
 
   return (
     <HeaderWrap>
       <TextTittle>Add pet</TextTittle>
       {location === 'addpet' && (
-        <MainText>
-          Lorem ipsum dolor sit amet, consectetur Lorem ipsum dolor sit amet, consectetur
-        </MainText>
+        <MainText>Choose a category and add information about your pet</MainText>
       )}
     </HeaderWrap>
   );

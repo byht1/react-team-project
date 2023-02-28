@@ -12,9 +12,11 @@ export const ModalOverlay = ({ onClose, children }) => {
     };
 
     window.addEventListener('keydown', clickKeyDown);
+    document.body.style.overflow = 'hidden';
 
     return () => {
       window.removeEventListener('keydown', clickKeyDown);
+      document.body.style.overflow = 'unset';
     };
   }, [onClose]);
 

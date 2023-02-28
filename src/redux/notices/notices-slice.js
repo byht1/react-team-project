@@ -12,7 +12,7 @@ const noticesSlice = createSlice({
       state.searchQuery = action.payload;
     },
     setFavorites(state, action) {
-      if (!state.favoritesArray.includes(...action.payload)) {
+      if (!action.payload.some(item => state.favoritesArray.includes(item))) {
         state.favoritesArray.push(...action.payload);
       }
     },
@@ -23,7 +23,7 @@ const noticesSlice = createSlice({
       state.favoritesArray.splice(state.favoritesArray.indexOf(action.payload), 1);
     },
     setOwn(state, action) {
-      if (!state.ownArray.includes(...action.payload)) {
+      if (!action.payload.some(item => state.ownArray.includes(item))) {
         state.ownArray.push(...action.payload);
       }
     },

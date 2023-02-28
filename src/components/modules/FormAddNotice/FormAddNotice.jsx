@@ -13,11 +13,16 @@ import { schemaAddPet } from './helpers/schemaAppPet';
 import { FormHeader } from './FormHeader';
 import { FormWrap, BackDrop, RadioTwo, LabelText, RadioWrap, Label } from './FormAddNotice.styled';
 
+import { useDispatch } from 'react-redux';
+import { setOwn } from 'redux/notices';
+
 export const FormAddNotice = () => {
   const [selectedValue, setSelectedValue] = useState('lost/found');
   // const [isModalOpen, setIsModalOpen] = useState(false);
   const location = useLocation().pathname.split('/')[2];
   const navigate = useNavigate();
+
+  const dispatch = useDispatch();
 
   const methods = useForm({
     resolver: yupResolver(schemaAddPet),
@@ -29,8 +34,9 @@ export const FormAddNotice = () => {
   const { mutate: create } = useMutation({
     mutationKey: ['notices'],
     mutationFn: addNewNotice,
-    onSuccess: () => {
+    onSuccess: data => {
       client.invalidateQueries({ queryKey: ['notices'] });
+      dispatch(setOwn(data._id.split(' ')));
     },
   });
 
@@ -55,7 +61,6 @@ export const FormAddNotice = () => {
       formData.append(key, data[key]);
     }
     create(formData);
-    console.log(data);
     navigate(`/notices/${location}`);
   };
 

@@ -1,14 +1,11 @@
 import React from 'react';
 import { useQuery } from '@tanstack/react-query';
 import { useSelector } from 'react-redux';
-import { useLocation } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { useFavManagement } from 'hooks/useFavManagement';
 import { selectFavorites } from 'redux/notices';
 import { fetchOneNotice } from 'api';
 import { AiFillHeart } from 'react-icons/ai';
-// import SimpleSlider from 'components/modules/NoticesSlider/NoticesSlider';
-// import 'slick-carousel/slick/slick.css';
-// import 'slick-carousel/slick/slick-theme.css';
 import {
   ThumbTag,
   TableBody,
@@ -36,14 +33,21 @@ import {
 export const NoticesModalCard = ({ noticeId }) => {
   const favorites = useSelector(selectFavorites);
   const [handleAddToFav, handleRemoveFromFav] = useFavManagement();
+  const navigate = useNavigate();
   const location = useLocation();
   const pathname = location.pathname.split('/')[2];
 
-  const { data, isSuccess } = useQuery({
+  const { data, isSuccess, isError } = useQuery({
     queryFn: () => fetchOneNotice(noticeId),
     queryKey: ['notices', noticeId],
     staleTime: 5 * 60 * 1000,
+    retry: 1,
   });
+
+  if (isError) {
+    navigate('/error');
+    return;
+  }
 
   return (
     <>

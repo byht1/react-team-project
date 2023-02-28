@@ -81,7 +81,7 @@ export const Header = () => {
                 <MenuNavigationLink to="news">News</MenuNavigationLink>
                 <MenuNavigationLink to="notices">Find pet</MenuNavigationLink>
                 <MenuNavigationLink to="friends">Our friends</MenuNavigationLink>
-                {authorized && <MenuNavigationLink to="posts">Blog</MenuNavigationLink>}
+                {/* {authorized && <MenuNavigationLink to="posts">Blog</MenuNavigationLink>} */}
               </LinksBox>
               {authorized ? (
                 <ButtonsBox>

@@ -22,7 +22,7 @@ export const token = {
 server.interceptors.response.use(
   response => response,
   async error => {
-    if (error.response.status === 403 && !error.config._isRetry) {
+    if (error.response.status === 403) {
       const refreshToken = localStorage.getItem('refreshToken');
 
       if (!refreshToken) return Promise.reject(error);
@@ -31,6 +31,7 @@ server.interceptors.response.use(
         const { data } = await server.post('/auth/refresh', { refresh_token: refreshToken });
 
         token.set(data);
+        error.config.headers.common.authorization = `Bearer ${data}`;
 
         return server(error.config);
       } catch (error) {

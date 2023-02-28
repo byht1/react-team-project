@@ -32,7 +32,7 @@ export const SpanLogout = styled.span`
   align-items: center;
   letter-spacing: 0.04em;
   color: rgba(17, 17, 17, 0.6);
-
+  cursor: pointer;
   @media (min-width: 768px) {
     margin-left: 0px;
     margin-right: auto;
@@ -44,7 +44,9 @@ export const SpanLogout = styled.span`
     line-height: 22px;
   }
 
-  cursor: pointer;
+  &:hover {
+    color: ${theme.colors.a};
+  }
 `;
 
 export const Cover = styled.div`

@@ -29,11 +29,6 @@ export const AuthContainer = styled(Container)`
   padding-top: 42px;
 
   @media (min-width: 768px) {
-    /* display: flex;
-    flex: 1;
-    padding-top: 100px;
-    align-items: center;
-    justify-content: center; */
     padding-top: 0;
     position: relative;
     height: 100%;
@@ -65,10 +60,6 @@ export const FormWrapper = styled.div`
     transform: translate(-50%, -50%);
     background-color: ${p => p.theme.colors.w};
     width: 608px;
-
-    /* margin-left: auto;
-    margin-right: auto; */
-
     padding: 60px 80px 40px 80px;
     border-radius: ${p => p.theme.radii.inputRadius};
     box-shadow: 7px 4px 14px rgba(0, 0, 0, 0.11);
@@ -107,6 +98,7 @@ export const Link = styled(NavLink)`
 `;
 
 export const GoogleBox = styled.div`
+  margin-top: 16px;
   display: flex;
   align-items: center;
   justify-content: center;

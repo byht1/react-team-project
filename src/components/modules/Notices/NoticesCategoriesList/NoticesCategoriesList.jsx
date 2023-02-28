@@ -3,13 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { useLocation } from 'react-router-dom';
 import { useInfiniteQuery } from '@tanstack/react-query';
 import { useTheme } from 'styled-components';
-import {
-  fetchAllNotices,
-  fetchFavoriteNotices,
-  fetchOwnNotices,
-  // current,
-  fetchPrivateCards,
-} from 'api';
+import { fetchAllNotices, fetchFavoriteNotices, fetchOwnNotices, fetchPrivateCards } from 'api';
 import { NoticesCategoryItem } from '../NoticesCategoryItem';
 import { DarkBtn as LoadMoreBtn } from 'components/global/button';
 import { ListBox } from './NoticesCategoriesList.styled';
@@ -90,8 +84,8 @@ export const NoticesCategoriesList = () => {
             {data?.pages?.flat()?.length === 0 && <p>No notices here yet...</p>}
             {data.pages.map((page, i) => (
               <React.Fragment key={i}>
-                {page.map(noticesItem => (
-                  <NoticesCategoryItem key={noticesItem._id} noticesItem={noticesItem} />
+                {page?.map(noticesItem => (
+                  <NoticesCategoryItem key={noticesItem._id + i} noticesItem={noticesItem} />
                 ))}
               </React.Fragment>
             ))}

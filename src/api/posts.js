@@ -33,7 +33,6 @@ export const fetchOnePost = async postId => {
 // export const fetchOwnNotices = async () => {
 //   try {
 //     const r = await server.get(`/notices/user`);
-//     console.log('fetched own');
 //     return r.data;
 //   } catch (e) {
 //     return e.message;
@@ -61,7 +60,6 @@ export const switchLikePost = async postId => {
 // export const addNewNotice = async notice => {
 //   try {
 //     const { data } = await server.post('/notices/');
-//     console.log(data);
 //     return data;
 //   } catch (error) {
 //     console.error(error);
