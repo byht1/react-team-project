@@ -35,8 +35,6 @@ import { NewPassword } from 'page/NewPassword';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
-// import { NotFound } from 'page/NotFound';
-
 function App() {
   const { isLoading, isSuccess, isError } = useAppLoading();
 
@@ -93,7 +91,6 @@ function App() {
           <Route path="posts/:id" element={<PostDetails />} />
 
           <Route path="*" element={<Navigate to="/" />} />
-          {/* <Route path="*" element={<NotFound />} /> */}
         </Route>
       </Routes>
       <ToastContainer />

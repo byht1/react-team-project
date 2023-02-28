@@ -17,7 +17,7 @@ const queryClient = new QueryClient();
 queryClient.setDefaultOptions({
   queries: {
     retry: (failureCount, error) => {
-      if (error.response.data.message === 'Invalid token') {
+      if (error.response?.data?.message === 'Invalid token') {
         return false;
       }
       return failureCount < 3;

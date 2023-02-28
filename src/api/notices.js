@@ -9,7 +9,7 @@ export const fetchAllNotices = async ({ category, offset = 0, count = 12, search
     const r = await server.get(query);
     return r.data;
   } catch (e) {
-    return e.message;
+    throw new Error(e.message);
   }
 };
 
@@ -18,16 +18,16 @@ export const fetchOneNotice = async noticeId => {
     const r = await server.get(`/notices/${noticeId}`);
     return r.data;
   } catch (e) {
-    return e.message;
+    throw new Error(e.message);
   }
 };
 
 export const fetchPrivateCards = async () => {
   try {
-    const r = await server.get('/auth/current?fields=advertisement,cards');
+    const r = await server.get('/auth/current?fields=advertisement,favorite');
     return r.data;
   } catch (e) {
-    return e.message;
+    throw new Error(e.message);
   }
 };
 
@@ -36,7 +36,7 @@ export const fetchFavoriteNotices = async () => {
     const r = await server.get(`/notices/favorite`);
     return r.data;
   } catch (e) {
-    return e.message;
+    throw new Error(e.message);
   }
 };
 
@@ -45,7 +45,7 @@ export const fetchOwnNotices = async () => {
     const r = await server.get(`/notices/user`);
     return r.data;
   } catch (e) {
-    return e.message;
+    throw new Error(e.message);
   }
 };
 
@@ -54,7 +54,7 @@ export const removeNotice = async noticeId => {
     const r = await server.delete(`/notices/${noticeId}`);
     return r.data;
   } catch (e) {
-    return e.message;
+    throw new Error(e.message);
   }
 };
 
@@ -63,7 +63,7 @@ export const addNoticeToFav = async noticeId => {
     const r = await server.patch(`/notices/${noticeId}/favorite`);
     return r.data;
   } catch (e) {
-    return e.message;
+    throw new Error(e.message);
   }
 };
 
@@ -72,7 +72,7 @@ export const removeNoticeFromFav = async noticeId => {
     const r = await server.delete(`/notices/${noticeId}/favorite`);
     return r.data;
   } catch (e) {
-    return e.message;
+    throw new Error(e.message);
   }
 };
 
