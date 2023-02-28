@@ -489,6 +489,4 @@ export const ImgError = styled.div`
       bottom: 15px;
     }
   }
-  /* padding-top: 20px; */
-  /* x */
 `;

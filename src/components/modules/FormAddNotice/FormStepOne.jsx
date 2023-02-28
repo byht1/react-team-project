@@ -8,6 +8,7 @@ import { Autocomplete } from '@mui/material';
 
 import { dogBreeds } from './helpers/dogBreeds';
 import { dateParse } from './helpers/dateParse';
+import { dateConverter } from './helpers/dateConverter';
 import useWindowDimensions from './helpers/getWidth';
 import { validateDate } from 'helpers';
 import { CloseModalBtn } from 'components/modules/Notices/NoticeModal/NoticeModal.styled';
@@ -22,7 +23,6 @@ import {
   ButtonBack,
   InputAdd,
 } from './FormAddNotice.styled';
-import { dateConverter } from './helpers/dateConverter';
 
 export const FormStepOne = () => {
   const location = useLocation().pathname.split('/')[2];
@@ -57,9 +57,8 @@ export const FormStepOne = () => {
   if (date?.length === 10) {
     setDate(dateParse(date));
   }
-  const handleChange = newValue => {
-    console.log(newValue);
 
+  const handleChange = newValue => {
     if (newValue !== null) {
       setValue('birthday', newValue?.$d);
       setDate(getValues('birthday'));
@@ -67,7 +66,6 @@ export const FormStepOne = () => {
   };
 
   const [value] = useState(getValues('breed'));
-  console.log(value);
   const change = (event, newValue) => {
     event.preventDefault();
     event.stopPropagation();
@@ -119,7 +117,7 @@ export const FormStepOne = () => {
               />
             )}
           />
-          {custErr && <Error>Enter valid date</Error>}
+          {custErr && <Error>Enter valid date in format dd.mm.yyyy</Error>}
         </LabelInput>
         <LabelInput htmlFor="petBreed">
           <Text>Breed:</Text>
