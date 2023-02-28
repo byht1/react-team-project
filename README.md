@@ -16,7 +16,7 @@
 <ul>
     <li>
         <span>Віталій Дихал - Team Lead Fullstack</span>
-        <a href='https://github.com/byht1'>рерозиторій</a>
+        <a href='https://github.com/byht1'>gitHub</a>
     </li>
     <li>
         <span>Владислава Бойко - Scrum Master Fullstack</span>
