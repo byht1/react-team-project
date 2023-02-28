@@ -16,11 +16,17 @@ import {
   ButtonDark,
   ButtonLight,
   LabelInputDate,
-  ErrorInputDate,
   Auto,
 } from './FormPages.styled';
 
-export const FirstPage = ({ nextStep, onClose }) => {
+export const FirstPage = ({
+  nextStep,
+  onClose,
+  inputDate,
+  setInputDate,
+  inputBreed,
+  setInputBreed,
+}) => {
   const {
     register,
     trigger,
@@ -28,21 +34,31 @@ export const FirstPage = ({ nextStep, onClose }) => {
     setValue,
   } = useFormContext();
 
-  const [date, setDate] = useState(null);
+  const [open, setOpen] = useState(false);
 
   useEffect(() => {
-    setValue('birthday', date);
-  }, [date, setValue]);
+    setValue('birthday', inputDate);
+  }, [inputDate, setValue]);
 
   const checkInput = async () => {
     const result = await trigger(['petName', 'birthday', 'petBreed']);
+
     if (result) {
       nextStep();
     }
   };
 
-  const handleChange = newValue => {
-    setDate(newValue);
+  const handleInputChange = (event, data) => {
+    setInputBreed(data);
+  };
+
+  const handleChange = date => {
+    setInputDate(date);
+    setOpen(false);
+  };
+  // для запрета ввода даты вручную
+  const handleKeyPress = event => {
+    event.preventDefault();
   };
 
   return (
@@ -60,12 +76,23 @@ export const FirstPage = ({ nextStep, onClose }) => {
             maxDate={new Date()}
             minDate={new Date('1990-01-01')}
             inputFormat="DD.MM.YYYY"
-            value={date}
+            format="DD.MM.YYYY"
+            value={inputDate}
             onChange={handleChange}
+            open={open}
+            onOpen={() => setOpen(true)}
+            onClose={() => setOpen(false)}
+            disableTextInput={true}
             renderInput={params => (
               <TextField
                 {...params}
                 {...register('birthday')}
+                value={inputDate}
+                onKeyPress={handleKeyPress}
+                onClick={() => {
+                  setOpen(true);
+                }}
+                autoComplete="off"
                 sx={{
                   '& .MuiOutlinedInput-root': {
                     '&:hover fieldset': {
@@ -80,7 +107,6 @@ export const FirstPage = ({ nextStep, onClose }) => {
               />
             )}
           />
-          {errors.birthday && <ErrorInputDate>{errors.birthday.message}</ErrorInputDate>}
         </LabelInputDate>
 
         <LabelInput htmlFor="petBreed">
@@ -88,6 +114,7 @@ export const FirstPage = ({ nextStep, onClose }) => {
           <Auto
             disablePortal
             id="petBreed"
+            value={inputBreed}
             options={dogBreeds}
             sx={{
               width: '100%',
@@ -121,8 +148,14 @@ export const FirstPage = ({ nextStep, onClose }) => {
               },
             }}
             freeSolo={true}
+            onChange={handleInputChange}
             renderInput={params => (
-              <TextField {...params} {...register('petBreed')} placeholder="Type breed" />
+              <TextField
+                {...params}
+                {...register('petBreed')}
+                // value={inputBreed}
+                placeholder="Type breed"
+              />
             )}
           />
           {errors.petBreed && <ErrorInput>{errors.petBreed.message}</ErrorInput>}

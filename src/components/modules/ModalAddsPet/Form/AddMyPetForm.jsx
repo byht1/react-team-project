@@ -24,6 +24,8 @@ export const AddMyPetForm = () => {
 
   const [page, setPage] = useState(1);
   const [error, setError] = useState(null);
+  const [inputDate, setInputDate] = useState(new Date());
+  const [inputBreed, setInputBreed] = useState('');
 
   const navigate = useNavigate();
 
@@ -65,6 +67,8 @@ export const AddMyPetForm = () => {
   };
 
   const onSubmit = async data => {
+    console.log(data);
+    console.log(data.birthday);
     data.birthday = dateConverter(data.birthday);
 
     const formInfo = new FormData();
@@ -99,7 +103,14 @@ export const AddMyPetForm = () => {
               </CloseBtn>
 
               {location.pathname === '/user/addmypet/page1' && (
-                <FirstPage nextStep={nextStep} onClose={onCloseModal} />
+                <FirstPage
+                  nextStep={nextStep}
+                  onClose={onCloseModal}
+                  inputDate={inputDate}
+                  setInputDate={setInputDate}
+                  inputBreed={inputBreed}
+                  setInputBreed={setInputBreed}
+                />
               )}
 
               {location.pathname === '/user/addmypet/page2' && <SecondPage prevStep={prevStep} />}
