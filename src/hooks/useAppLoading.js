@@ -55,7 +55,6 @@ export const useAppLoading = () => {
 //   const dispatch = useDispatch();
 //   const [searchParams, setSearchParams] = useSearchParams();
 //   const accessToken = searchParams.get('access_token');
-//   console.log(accessToken);
 
 //   const navigate = useNavigate();
 
@@ -68,7 +67,6 @@ export const useAppLoading = () => {
 //     },
 //     queryKey: ['user'],
 //     onSuccess: data => {
-//       console.log(data);
 //       if (accessToken) {
 //         setSearchParams({});
 //         navigate('/user');
@@ -80,7 +78,6 @@ export const useAppLoading = () => {
 //     staleTime: Infinity,
 //     refetchOnWindowFocus: false,
 //   });
-//   console.log('🚀  isError:', isError);
 
 //   return { isLoading, isSuccess, isError };
 // };
@@ -88,7 +85,6 @@ export const useAppLoading = () => {
 // const dispatch = useDispatch();
 // const [searchParams, setSearchParams] = useSearchParams();
 // const accessToken = searchParams.get('access_token');
-// console.log(accessToken);
 
 // const navigate = useNavigate();
 
@@ -101,7 +97,6 @@ export const useAppLoading = () => {
 //   },
 //   queryKey: ['user'],
 //   onSuccess: data => {
-//     console.log(data);
 //     if (accessToken) {
 //       setSearchParams({});
 //       navigate('/user');

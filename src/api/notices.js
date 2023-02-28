@@ -79,7 +79,6 @@ export const removeNoticeFromFav = async noticeId => {
 export const addNewNotice = async notice => {
   try {
     const { data } = await server.post('/notices', notice);
-    console.log(data);
     return data;
   } catch (error) {
     console.error(error);

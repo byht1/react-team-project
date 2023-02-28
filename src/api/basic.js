@@ -35,7 +35,6 @@ server.interceptors.response.use(
 
         return server(error.config);
       } catch (error) {
-        console.log(11111);
         return Promise.reject(error);
       }
     }

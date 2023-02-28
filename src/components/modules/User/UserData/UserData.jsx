@@ -11,7 +11,7 @@ import {
 } from './UserData.styled';
 import { UserInfo } from '../UserInfo';
 import { useDispatch, useSelector } from 'react-redux';
-import { getUserPhoto, updateUserInfo } from 'redux/auth';
+import { getUserPhoto, logout, updateUserInfo } from 'redux/auth';
 import { useMutation } from '@tanstack/react-query';
 import { editUserProfilePhoto } from 'api';
 
@@ -26,7 +26,9 @@ export const UserData = () => {
       dispatch(updateUserInfo(data));
     },
     onError: error => {
-      console.log(error);
+      if (error.response.data.message === 'Invalid token') {
+        dispatch(logout());
+      }
     },
   });
 

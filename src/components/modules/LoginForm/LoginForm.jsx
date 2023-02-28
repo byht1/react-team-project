@@ -44,7 +44,6 @@ export const LoginForm = () => {
     mutationKey: ['user'],
     mutationFn: data => logIn(data),
     onSuccess: logData => {
-      // console.log(logData);
       setErr(null);
       dispatch(register(logData));
       reset();
@@ -52,14 +51,11 @@ export const LoginForm = () => {
 
     onError: error => {
       setErr(error.response.data.message);
-      console.log(err);
-      // console.log(error.response.data.message);
       toast.error(error.response.data.message, { hideProgressBar: true });
     },
   });
 
   const onSubmit = data => {
-    // console.log(data);
     logUser(data);
   };
 
