@@ -41,10 +41,11 @@ export const NoticesModalCard = ({ noticeId }) => {
     queryFn: () => fetchOneNotice(noticeId),
     queryKey: ['notices', noticeId],
     staleTime: 5 * 60 * 1000,
+    retry: 1,
   });
 
   if (isError) {
-    navigate('/not-found');
+    navigate('/error');
     return;
   }
 
