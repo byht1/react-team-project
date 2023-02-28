@@ -1,7 +1,7 @@
 import React from 'react';
 import { useQuery } from '@tanstack/react-query';
 import { useSelector } from 'react-redux';
-import { useLocation } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { useFavManagement } from 'hooks/useFavManagement';
 import { selectFavorites } from 'redux/notices';
 import { fetchOneNotice } from 'api';
@@ -33,14 +33,20 @@ import {
 export const NoticesModalCard = ({ noticeId }) => {
   const favorites = useSelector(selectFavorites);
   const [handleAddToFav, handleRemoveFromFav] = useFavManagement();
+  const navigate = useNavigate();
   const location = useLocation();
   const pathname = location.pathname.split('/')[2];
 
-  const { data, isSuccess } = useQuery({
+  const { data, isSuccess, isError } = useQuery({
     queryFn: () => fetchOneNotice(noticeId),
     queryKey: ['notices', noticeId],
     staleTime: 5 * 60 * 1000,
   });
+
+  if (isError) {
+    navigate('/not-found');
+    return;
+  }
 
   return (
     <>

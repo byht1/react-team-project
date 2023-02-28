@@ -33,7 +33,7 @@ import { SecondPage } from 'components/modules/ModalAddsPet/FormPages/SecondPage
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
-// import { NotFound } from 'page/NotFound';
+import { NotFound } from 'page/NotFound';
 
 function App() {
   const { isLoading, isSuccess, isError } = useAppLoading();
@@ -82,7 +82,7 @@ function App() {
           <Route path="posts/:id" element={<PostDetails />} />
 
           <Route path="*" element={<Navigate to="/" />} />
-          {/* <Route path="*" element={<NotFound />} /> */}
+          <Route path="not-found" element={<NotFound />} />
         </Route>
       </Routes>
       <ToastContainer />
