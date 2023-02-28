@@ -16,6 +16,8 @@ export const UserInfo = () => {
     mutationFn: () => logOutUser(),
     onSuccess: () => dispatch(logout()),
     onError: error => console.log(error),
+    staleTime: Infinity,
+    refetchOnWindowFocus: false,
   });
 
   return (
