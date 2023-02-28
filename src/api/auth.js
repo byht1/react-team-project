@@ -76,8 +76,11 @@ export const newPass = async (accessToken, body) => {
     localStorage.setItem('refreshToken', data.refresh_token);
 
     return data;
-    
-    
+  } catch (error) {
+    throw error;
+  }
+};
+
 export const refresh = async () => {
   const refreshToken = localStorage.getItem('refreshToken');
 

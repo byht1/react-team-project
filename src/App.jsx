@@ -80,6 +80,15 @@ function App() {
             </Route>
           </Route>
 
+          <Route
+            path="forgot-password"
+            element={<RestrictedRoute component={ForgotPassword} redirectTo="/user" />}
+          />
+          <Route
+            path="forgotten-password"
+            element={<RestrictedRoute component={NewPassword} redirectTo="/user" />}
+          />
+
           <Route path="posts" element={<Blog />}></Route>
           <Route path="posts/:id" element={<PostDetails />} />
 
