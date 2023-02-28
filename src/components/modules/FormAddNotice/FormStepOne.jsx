@@ -7,7 +7,9 @@ import { DesktopDatePicker } from '@mui/x-date-pickers/DesktopDatePicker';
 import { Autocomplete } from '@mui/material';
 
 import { dogBreeds } from './helpers/dogBreeds';
+import { dateParse } from './helpers/dateParse';
 import useWindowDimensions from './helpers/getWidth';
+import { validateDate } from 'helpers';
 import { CloseModalBtn } from 'components/modules/Notices/NoticeModal/NoticeModal.styled';
 import {
   Accent,
@@ -20,35 +22,90 @@ import {
   ButtonBack,
   InputAdd,
 } from './FormAddNotice.styled';
+import { dateConverter } from './helpers/dateConverter';
 
 export const FormStepOne = () => {
   const location = useLocation().pathname.split('/')[2];
   const navigate = useNavigate();
-
-  const [date, setDate] = useState(null);
-
-  const handleChange = newValue => {
-    setDate(newValue);
-  };
-
-  const [value, setVal] = useState(null);
-
-  const change = (event, newValue) => {
-    event.preventDefault();
-    event.stopPropagation();
-    setVal(newValue);
-    console.log(newValue);
-  };
   const {
     register,
     formState: { errors },
+    getValues,
     setValue,
     trigger,
+    setError,
   } = useFormContext();
+  const [date, setDate] = useState(getValues('birthday'));
+  const [custErr, setCustErr] = useState(false);
 
   useEffect(() => {
-    setValue('birthday', date);
-  }, [date, setValue]);
+    if (date && date !== 'NaN.NaN.NaN') {
+      const newDate = dateConverter(date);
+      if (validateDate(newDate) === false) {
+        setError('birthday', { message: 'Enter valid date' });
+        setCustErr(true);
+      } else {
+        setCustErr(false);
+      }
+    }
+  }, [date, setError]);
+
+  if (date?.length === 10) {
+    setDate(dateParse(date));
+  }
+  const handleChange = newValue => {
+    console.log(newValue);
+
+    if (newValue !== null) {
+      // const newDate = dateConverter(newValue.$d);
+      setValue('birthday', newValue?.$d);
+      console.log(getValues('birthday'));
+      setDate(getValues('birthday'));
+    }
+  };
+
+  const [value, setVal] = useState(getValues('breed'));
+  console.log(value);
+  const change = (event, newValue) => {
+    event.preventDefault();
+    event.stopPropagation();
+    // setVal(newValue);
+    setValue('breed', newValue);
+  };
+
+  console.log(errors);
+  // useEffect(() => {
+  //   setValue('birthday', date);
+  // }, [date, setValue]);
+  // let dateStr = '28.02.2023';
+  // let [day, month, year] = dateStr.split('.');
+  // let newDateStr = `${year}-${month}-${day}`;
+  // let data = new Date('2023-02-12');
+
+  // // Создайте массив с названиями месяцев на английском языке
+  // let monthNames = [
+  //   'Jan',
+  //   'Feb',
+  //   'Mar',
+  //   'Apr',
+  //   'May',
+  //   'Jun',
+  //   'Jul',
+  //   'Aug',
+  //   'Sep',
+  //   'Oct',
+  //   'Nov',
+  //   'Dec',
+  // ];
+
+  // // Получите отформатированную дату
+  // let formattedDate = data.toString();
+
+  // // Замените название месяца на его аббревиатуру
+  // formattedDate = formattedDate.replace(formattedDate.substr(4, 3), monthNames[data.getMonth()]);
+
+  // // Выведите отформатированную дату
+  // console.log(formattedDate);
 
   return (
     <>
@@ -75,8 +132,8 @@ export const FormStepOne = () => {
             maxDate={new Date()}
             minDate={'01.01.1900'}
             inputFormat="DD.MM.YYYY"
-            value={date}
             onChange={handleChange}
+            value={date}
             renderInput={params => (
               <TextField
                 {...params}
@@ -95,7 +152,7 @@ export const FormStepOne = () => {
               />
             )}
           />
-          {errors.birthday && <Error>Invalid date</Error>}
+          {custErr && <Error>Enter valid date</Error>}
         </LabelInput>
         <LabelInput htmlFor="petBreed">
           <Text>Breed:</Text>
@@ -202,13 +259,13 @@ export const FormStepOne = () => {
           >
             Next
           </ButtonAhead>
-          <ButtonBack type="button" onClick={() => navigate('/')}>
+          <ButtonBack type="button" onClick={() => navigate(-1)}>
             Cancel
           </ButtonBack>
         </ButtonWrap>
       ) : (
         <ButtonWrap>
-          <ButtonBack type="button" onClick={() => navigate('/')}>
+          <ButtonBack type="button" onClick={() => navigate(-1)}>
             Cancel
           </ButtonBack>
           <ButtonAhead
