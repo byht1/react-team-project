@@ -1,7 +1,7 @@
 <h1 align="center">Team Brainstorming</h1>
 
 <p align="center">
-  <img src="./assets/logo.png" width="200" alt="Nest Logo" />
+  <img src="./assets/logo.svg" width="200" alt="Nest Logo" />
 </p>
 
 <h2>
