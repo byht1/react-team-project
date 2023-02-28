@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useForm, FormProvider } from 'react-hook-form';
-import { Outlet, useNavigate } from 'react-router-dom';
+import { Outlet, useNavigate, useLocation } from 'react-router-dom';
 import { useQueryClient } from '@tanstack/react-query';
 import { useMutation } from '@tanstack/react-query';
 import { yupResolver } from '@hookform/resolvers/yup';
@@ -16,7 +16,7 @@ import { FormWrap, BackDrop, RadioTwo, LabelText, RadioWrap, Label } from './For
 export const FormAddNotice = () => {
   const [selectedValue, setSelectedValue] = useState('lost/found');
   // const [isModalOpen, setIsModalOpen] = useState(false);
-  // const location = useLocation();
+  const location = useLocation().pathname.split('/')[2];
   const navigate = useNavigate();
 
   const methods = useForm({
@@ -24,15 +24,13 @@ export const FormAddNotice = () => {
     mode: 'all',
   });
 
-  const categoryName = methods.getValues().category;
-
   const client = useQueryClient();
   // const { data, isLoading } = useQuery({ queryFn: postNotice(value), queryKey: 'noticeі' });
   const { mutate: create } = useMutation({
-    mutationKey: ['notices', 'all', categoryName],
+    mutationKey: ['notices'],
     mutationFn: addNewNotice,
     onSuccess: () => {
-      client.invalidateQueries({ queryKey: ['notices', 'all', categoryName] });
+      client.invalidateQueries({ queryKey: ['notices'] });
     },
   });
 
@@ -42,9 +40,9 @@ export const FormAddNotice = () => {
   };
 
   const onSubmit = data => {
-    data.birthday = dateConverter(methods.getValues('birthday').$d);
+    data.birthday = dateConverter(data.birthday);
+    console.log(data.birthday);
     const files = data.images;
-    console.log(data);
     const formData = new FormData();
     for (const key in data) {
       if (key === 'images') {
@@ -57,13 +55,14 @@ export const FormAddNotice = () => {
       formData.append(key, data[key]);
     }
     create(formData);
-    navigate('/');
+    console.log(data);
+    navigate(`/notices/${location}`);
   };
 
   // eslint-disable-next-line react-hooks/exhaustive-deps
   const closeModal = e => {
     if (e.target.id === 'backdrop-notice' || e.key === 'Escape') {
-      navigate('/');
+      navigate(-1);
     }
   };
 

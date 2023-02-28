@@ -7,8 +7,11 @@ import { useLocation } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { Alert } from '@mui/material';
+import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
+import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { addPet } from '../../../../api';
 import { schemaAddMyPetForm } from '../validationSchema';
+import { dateConverter } from '../../FormAddNotice/helpers/dateConverter';
 import { FirstPage } from '../FormPages/FirstPage';
 import { SecondPage } from '../FormPages/SecondPage';
 import { ModalOverlay } from '../ModalOverlay/ModalOverlay';
@@ -62,9 +65,12 @@ export const AddMyPetForm = () => {
   };
 
   const onSubmit = async data => {
+    console.log(data);
+    data.birthday = dateConverter(data.birthday);
+
     const formInfo = new FormData();
     formInfo.append('name', data.petName);
-    formInfo.append('birth', data.petBirth);
+    formInfo.append('birth', data.birthday);
     formInfo.append('breed', data.petBreed);
     formInfo.append('image', data.myPetURL[0]);
     formInfo.append('comments', data.comments);
@@ -86,25 +92,27 @@ export const AddMyPetForm = () => {
     <>
       <ModalOverlay onClose={onCloseModal}>
         <FormWrapper page={page}>
-          <FormContext methods={methods} submit={onSubmit}>
-            <FormTitle>Add pet</FormTitle>
-            <CloseBtn type="button" onClick={onCloseModal}>
-              <GrCloseIcon />
-            </CloseBtn>
+          <LocalizationProvider dateAdapter={AdapterDayjs}>
+            <FormContext methods={methods} submit={onSubmit}>
+              <FormTitle>Add pet</FormTitle>
+              <CloseBtn type="button" onClick={onCloseModal}>
+                <GrCloseIcon />
+              </CloseBtn>
 
-            {location.pathname === '/user/addmypet/page1' && (
-              <FirstPage nextStep={nextStep} onClose={onCloseModal} />
-            )}
+              {location.pathname === '/user/addmypet/page1' && (
+                <FirstPage nextStep={nextStep} onClose={onCloseModal} />
+              )}
 
-            {location.pathname === '/user/addmypet/page2' && <SecondPage prevStep={prevStep} />}
+              {location.pathname === '/user/addmypet/page2' && <SecondPage prevStep={prevStep} />}
 
-            {isLoading && <Loader />}
-            {error && (
-              <Alert style={{ marginTop: 16 }} severity="error" onClose={closeAlert}>
-                {error.message}
-              </Alert>
-            )}
-          </FormContext>
+              {isLoading && <Loader />}
+              {error && (
+                <Alert style={{ marginTop: 16 }} severity="error" onClose={closeAlert}>
+                  {error.message}
+                </Alert>
+              )}
+            </FormContext>
+          </LocalizationProvider>
         </FormWrapper>
       </ModalOverlay>
     </>

@@ -10,7 +10,7 @@ export const CardBox = styled(Box)`
 
   box-shadow: ${p => p.theme.shadows.s};
 
-  @media (max-width: 767px) {
+  @media (max-width: 767.98px) {
     margin-top: 32px;
   }
 
@@ -26,14 +26,6 @@ export const CardBox = styled(Box)`
 export const ThumbWrapper = styled(Box)`
   position: relative;
   height: 288px;
-
-  /* @media (min-width: 768px) {
-    width: 336px;
-  }
-
-  @media (min-width: 1280px) {
-    width: 288px;
-  }  */
 `;
 
 export const ThumbImage = styled('img')`
@@ -79,17 +71,37 @@ export const ThumbAddBtn = styled('button')`
 
 export const ThumbRemoveBtn = styled(ThumbAddBtn)``;
 
+export const ThumbSexIcon = styled('span')`
+  position: absolute;
+  top: 60px;
+  right: 12px;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  width: 44px;
+  height: 44px;
+
+  background-color: ${p => p.theme.colors.tagBg};
+  backdrop-filter: blur(2px);
+
+  border-radius: ${p => p.theme.radii.round};
+`;
+
 export const CardInfoWrapper = styled(Box)`
   display: flex;
   flex-direction: column;
   align-content: space-between;
-  height: 318px;
+  height: 280px;
   margin-top: 20px;
   padding-left: 20px;
   padding-right: 20px;
 `;
 
 export const CardTitle = styled('h3')`
+  /* height: 80px; */
   flex-grow: 1;
   overflow-wrap: anywhere;
   overflow-y: hidden;

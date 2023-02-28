@@ -16,6 +16,7 @@ import PropTypes from 'prop-types';
 import { updateUserInfo } from 'redux/auth';
 import { editUserInfo } from 'api';
 import { useMutation } from '@tanstack/react-query';
+import { validateDate } from 'helpers';
 
 export function UserInputInfo({
   fildName,
@@ -42,8 +43,7 @@ export function UserInputInfo({
     /^[A-Za-zА-Яа-яЁёҐґІіЇїЄє\s,'"'-.]+(?:\s+[A-Za-zА-Яа-яЁёҐґІіЇїЄє]+){0,3}$/u
   );
   const regExpEmailInput = new RegExp(/^(?!-)[\w.-]{2,}@[\w-]+(\.[\w-]+)*\.[a-zA-Z]{2,}$/u);
-  const regExpCityInputNumber = new RegExp(/^(?!\s)[a-zA-Zа-яА-ЯЁёҐґІіЇїЄє\s,'"'-.]+$/);
-  const regExpBirthdayInputNumber = new RegExp(/^\d{1,2}\.\d{1,2}\.\d{4}$/);
+  const regExpCityInputNumber = new RegExp(/^(?!\s)[a-zA-Zа-яА-ЯЁёҐґІіЇїЄє\s,'"'-.’]+$/);
   const regExpPhoneInputNumber = new RegExp(/^\+380\d{9}$/);
 
   const { mutate: sendEditUserInfo } = useMutation({
@@ -156,10 +156,10 @@ export function UserInputInfo({
 
         break;
       case 'Birthday':
-        stepOne = regExpBirthdayInputNumber.test(e.target.value);
+        stepOne = validateDate(e.target.value);
 
         if (!stepOne) {
-          setErrorMessage('Plese input date of birthday like dd.mm.year');
+          setErrorMessage('Plese input correct date of birthday like 01.08.1973');
           setInputErr(true);
           break;
         }

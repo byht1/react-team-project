@@ -21,13 +21,101 @@ export const LabelInput = styled.label`
       margin-bottom: ${p => p.theme.space[8]}px;
     }
   }
+
+  & .MuiInputBase-input:focus .MuiOutlinedInput-notchedOutline {
+    border: 4px solid red;
+  }
+  & .MuiFormControl-root {
+    width: 100%;
+  }
+
+  & .MuiOutlinedInput-notchedOutline {
+    font-size: 14px;
+    border: 1px solid #f5925680;
+    border-radius: 40px;
+    background-color: #fdf7f2;
+    z-index: -1;
+  }
+  & .MuiInputBase-input {
+    font-size: 14px;
+    padding: 11px 14px;
+    @media (min-width: 768px) {
+      padding: 11px 16px;
+      font-size: 16px;
+    }
+  }
+  @media (min-width: 768px) {
+    font-size: 24px;
+  }
+  &:not(:last-child) {
+    margin-bottom: 16px;
+    @media (min-width: 768px) {
+      margin-bottom: 28px;
+    }
+  }
+`;
+
+export const Auto = styled(Autocomplete)`
+  &
+    .css-md26zr-MuiInputBase-root-MuiOutlinedInput-root.Mui-focused
+    .MuiOutlinedInput-notchedOutline {
+    border-color: ${p => p.theme.colors.a};
+    border-width: 1px;
+  }
+`;
+
+export const LabelInputDate = styled.label`
+  position: relative;
+  font-size: 18px;
+
+  & .MuiInputBase-input:focus .MuiOutlinedInput-notchedOutline {
+    border: 4px solid red;
+  }
+  & .MuiFormControl-root {
+    width: 100%;
+  }
+
+  & .css-1ozfgvy-MuiFormControl-root-MuiTextField-root .MuiOutlinedInput-root {
+    border-radius: 40px;
+  }
+
+  & .MuiOutlinedInput-notchedOutline {
+    font-size: 14px;
+
+    border: 1px solid #f5925680;
+    border-radius: 40px;
+    background-color: #fdf7f2;
+    z-index: -1;
+  }
+  & .css-1ozfgvy-MuiFormControl-root-MuiTextField-root .MuiOutlinedInput-root.Mui-focused fieldset {
+    border: 1px solid #f58138db;
+  }
+  & .MuiInputBase-input {
+    font-size: 14px;
+    padding: 11px 14px;
+    @media (min-width: 768px) {
+      padding: 11px 16px;
+      font-size: 16px;
+    }
+  }
+  @media (min-width: 768px) {
+    font-size: 24px;
+  }
+
+  margin-bottom: 16px;
+
+  @media (min-width: 768px) {
+    margin-bottom: 28px;
+  }
 `;
 
 export const LabelName = styled.p`
   font-size: ${p => p.theme.fontSizes.l};
   line-height: 1.45;
+  margin-bottom: ${p => p.theme.space[3]}px;
 
   @media (min-width: 768px) {
+    margin-bottom: ${p => p.theme.space[4]}px;
     font-size: ${p => p.theme.fontSizes.xxl};
     line-height: ${p => p.theme.lineHeights.min};
   }
@@ -38,15 +126,13 @@ export const Input = styled.input`
   background-color: ${p => p.theme.colors.bg};
   border: 1px solid ${p => p.theme.colors.inputBdr};
   border-radius: ${p => p.theme.radii.inputRadius};
-  margin-top: ${p => p.theme.space[3]}px;
   font-size: ${p => p.theme.fontSizes.s};
   line-height: ${p => p.theme.lineHeights.heading};
   outline: none;
   transition: var(--transition-border-color);
 
-  &:hover,
   &:focus {
-    border: 1px solid ${p => p.theme.colors.a};
+    border: 1.5px solid ${p => p.theme.colors.a};
   }
 
   &::placeholder {
@@ -61,7 +147,6 @@ export const Input = styled.input`
 
   @media (min-width: 768px) {
     padding: 11px 16px 10px;
-    margin-top: ${p => p.theme.space[4]}px;
     font-size: ${p => p.theme.fontSizes.m};
     font-size: 16px;
     line-height: 1.66;
@@ -71,7 +156,8 @@ export const Input = styled.input`
 export const InputSelect = styled(Autocomplete)`
   &.css-zrexw9-MuiAutocomplete-root .MuiAutocomplete-inputRoot {
     &:hover {
-      border: transparent;
+      /* border: transparent; */
+      border-color: 1.5px solid ${p => p.theme.colors.a};
     }
   }
 
@@ -168,6 +254,18 @@ export const ErrorInput = styled.div`
   }
 `;
 
+export const ErrorInputDate = styled.div`
+  position: absolute;
+  color: red;
+  font-size: 10px;
+  top: 80px;
+
+  @media (min-width: 768px) {
+    top: 90px;
+    font-size: ${p => p.theme.fontSizes.s};
+  }
+`;
+
 //TextArea styled (2nd page)
 
 export const Subtitle = styled.p`
@@ -188,7 +286,6 @@ export const Textarea = styled.textarea`
   background-color: ${p => p.theme.colors.bg};
   border: 1px solid ${p => p.theme.colors.inputBdr};
   border-radius: ${p => p.theme.radii.normal};
-  margin-top: ${p => p.theme.space[3]}px;
   resize: none;
   height: 100px;
   outline: none;
@@ -196,7 +293,6 @@ export const Textarea = styled.textarea`
 
   @media (min-width: 768px) {
     padding: 11px 16px 10px;
-    margin-top: ${p => p.theme.space[4]}px;
     height: 116px;
     font-size: ${p => p.theme.fontSizes.m};
     line-height: ${p => p.theme.lineHeights.big};

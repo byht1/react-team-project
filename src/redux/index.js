@@ -27,10 +27,16 @@ const authPersistConfig = {
   whitelist: ['token'],
 };
 
+const noticesPersistConfig = {
+  key: 'notices',
+  storage,
+  whitelist: ['favoritesArray', 'ownArray'],
+};
+
 export const store = configureStore({
   reducer: {
     auth: persistReducer(authPersistConfig, authSlice.reducer),
-    notices: noticesReducer,
+    notices: persistReducer(noticesPersistConfig, noticesReducer),
   },
   middleware,
   devTools: process.env.NODE_ENV === 'development',

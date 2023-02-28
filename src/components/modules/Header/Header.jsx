@@ -18,7 +18,7 @@ import {
 import { useLocation } from 'react-router-dom';
 import { MobileMenu } from '../MobileMenu/MobileMenu';
 import { useState } from 'react';
-import { Container } from '../../global/Container';
+import { Container } from 'components/global/Container';
 import { useSelector } from 'react-redux';
 import { getIsLogin } from 'redux/auth';
 export const Header = () => {
@@ -46,7 +46,11 @@ export const Header = () => {
               </Title>
             </NavigationLink>
             <MobileBox>
-              {!(location.pathname === '/login' || location.pathname === '/register') && (
+              {!(
+                location.pathname === '/login' ||
+                location.pathname === '/register' ||
+                authorized === true
+              ) && (
                 <LoginButton to="login">
                   <LoginIcon />
                 </LoginButton>

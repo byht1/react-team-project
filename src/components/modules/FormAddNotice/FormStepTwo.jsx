@@ -36,6 +36,8 @@ import {
   WrapInputs,
   InputAdd,
   WrapAddedImg,
+  AddWrap,
+  ImgError,
 } from './FormAddNotice.styled';
 
 export const FormStepTwo = () => {
@@ -67,6 +69,7 @@ export const FormStepTwo = () => {
   //   console.log(value.radio);
   // }, [getValues, values]);
   // console.log(errors.sex.message);
+
   console.log(errors);
   return (
     <>
@@ -156,13 +159,19 @@ export const FormStepTwo = () => {
                 {/* <ImgLoaded alt="uploaded" /> */}
                 <AddIcon />
               </InputFileIcon>
-              {errors.images && <Error>{errors.images.message}</Error>}
-              <AdditionalImg>
-                <AddIcon />
-              </AdditionalImg>
-              <AdditionalImg>
-                <AddIcon />
-              </AdditionalImg>
+              {errors.images && (
+                <ImgError>
+                  <Error>{errors.images.message}</Error>
+                </ImgError>
+              )}
+              <AddWrap>
+                <AdditionalImg>
+                  <AddIcon />
+                </AdditionalImg>
+                <AdditionalImg>
+                  <AddIcon />
+                </AdditionalImg>
+              </AddWrap>
             </ImgWrap>
           </LabelInput>
           <LabelInput htmlFor="comments">
@@ -176,13 +185,13 @@ export const FormStepTwo = () => {
             <ButtonAhead color="a" p="9px 55px" type="submit">
               Done
             </ButtonAhead>
-            <ButtonBack type="button" onClick={() => navigate('/addpet/step1')}>
+            <ButtonBack type="button" onClick={() => navigate(-1)}>
               Back
             </ButtonBack>
           </ButtonWrap>
         ) : (
           <ButtonWrap>
-            <ButtonBack type="button" onClick={() => navigate('/addpet/step1')}>
+            <ButtonBack type="button" onClick={() => navigate(-1)}>
               Back
             </ButtonBack>
             <ButtonAhead color="a" p="9px 55px" type="submit">

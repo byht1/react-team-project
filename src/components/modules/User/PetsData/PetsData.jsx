@@ -21,14 +21,23 @@ import {
 } from './PetsData.styled';
 
 import { useNavigate } from 'react-router';
+import { logout } from 'redux/auth';
+import { useDispatch } from 'react-redux';
 
 export const PetsData = () => {
+  const dispatch = useDispatch();
+
   const client = useQueryClient();
-  // eslint-disable-next-line
-  const { data, isLoading, isSuccess } = useQuery({
+  const { data, isSuccess } = useQuery({
     queryFn: () => getPetList(),
     queryKey: ['myPet'],
-    onSuccess: data => {},
+    onError: error => {
+      if (error.response.data.message === 'Invalid token') {
+        dispatch(logout());
+      }
+    },
+    // staleTime: Infinity,
+    refetchOnWindowFocus: false,
   });
 
   const { mutate } = useMutation({

@@ -11,7 +11,7 @@
     "@mui/icons-material": "^5.11.0",
     "@mui/material": "^5.11.1",
     "@mui/styled-engine-sc": "^5.11.0",
-    "@mui/x-date-pickers": "^5.0.19",
+    "@mui/x-date-pickers": "^5.0.20",
     "@reduxjs/toolkit": "^1.9.1",
     "@tanstack/react-query": "^4.20.4",
     "@tanstack/react-query-devtools": "^4.24.10",
@@ -19,6 +19,7 @@
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
     "axios": "^1.2.1",
+    "date-and-time": "^2.4.2",
     "date-fns": "^2.29.3",
     "dayjs": "^1.11.7",
     "framer-motion": "^8.0.2",
@@ -33,6 +34,7 @@
     "react-redux": "^8.0.5",
     "react-router-dom": "^6.8.1",
     "react-scripts": "5.0.1",
+    "react-slick": "^0.29.0",
     "react-toastify": "^9.1.1",
     "redux-persist": "^6.0.0",
     "shortid": "^2.2.16",
@@ -66,7 +68,7 @@
     "development": [
       "last 1 chrome version",
       "last 1 firefox version",
-      "last 1 safari version"
+      "last 5 safari version"
     ]
   },
   "devDependencies": {

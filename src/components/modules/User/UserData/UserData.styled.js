@@ -87,7 +87,9 @@ export const SpanEditPhoto = styled.label`
     margin-top: 231px;
     margin-right: 16px;
   }
-  cursor: pointer;
+  &:hover {
+    color: ${theme.colors.a};
+  }
 `;
 
 export const Container = styled.div`

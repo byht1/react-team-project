@@ -13,6 +13,8 @@ import {
   ButtonDark,
   ButtonLight,
   ErrorTextarea,
+  ErrorInputFile,
+  LabelFile,
 } from './FormPages.styled';
 
 export const SecondPage = ({ prevStep }) => {
@@ -25,8 +27,10 @@ export const SecondPage = ({ prevStep }) => {
     <>
       <Subtitle>Add photo and some comments</Subtitle>
       <InputWrap>
-        <FileInput name="myPetURL" />
-
+        <LabelFile htmlFor="myPetURL">
+          <FileInput name="myPetURL" />
+          {errors.myPetURL && <ErrorInputFile>{errors.myPetURL.message}</ErrorInputFile>}
+        </LabelFile>
         <LabelInput htmlFor="comments">
           <LabelName>Comments</LabelName>
           <Textarea {...register('comments')} name="comments" placeholder="Type comments" />

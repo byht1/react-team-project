@@ -1,7 +1,8 @@
 import React from 'react';
+import { BlogComponent } from 'components/modules/Blog/BlogComponent';
 
 const Blog = () => {
-  return <div>Blog Component </div>;
+  return <BlogComponent />;
 };
 
 export default Blog;

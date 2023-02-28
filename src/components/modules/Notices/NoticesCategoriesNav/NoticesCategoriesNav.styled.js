@@ -59,7 +59,7 @@ export const CategoryBtn = styled(NavLink)`
   }
 `;
 
-export const FloatingAddPetBtn = styled('button')`
+export const FloatingAddPetBtn = styled('span')`
   position: fixed;
   bottom: 40px;
   right: 20px;
@@ -87,8 +87,10 @@ export const FloatingAddPetBtn = styled('button')`
   } ;
 `;
 
-export const FixedBtnWrapper = styled(Box)`
+export const FixedBtnWrapper = styled('button')`
   display: none;
+
+  background-color: transparent;
 
   @media (min-width: 768px) {
     display: flex;
@@ -98,6 +100,7 @@ export const FixedBtnWrapper = styled(Box)`
     align-content: flex-start;
     flex-wrap: wrap;
   }
+  color: ${p => p.theme.colors.b};
 `;
 
 export const FixedAddPetText = styled('p')`
@@ -106,7 +109,7 @@ export const FixedAddPetText = styled('p')`
   font-size: ${p => p.theme.fontSizes.xl};
 `;
 
-export const FixedAddPetBtn = styled('button')`
+export const FixedAddPetBtn = styled('span')`
   display: flex;
   align-items: center;
   justify-content: center;

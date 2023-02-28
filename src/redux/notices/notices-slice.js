@@ -17,7 +17,7 @@ const noticesSlice = createSlice({
       }
     },
     addFavorite(state, action) {
-      state.favoritesArray.push(action.payload);
+      state.favoritesArray.unshift(action.payload);
     },
     removeFavorite(state, action) {
       state.favoritesArray.splice(state.favoritesArray.indexOf(action.payload), 1);
