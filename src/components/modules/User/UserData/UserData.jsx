@@ -41,10 +41,16 @@ export const UserData = () => {
             <LoadFile
               onChange={e => {
                 e.preventDefault();
-                if (e.target.files[0]) {
+                if (
+                  e.target.files[0].name.split('.')[1] === 'png' ||
+                  e.target.files[0].name.split('.')[1] === 'jpg' ||
+                  e.target.files[0].name.split('.')[1] === 'jpeg'
+                ) {
                   const formData = new FormData();
                   formData.append('file', e.target.files[0]);
                   changeUserProfilePhoto(formData);
+                } else {
+                  alert(`You can load only one picture with (png,jpg,jpeg) types`);
                 }
               }}
               accept="image/*"
