@@ -1,7 +1,8 @@
 import styled from 'styled-components';
 import { TitleH2 } from 'components/global/text';
 import { Text } from 'components/global/text';
-import { DarkBtn } from 'components/global/button';
+// import { DarkBtn } from 'components/global/button';
+
 
 export const NewBlock = styled.div`
   margin: 0 auto;
@@ -84,9 +85,35 @@ export const Line = styled.div`
     width: 340px;
   }
 `;
-export const LoadMoreBtn = styled(DarkBtn)`
-  display: block;
-  margin-left: auto;
+// export const LoadMoreBtn = styled(DarkBtn)`
+//   display: block;
+//   margin-left: auto;
+//   margin-right: auto;
+//   margin-top: 70px;
+// `;
+export const LoadMore = styled.button`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  padding: 10px 28px;
+  outline: none;
+   margin-left: auto;
   margin-right: auto;
   margin-top: 70px;
-`;
+   border: 2px solid ${p => p.theme.colors.a};
+  border-radius: ${p => p.theme.radii.buttonRadius};
+
+  font-family: ${p => p.theme.fonts.manrope};
+  font-weight: ${p => p.theme.fontWeights.average};
+  font-size: 16px;
+  line-height: ${p => p.theme.lineHeights.heading};
+
+  transition: var(--transition-bg), var(--transition-color), var(--transition-border-color);
+  background-color: ${p => p.theme.colors.a};
+  color: ${p => p.theme.colors.wt};
+
+  &:hover{
+    background-color: ${p => p.theme.colors.w};
+    color: ${p => p.theme.colors.bt};
+`
