@@ -70,7 +70,7 @@ export const schemaAddPet = yup.object({
     .mixed()
     .test('fileType', 'You need to add photo or unsupported photo format', value => {
       if (!value) return true; // handle empty input
-      const supportedFormats = ['image/jpeg', 'image/png', 'application/pdf'];
+      const supportedFormats = ['image/jpeg', 'image/png', 'image/webp'];
       return supportedFormats.includes(value[0]?.type);
     }),
 });
