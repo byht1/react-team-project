@@ -59,11 +59,11 @@ export const MobileMenu = ({ closeMenu }) => {
             <MenuNavigationLink to="friends" onClick={closeMenu}>
               Our friends
             </MenuNavigationLink>
-            {authorized && (
+            {/* {authorized && (
               <MenuNavigationLink to="posts" onClick={closeMenu}>
                 Blog
               </MenuNavigationLink>
-            )}
+            )} */}
           </LinksBox>
         </MenuBox>
       </Container>
