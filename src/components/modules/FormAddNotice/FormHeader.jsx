@@ -9,9 +9,7 @@ export const FormHeader = () => {
     <HeaderWrap>
       <TextTittle>Add pet</TextTittle>
       {location === 'addpet' && (
-        <MainText>
-          Lorem ipsum dolor sit amet, consectetur Lorem ipsum dolor sit amet, consectetur
-        </MainText>
+        <MainText>Choose a category and add information about your pet</MainText>
       )}
     </HeaderWrap>
   );

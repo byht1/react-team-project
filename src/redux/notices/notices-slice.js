@@ -12,6 +12,8 @@ const noticesSlice = createSlice({
       state.searchQuery = action.payload;
     },
     setFavorites(state, action) {
+      if (!action.payload) return;
+
       if (!state.favoritesArray.includes(...action.payload)) {
         state.favoritesArray.push(...action.payload);
       }

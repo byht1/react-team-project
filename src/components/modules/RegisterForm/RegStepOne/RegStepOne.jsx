@@ -3,9 +3,9 @@ import { FormInput } from 'components/global/FormInput';
 export const RegStepOne = () => {
   return (
     <>
-      <FormInput name="email" type="email" placeholder="Email" mb={16} />
+      <FormInput name="email" type="email" placeholder="Email" mb={20} />
 
-      <FormInput name="password" type={'password'} placeholder="Password" mb={16} showhide={true} />
+      <FormInput name="password" type={'password'} placeholder="Password" mb={20} showhide={true} />
 
       <FormInput
         name="confirmpassword"

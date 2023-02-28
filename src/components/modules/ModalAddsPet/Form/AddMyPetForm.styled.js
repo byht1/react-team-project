@@ -7,14 +7,17 @@ export const FormWrapper = styled.div`
   top: 50%;
   transform: translate(-50%, -50%) scale(1);
   min-width: 280px;
-  width: 87vw;
   max-width: 420px;
+  width: 87vw;
+  max-height: 76.5vh;
   background-color: ${p => p.theme.colors.w};
   box-shadow: 7px 4px 14px rgba(0, 0, 0, 0.11);
   border-radius: ${p => p.theme.radii.normal};
   padding: 40px 20px;
+  overflow-y: auto;
 
   @media (min-width: 768px) {
+    max-height: 82.5vh;
     max-width: 608px;
     border-radius: ${p => p.theme.radii.inputRadius};
     padding-bottom: 40px;

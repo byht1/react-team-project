@@ -41,5 +41,5 @@ export const registerSchema = yup.object({
   phone: yup
     .string()
     .required()
-    .matches(/^\+38(0\d{2}|0\d{3})\d{7}$/, 'Number format:+380500000000'),
+    .matches(/^\+38?(0\d{9})$/, 'Number format:+380500000000'),
 });
