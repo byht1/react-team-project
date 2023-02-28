@@ -12,7 +12,6 @@ import {
   StyledCategory,
   StyledText,
   StyledMetaButton,
-  LikeIcon,
   StyledButton,
 } from './PostItem.styled';
 
@@ -21,6 +20,7 @@ import { convertCreationDateToDateAndTime } from '../../helpers';
 
 import { switchLikePost } from 'api/posts';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
+import { LikeButton } from '../../common/LikeButton/LikeButton';
 
 export const Post = ({ post, isImageOnRight, userId }) => {
   const { image, author, title, category, text, createdAt, comments, likes, _id: postId } = post;
@@ -35,18 +35,21 @@ export const Post = ({ post, isImageOnRight, userId }) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  const { mutate, isLoading } = useMutation(switchLikePost, {
-    mutationFn: () => setLikedPost(!likedPost),
+  const handleAddLike = useMutation({
+    mutationFn: () => switchLikePost(postId),
     onSuccess: () => {
-      setLikedPost(!likedPost);
-      client.invalidateQueries({ queryKey: ['posts'] });
+      setLikedPost(true);
+      setLikeCount(likeCount + 1);
+      client.invalidateQueries(['posts'], { exact: true });
     },
   });
-
-  const handleLike = () => {
-    mutate(postId);
-    setLikeCount(likedPost ? likeCount - 1 : likeCount + 1);
-  };
+  const handleRemoveLike = useMutation({
+    mutationFn: () => switchLikePost(postId),
+    onSuccess: () => {
+      setLikedPost(false);
+      client.invalidateQueries(['posts'], { exact: true });
+    },
+  });
 
   const trimText = text => {
     const maxLength = 300;
@@ -86,10 +89,23 @@ export const Post = ({ post, isImageOnRight, userId }) => {
               {comments.length}
             </StyledMetaButton>
 
-            <StyledMetaButton onClick={() => handleLike(postId)} disabled={isLoading}>
-              <LikeIcon checked={likedPost} />
-              {likeCount}
-            </StyledMetaButton>
+            {likedPost ? (
+              <LikeButton
+                postId={postId}
+                isLoading={handleRemoveLike.isLoading}
+                likedPost={likedPost}
+                likeCount={likeCount}
+                handleLike={handleRemoveLike.mutate}
+              />
+            ) : (
+              <LikeButton
+                postId={postId}
+                isLoading={handleAddLike.isLoading}
+                likedPost={likedPost}
+                likeCount={likeCount}
+                handleLike={handleAddLike.mutate}
+              />
+            )}
           </Box>
 
           <StyledButton to={`${postId}`}>Read more</StyledButton>

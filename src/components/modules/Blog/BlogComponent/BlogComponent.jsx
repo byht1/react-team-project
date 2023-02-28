@@ -33,7 +33,7 @@ export const BlogComponent = () => {
     hasNextPage,
     isFetchingNextPage,
   } = useInfiniteQuery(
-    ['posts', searchQuery],
+    ['posts'],
     async ({ pageParam = 0 }) =>
       await fetchPosts({ offset: pageParam, count: PAGE_SIZE, search: searchQuery }),
     {
