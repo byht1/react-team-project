@@ -7,6 +7,7 @@ const UrlRegister = Object.freeze({
   refresh: '/auth/refresh',
   google: '/auth/current?type=google',
   logOut: '/auth/logout',
+  newpass: '/auth/forgotten-password/new',
 });
 
 export const signUp = async body => {
@@ -62,6 +63,19 @@ export const logOutUser = async () => {
     });
     token.unset();
     localStorage.removeItem('refreshToken');
+  } catch (error) {
+    throw error;
+  }
+};
+
+export const newPass = async (accessToken, body) => {
+  try {
+    token.set(accessToken);
+    const { data } = await server.patch(UrlRegister.newpass, body);
+    token.set(data.access_token);
+    localStorage.setItem('refreshToken', data.refresh_token);
+
+    return data;
   } catch (error) {
     throw error;
   }

@@ -30,6 +30,8 @@ import { useAppLoading } from 'hooks/useAppLoading';
 import { AddMyPetForm } from 'components/modules/ModalAddsPet';
 import { FirstPage } from 'components/modules/ModalAddsPet/FormPages/FirstPage';
 import { SecondPage } from 'components/modules/ModalAddsPet/FormPages/SecondPage';
+import { ForgotPassword } from 'page/ForgotPassword';
+import { NewPassword } from 'page/NewPassword';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
@@ -77,6 +79,15 @@ function App() {
               <Route path="page2" element={<SecondPage />} />
             </Route>
           </Route>
+
+          <Route
+            path="forgot-password"
+            element={<RestrictedRoute component={ForgotPassword} redirectTo="/user" />}
+          />
+          <Route
+            path="forgotten-password"
+            element={<RestrictedRoute component={NewPassword} redirectTo="/user" />}
+          />
 
           <Route path="posts" element={<Blog />}></Route>
           <Route path="posts/:id" element={<PostDetails />} />

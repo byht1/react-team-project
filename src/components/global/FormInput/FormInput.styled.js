@@ -22,8 +22,9 @@ export const Label = styled.label`
 `;
 
 export const ErrorMsg = styled.p`
+  position: absolute;
   color: ${p => p.theme.colors.da};
-  margin-top: 6px;
+  margin-top: 2px;
   padding-left: 11px;
   font-size: ${p => p.theme.fontSizes.min};
   font-weight: ${p => p.theme.fontWeights.normal};

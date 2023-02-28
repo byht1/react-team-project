@@ -14,6 +14,9 @@ import { registerSchema } from './RegisterSchema';
 
 import { FcGoogle } from 'react-icons/fc';
 
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 import {
   AuthContainer,
   FormWrapper,
@@ -27,7 +30,7 @@ import {
 } from './RegisterForm.styled';
 import { Box } from 'components/global/Box';
 import { signUp } from 'api';
-import { Alert } from '@mui/material';
+// import { Alert } from '@mui/material';
 import { Loader } from 'components/global/Loader';
 import server from 'api/basic';
 
@@ -52,6 +55,14 @@ export const RegisterForm = () => {
       reset();
     },
     onError: error => {
+      toast.error(error.response.data.message, { hideProgressBar: true, autoClose: 5000 });
+      toast.error(error.response.data.city, { hideProgressBar: true, autoClose: 5000 });
+      toast.error(error.response.data.email, { hideProgressBar: true, autoClose: 5000 });
+      toast.error(error.response.data.name, { hideProgressBar: true, autoClose: 5000 });
+      toast.error(error.response.data.password, { hideProgressBar: true, autoClose: 5000 });
+      toast.error(error.response.data.phone, { hideProgressBar: true, autoClose: 5000 });
+      // setErr(Object.values(error.response.data));
+      console.log(err);
       setErr(error.response.data.message);
     },
   });
@@ -60,9 +71,11 @@ export const RegisterForm = () => {
     const email = getValues('email');
     try {
       await server.post('/auth/is-use-email', { email });
-      setErr(null);
+      // setErr(null);
     } catch (error) {
-      setErr(error.response.data.message);
+      // setErr(error.response.data.message);
+      toast.error(error.response.data.message, { hideProgressBar: true });
+
       return;
     }
 
@@ -72,20 +85,22 @@ export const RegisterForm = () => {
   };
 
   const onSubmit = data => {
+    // console.log(data);
     regUser(data);
   };
 
   return (
     <BgWrapper>
+      <ToastContainer />
       {isLoading && <Loader opacity={0.5} />}
       <AuthContainer>
         <FormWrapper>
           <RegisterFormTitle>Registration</RegisterFormTitle>
-          {err && (
+          {/* {err && (
             <Alert style={{ marginBottom: 16 }} severity="error" onClose={() => setErr(null)}>
               {err}
             </Alert>
-          )}
+          )} */}
           <FormContext methods={method} submit={onSubmit}>
             <InputsWrapper>
               {step === 1 && (
@@ -99,7 +114,7 @@ export const RegisterForm = () => {
               {step === 2 && (
                 <>
                   <RegStepTwo />
-                  <Button theme={'dark'} type={'submit'} fn={() => console.log('click')}>
+                  <Button theme={'dark'} type={'submit'}>
                     Register
                   </Button>
                   <TransparentBtn mt={10} fn={() => setStep(1)}>
