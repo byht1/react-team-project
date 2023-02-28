@@ -12,11 +12,12 @@ import {
 } from './PostCard.styled';
 export const PostCard = ({ post }) => {
   const { title, text, category, image, likes, author, createdAt } = post;
+  console.log('🚀 ~ file: PostCard.jsx:15 ~ PostCard ~ post:', post);
   return (
     <BoxCard>
       <ImgBlock>
         <ImgPost src={image} alt="title" />
-        <Text weight={'600'}>Author: {author}</Text>
+        <Text weight={'600'}>Author: {author.name}</Text>
         <Text weight={'600'}>Category: {category}</Text>
       </ImgBlock>
       <ContentBlock>

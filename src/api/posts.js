@@ -49,23 +49,14 @@ export const fetchOnePost = async postId => {
 //   }
 // };
 
-// export const addNoticeToFav = async noticeId => {
-//   try {
-//     const r = await server.patch(`/notices/${noticeId}/favorite`);
-//     return r.data;
-//   } catch (e) {
-//     return e.message;
-//   }
-// };
-
-// export const removeNoticeFromFav = async noticeId => {
-//   try {
-//     const r = await server.delete(`/notices/${noticeId}/favorite`);
-//     return r.data;
-//   } catch (e) {
-//     return e.message;
-//   }
-// };
+export const switchLikePost = async postId => {
+  try {
+    const r = await server.patch(`/posts/${postId}/likes`);
+    return r.data;
+  } catch (e) {
+    return e.message;
+  }
+};
 
 // export const addNewNotice = async notice => {
 //   try {

@@ -2,9 +2,6 @@ import React from 'react';
 import { useState, useEffect } from 'react';
 import { useInfiniteQuery } from '@tanstack/react-query';
 import { useTheme } from 'styled-components';
-// import { useLocation, useNavigate } from 'react-router-dom';
-// import { Suspense } from 'react';
-// import { Outlet } from 'react-router-dom';
 import { BlogCategoriesNav } from './BlogCategoriesNav';
 import { PostsList } from './PostsList';
 import { fetchPosts } from 'api/posts';
@@ -17,9 +14,6 @@ import { Box } from 'components/global/Box';
 const PAGE_SIZE = 5; // number of items per page
 
 export const BlogComponent = () => {
-  // const location = useLocation();
-  // const navigate = useNavigate();
-  // const pathname = location.pathname;
   const theme = useTheme();
   const [searchQuery, setSearchQuery] = useState('');
 
@@ -39,7 +33,7 @@ export const BlogComponent = () => {
     hasNextPage,
     isFetchingNextPage,
   } = useInfiniteQuery(
-    ['searchPosts', searchQuery],
+    ['posts', searchQuery],
     async ({ pageParam = 0 }) =>
       await fetchPosts({ offset: pageParam, count: PAGE_SIZE, search: searchQuery }),
     {
