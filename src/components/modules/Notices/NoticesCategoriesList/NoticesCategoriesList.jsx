@@ -3,21 +3,14 @@ import { useSelector, useDispatch } from 'react-redux';
 import { useLocation } from 'react-router-dom';
 import { useInfiniteQuery } from '@tanstack/react-query';
 import { useTheme } from 'styled-components';
-import {
-  fetchAllNotices,
-  fetchFavoriteNotices,
-  fetchOwnNotices,
-  // current,
-  fetchPrivateCards,
-} from 'api';
+import { fetchAllNotices, fetchFavoriteNotices, fetchOwnNotices, fetchPrivateCards } from 'api';
 import { NoticesCategoryItem } from '../NoticesCategoryItem';
 import { DarkBtn as LoadMoreBtn } from 'components/global/button';
 import { ListBox } from './NoticesCategoriesList.styled';
-import { selectSearchQuery, selectFavorites, selectOwn, setFavorites, setOwn } from 'redux/notices';
+import { selectSearchQuery, setFavorites, setOwn } from 'redux/notices';
 import { getIsLogin } from 'redux/auth';
 
 export const NoticesCategoriesList = () => {
-  // const
   const dispatch = useDispatch();
   const location = useLocation();
   const isLoggedIn = useSelector(getIsLogin);
@@ -37,8 +30,6 @@ export const NoticesCategoriesList = () => {
   }, [isLoggedIn, dispatch]);
 
   const searchQuery = useSelector(selectSearchQuery);
-  const favorites = useSelector(selectFavorites);
-  const own = useSelector(selectOwn);
 
   switch (pathname) {
     case 'for-free':
@@ -58,7 +49,7 @@ export const NoticesCategoriesList = () => {
 
   const { error, data, fetchNextPage, hasNextPage, isFetchingNextPage, isError, isSuccess } =
     useInfiniteQuery(
-      ['notices', 'all', categoryName, searchQuery, favorites, own, pathname],
+      ['notices', 'all', categoryName, searchQuery, pathname],
       ({ pageParam = 0 }) => {
         if (pathname === 'favorite') {
           return fetchFavoriteNotices();
