@@ -1,25 +1,25 @@
-import React, { useState, useEffect } from 'react';
+import { useEffect, useState } from 'react';
 
 import { AiOutlineComment } from 'react-icons/ai';
 import {
-  StyledPost,
-  StyledImageWrapper,
-  StyledImage,
-  StyledContent,
-  StyledTitle,
   StyledAuthor,
-  StyledDate,
-  StyledCategory,
-  StyledText,
-  StyledMetaButton,
   StyledButton,
+  StyledCategory,
+  StyledContent,
+  StyledDate,
+  StyledImage,
+  StyledImageWrapper,
+  StyledMetaButton,
+  StyledPost,
+  StyledText,
+  StyledTitle,
 } from './PostItem.styled';
 
 import { Box } from 'components/global/Box';
 import { convertCreationDateToDateAndTime } from '../../helpers';
 
-import { switchLikePost } from 'api/posts';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
+import { switchLikePost } from 'api/posts';
 import { LikeButton } from '../../common/LikeButton/LikeButton';
 
 export const Post = ({ post, isImageOnRight, userId }) => {
@@ -40,14 +40,15 @@ export const Post = ({ post, isImageOnRight, userId }) => {
     onSuccess: () => {
       setLikedPost(true);
       setLikeCount(likeCount + 1);
-      client.invalidateQueries(['posts'], { exact: true });
+      client.invalidateQueries(['posts'], postId);
     },
   });
   const handleRemoveLike = useMutation({
     mutationFn: () => switchLikePost(postId),
     onSuccess: () => {
       setLikedPost(false);
-      client.invalidateQueries(['posts'], { exact: true });
+      setLikeCount(likeCount - 1);
+      client.invalidateQueries(['posts'], postId);
     },
   });
 
