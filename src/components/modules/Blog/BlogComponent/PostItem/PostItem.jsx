@@ -64,7 +64,7 @@ export const Post = ({ post, isImageOnRight, userId }) => {
       <StyledImageWrapper>
         <StyledImage
           src={image ? image : ''}
-          alt={author.name ? author.name : ''}
+          alt={author ? author.name : ''}
           isImageOnRight={isImageOnRight}
         />
 
@@ -77,7 +77,7 @@ export const Post = ({ post, isImageOnRight, userId }) => {
             <StyledTitle>{title}</StyledTitle>
           </Box>
 
-          <StyledAuthor>{author.name ? author.name : ''}</StyledAuthor>
+          <StyledAuthor>{author ? author.name : ''}</StyledAuthor>
           <StyledText>{trimText(text ? text : '')}</StyledText>
           <StyledDate>{createdAt ? convertCreationDateToDateAndTime(createdAt) : ''}</StyledDate>
         </Box>

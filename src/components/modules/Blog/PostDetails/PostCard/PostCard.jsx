@@ -43,7 +43,7 @@ export const PostCard = ({ post }) => {
     <BoxCard>
       <ImgBlock>
         <ImgPost src={image} alt="title" />
-        <Text weight={'600'}>Author: {author.name}</Text>
+        <Text weight={'600'}>Author: {author ? author.name : 'Incognito'}</Text>
         <Text weight={'600'}>Category: {category}</Text>
       </ImgBlock>
       <ContentBlock>
