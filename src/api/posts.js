@@ -1,9 +1,15 @@
 import server from 'api/basic';
 
+const UrlRegister = Object.freeze({
+  posts: '/posts',
+  comments: 'comments',
+  likes: 'likes',
+});
+
 export const fetchPosts = async ({ category, offset = 0, count = 12, search }) => {
   const isCategory = category ? `category=${category}` : '';
   const isSearch = search ? `&searchQuery=${search}` : '';
-  const query = `/posts?${isCategory}&offset=${offset}&count=${count}${isSearch}`;
+  const query = `${UrlRegister.posts}?${isCategory}&offset=${offset}&count=${count}${isSearch}`;
   try {
     const response = await server.get(query);
     return response.data;
@@ -14,7 +20,7 @@ export const fetchPosts = async ({ category, offset = 0, count = 12, search }) =
 
 export const fetchOnePost = async postId => {
   try {
-    const response = await server.get(`/posts/${postId}`);
+    const response = await server.get(`${UrlRegister.posts}/${postId}`);
     return response.data;
   } catch (error) {
     throw error;
@@ -48,30 +54,20 @@ export const fetchOnePost = async postId => {
 //   }
 // };
 
-// export const addNoticeToFav = async noticeId => {
-//   try {
-//     const r = await server.patch(`/notices/${noticeId}/favorite`);
-//     return r.data;
-//   } catch (e) {
-//     return e.message;
-//   }
-// };
+export const switchLikePost = async postId => {
+  try {
+    const response = await server.patch(`${UrlRegister.posts}/${postId}/${UrlRegister.likes}`);
+    return response.data;
+  } catch (error) {
+    throw error;
+  }
+};
 
-// export const removeNoticeFromFav = async noticeId => {
-//   try {
-//     const r = await server.delete(`/notices/${noticeId}/favorite`);
-//     return r.data;
-//   } catch (e) {
-//     return e.message;
-//   }
-// };
-
-// export const addNewNotice = async notice => {
-//   try {
-//     const { data } = await server.post('/notices/');
-//     return data;
-//   } catch (error) {
-//     console.error(error);
-//     throw error;
-//   }
-// };
+export const addNewPostComment = async (postId, comment) => {
+  try {
+    const { data } = await server.post(`${UrlRegister.posts}/${postId}/${UrlRegister.comments}`);
+    return data;
+  } catch (error) {
+    throw error;
+  }
+};

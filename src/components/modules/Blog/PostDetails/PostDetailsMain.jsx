@@ -1,5 +1,4 @@
 import React from 'react';
-import {} from './PostDetails.styled';
 import { useQuery } from '@tanstack/react-query';
 import { fetchOnePost } from 'api/posts';
 import { useParams } from 'react-router-dom';
@@ -10,7 +9,7 @@ export const PostDetailsMain = () => {
   const { id: postId } = useParams();
 
   const { data, isSuccess, isLoading, isError, error } = useQuery({
-    queryKey: ['post', postId],
+    queryKey: ['posts', postId],
     queryFn: () => fetchOnePost(postId),
     staleTime: 5 * 60 * 1000,
   });
