@@ -27,6 +27,17 @@ export const fetchOnePost = async postId => {
   }
 };
 
+export const createPost = async postData => {
+  try {
+    const { data } = await server.post(`${UrlRegister.posts}`, postData);
+
+    return data;
+  } catch (error) {
+    console.log(error);
+    throw error;
+  }
+};
+
 // export const fetchFavoriteNotices = async () => {
 //   try {
 //     const r = await server.get(`/notices/favorite`);

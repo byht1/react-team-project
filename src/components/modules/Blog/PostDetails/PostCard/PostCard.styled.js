@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import { AiOutlineLike } from 'react-icons/ai';
 
 export const ImgPost = styled.img`
-  background: #gray;
+  background: gray;
   flex-grow: 0;
   width: 100%;
   height: auto;
@@ -39,6 +39,7 @@ export const BoxCard = styled.div`
 `;
 export const ContentBlock = styled.div`
   display: flex;
+  flex-grow: 1;
   flex-direction: column;
   gap: 30px;
 `;
