@@ -5,10 +5,10 @@
 </p>
 
 <h2>
- <a href='https://byht1.github.io/react-team-project'>Полинання на живу сторінку</a>
+ <a href='https://byht1.github.io/react-team-project'>Посилання на живу сторінку</a>
 </h2>
 <h2>
- <a href='https://github.com/byht1/node-team-project'>Полинання на back-end</a>
+ <a href='https://github.com/byht1/node-team-project'>Посилання на back-end</a>
 </h2>
 
 <h2>Учасники команди</h2>
