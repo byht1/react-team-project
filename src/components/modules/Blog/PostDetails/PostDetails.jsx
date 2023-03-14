@@ -11,6 +11,7 @@ import { BsArrowLeft } from 'react-icons/bs';
 import { BlockBack } from './PostDetails.styled';
 
 export const PostDetailsComponent = ({ post, comments }) => {
+  console.log('🚀 ~ file: PostDetails.jsx:14 ~ PostDetailsComponent ~ comments:', comments);
   const navigate = useNavigate();
 
   const handleGoBackBtn = () => {

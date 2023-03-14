@@ -47,13 +47,6 @@ export const BlogComponent = () => {
     }
   );
 
-  // if (isLoading) {
-  //   return <Loader />;
-  // }
-
-  if (isSuccess) {
-  }
-
   return (
     <Container pb={100} pt={26}>
       <BlogContainer>
