@@ -17,26 +17,17 @@ export const PostCard = ({ post }) => {
 
   const client = useQueryClient();
 
-  const [likedPost, setLikedPost] = useState(false);
-  const [likeCount, setLikeCount] = useState(0);
-
-  useEffect(() => {
-    likes.includes(userId) && setLikedPost(true);
-    setLikeCount(likes.length);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
-
-  const { mutate, isLoading } = useMutation(switchLikePost, {
-    mutationFn: () => setLikedPost(!likedPost),
+  const { mutate: switchLike } = useMutation({
+    mutationKey: ['posts', postId],
+    mutationFn: () => switchLikePost(postId),
     onSuccess: () => {
-      setLikedPost(!likedPost);
-      client.invalidateQueries(['posts'], { exact: true });
+      client.invalidateQueries({ queryKey: ['posts', postId] });
+      client.invalidateQueries({ queryKey: ['posts'] });
     },
   });
 
   const handleLike = () => {
-    mutate(postId);
-    setLikeCount(likedPost ? likeCount - 1 : likeCount + 1);
+    switchLike(postId);
   };
 
   return (
@@ -54,9 +45,8 @@ export const PostCard = ({ post }) => {
         <PostInfo>
           <LikeButton
             postId={postId}
-            isLoading={isLoading}
-            likedPost={likedPost}
-            likeCount={likeCount}
+            likedPost={likes.includes(userId)}
+            likeCount={likes.length}
             handleLike={handleLike}
           />
           <Text>Date of publication: {convertCreationDateToDateAndTime(createdAt)}</Text>

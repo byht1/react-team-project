@@ -24,33 +24,21 @@ import { LikeButton } from '../../common/LikeButton/LikeButton';
 
 export const Post = ({ post, isImageOnRight, userId }) => {
   const { image, author, title, category, text, createdAt, comments, likes, _id: postId } = post;
+
   const client = useQueryClient();
 
-  const [likedPost, setLikedPost] = useState(false);
-  const [likeCount, setLikeCount] = useState(0);
-
-  useEffect(() => {
-    likes.includes(userId) && setLikedPost(true);
-    setLikeCount(likes.length);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
-
-  const handleAddLike = useMutation({
+  const { mutate: switchLike } = useMutation({
+    mutationKey: ['posts', postId],
     mutationFn: () => switchLikePost(postId),
     onSuccess: () => {
-      setLikedPost(true);
-      setLikeCount(likeCount + 1);
-      client.invalidateQueries(['posts'], postId);
+      client.invalidateQueries({ queryKey: ['posts', postId] });
+      client.invalidateQueries({ queryKey: ['posts'] });
     },
   });
-  const handleRemoveLike = useMutation({
-    mutationFn: () => switchLikePost(postId),
-    onSuccess: () => {
-      setLikedPost(false);
-      setLikeCount(likeCount - 1);
-      client.invalidateQueries(['posts'], postId);
-    },
-  });
+
+  const handleLike = () => {
+    switchLike(postId);
+  };
 
   const trimText = text => {
     const maxLength = 300;
@@ -90,23 +78,12 @@ export const Post = ({ post, isImageOnRight, userId }) => {
               {comments.length}
             </StyledMetaButton>
 
-            {likedPost ? (
-              <LikeButton
-                postId={postId}
-                isLoading={handleRemoveLike.isLoading}
-                likedPost={likedPost}
-                likeCount={likeCount}
-                handleLike={handleRemoveLike.mutate}
-              />
-            ) : (
-              <LikeButton
-                postId={postId}
-                isLoading={handleAddLike.isLoading}
-                likedPost={likedPost}
-                likeCount={likeCount}
-                handleLike={handleAddLike.mutate}
-              />
-            )}
+            <LikeButton
+              postId={postId}
+              likedPost={likes.includes(userId)}
+              likeCount={likes.length}
+              handleLike={handleLike}
+            />
           </Box>
 
           <StyledButton to={`${postId}`}>Read more</StyledButton>

@@ -3,13 +3,7 @@ import { createPortal } from 'react-dom';
 import PropTypes from 'prop-types';
 import { PostForm } from './PostForm';
 
-import { 
-  ModalBackdrop, 
-  ModalWrap,
-  CloseBtn, 
-  FormTitle, 
-  GrCloseIcon, 
-} from './PostModal.styled';
+import { ModalBackdrop, ModalWrap, CloseBtn, FormTitle, GrCloseIcon } from './PostModal.styled';
 
 const modalRoot = document.querySelector('#modal-root');
 
@@ -25,7 +19,7 @@ export const PostModal = ({ onClose }) => {
     return () => {
       window.removeEventListener('keydown', handleKeyDown);
       document.body.style.overflow = 'unset';
-    }
+    };
   }, [onClose]);
 
   const handleBackdropClick = e => {
@@ -39,13 +33,13 @@ export const PostModal = ({ onClose }) => {
         <CloseBtn type="button" onClick={onClose}>
           <GrCloseIcon />
         </CloseBtn>
-        <PostForm onClose={onClose}/>
+        <PostForm onClose={onClose} />
       </ModalWrap>
     </ModalBackdrop>,
-  modalRoot
+    modalRoot
   );
 };
 
 PostModal.propTypes = {
   onClose: PropTypes.func,
-}
+};

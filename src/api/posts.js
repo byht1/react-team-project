@@ -74,9 +74,12 @@ export const switchLikePost = async postId => {
   }
 };
 
-export const addNewPostComment = async (postId, comment) => {
+export const addNewCommentToPost = async (postId, comment) => {
   try {
-    const { data } = await server.post(`${UrlRegister.posts}/${postId}/${UrlRegister.comments}`);
+    const { data } = await server.post(
+      `${UrlRegister.posts}/${postId}/${UrlRegister.comments}`,
+      comment
+    );
     return data;
   } catch (error) {
     throw error;

@@ -10,8 +10,7 @@ import { Text } from 'components/global/text';
 import { BsArrowLeft } from 'react-icons/bs';
 import { BlockBack } from './PostDetails.styled';
 
-export const PostDetailsComponent = ({ post, comments }) => {
-  console.log('🚀 ~ file: PostDetails.jsx:14 ~ PostDetailsComponent ~ comments:', comments);
+export const PostDetailsComponent = ({ post, comments, handleSubmitComment }) => {
   const navigate = useNavigate();
 
   const handleGoBackBtn = () => {
@@ -28,7 +27,7 @@ export const PostDetailsComponent = ({ post, comments }) => {
       </BlockBack>
 
       <PostCard post={post} />
-      <PostComment />
+      <PostComment handleSubmitComment={handleSubmitComment} />
       <PostList comments={comments} />
     </Container>
   );
