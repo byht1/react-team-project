@@ -17,12 +17,12 @@ import {
 
 const validationComment = {
   minLength: {
-    value: 5,
-    message: 'Minimum length 5 symbols',
+    value: 2,
+    message: 'Minimum length 2 symbols',
   },
   maxLength: {
-    value: 120,
-    message: 'Maximum length 120 symbols',
+    value: 200,
+    message: 'Maximum length 200 symbols',
   },
 };
 

@@ -25,7 +25,7 @@ export const Post = ({ post, isImageOnRight, userId }) => {
 
   const client = useQueryClient();
 
-  const { mutate: switchLike } = useMutation({
+  const { mutate: switchLike, isLoading } = useMutation({
     mutationKey: ['posts', postId],
     mutationFn: () => switchLikePost(postId),
     onSuccess: () => {
@@ -81,6 +81,7 @@ export const Post = ({ post, isImageOnRight, userId }) => {
               likedPost={likes.includes(userId)}
               likeCount={likes.length}
               handleLike={handleLike}
+              isLoading={isLoading}
             />
           </Box>
 
