@@ -1,5 +1,3 @@
-import React, { useState, useEffect } from 'react';
-
 import { TitleH2 } from 'components/global/text';
 import { Text } from 'components/global/text';
 import { convertCreationDateToDateAndTime } from '../../helpers';

@@ -3,7 +3,8 @@ import { Text } from 'components/global/text';
 import { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import { AiOutlineSend } from 'react-icons/ai';
-import data from '../data';
+import { getUserPhoto } from 'redux/auth';
+import { useSelector } from 'react-redux';
 import {
   Button,
   ButtonBlock,
@@ -13,9 +14,6 @@ import {
   Label,
   ErrorInput,
 } from './PostComment.styled';
-
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
 
 const validationComment = {
   minLength: {
@@ -37,6 +35,8 @@ export const PostComment = ({ handleSubmitComment }) => {
     formState: { isSubmitSuccessful },
   } = useForm({ defaultValues: { comment: '' } });
 
+  const userPhoto = useSelector(getUserPhoto);
+
   const onSubmit = data => {
     handleSubmitComment(data);
   };
@@ -47,12 +47,11 @@ export const PostComment = ({ handleSubmitComment }) => {
 
   return (
     <Box mt={60} mb={40}>
-      <ToastContainer />
       <Text weight={'600'} ml={110} mb={30}>
         Add comments:
       </Text>
       <Content onSubmit={handleSubmit(onSubmit)}>
-        <ImgComment src={data.image} alt="" />
+        <ImgComment src={userPhoto} alt="" />
         <ButtonBlock>
           <Label>
             <Input placeholder="Type comment" {...register('comment', validationComment)}></Input>
