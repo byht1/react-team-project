@@ -1,5 +1,3 @@
-import { useEffect, useState } from 'react';
-
 import { AiOutlineComment } from 'react-icons/ai';
 import {
   StyledAuthor,
