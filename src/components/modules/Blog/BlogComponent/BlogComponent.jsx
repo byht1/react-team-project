@@ -1,7 +1,6 @@
 import React from 'react';
 import { useState, useEffect } from 'react';
 import { useInfiniteQuery } from '@tanstack/react-query';
-import { useTheme } from 'styled-components';
 import { BlogCategoriesNav } from './BlogCategoriesNav';
 import { PostsList } from './PostsList';
 import { fetchPosts } from 'api/posts';
@@ -11,10 +10,9 @@ import { InputSearch } from 'components/global/InputSearch';
 import { Container } from 'components/global/Container';
 import { Box } from 'components/global/Box';
 
-const PAGE_SIZE = 5; // number of items per page
+const PAGE_SIZE = 4; // number of items per page
 
 export const BlogComponent = () => {
-  const theme = useTheme();
   const [searchQuery, setSearchQuery] = useState('');
 
   useEffect(() => {
@@ -80,13 +78,7 @@ export const BlogComponent = () => {
               type="button"
               onClick={() => fetchNextPage()}
               disabled={isFetchingNextPage}
-              style={{
-                backgroundColor: isFetchingNextPage && theme.colors.tagBg,
-                color: isFetchingNextPage && theme.colors.bt,
-                border: isFetchingNextPage && `2px solid ${theme.colors.trsp}`,
-                pointerEvents: isFetchingNextPage && 'none',
-                cursor: isFetchingNextPage ? 'not-allowed' : 'pointer',
-              }}
+              isFetchingNextPage={isFetchingNextPage}
             >
               {isFetchingNextPage ? 'Loading more...' : 'Load More'}
             </LoadMoreBtn>

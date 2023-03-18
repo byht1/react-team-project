@@ -15,6 +15,9 @@ import {
   ErrorInput,
 } from './PostComment.styled';
 
+import { useMutation, useQueryClient } from '@tanstack/react-query';
+import { addNewCommentToPost } from 'api';
+
 const validationComment = {
   minLength: {
     value: 2,
@@ -26,7 +29,7 @@ const validationComment = {
   },
 };
 
-export const PostComment = ({ handleSubmitComment }) => {
+export const PostComment = ({ postId }) => {
   const {
     register,
     handleSubmit,
@@ -34,11 +37,21 @@ export const PostComment = ({ handleSubmitComment }) => {
     reset,
     formState: { isSubmitSuccessful },
   } = useForm({ defaultValues: { comment: '' } });
+  const client = useQueryClient();
 
   const userPhoto = useSelector(getUserPhoto);
 
-  const onSubmit = data => {
-    handleSubmitComment(data);
+  const { mutate: addComment } = useMutation({
+    mutationKey: ['posts', postId],
+    mutationFn: data => addNewCommentToPost(postId, data),
+    onSuccess: () => {
+      client.invalidateQueries({ queryKey: ['posts', postId] });
+      client.invalidateQueries({ queryKey: ['posts'] });
+    },
+  });
+
+  const onSubmit = async data => {
+    await addComment({ text: data.comment });
   };
 
   useEffect(() => {

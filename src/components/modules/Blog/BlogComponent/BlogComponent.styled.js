@@ -31,4 +31,11 @@ export const LoadMoreBtn = styled(DarkBtn)`
   margin-left: auto;
   margin-right: auto;
   margin-top: 32px;
+
+  background-color: ${p => p.isFetchingNextPage && p.theme.colors.tagBg};
+
+  color: ${p => p.isFetchingNextPage && p.theme.colors.bt};
+  border: ${p => p.isFetchingNextPage && `2px solid ${p.theme.colors.trsp}`};
+  pointer-events: ${p => p.isFetchingNextPage && 'none'};
+  cursor: ${p => (p.isFetchingNextPage ? 'not-allowed' : 'pointer')};
 `;

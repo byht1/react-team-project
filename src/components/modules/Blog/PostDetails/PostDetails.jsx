@@ -5,12 +5,11 @@ import { Container } from 'components/global/Container';
 import { PostCard } from './PostCard/PostCard';
 import { PostComment } from './PostComment/PostComment';
 import { PostList } from './PostList/PostList';
-import {} from './PostDetails.styled';
 import { Text } from 'components/global/text';
 import { BsArrowLeft } from 'react-icons/bs';
 import { BlockBack } from './PostDetails.styled';
 
-export const PostDetailsComponent = ({ post, comments, handleSubmitComment }) => {
+export const PostDetailsComponent = ({ post, comments }) => {
   const navigate = useNavigate();
 
   const handleGoBackBtn = () => {
@@ -27,7 +26,7 @@ export const PostDetailsComponent = ({ post, comments, handleSubmitComment }) =>
       </BlockBack>
 
       <PostCard post={post} />
-      <PostComment handleSubmitComment={handleSubmitComment} />
+      <PostComment postId={post._id} />
       <PostList comments={comments} />
     </Container>
   );
