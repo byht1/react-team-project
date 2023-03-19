@@ -13,6 +13,8 @@ export const StyledMetaButton = styled.button`
   cursor: pointer;
   transition: scale 0.3 ease-in-out;
 
+  color: ${p => p.checked && p.theme.colors.da};
+
   &:hover {
     color: ${p => p.theme.colors.a};
     transform: scale(1.05);
@@ -22,5 +24,4 @@ export const StyledMetaButton = styled.button`
 export const LikeIcon = styled(AiOutlineLike)`
   width: 24px;
   height: 24px;
-  color: ${p => p.checked && p.theme.colors.da};
 `;

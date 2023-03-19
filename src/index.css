@@ -18,7 +18,7 @@ html {
   --search-text: #535353;
 
   --shadow: 7px 4px 14px rgba(49, 21, 4, 0.07);
-  --gradient: linear-gradient(90deg, #ff634e 0%, #ffdf48 105.44%);
+  --gradient: linear-gradient(90deg, #ff634e 0%, #d3a9ff 105.44%);
   --overlay: rgba(17, 17, 17, 0.6);
   --tag-bg: rgba(255, 255, 255, 0.6);
 

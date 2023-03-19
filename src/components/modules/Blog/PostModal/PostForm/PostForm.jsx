@@ -36,7 +36,7 @@ export const PostForm = ({ onClose }) => {
   const {
     register,
     handleSubmit,
-    setValue, 
+    setValue,
     watch,
     formState: { errors },
   } = useForm({
@@ -44,10 +44,10 @@ export const PostForm = ({ onClose }) => {
     mode: 'onBlur',
   });
 
-  const files = watch("image");
+  const files = watch('image');
   const onDrop = useCallback(
     droppedFiles => {
-      setValue("image", droppedFiles, { shouldValidate: true });
+      setValue('image', droppedFiles, { shouldValidate: true });
     },
     [setValue]
   );
@@ -70,9 +70,9 @@ export const PostForm = ({ onClose }) => {
 
   const onSubmit = async data => {
     const formData = new FormData();
-    for(const key in data) {
+    for (const key in data) {
       if (key === 'image') {
-          formData.append(key, data[key][0]);
+        formData.append(key, data[key][0]);
         continue;
       }
       formData.append(key, data[key]);
@@ -82,7 +82,7 @@ export const PostForm = ({ onClose }) => {
     // console.log("postdata2:", data);
 
     // await createPost(formData);
-    onClose()
+    onClose();
     // navigate(`/posts/${post._id}`);
   };
 
@@ -93,9 +93,17 @@ export const PostForm = ({ onClose }) => {
           <TabletFlexWrap>
             <ImageWrap>
               <LabelFile htmlFor="image">
-                <InputFileWrap {...getRootProps()} type="file" role="button" aria-label="" id="image">
-                  <InputFile {...register("image")} {...getInputProps()} />
-                  {acceptedFiles?.length === 0 && <TfiPlus color="rgba(17, 17, 17, 0.6)" size="48px" />}
+                <InputFileWrap
+                  {...getRootProps()}
+                  type="file"
+                  role="button"
+                  aria-label=""
+                  id="image"
+                >
+                  <InputFile {...register('image')} {...getInputProps()} />
+                  {acceptedFiles?.length === 0 && (
+                    <TfiPlus color="rgba(17, 17, 17, 0.6)" size="48px" />
+                  )}
                   {!!acceptedFiles?.length && (
                     <PreviewPhoto src={URL.createObjectURL(files[0])} alt={files[0].name} />
                   )}
@@ -106,12 +114,22 @@ export const PostForm = ({ onClose }) => {
             <PostInfoWrap>
               <LabelInput htmlFor="title">
                 <LabelName>Title</LabelName>
-                <Input {...register('title')} id="title" type="text" placeholder="Type post title" />
+                <Input
+                  {...register('title')}
+                  id="title"
+                  type="text"
+                  placeholder="Type post title"
+                />
                 {errors.title && <ErrorInput>{errors.title.message}</ErrorInput>}
               </LabelInput>
               <LabelInput htmlFor="category">
                 <LabelName>Category</LabelName>
-                <Input {...register('category')} id="category" type="text" placeholder="Type post category" />
+                <Input
+                  {...register('category')}
+                  id="category"
+                  type="text"
+                  placeholder="Type post category"
+                />
                 {errors.category && <ErrorInput>{errors.category.message}</ErrorInput>}
               </LabelInput>
             </PostInfoWrap>
@@ -123,15 +141,17 @@ export const PostForm = ({ onClose }) => {
           </LabelInput>
         </ContentWrap>
         <ButtonsWrap>
-          <PostFormButton theme="dark" type="submit">Done</PostFormButton>
+          <PostFormButton theme="dark" type="submit">
+            Done
+          </PostFormButton>
           <PostFormButton onClick={onClose}>Cancel</PostFormButton>
         </ButtonsWrap>
       </form>
-    {/* {isLoading && <Loader />} */}
+      {/* {isLoading && <Loader />} */}
     </>
   );
 };
 
 PostForm.propTypes = {
   onClose: PropTypes.func,
-}
+};

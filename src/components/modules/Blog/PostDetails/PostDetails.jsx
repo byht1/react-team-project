@@ -5,7 +5,6 @@ import { Container } from 'components/global/Container';
 import { PostCard } from './PostCard/PostCard';
 import { PostComment } from './PostComment/PostComment';
 import { PostList } from './PostList/PostList';
-import {} from './PostDetails.styled';
 import { Text } from 'components/global/text';
 import { BsArrowLeft } from 'react-icons/bs';
 import { BlockBack } from './PostDetails.styled';
@@ -27,7 +26,7 @@ export const PostDetailsComponent = ({ post, comments }) => {
       </BlockBack>
 
       <PostCard post={post} />
-      <PostComment />
+      <PostComment postId={post._id} />
       <PostList comments={comments} />
     </Container>
   );
