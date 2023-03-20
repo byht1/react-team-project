@@ -12,7 +12,6 @@ export const addPet = async petInfo => {
 
     return data;
   } catch (error) {
-    console.log(error);
     throw error;
   }
 };

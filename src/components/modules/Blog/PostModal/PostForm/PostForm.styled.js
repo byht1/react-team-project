@@ -22,6 +22,67 @@ export const ImageWrap = styled.div`
   position: relative;
 `
 
+export const LabelFile = styled.label`
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  width: 208px;
+  height: 208px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: ${p => p.theme.space[6]}px;
+  
+  cursor: pointer;
+  background-color: ${p => p.theme.colors.bg};
+  border-radius: ${p => p.theme.radii.normal};
+
+  @media (min-width: 768px) {
+    width: 200px;
+    height: 200px;
+    margin: 0;
+    border-radius: ${p => p.theme.radii.inputRadius};
+  }
+`;
+
+export const InputFileWrap = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  width: 208px;
+  height: 208px;
+  overflow: hidden;
+  
+  margin-left: auto;
+  margin-right: auto;
+  border-radius: ${p => p.theme.radii.normal};
+
+  @media (min-width: 768px) {
+    width: 200px;
+    height: 200px;
+    margin: 0;
+    border-radius: ${p => p.theme.radii.inputRadius};
+  }
+`;
+
+export const InputFile = styled.input`
+  opacity: 0;
+  width: 0;
+  height: 0;
+  line-height: 0;
+  overflow: hidden;
+  padding: 0;
+  margin: 0;
+`;
+
+export const PreviewPhoto = styled.img`
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+`;
+
 export const PostInfoWrap = styled.div`
   display: flex;
   flex-direction: column;
@@ -64,6 +125,7 @@ export const Input = styled.input`
   &:focus {
     border: 1px solid ${p => p.theme.colors.a};
   }
+
   &::placeholder {
     font-size: ${p => p.theme.fontSizes.s};
     font-family: ${p => p.theme.fonts.manrope};
@@ -72,6 +134,7 @@ export const Input = styled.input`
       font-size: ${p => p.theme.fontSizes.m};
     }
   }
+
   @media (min-width: 768px) {
     padding: 11px 16px 10px;
     margin-top: ${p => p.theme.space[4]}px;
@@ -134,6 +197,7 @@ export const Textarea = styled.textarea`
   margin-top: ${p => p.theme.space[3]}px;
   height: 200px;
 
+  font-size: ${p => p.theme.fontSizes.s};
   background-color: ${p => p.theme.colors.bg};
   border: 1px solid ${p => p.theme.colors.inputBdr};
   border-radius: ${p => p.theme.radii.normal};
@@ -160,66 +224,4 @@ export const Textarea = styled.textarea`
   }
 `;
 
-export const LabelFile = styled.label`
-  position: relative;
-  display: flex;
-  justify-content: center;
-  align-items: center;
 
-  width: 208px;
-  height: 208px;
-  margin-left: auto;
-  margin-right: auto;
-  margin-bottom: ${p => p.theme.space[6]}px;
-  
-  cursor: pointer;
-  background-color: ${p => p.theme.colors.bg};
-  border-radius: ${p => p.theme.radii.normal};
-  border: 1px solid ${p => p.theme.colors.inputBdr};
-  transition: var(--transition-bg), var(--transition-color), var(--transition-border-color);
-  &:hover,
-  &:focus {
-    border: 1px solid ${p => p.theme.colors.buttonBg};
-  }
-
-  @media (min-width: 768px) {
-    width: 200px;
-    height: 200px;
-    margin: 0;
-    border-radius: ${p => p.theme.radii.inputRadius};
-  }
-`;
-
-export const InputFileWrap = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  overflow: hidden;
-  width: 208px;
-  height: 208px;
-  margin-left: auto;
-  margin-right: auto;
-  border-radius: ${p => p.theme.radii.normal};
-  @media (min-width: 768px) {
-    width: 200px;
-    height: 200px;
-    margin: 0;
-    border-radius: ${p => p.theme.radii.inputRadius};
-  }
-`;
-
-export const PreviewPhoto = styled.img`
-  object-fit: cover;
-  width: 100%;
-  height: 100%;
-`;
-
-export const InputFile = styled.input`
-  opacity: 0;
-  width: 0;
-  height: 0;
-  line-height: 0;
-  overflow: hidden;
-  padding: 0;
-  margin: 0;
-`;

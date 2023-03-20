@@ -33,7 +33,6 @@ export const createPost = async postData => {
 
     return data;
   } catch (error) {
-    console.log(error);
     throw error;
   }
 };

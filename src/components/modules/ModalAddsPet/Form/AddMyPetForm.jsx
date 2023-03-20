@@ -67,8 +67,6 @@ export const AddMyPetForm = () => {
   };
 
   const onSubmit = async data => {
-    console.log(data);
-    console.log(data.birthday);
     data.birthday = dateConverter(data.birthday);
 
     const formInfo = new FormData();
