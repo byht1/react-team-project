@@ -20,7 +20,7 @@ import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { switchLikePost } from 'api/posts';
 import { LikeButton } from '../../common/LikeButton/LikeButton';
 
-export const Post = ({ post, isImageOnRight, userId }) => {
+export const Post = ({ post, userId }) => {
   const { image, author, title, category, text, createdAt, comments, likes, _id: postId } = post;
 
   const client = useQueryClient();
@@ -47,18 +47,14 @@ export const Post = ({ post, isImageOnRight, userId }) => {
   };
 
   return (
-    <StyledPost isImageOnRight={isImageOnRight}>
+    <StyledPost>
       <StyledImageWrapper>
-        <StyledImage
-          src={image ? image : ''}
-          alt={author ? author.name : ''}
-          isImageOnRight={isImageOnRight}
-        />
+        <StyledImage src={image ? image : ''} alt={author ? author.name : ''} />
 
         <StyledCategory>{category ? category : ''}</StyledCategory>
       </StyledImageWrapper>
 
-      <StyledContent isImageOnRight={isImageOnRight}>
+      <StyledContent>
         <Box flex="1" mb={4}>
           <Box display="flex" alignItems="flex-end" justifyContent="space-between" gridGap={7}>
             <StyledTitle>{title}</StyledTitle>

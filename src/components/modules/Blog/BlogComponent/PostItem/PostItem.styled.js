@@ -6,7 +6,6 @@ import { AiOutlineLike } from 'react-icons/ai';
 
 export const StyledPost = styled.li`
   display: flex;
-  flex-direction: ${({ isImageOnRight }) => (isImageOnRight ? 'row-reverse' : 'row')};
   gap: ${p => p.theme.space[7]}px;
   align-items: flex-start;
   margin: 20px 0;
@@ -16,6 +15,10 @@ export const StyledPost = styled.li`
   background: #ffffff;
   box-shadow: 7px 4px 14px rgba(0, 0, 0, 0.11);
   border-radius: 40px;
+
+  &:nth-child(2n) {
+    flex-direction: row-reverse;
+  }
 
   @media (max-width: 767.98px) {
     flex-direction: column;
