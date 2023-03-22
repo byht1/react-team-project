@@ -89,14 +89,10 @@ export const FloatingAddPostBtn = styled('button')`
 
 export const FixedBtnWrapper = styled(Box)`
   display: none;
-
   @media (min-width: 768px) {
     display: flex;
-
-    justify-content: center;
     align-items: center;
-    align-content: flex-start;
-    flex-wrap: wrap;
+    margin-top: 28px;
   }
 `;
 
