@@ -14,6 +14,6 @@ LikeButton.propTypes = {
   handleLike: PropTypes.func,
   isLoading: PropTypes.bool,
   likeCount: PropTypes.number,
-  likedPost: PropTypes.array,
+  likedPost: PropTypes.bool,
   postId: PropTypes.string,
 };
