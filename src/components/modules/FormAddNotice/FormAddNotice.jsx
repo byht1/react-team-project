@@ -47,7 +47,7 @@ export const FormAddNotice = () => {
 
   const onSubmit = data => {
     data.birthday = dateConverter(data.birthday);
-    console.log(data.birthday);
+
     const files = data.images;
     const formData = new FormData();
     for (const key in data) {

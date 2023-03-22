@@ -18,7 +18,7 @@ export const validationSchema = yup.object({
 
     image: yup
     .mixed()
-    .test('fileType', 'You need to add photo or unsupported photo format', value => {
+    .test('fileType', 'Unsupported photo format', value => {
       if (!value) return true;
       const supportedFormats = ['image/jpeg', 'image/png', 'image/webp'];
       return supportedFormats.includes(value[0]?.type);

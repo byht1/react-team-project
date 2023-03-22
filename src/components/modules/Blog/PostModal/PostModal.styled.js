@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import { GrClose } from 'react-icons/gr';
+import { Alert } from '@mui/material';
 
 export const ModalBackdrop = styled.div`
     position: fixed;
@@ -19,7 +20,7 @@ export const ModalWrap = styled.div`
     max-width: 416px;
     min-width: 280px;
     width: 87vw;
-    height: 76.5vh;
+    max-height: 76.5vh;
     padding: 40px 24px;
     background-color: ${p => p.theme.colors.w};
     border-radius: ${p => p.theme.radii.normal};
@@ -27,21 +28,20 @@ export const ModalWrap = styled.div`
     
     @media screen and (min-width: 768px) {
       max-width: 608px;
-      height: 82.5vh;
+      max-height: 82.5vh;
     }
 `
 
 export const FormTitle = styled.p`
   margin-bottom: ${p => p.theme.space[8]}px;
+  text-align: center;
   font-size: ${p => p.theme.fontSizes.xxl};
-  line-height: 1.375;
   font-weight: ${p => p.theme.fontWeights.average};
   color: ${p => p.theme.colors.bt};
-  text-align: center;
+  
   @media (min-width: 768px) {
     margin-bottom: ${p => p.theme.space[11]}px;
     font-size: 36px;
-    line-height: ${p => p.theme.lineHeights.heading};
     font-weight: ${p => p.theme.fontWeights.semiBold};  
   }
 `;
@@ -80,3 +80,19 @@ export const GrCloseIcon = styled(GrClose)`
     width: 20px;
   }
 `;
+
+export const AlertContainer = styled(Alert)`
+  position: fixed;
+  top: 16px;
+  right: 6vw;
+  
+  @media (min-width: 768px) {
+    top: 32px;
+    right: 32px;
+  }
+
+  @media (min-width: 1280px) {
+    right: 64px;
+  }
+
+`

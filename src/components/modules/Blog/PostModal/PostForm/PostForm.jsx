@@ -1,13 +1,14 @@
 import React, { useCallback } from 'react';
-// import { useNavigate } from 'react-router-dom';
-import PropTypes from 'prop-types';
 import { useForm } from 'react-hook-form';
-import { yupResolver } from '@hookform/resolvers/yup';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
+import PropTypes from 'prop-types';
 import { useDropzone } from 'react-dropzone';
-import { TfiPlus } from 'react-icons/tfi';
+import { yupResolver } from '@hookform/resolvers/yup';
 
-// import { createPost } from 'api/posts';
+import { createPost } from 'api/posts';
 import { validationSchema } from './validationSchema';
+
+import { TfiPlus } from 'react-icons/tfi';
 
 import {
   ButtonsWrap,
@@ -27,12 +28,11 @@ import {
   InputFileWrap,
   PreviewPhoto,
 } from './PostForm.styled';
-// import { useMutation, useQueryClient } from '@tanstack/react-query';
-// import { Loader } from 'components/global/Loader';
+import { Loader } from 'components/global/Loader';
 
-export const PostForm = ({ onClose }) => {
-  // const navigate = useNavigate();
-  // const client = useQueryClient();
+export const PostForm = ({ onClose, passError }) => {
+  const client = useQueryClient();
+
   const {
     register,
     handleSubmit,
@@ -60,13 +60,18 @@ export const PostForm = ({ onClose }) => {
     },
   });
 
-  // const { mutate: create, isLoading } = useMutation({
-  //   mutationKey: ['posts'],
-  //   mutationFn: createPost,
-  //   onSuccess: () => {
-  //     client.invalidateQueries({ queryKey: ['posts'] });
-  //   },
-  // });
+  const { mutate: create, isLoading } = useMutation({
+    mutationKey: ['posts'],
+    mutationFn: createPost,
+    onSuccess: () => {
+      client.invalidateQueries({ queryKey: ['posts'] });
+      onClose();
+    },
+    onError: error => {
+      passError(error);
+    },
+    retry: 1,
+  });
 
   const onSubmit = async data => {
     const formData = new FormData();
@@ -75,15 +80,9 @@ export const PostForm = ({ onClose }) => {
         formData.append(key, data[key][0]);
         continue;
       }
-      formData.append(key, data[key]);
+      formData.append(key, data[key].trim());
     }
-    // create(formData);
-
-    // console.log("postdata2:", data);
-
-    // await createPost(formData);
-    onClose();
-    // navigate(`/posts/${post._id}`);
+    create(formData);
   };
 
   return (
@@ -92,13 +91,12 @@ export const PostForm = ({ onClose }) => {
         <ContentWrap>
           <TabletFlexWrap>
             <ImageWrap>
-              <LabelFile htmlFor="image">
+              <LabelFile>
                 <InputFileWrap
                   {...getRootProps()}
                   type="file"
                   role="button"
-                  aria-label=""
-                  id="image"
+                  aria-label="upload photo"
                 >
                   <InputFile {...register('image')} {...getInputProps()} />
                   {acceptedFiles?.length === 0 && (
@@ -112,29 +110,19 @@ export const PostForm = ({ onClose }) => {
               </LabelFile>
             </ImageWrap>
             <PostInfoWrap>
-              <LabelInput htmlFor="title">
+              <LabelInput>
                 <LabelName>Title</LabelName>
-                <Input
-                  {...register('title')}
-                  id="title"
-                  type="text"
-                  placeholder="Type post title"
-                />
+                <Input {...register('title')} type="text" placeholder="Type post title" />
                 {errors.title && <ErrorInput>{errors.title.message}</ErrorInput>}
               </LabelInput>
-              <LabelInput htmlFor="category">
+              <LabelInput>
                 <LabelName>Category</LabelName>
-                <Input
-                  {...register('category')}
-                  id="category"
-                  type="text"
-                  placeholder="Type post category"
-                />
+                <Input {...register('category')} type="text" placeholder="Type post category" />
                 {errors.category && <ErrorInput>{errors.category.message}</ErrorInput>}
               </LabelInput>
             </PostInfoWrap>
           </TabletFlexWrap>
-          <LabelInput htmlFor="text">
+          <LabelInput>
             <LabelName>Text</LabelName>
             <Textarea {...register('text')} name="text" type="text" placeholder="Type post text" />
             {errors.text && <ErrorInput>{errors.text.message}</ErrorInput>}
@@ -147,11 +135,12 @@ export const PostForm = ({ onClose }) => {
           <PostFormButton onClick={onClose}>Cancel</PostFormButton>
         </ButtonsWrap>
       </form>
-      {/* {isLoading && <Loader />} */}
+      {isLoading && <Loader />}
     </>
   );
 };
 
 PostForm.propTypes = {
-  onClose: PropTypes.func,
+  onClose: PropTypes.func.isRequired,
+  passError: PropTypes.func.isRequired,
 };

@@ -66,11 +66,9 @@ export const schemaAddPet = yup.object({
     .string()
     .min(8, 'Must be at least 8 letters')
     .max(120, 'Cannot be more than 120 letters'),
-  images: yup
-    .mixed()
-    .test('fileType', 'You need to add photo or unsupported photo format', value => {
-      if (!value) return true; // handle empty input
-      const supportedFormats = ['image/jpeg', 'image/png', 'image/webp'];
-      return supportedFormats.includes(value[0]?.type);
-    }),
+  images: yup.mixed().test('fileType', 'You need to add photo or supported photo format', value => {
+    if (!value) return true;
+    const supportedFormats = ['image/jpeg', 'image/png', 'image/webp'];
+    return supportedFormats.includes(value[0]?.type);
+  }),
 });
