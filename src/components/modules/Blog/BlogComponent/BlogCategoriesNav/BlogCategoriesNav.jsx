@@ -2,7 +2,7 @@ import React, { useRef, useState } from 'react';
 import { AiOutlinePlus } from 'react-icons/ai';
 import { PostModal } from '../../PostModal';
 import {
-  CategoriesBox,
+  // CategoriesBox,
   // CategoryBtnWrapper,
   // CategoryBtn,
   FloatingAddPostBtn,
@@ -21,12 +21,14 @@ export const BlogCategoriesNav = () => {
   };
 
   return (
-    <CategoriesBox>
-      {/* <CategoryBtnWrapper>
-        <CategoryBtn to="category-1">category-1</CategoryBtn>
-        <CategoryBtn to="category-2">category-2</CategoryBtn>
-        <CategoryBtn to="category-3">category-3</CategoryBtn>
-      </CategoryBtnWrapper> */}
+    <>
+      {/* <CategoriesBox>
+        <CategoryBtnWrapper>
+          <CategoryBtn to="category-1">category-1</CategoryBtn>
+          <CategoryBtn to="category-2">category-2</CategoryBtn>
+          <CategoryBtn to="category-3">category-3</CategoryBtn>
+        </CategoryBtnWrapper>
+      </CategoriesBox> */}
       <FixedBtnWrapper>
         <FixedAddPostText>Add Post</FixedAddPostText>
         <FixedAddPostBtn type="button" onClick={toggleModal} ref={addBtnRef}>
@@ -37,9 +39,7 @@ export const BlogCategoriesNav = () => {
         Add Post
         <AiOutlinePlus size={'32px'} color={'inherit'} />
       </FloatingAddPostBtn>
-      {showModal && (
-        <PostModal onClose={toggleModal}></PostModal>
-      )}
-    </CategoriesBox>
+      {showModal && <PostModal onClose={toggleModal}></PostModal>}
+    </>
   );
 };

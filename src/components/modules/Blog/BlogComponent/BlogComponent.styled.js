@@ -24,7 +24,12 @@ export const Title = styled(TitleH2)`
   }
 `;
 
-export const ListBox = styled.ul``;
+export const ListBox = styled.ul`
+  display: flex;
+  flex-direction: column;
+  gap: 38px;
+  margin-top: 32px;
+`;
 
 export const LoadMoreBtn = styled(DarkBtn)`
   display: block;

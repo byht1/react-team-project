@@ -1,16 +1,17 @@
 import { AiOutlineComment } from 'react-icons/ai';
 import {
-  StyledAuthor,
+  Author,
   StyledButton,
-  StyledCategory,
-  StyledContent,
-  StyledDate,
-  StyledImage,
-  StyledImageWrapper,
-  StyledMetaButton,
-  StyledPost,
-  StyledText,
-  StyledTitle,
+  Category,
+  ContentWrapper,
+  Date,
+  Image,
+  ImageWrapper,
+  MetaButton,
+  PostContainer,
+  Text,
+  Title,
+  PostFooter,
 } from './PostItem.styled';
 
 import { Box } from 'components/global/Box';
@@ -47,43 +48,45 @@ export const Post = ({ post, userId }) => {
   };
 
   return (
-    <StyledPost>
-      <StyledImageWrapper>
-        <StyledImage src={image ? image : ''} alt={author ? author.name : ''} />
+    <PostContainer>
+      <ImageWrapper>
+        <Image src={image} alt={title} />
 
-        <StyledCategory>{category ? category : ''}</StyledCategory>
-      </StyledImageWrapper>
+        <Category>{category ? category : ''}</Category>
+      </ImageWrapper>
 
-      <StyledContent>
+      <ContentWrapper>
         <Box flex="1" mb={4}>
-          <Box display="flex" alignItems="flex-end" justifyContent="space-between" gridGap={7}>
-            <StyledTitle>{title}</StyledTitle>
-          </Box>
+          {/* <Box display="flex" alignItems="flex-end" justifyContent="space-between" gridGap={7}> */}
+          <Title>{title}</Title>
+          {/* </Box> */}
 
-          <StyledAuthor>{author ? author.name : ''}</StyledAuthor>
-          <StyledText>{trimText(text ? text : '')}</StyledText>
-          <StyledDate>{createdAt ? convertCreationDateToDateAndTime(createdAt) : ''}</StyledDate>
+          <Author>{author ? author.name : ''}</Author>
+          <Text>{trimText(text ? text : '')}</Text>
         </Box>
 
-        <Box display="flex" alignItems="center" justifyContent="space-between">
-          <Box display="flex" alignItems="center" p={3} gridGap={5}>
-            <StyledMetaButton>
-              <AiOutlineComment style={{ width: '24px', height: '24px' }} />
-              {comments.length}
-            </StyledMetaButton>
+        <PostFooter display="flex" alignItems="center" justifyContent="space-between">
+          <Date>{createdAt ? convertCreationDateToDateAndTime(createdAt) : ''}</Date>
+          <Box display="flex" alignItems="center" justifyContent="space-between" gridGap={5}>
+            <Box display="flex" alignItems="center" gridGap={2}>
+              <MetaButton>
+                <AiOutlineComment style={{ width: '24px', height: '24px' }} />
+                {comments.length}
+              </MetaButton>
 
-            <LikeButton
-              postId={postId}
-              likedPost={likes.includes(userId)}
-              likeCount={likes.length}
-              handleLike={handleLike}
-              isLoading={isLoading}
-            />
+              <LikeButton
+                postId={postId}
+                likedPost={likes.includes(userId)}
+                likeCount={likes.length}
+                handleLike={handleLike}
+                isLoading={isLoading}
+              />
+            </Box>
+
+            <StyledButton to={`${postId}`}>Read more</StyledButton>
           </Box>
-
-          <StyledButton to={`${postId}`}>Read more</StyledButton>
-        </Box>
-      </StyledContent>
-    </StyledPost>
+        </PostFooter>
+      </ContentWrapper>
+    </PostContainer>
   );
 };

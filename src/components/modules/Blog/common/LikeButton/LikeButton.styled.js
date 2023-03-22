@@ -4,8 +4,9 @@ import { AiOutlineLike } from 'react-icons/ai';
 export const StyledMetaButton = styled.button`
   display: flex;
   gap: ${p => p.theme.space[3]}px;
-  align-items: center;
+  align-items: flex-end;
   justify-content: space-between;
+  padding: 8px;
   font-size: 14px;
   color: #999;
   background: transparent;

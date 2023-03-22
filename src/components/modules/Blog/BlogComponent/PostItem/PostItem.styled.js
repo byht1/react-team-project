@@ -4,48 +4,62 @@ import { Box } from 'components/global/Box';
 import { Link } from 'react-router-dom';
 import { AiOutlineLike } from 'react-icons/ai';
 
-export const StyledPost = styled.li`
-  display: flex;
-  gap: ${p => p.theme.space[7]}px;
-  align-items: flex-start;
-  margin: 20px 0;
+export const PostContainer = styled.li`
+  /* display: flex;
+  align-items: flex-start; */
+  gap: 16px;
+  
+  padding: ${p => p.theme.space[9]}px;
   border-radius: 10px;
   overflow: hidden;
-  padding: ${p => p.theme.space[9]}px;
+  
   background: #ffffff;
   box-shadow: 7px 4px 14px rgba(0, 0, 0, 0.11);
   border-radius: 40px;
 
-  &:nth-child(2n) {
-    flex-direction: row-reverse;
-  }
+  
 
   @media (max-width: 767.98px) {
     flex-direction: column;
-    margin-bottom: ${p => p.theme.space[7]}px;
+  }
+
+  @media (min-width: 768px) and (max-width: 1279.98px) {
+    &:nth-child(2n) {
+      & > div:first-of-type {
+        float: right;
+        margin-left: 16px;
+      }
+    }
+    &:nth-child(2n + 1) {
+      & > div:first-of-type {
+        float: left;
+        margin-right: 16px;
+      }
+    }
+  }
+
+  @media screen and (min-width: 1280px) {
+    display: flex;
+    &:nth-child(2n) {
+      flex-direction: row-reverse;
+    }
   }
 `;
 
-export const StyledImageWrapper = styled(Box)`
+export const ImageWrapper = styled(Box)`
   position: relative;
   height: 288px;
   width: 100%;
+  margin-bottom: 8px;
 
   border-radius: ${p => p.theme.space[7]}px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   overflow: hidden;
   transition: transform 0.2s ease-in-out;
 
-  @media (max-width: 767.98px) {
-    margin-bottom: ${p => p.theme.space[7]}px;
-  }
-
-  @media only screen and (min-width: 768px) {
+  @media screen and (min-width: 768px) {
     flex-shrink: 0;
     width: 336px;
-  }
-
-  @media only screen and (min-width: 1280px) {
   }
 
   &:hover {
@@ -53,13 +67,13 @@ export const StyledImageWrapper = styled(Box)`
   }
 `;
 
-export const StyledImage = styled.img`
+export const Image = styled.img`
   width: 100%;
   height: 100%;
   object-fit: cover;
 `;
 
-export const StyledCategory = styled.span`
+export const Category = styled.span`
   position: absolute;
   top: 20px;
   left: 0;
@@ -79,43 +93,60 @@ export const StyledCategory = styled.span`
   color: #757575;
 `;
 
-export const StyledContent = styled.div`
-  display: flex;
+export const ContentWrapper = styled.div`
+  /* display: flex; */
   min-height: 100%;
-  flex-direction: column;
-  align-self: stretch;
+  /* flex-direction: column; */
+  /* align-self: stretch; */
   width: 100%;
 
   @media only screen and (max-width: 480px) {
     margin: 0;
   }
+  @media screen and (min-width: 1280px) {
+    display: flex;
+    flex-direction: column;
+    align-self: stretch;
+  }
 `;
 
-export const StyledTitle = styled(TitleH3)`
-  flex-grow: 1;
-  overflow-wrap: anywhere;
-  overflow-y: hidden;
+export const Title = styled(TitleH3)`
   font-size: ${p => p.theme.fontSizes.xxxl};
   line-height: ${p => p.theme.lineHeights.heading};
+  margin-bottom: 8px;
 `;
 
-export const StyledAuthor = styled.span`
+export const Author = styled.p`
   font-size: 14px;
   font-weight: 600;
-  color: #424242;
-  margin-right: 8px;
+  color: ${p => p.theme.colors.g};
+  margin-bottom: ${p => p.theme.space[5]}px;
 `;
 
-export const StyledDate = styled.span`
+export const PostFooter = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  @media screen and (min-width: 768px) {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  /* position: absolute;
+    bottom: 32px;
+    right: 32px; */
+`;
+
+export const Date = styled.p`
   display: block;
   font-size: ${p => p.theme.fontSizes.s};
-  color: ${p => p.theme.colors.g};
+  /* color: ${p => p.theme.colors.g}; */
   text-align: right;
-  margin-top: ${p => p.theme.space[5]}px;
+  /* margin-top: ${p => p.theme.space[5]}px; */
 `;
 
-export const StyledText = styled.p`
-  margin-top: ${p => p.theme.space[5]}px;
+export const Text = styled.p`
   font-size: ${p => p.theme.fontSizes.s};
 
   @media (min-width: 768px) {
@@ -123,11 +154,12 @@ export const StyledText = styled.p`
   }
 `;
 
-export const StyledMetaButton = styled.div`
+export const MetaButton = styled.div`
   display: flex;
   gap: ${p => p.theme.space[3]}px;
-  align-items: center;
+  align-items: flex-end;
   justify-content: space-between;
+  padding: 8px;
   font-size: 14px;
   color: #999;
 `;
