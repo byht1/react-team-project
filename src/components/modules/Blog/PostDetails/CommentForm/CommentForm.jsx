@@ -1,19 +1,20 @@
-import { Box } from 'components/global/Box';
-import { Text } from 'components/global/text';
 import { useEffect } from 'react';
-import { useForm } from 'react-hook-form';
-import { AiOutlineSend } from 'react-icons/ai';
-import { getUserPhoto } from 'redux/auth';
 import { useSelector } from 'react-redux';
+import { useForm } from 'react-hook-form';
+import { getName, getUserPhoto } from 'redux/auth';
+import { Box } from 'components/global/Box';
+import { AiOutlineSend } from 'react-icons/ai';
+
 import {
   Button,
   ButtonBlock,
   Content,
-  ImgComment,
+  UserImage,
   Input,
   Label,
   ErrorInput,
-} from './PostComment.styled';
+  FormTitle,
+} from './CommentForm.styled';
 
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { addNewCommentToPost } from 'api';
@@ -29,7 +30,7 @@ const validationComment = {
   },
 };
 
-export const PostComment = ({ postId }) => {
+export const CommentForm = ({ postId }) => {
   const {
     register,
     handleSubmit,
@@ -40,6 +41,7 @@ export const PostComment = ({ postId }) => {
   const client = useQueryClient();
 
   const userPhoto = useSelector(getUserPhoto);
+  const userName = useSelector(getName);
 
   const { mutate: addComment } = useMutation({
     mutationKey: ['posts', postId],
@@ -60,12 +62,10 @@ export const PostComment = ({ postId }) => {
 
   return (
     <Box mt={60} mb={40}>
-      <Text weight={'600'} ml={110} mb={30}>
-        Add comments:
-      </Text>
-      <Content onSubmit={handleSubmit(onSubmit)}>
-        <ImgComment src={userPhoto} alt="" />
-        <ButtonBlock>
+      <FormTitle>Add comments:</FormTitle>
+      <Content>
+        <UserImage src={userPhoto} alt={userName} />
+        <ButtonBlock onSubmit={handleSubmit(onSubmit)}>
           <Label>
             <Input placeholder="Type comment" {...register('comment', validationComment)}></Input>
             {errors.comment && <ErrorInput>{errors.comment.message}</ErrorInput>}
