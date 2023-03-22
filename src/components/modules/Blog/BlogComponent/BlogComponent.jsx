@@ -10,7 +10,7 @@ import { InputSearch } from 'components/global/InputSearch';
 import { Container } from 'components/global/Container';
 import { Box } from 'components/global/Box';
 
-const PAGE_SIZE = 4; // number of items per page
+const PAGE_SIZE = 5; // number of items per page
 
 export const BlogComponent = () => {
   const [searchQuery, setSearchQuery] = useState('');
