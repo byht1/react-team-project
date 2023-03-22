@@ -7,7 +7,7 @@ import { AiOutlineSend } from 'react-icons/ai';
 
 import {
   Button,
-  ButtonBlock,
+  Form,
   Content,
   UserImage,
   Input,
@@ -65,7 +65,7 @@ export const CommentForm = ({ postId }) => {
       <FormTitle>Add comments:</FormTitle>
       <Content>
         <UserImage src={userPhoto} alt={userName} />
-        <ButtonBlock onSubmit={handleSubmit(onSubmit)}>
+        <Form onSubmit={handleSubmit(onSubmit)}>
           <Label>
             <Input placeholder="Type comment" {...register('comment', validationComment)}></Input>
             {errors.comment && <ErrorInput>{errors.comment.message}</ErrorInput>}
@@ -73,7 +73,7 @@ export const CommentForm = ({ postId }) => {
           <Button type="submit">
             Send <AiOutlineSend size={18} />
           </Button>
-        </ButtonBlock>
+        </Form>
       </Content>
     </Box>
   );
