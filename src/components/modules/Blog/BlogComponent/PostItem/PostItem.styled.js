@@ -143,42 +143,24 @@ export const StyledButton = styled(Link)`
   justify-content: center;
   align-items: center;
 
-  padding: 10px 28px;
+  padding: 8px 28px;
   outline: none;
-
-  border: 2px solid ${p => p.theme.colors.a};
-  border-radius: ${p => p.theme.radii.buttonRadius};
 
   font-family: ${p => p.theme.fonts.manrope};
   font-weight: ${p => p.theme.fontWeights.average};
-  font-size: 16px;
+  font-size: ${p => p.theme.fontSizes.m};
   line-height: ${p => p.theme.lineHeights.heading};
+
+  color: ${p => p.theme.colors.a};
+  background-color: ${p => p.theme.colors.w};
+  border: 2px solid ${p => p.theme.colors.a};
+  border-radius: ${p => p.theme.radii.buttonRadius};
 
   transition: var(--transition-bg), var(--transition-color), var(--transition-border-color);
 
-  background-color: ${p => p.theme.colors.w};
-  color: ${p => p.theme.colors.bt};
-
   &:hover,
   &:focus {
-    background-color: ${p => p.theme.colors.a};
     color: ${p => p.theme.colors.wt};
-  }
-
-  background-color: ${p => p.theme.colors.w};
-  color: ${p => p.theme.colors.bt};
-
-  &:hover,
-  &:focus {
     background-color: ${p => p.theme.colors.a};
-    color: ${p => p.theme.colors.wt};
   }
-
-  padding-top: 8px;
-  padding-bottom: 8px;
-
-  color: ${p => p.theme.colors.a};
-
-  font-size: ${p => p.theme.fontSizes.m};
-  line-height: ${p => p.theme.lineHeights.heading};
 `;
