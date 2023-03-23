@@ -71,7 +71,7 @@ export const CommentForm = ({ postId }) => {
             {errors.comment && <ErrorInput>{errors.comment.message}</ErrorInput>}
           </Label>
           <Button type="submit">
-            Send <AiOutlineSend size={18} />
+            <AiOutlineSend size={24} />
           </Button>
         </Form>
       </Content>

@@ -46,11 +46,12 @@ export const UserImage = styled.img`
 
 export const Form = styled.form`
   position: relative;
-  width: 100%;
+
   display: flex;
-  gap: 30px;
   flex-direction: column;
   align-items: flex-end;
+  gap: 30px;
+  width: 100%;
 `;
 
 export const Label = styled.label`
@@ -59,12 +60,13 @@ export const Label = styled.label`
 `;
 
 export const Input = styled.textarea`
+  display: block;
   width: 100%;
   height: 200px;
 
   font-size: ${p => p.theme.fontSizes.m};
-  /* padding: 19px 32px 19px 32px; */
   padding: 16px;
+  padding-right: 54px;
   border: 2px solid ${p => p.theme.colors.trsp};
   outline: none;
   resize: none;
@@ -76,41 +78,14 @@ export const Input = styled.textarea`
   &:focus {
     border: 2px solid ${p => p.theme.colors.a};
   }
+
   @media (min-width: 768px) {
-    padding: 24px;
+    padding: 18px 62px 18px 24px;
     font-size: ${p => p.theme.fontSizes.xl};
   }
-`;
 
-export const Button = styled.button`
-  position: absolute;
-  /* right: 50px; */
-  right: 24px;
-  bottom: 30px;
-
-  display: flex;
-  align-items: center;
-  gap: 8px;
-
-  font-size: 18px;
-  
-  padding: 8px;
-  border-radius: ${p => p.theme.radii.buttonRadius};
-
-  color: ${p => p.theme.colors.a};
-  background-color: ${p => p.theme.colors.w};
-
-  font-weight: ${p => p.theme.fontWeights.semiBold};
-  border: 2px solid ${p => p.theme.colors.a};
-
-  transition: var(--transition-bg), var(--transition-color), var(--transition-border-color);
-  &:hover {
-    color: ${p => p.theme.colors.w};
-    background-color: ${p => p.theme.colors.a};
-  }
-  @media (min-width: 768px) {
-    /* padding: 10px 40px; */
-    padding: 8px 24px;
+  @media (min-width: 1280px) {
+    padding-right: 86px;
   }
 `;
 
@@ -122,5 +97,43 @@ export const ErrorInput = styled.div`
 
   @media (min-width: 768px) {
     font-size: ${p => p.theme.fontSizes.s};
+  }
+`;
+
+export const Button = styled.button`
+  position: absolute;
+  right: 12px;
+  bottom: 12px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+
+  width: 38px;
+  height: 38px;
+
+  font-size: 18px;
+  
+  padding: 8px;
+  padding-left: 10px;
+  border-radius: ${p => p.theme.radii.round};
+
+  color: ${p => p.theme.colors.a};
+  background-color: ${p => p.theme.colors.w};
+
+  font-weight: ${p => p.theme.fontWeights.semiBold};
+  border: 2px solid ${p => p.theme.colors.a};
+
+  transition: var(--transition-bg), var(--transition-color), var(--transition-border-color);
+  
+  &:hover {
+    color: ${p => p.theme.colors.w};
+    background-color: ${p => p.theme.colors.a};
+  }
+
+  @media (min-width: 1280px) {
+    right: 20px;
+    bottom: 20px;
   }
 `;

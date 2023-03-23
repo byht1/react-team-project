@@ -48,14 +48,9 @@ export const Feedback = styled.div`
     padding: 16px;
     border-radius: ${p => p.theme.radii.normal};
     box-shadow: ${p => p.theme.shadows.s};
-    /* @media screen and (min-width: 768px) {
-        width: 60px;
-        height: 60px;
-    } */
     
     @media screen and (min-width: 1280px) {
-        padding: 16px 32px;
-        /* border-radius: ${p => p.theme.radii.inputRadius}; */
+        padding: 32px;
     }
 `
 
