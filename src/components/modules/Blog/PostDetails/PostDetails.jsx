@@ -17,7 +17,7 @@ export const PostDetailsComponent = ({ post, comments }) => {
   };
 
   return (
-    <Container pb={100} pt={100}>
+    <Container pb={64} pt={64}>
       <BlockBack onClick={handleGoBackBtn}>
         <BsArrowLeft size={'32px'} color="#F59256" />
         <Text size={'24'} lh="heading" color="a">
