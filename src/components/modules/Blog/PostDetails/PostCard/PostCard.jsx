@@ -1,13 +1,23 @@
-import { TitleH2 } from 'components/global/text';
 import { Text } from 'components/global/text';
 import { convertCreationDateToDateAndTime } from '../../helpers';
-import { ImgPost, ContentBlock, ImgBlock, PostInfo, BoxCard } from './PostCard.styled';
+import {
+  Image,
+  ContentBlock,
+  ImgWrap,
+  PostInfo,
+  BoxCard,
+  Category,
+  Author,
+  Title,
+  Date,
+} from './PostCard.styled';
 
 import { switchLikePost } from 'api/posts';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { useSelector } from 'react-redux';
 import { getUserId } from 'redux/auth';
 import { LikeButton } from '../../common/LikeButton/LikeButton';
+import { Box } from 'components/global/Box';
 
 export const PostCard = ({ post }) => {
   const { title, text, category, image, likes, author, createdAt, _id: postId } = post;
@@ -30,16 +40,16 @@ export const PostCard = ({ post }) => {
 
   return (
     <BoxCard>
-      <ImgBlock>
-        <ImgPost src={image} alt="title" />
-        <Text weight={'600'}>Author: {author ? author.name : 'Incognito'}</Text>
-        <Text weight={'600'}>Category: {category}</Text>
-      </ImgBlock>
+      <ImgWrap>
+        <Image src={image} alt={title} />
+        <Category>{category ? category : ''}</Category>
+      </ImgWrap>
       <ContentBlock>
-        <TitleH2 size={'32'}>{title}</TitleH2>
-        <Text weight={'400'} lh="big">
-          {text}
-        </Text>
+        <Box flex="1" mb={4}>
+          <Title size={'32'}>{title}</Title>
+          <Author weight={'600'}>{author?.name}</Author>
+          <Text lh="big">{text}</Text>
+        </Box>
         <PostInfo>
           <LikeButton
             postId={postId}
@@ -47,7 +57,7 @@ export const PostCard = ({ post }) => {
             likeCount={likes.length}
             handleLike={handleLike}
           />
-          <Text>Date of publication: {convertCreationDateToDateAndTime(createdAt)}</Text>
+          <Date>Date of publication: {convertCreationDateToDateAndTime(createdAt)}</Date>
         </PostInfo>
       </ContentBlock>
     </BoxCard>
