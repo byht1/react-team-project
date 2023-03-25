@@ -74,7 +74,7 @@ export const Category = styled.span`
 
 export const ContentBlock = styled.div`
   width: 100%;
-  @media only screen and (max-width: 480px) {
+  @media screen and (max-width: 480px) {
     margin: 0;
   }
 `;
@@ -102,7 +102,12 @@ export const PostInfo = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
+  gap: 16px;
   width: 100%;
+  @media screen and (min-width: 768px) {
+    justify-content: flex-end;
+    margin: 0;
+  }
 `;
 
 export const Date = styled.p`
