@@ -3,8 +3,8 @@ import { useNavigate } from 'react-router-dom';
 
 import { Container } from 'components/global/Container';
 import { PostCard } from './PostCard/PostCard';
-import { PostComment } from './PostComment/PostComment';
-import { PostList } from './PostList/PostList';
+import { CommentForm } from './CommentForm/CommentForm';
+import { CommentList } from './CommentList/CommentList';
 import { Text } from 'components/global/text';
 import { BsArrowLeft } from 'react-icons/bs';
 import { BlockBack } from './PostDetails.styled';
@@ -26,8 +26,8 @@ export const PostDetailsComponent = ({ post, comments }) => {
       </BlockBack>
 
       <PostCard post={post} />
-      <PostComment postId={post._id} />
-      <PostList comments={comments} />
+      <CommentForm postId={post._id} />
+      <CommentList comments={comments} />
     </Container>
   );
 };
