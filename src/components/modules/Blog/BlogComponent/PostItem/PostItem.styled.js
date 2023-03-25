@@ -131,19 +131,14 @@ export const PostFooter = styled.div`
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
+    width: 100%;
   }
-
-  /* position: absolute;
-    bottom: 32px;
-    right: 32px; */
 `;
 
 export const Date = styled.p`
   display: block;
   font-size: ${p => p.theme.fontSizes.s};
-  /* color: ${p => p.theme.colors.g}; */
   text-align: right;
-  /* margin-top: ${p => p.theme.space[5]}px; */
 `;
 
 export const Text = styled.p`
