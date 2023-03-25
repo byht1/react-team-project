@@ -1,5 +1,10 @@
+import { useSelector } from 'react-redux';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
+import { getUserId } from 'redux/auth';
+import { switchLikePost } from 'api/posts';
 import { Text } from 'components/global/text';
 import { convertCreationDateToDateAndTime } from '../../helpers';
+
 import {
   Image,
   ContentBlock,
@@ -12,10 +17,6 @@ import {
   Date,
 } from './PostCard.styled';
 
-import { switchLikePost } from 'api/posts';
-import { useMutation, useQueryClient } from '@tanstack/react-query';
-import { useSelector } from 'react-redux';
-import { getUserId } from 'redux/auth';
 import { LikeButton } from '../../common/LikeButton/LikeButton';
 import { Box } from 'components/global/Box';
 

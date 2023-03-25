@@ -8,7 +8,9 @@ export const BoxCard = styled.div`
   border-radius: ${p => p.theme.radii.inputRadius};
 
   @media (max-width: 767.98px) {
+    display: flex;
     flex-direction: column;
+    gap: 8px;
   }
 
   @media (min-width: 768px) {
@@ -28,16 +30,14 @@ export const BoxCard = styled.div`
 
 export const ImgWrap = styled.div`
   position: relative;
-  border-radius: ${p => p.theme.radii.normal};
   overflow: hidden;
-  margin-bottom: 8px;
-  /* flex-shrink: 0; */
-  
+  border-radius: ${p => p.theme.space[7]}px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 
   @media screen and (min-width: 768px) {
     height: 240px;
     width: 240px;
+    margin-bottom: 8px;
   }
 
   @media screen and (min-width: 1280px) {
@@ -50,7 +50,6 @@ export const Image = styled.img`
   width: 100%;
   height: 100%;
   object-fit: cover;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 `;
 
 export const Category = styled.span`
@@ -73,7 +72,6 @@ export const Category = styled.span`
   color: #757575;
 `;
 
-
 export const ContentBlock = styled.div`
   width: 100%;
   @media only screen and (max-width: 480px) {
@@ -94,17 +92,12 @@ export const Author = styled.p`
   margin-bottom: ${p => p.theme.space[5]}px;
 `;
 
-
-export const PostIcon = styled(AiOutlineLike)`
-  fill: ${p => p.theme.colors.a};
-  width: 25px;
-  height: 25px;
-`;
 export const LikeBlock = styled.div`
   display: flex;
   align-items: center;
   gap: 10px;
 `;
+
 export const PostInfo = styled.div`
   display: flex;
   justify-content: space-between;
@@ -116,4 +109,10 @@ export const Date = styled.p`
   display: block;
   font-size: ${p => p.theme.fontSizes.s};
   text-align: right;
+`;
+
+export const PostIcon = styled(AiOutlineLike)`
+  fill: ${p => p.theme.colors.a};
+  width: 25px;
+  height: 25px;
 `;

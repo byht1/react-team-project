@@ -1,8 +1,8 @@
 import React from 'react';
 import { useQuery } from '@tanstack/react-query';
-import { fetchOnePost } from 'api/posts';
-
 import { useParams } from 'react-router-dom';
+
+import { fetchOnePost } from 'api/posts';
 import { Loader } from 'components/global/Loader';
 import { PostDetailsComponent } from 'components/modules/Blog/PostDetails';
 

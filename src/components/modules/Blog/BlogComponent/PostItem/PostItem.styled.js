@@ -5,10 +5,6 @@ import { Link } from 'react-router-dom';
 import { AiOutlineLike } from 'react-icons/ai';
 
 export const PostContainer = styled.li`
-  /* display: flex;
-  align-items: flex-start; */
-  gap: 16px;
-  
   padding: ${p => p.theme.space[9]}px;
   border-radius: 10px;
   overflow: hidden;
@@ -17,11 +13,11 @@ export const PostContainer = styled.li`
   box-shadow: 7px 4px 14px rgba(0, 0, 0, 0.11);
   border-radius: 40px;
 
-  
-
   @media (max-width: 767.98px) {
+    display: flex;
     flex-direction: column;
   }
+  gap: 8px;
 
   @media (min-width: 768px) and (max-width: 1279.98px) {
     &:nth-child(2n) {
@@ -40,6 +36,7 @@ export const PostContainer = styled.li`
 
   @media screen and (min-width: 1280px) {
     display: flex;
+    gap: 16px;
     &:nth-child(2n) {
       flex-direction: row-reverse;
     }
@@ -50,8 +47,7 @@ export const ImageWrapper = styled(Box)`
   position: relative;
   height: 288px;
   width: 100%;
-  margin-bottom: 8px;
-
+  
   border-radius: ${p => p.theme.space[7]}px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   overflow: hidden;
@@ -60,6 +56,11 @@ export const ImageWrapper = styled(Box)`
   @media screen and (min-width: 768px) {
     flex-shrink: 0;
     width: 336px;
+    margin-bottom: 12px;
+  }
+  
+  @media screen and (min-width: 1280px) {
+    margin-bottom: 8px;
   }
 
   &:hover {
@@ -94,10 +95,6 @@ export const Category = styled.span`
 `;
 
 export const ContentWrapper = styled.div`
-  /* display: flex; */
-  min-height: 100%;
-  /* flex-direction: column; */
-  /* align-self: stretch; */
   width: 100%;
 
   @media only screen and (max-width: 480px) {

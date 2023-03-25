@@ -5,7 +5,7 @@ import { BlogCategoriesNav } from './BlogCategoriesNav';
 import { PostsList } from './PostsList';
 import { fetchPosts } from 'api/posts';
 import { Loader } from 'components/global/Loader';
-import { BlogContainer, Title, LoadMoreBtn, ListBox } from './BlogComponent.styled';
+import { Title, LoadMoreBtn, ListBox } from './BlogComponent.styled';
 import { InputSearch } from 'components/global/InputSearch';
 import { Container } from 'components/global/Container';
 import { Box } from 'components/global/Box';
@@ -46,45 +46,43 @@ export const BlogComponent = () => {
   );
 
   return (
-    <Container pb={100} pt={26}>
-      <BlogContainer>
-        <Box display="flex" flexDirection="column" justifyContent="center">
-          <Title>Community</Title>
-          <InputSearch change={setSearchQuery} value={searchQuery} debounceDelay={300} />
-          <BlogCategoriesNav />
+    <Container pb={100} pt={64}>
+      <Box display="flex" flexDirection="column" justifyContent="center">
+        <Title>Community</Title>
+        <InputSearch change={setSearchQuery} value={searchQuery} debounceDelay={300} />
+        <BlogCategoriesNav />
 
-          {isLoading && <Loader />}
+        {isLoading && <Loader />}
 
-          {isError &&
-            ([401, 403].includes(error.response.status) ? (
-              <p>Please login...</p>
-            ) : (
-              <p>An error occurred while fetching the data. Please try again later.</p>
+        {isError &&
+          ([401, 403].includes(error.response.status) ? (
+            <p>Please login...</p>
+          ) : (
+            <p>An error occurred while fetching the data. Please try again later.</p>
+          ))}
+
+        {isSuccess && (
+          <ListBox>
+            {data?.pages?.flat()?.length === 0 && <p>No notices here yet...</p>}
+            {data.pages.map((page, i) => (
+              <React.Fragment key={i}>
+                <PostsList data={page} />
+              </React.Fragment>
             ))}
+          </ListBox>
+        )}
 
-          {isSuccess && (
-            <ListBox>
-              {data?.pages?.flat()?.length === 0 && <p>No notices here yet...</p>}
-              {data.pages.map((page, i) => (
-                <React.Fragment key={i}>
-                  <PostsList data={page} />
-                </React.Fragment>
-              ))}
-            </ListBox>
-          )}
-
-          {hasNextPage && data.pages[data.pages.length - 1].length === PAGE_SIZE && (
-            <LoadMoreBtn
-              type="button"
-              onClick={() => fetchNextPage()}
-              disabled={isFetchingNextPage}
-              isFetchingNextPage={isFetchingNextPage}
-            >
-              {isFetchingNextPage ? 'Loading more...' : 'Load More'}
-            </LoadMoreBtn>
-          )}
-        </Box>
-      </BlogContainer>
+        {hasNextPage && data.pages[data.pages.length - 1].length === PAGE_SIZE && (
+          <LoadMoreBtn
+            type="button"
+            onClick={() => fetchNextPage()}
+            disabled={isFetchingNextPage}
+            isFetchingNextPage={isFetchingNextPage}
+          >
+            {isFetchingNextPage ? 'Loading more...' : 'Load More'}
+          </LoadMoreBtn>
+        )}
+      </Box>
     </Container>
   );
 };

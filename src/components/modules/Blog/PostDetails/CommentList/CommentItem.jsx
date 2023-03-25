@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
-import { ImgComment, Item, Feedback, CommentText, CommentDate } from './CommentList.styled';
 import { Text } from 'components/global/text';
 import { convertCreationDateToDateAndTime } from '../../helpers';
+import { ImgComment, Item, Feedback, CommentText, CommentDate } from './CommentList.styled';
 
 export const CommentItem = ({ text, author, createDate }) => {
   const { name, photo } = author;

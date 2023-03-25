@@ -57,10 +57,7 @@ export const Post = ({ post, userId }) => {
 
       <ContentWrapper>
         <Box flex="1" mb={4}>
-          {/* <Box display="flex" alignItems="flex-end" justifyContent="space-between" gridGap={7}> */}
           <Title>{title}</Title>
-          {/* </Box> */}
-
           <Author>{author ? author.name : ''}</Author>
           <Text>{trimText(text ? text : '')}</Text>
         </Box>
