@@ -63,7 +63,7 @@ export const BlogComponent = () => {
 
         {isSuccess && (
           <ListBox>
-            {data?.pages?.flat()?.length === 0 && <p>No notices here yet...</p>}
+            {data?.pages?.flat()?.length === 0 && <p>No posts here yet...</p>}
             {data.pages.map((page, i) => (
               <React.Fragment key={i}>
                 <PostsList data={page} />
