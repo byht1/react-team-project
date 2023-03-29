@@ -1,8 +1,8 @@
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 
-import { getUserId, getUserPosts, removeUserPost } from 'redux/auth';
+import { getUserId } from 'redux/auth';
 import { switchLikePost, deletePost } from 'api/posts';
 import { Text } from 'components/global/text';
 import { convertCreationDateToDateAndTime } from '../../helpers';
@@ -29,12 +29,10 @@ import { LikeButton } from '../../common/LikeButton/LikeButton';
 export const PostCard = ({ post }) => {
   const { title, text, category, image, likes, author, createdAt, _id: postId } = post;
   const userId = useSelector(getUserId);
-  const posts = useSelector(getUserPosts);
-  const dispatch = useDispatch()
   const client = useQueryClient();
   const navigate = useNavigate();
 
-  const isCurrentUserPost = posts.includes(postId);
+  const isCurrentUserPost = userId === author._id;
   
   const { mutate: switchLike } = useMutation({
     mutationKey: ['posts', postId],
@@ -59,7 +57,6 @@ export const PostCard = ({ post }) => {
 
   const handleDelete = () => {
     deleteUserPost(postId);
-    dispatch(removeUserPost(postId));
     navigate('/posts'); 
   }
 

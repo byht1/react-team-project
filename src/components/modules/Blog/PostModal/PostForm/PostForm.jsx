@@ -1,12 +1,10 @@
 import React, { useCallback } from 'react';
-import { useDispatch } from 'react-redux';
 import { useForm } from 'react-hook-form';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import PropTypes from 'prop-types';
 import { useDropzone } from 'react-dropzone';
 import { yupResolver } from '@hookform/resolvers/yup';
 
-import { addUserPost } from 'redux/auth';
 import { createPost } from 'api/posts';
 import { validationSchema } from './validationSchema';
 
@@ -33,7 +31,6 @@ import { Loader } from 'components/global/Loader';
 
 export const PostForm = ({ onClose, passError }) => {
   const client = useQueryClient();
-  const dispatch = useDispatch();
 
   const {
     register,
@@ -67,7 +64,6 @@ export const PostForm = ({ onClose, passError }) => {
     mutationFn: createPost,
     onSuccess: updateDate => {
       client.invalidateQueries(['posts'], updateDate);
-      dispatch(addUserPost(updateDate._id));
       onClose();
     },
     onError: error => {

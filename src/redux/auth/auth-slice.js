@@ -2,7 +2,7 @@ import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
   id: null,
-  user: { name: null, email: null, phone: null, city: null, photo: null, birthday: null, posts: null },
+  user: { name: null, email: null, phone: null, city: null, photo: null, birthday: null },
   isLogin: false,
   // isRefreshing: false,
   loading: false,
@@ -23,7 +23,6 @@ export const authSlice = createSlice({
         city: payload.city,
         photo: payload.photo,
         birthday: payload.birthday,
-        posts: payload.posts,
       };
       state.isLogin = true;
       state.access_token = payload.access_token;
@@ -38,7 +37,6 @@ export const authSlice = createSlice({
         city: null,
         photo: null,
         birthday: null,
-        posts: null,
       };
       state.isLogin = false;
       state.access_token = null;
@@ -58,14 +56,8 @@ export const authSlice = createSlice({
       state.isLogin = state.isLogin; // eslint-disable-next-line
       state.access_token = state.access_token; // eslint-disable-next-line
       state.refresh_token = state.refresh_token;
-    },
-    addUserPost(state, { payload }) {
-      state.user.posts.push(payload);
-    },
-    removeUserPost(state, { payload }) {
-      state.user.posts.splice(state.user.posts.indexOf(payload), 1)
     }
   },
 });
 
-export const { register, logout, updateUserInfo, addUserPost, removeUserPost } = authSlice.actions;
+export const { register, logout, updateUserInfo } = authSlice.actions;
