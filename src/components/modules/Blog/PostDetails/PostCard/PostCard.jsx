@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
@@ -25,9 +26,11 @@ import {
 import { Box } from 'components/global/Box';
 import { Loader } from 'components/global/Loader';
 import { LikeButton } from '../../common/LikeButton/LikeButton';
+import { ConfirmDeleteModal } from 'components/global/ConfirmDeleteModal';
 
 export const PostCard = ({ post }) => {
   const { title, text, category, image, likes, author, createdAt, _id: postId } = post;
+  const [showConfirmModal, setShowConfirmModal] = useState(false);
   const userId = useSelector(getUserId);
   const client = useQueryClient();
   const navigate = useNavigate();
@@ -57,8 +60,12 @@ export const PostCard = ({ post }) => {
 
   const handleDelete = () => {
     deleteUserPost(postId);
-    navigate('/posts'); 
+    navigate('/posts');
   }
+
+  const toggleConfirmModal = () => {
+    setShowConfirmModal(!showConfirmModal);
+  };
 
   return (
     <>
@@ -84,12 +91,20 @@ export const PostCard = ({ post }) => {
             <Date>Date of publication: {convertCreationDateToDateAndTime(createdAt)}</Date>
           </PostInfo>
           {isCurrentUserPost && 
-            <DeleteButton onClick={handleDelete}>
+            <DeleteButton onClick={toggleConfirmModal}>
               <TrashBinIc />
             </DeleteButton>}
         </PostFooter>
       </ContentBlock>
     </BoxCard>
+    {showConfirmModal && (
+      <ConfirmDeleteModal
+        id={postId}
+        onClose={toggleConfirmModal}
+        deleteFunction={handleDelete}
+        deleteEntityName={title}
+      />
+    )}
     {isLoading && <Loader />}
     </>
   );
