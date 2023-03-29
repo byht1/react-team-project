@@ -2,7 +2,7 @@ import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
   id: null,
-  user: { name: null, email: null, phone: null, city: null, photo: null, birthday: null },
+  user: { name: null, email: null, phone: null, city: null, photo: null, birthday: null, posts: null },
   isLogin: false,
   // isRefreshing: false,
   loading: false,
@@ -23,6 +23,7 @@ export const authSlice = createSlice({
         city: payload.city,
         photo: payload.photo,
         birthday: payload.birthday,
+        posts: payload.posts,
       };
       state.isLogin = true;
       state.access_token = payload.access_token;
@@ -37,6 +38,7 @@ export const authSlice = createSlice({
         city: null,
         photo: null,
         birthday: null,
+        posts: null,
       };
       state.isLogin = false;
       state.access_token = null;
