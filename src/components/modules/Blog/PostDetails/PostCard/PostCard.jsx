@@ -1,7 +1,9 @@
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
-import { getUserId, getUserPosts } from 'redux/auth';
-import { switchLikePost } from 'api/posts';
+
+import { getUserId, getUserPosts, removeUserPost } from 'redux/auth';
+import { switchLikePost, deletePost } from 'api/posts';
 import { Text } from 'components/global/text';
 import { convertCreationDateToDateAndTime } from '../../helpers';
 
@@ -20,17 +22,20 @@ import {
   PostInfo,
 } from './PostCard.styled';
 
-import { LikeButton } from '../../common/LikeButton/LikeButton';
 import { Box } from 'components/global/Box';
+import { Loader } from 'components/global/Loader';
+import { LikeButton } from '../../common/LikeButton/LikeButton';
 
 export const PostCard = ({ post }) => {
   const { title, text, category, image, likes, author, createdAt, _id: postId } = post;
   const userId = useSelector(getUserId);
   const posts = useSelector(getUserPosts);
-
+  const dispatch = useDispatch()
   const client = useQueryClient();
-  const isCurrentUserPost = posts.includes(postId)
+  const navigate = useNavigate();
 
+  const isCurrentUserPost = posts.includes(postId);
+  
   const { mutate: switchLike } = useMutation({
     mutationKey: ['posts', postId],
     mutationFn: () => switchLikePost(postId),
@@ -40,11 +45,26 @@ export const PostCard = ({ post }) => {
     },
   });
 
+  const { mutate: deleteUserPost, isLoading } = useMutation({
+    mutationKey: ['posts', postId],
+    mutationFn: postId => deletePost(postId),
+    onSuccess: () => {
+      client.invalidateQueries({ queryKey: ['posts'] });
+    },
+  });
+
   const handleLike = () => {
     switchLike(postId);
   };
 
+  const handleDelete = () => {
+    deleteUserPost(postId);
+    dispatch(removeUserPost(postId));
+    navigate('/posts'); 
+  }
+
   return (
+    <>
     <BoxCard>
       <ImgWrap>
         <Image src={image} alt={title} />
@@ -67,11 +87,13 @@ export const PostCard = ({ post }) => {
             <Date>Date of publication: {convertCreationDateToDateAndTime(createdAt)}</Date>
           </PostInfo>
           {isCurrentUserPost && 
-            <DeleteButton>
+            <DeleteButton onClick={handleDelete}>
               <TrashBinIc />
             </DeleteButton>}
         </PostFooter>
       </ContentBlock>
     </BoxCard>
+    {isLoading && <Loader />}
+    </>
   );
 };

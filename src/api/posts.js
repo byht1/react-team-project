@@ -37,32 +37,14 @@ export const createPost = async postData => {
   }
 };
 
-// export const fetchFavoriteNotices = async () => {
-//   try {
-//     const r = await server.get(`/notices/favorite`);
-//     return r.data;
-//   } catch (e) {
-//     return e.message;
-//   }
-// };
-
-// export const fetchOwnNotices = async () => {
-//   try {
-//     const r = await server.get(`/notices/user`);
-//     return r.data;
-//   } catch (e) {
-//     return e.message;
-//   }
-// };
-
-// export const removeNotice = async noticeId => {
-//   try {
-//     const r = await server.delete(`/notices/${noticeId}`);
-//     return r.data;
-//   } catch (e) {
-//     return e.message;
-//   }
-// };
+export const deletePost = async postId => {
+  try {
+    const { data } = await server.delete(`${UrlRegister.posts}/${postId}`);
+    return data;
+  } catch (error) {
+    throw error;
+  }
+};
 
 export const switchLikePost = async postId => {
   try {

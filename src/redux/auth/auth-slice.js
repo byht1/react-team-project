@@ -59,7 +59,13 @@ export const authSlice = createSlice({
       state.access_token = state.access_token; // eslint-disable-next-line
       state.refresh_token = state.refresh_token;
     },
+    addUserPost(state, { payload }) {
+      state.user.posts.push(payload);
+    },
+    removeUserPost(state, { payload }) {
+      state.user.posts.splice(state.user.posts.indexOf(payload), 1)
+    }
   },
 });
 
-export const { register, logout, updateUserInfo } = authSlice.actions;
+export const { register, logout, updateUserInfo, addUserPost, removeUserPost } = authSlice.actions;
