@@ -22,31 +22,8 @@ export const ImageWrap = styled.div`
   position: relative;
 `
 
-export const LabelFile = styled.label`
-  position: relative;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-
-  width: 208px;
-  height: 208px;
-  margin-left: auto;
-  margin-right: auto;
-  margin-bottom: ${p => p.theme.space[6]}px;
-  
-  cursor: pointer;
-  background-color: ${p => p.theme.colors.bg};
-  border-radius: ${p => p.theme.radii.normal};
-
-  @media (min-width: 768px) {
-    width: 200px;
-    height: 200px;
-    margin: 0;
-    border-radius: ${p => p.theme.radii.inputRadius};
-  }
-`;
-
 export const InputFileWrap = styled.div`
+  position: relative;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -57,6 +34,9 @@ export const InputFileWrap = styled.div`
   
   margin-left: auto;
   margin-right: auto;
+  
+  cursor: pointer;
+  background-color: ${p => p.theme.colors.bg};
   border-radius: ${p => p.theme.radii.normal};
 
   @media (min-width: 768px) {
@@ -223,5 +203,3 @@ export const Textarea = styled.textarea`
     }
   }
 `;
-
-

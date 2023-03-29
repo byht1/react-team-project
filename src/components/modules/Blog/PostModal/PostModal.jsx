@@ -44,22 +44,20 @@ export const PostModal = ({ onClose }) => {
   };
 
   return createPortal(
-    <>
-      <ModalBackdrop onClick={handleBackdropClick}>
-        <ModalWrap>
-          <FormTitle>Add post</FormTitle>
-          <CloseBtn type="button" onClick={onClose}>
-            <GrCloseIcon />
-          </CloseBtn>
-          <PostForm onClose={onClose} passError={getError} />
-        </ModalWrap>
-        {error && (
-          <Alert severity="error" onClose={closeAlert}>
-            Oops, something went wrong
-          </Alert>
-        )}
-      </ModalBackdrop>
-    </>,
+    <ModalBackdrop onClick={handleBackdropClick}>
+      <ModalWrap>
+        <FormTitle>Add post</FormTitle>
+        <CloseBtn type="button" onClick={onClose}>
+          <GrCloseIcon />
+        </CloseBtn>
+        <PostForm onClose={onClose} passError={getError} />
+      </ModalWrap>
+      {error && (
+        <Alert severity="error" onClose={closeAlert}>
+          Oops, something went wrong
+        </Alert>
+      )}
+    </ModalBackdrop>,
     modalRoot
   );
 };
