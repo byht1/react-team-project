@@ -23,7 +23,6 @@ import {
   ImageWrap,
   ImageErrorText,
   PostFormButton,
-  LabelFile,
   InputFile,
   InputFileWrap,
   PreviewPhoto,
@@ -63,8 +62,8 @@ export const PostForm = ({ onClose, passError }) => {
   const { mutate: create, isLoading } = useMutation({
     mutationKey: ['posts'],
     mutationFn: createPost,
-    onSuccess: () => {
-      client.invalidateQueries({ queryKey: ['posts'] });
+    onSuccess: updateDate => {
+      client.invalidateQueries(['posts'], updateDate);
       onClose();
     },
     onError: error => {
@@ -91,23 +90,20 @@ export const PostForm = ({ onClose, passError }) => {
         <ContentWrap>
           <TabletFlexWrap>
             <ImageWrap>
-              <LabelFile>
-                <InputFileWrap
-                  {...getRootProps()}
-                  type="file"
-                  role="button"
-                  aria-label="upload photo"
-                >
-                  <InputFile {...register('image')} {...getInputProps()} />
-                  {acceptedFiles?.length === 0 && (
-                    <TfiPlus color="rgba(17, 17, 17, 0.6)" size="48px" />
-                  )}
-                  {!!acceptedFiles?.length && (
-                    <PreviewPhoto src={URL.createObjectURL(files[0])} alt={files[0].name} />
-                  )}
-                </InputFileWrap>
-                {errors.image && <ImageErrorText>{errors.image.message}</ImageErrorText>}
-              </LabelFile>
+              <InputFileWrap
+                {...getRootProps()}
+                role="button"
+                aria-label="upload photo"
+              >
+                <InputFile {...register('image')} {...getInputProps()} />
+                {acceptedFiles?.length === 0 && (
+                  <TfiPlus color="rgba(17, 17, 17, 0.6)" size="48px" />
+                )}
+                {!!acceptedFiles?.length && (
+                  <PreviewPhoto src={URL.createObjectURL(files[0])} alt={files[0].name} />
+                )}
+              </InputFileWrap>
+              {errors.image && <ImageErrorText>{errors.image.message}</ImageErrorText>}
             </ImageWrap>
             <PostInfoWrap>
               <LabelInput>

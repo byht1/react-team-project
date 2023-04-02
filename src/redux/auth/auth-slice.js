@@ -56,7 +56,7 @@ export const authSlice = createSlice({
       state.isLogin = state.isLogin; // eslint-disable-next-line
       state.access_token = state.access_token; // eslint-disable-next-line
       state.refresh_token = state.refresh_token;
-    },
+    }
   },
 });
 

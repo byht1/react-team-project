@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 import { AiOutlineLike } from 'react-icons/ai';
 import { TitleH3 } from 'components/global/text';
+import { ReactComponent as trashBin } from '../../../../../img/User/trashBin.svg';
 
 export const BoxCard = styled.div`
   padding: 32px;
@@ -11,6 +12,7 @@ export const BoxCard = styled.div`
     display: flex;
     flex-direction: column;
     gap: 8px;
+    padding-bottom: 20px;
   }
 
   @media (min-width: 768px) {
@@ -98,17 +100,26 @@ export const LikeBlock = styled.div`
   gap: 10px;
 `;
 
+export const PostFooter = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+
+  width: 100%;
+
+  @media screen and (min-width: 768px) {
+    flex-direction: row;
+    justify-content: ${p => p.isCurrentUserPost ? 'space-between' : 'flex-end'};
+    gap: 0;
+  }
+`;
+
 export const PostInfo = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
   gap: 16px;
-  width: 100%;
-  @media screen and (min-width: 768px) {
-    justify-content: flex-end;
-    margin: 0;
-  }
-`;
+`
 
 export const Date = styled.p`
   display: block;
@@ -120,4 +131,46 @@ export const PostIcon = styled(AiOutlineLike)`
   fill: ${p => p.theme.colors.a};
   width: 25px;
   height: 25px;
+`;
+
+export const DeleteButton = styled.button`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  align-self: flex-end;
+  
+  width: 30px;
+  height: 30px;
+
+  color: rgba(17, 17, 17, 0.6);
+  background-color: transparent;
+  
+  border-radius: 50%;
+
+  @media (min-width: 768px) {
+    width: 40px;
+    height: 40px;
+    background-color: ${p => p.theme.colors.bg}; 
+  }
+`;
+
+export const TrashBinIc = styled(trashBin)`
+  height: 24px;
+  width: 24px;
+
+  & path {
+    stroke: ${p => p.theme.colors.w};
+    transition: fill 250ms linear;
+  }
+
+  @media (min-width: 768px) {
+    height: 40px;
+    width: 40px;
+    padding: 7.5px;
+    border-radius: 50%;
+  }
+
+  &:hover path {
+    fill: ${p => p.theme.colors.a};
+  }
 `;

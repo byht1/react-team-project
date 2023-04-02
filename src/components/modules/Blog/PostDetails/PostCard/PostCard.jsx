@@ -1,7 +1,10 @@
+import { useState } from 'react';
 import { useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
+
 import { getUserId } from 'redux/auth';
-import { switchLikePost } from 'api/posts';
+import { switchLikePost, deletePost } from 'api/posts';
 import { Text } from 'components/global/text';
 import { convertCreationDateToDateAndTime } from '../../helpers';
 
@@ -9,23 +12,31 @@ import {
   Image,
   ContentBlock,
   ImgWrap,
-  PostInfo,
+  PostFooter,
   BoxCard,
   Category,
   Author,
   Title,
   Date,
+  DeleteButton,
+  TrashBinIc,
+  PostInfo,
 } from './PostCard.styled';
 
-import { LikeButton } from '../../common/LikeButton/LikeButton';
 import { Box } from 'components/global/Box';
+import { Loader } from 'components/global/Loader';
+import { LikeButton } from '../../common/LikeButton/LikeButton';
+import { ConfirmDeleteModal } from 'components/global/ConfirmDeleteModal';
 
 export const PostCard = ({ post }) => {
   const { title, text, category, image, likes, author, createdAt, _id: postId } = post;
+  const [showConfirmModal, setShowConfirmModal] = useState(false);
   const userId = useSelector(getUserId);
-
   const client = useQueryClient();
+  const navigate = useNavigate();
 
+  const isCurrentUserPost = userId === author._id;
+  
   const { mutate: switchLike } = useMutation({
     mutationKey: ['posts', postId],
     mutationFn: () => switchLikePost(postId),
@@ -35,11 +46,29 @@ export const PostCard = ({ post }) => {
     },
   });
 
+  const { mutate: deleteUserPost, isLoading } = useMutation({
+    mutationKey: ['posts', postId],
+    mutationFn: postId => deletePost(postId),
+    onSuccess: () => {
+      client.invalidateQueries({ queryKey: ['posts'] });
+    },
+  });
+
   const handleLike = () => {
     switchLike(postId);
   };
 
+  const handleDelete = () => {
+    deleteUserPost(postId);
+    navigate('/posts');
+  }
+
+  const toggleConfirmModal = () => {
+    setShowConfirmModal(!showConfirmModal);
+  };
+
   return (
+    <>
     <BoxCard>
       <ImgWrap>
         <Image src={image} alt={title} />
@@ -51,16 +80,32 @@ export const PostCard = ({ post }) => {
           <Author weight={'600'}>{author?.name}</Author>
           <Text lh="big">{text}</Text>
         </Box>
-        <PostInfo>
-          <LikeButton
-            postId={postId}
-            likedPost={likes.includes(userId)}
-            likeCount={likes.length}
-            handleLike={handleLike}
-          />
-          <Date>Date of publication: {convertCreationDateToDateAndTime(createdAt)}</Date>
-        </PostInfo>
+        <PostFooter isCurrentUserPost={isCurrentUserPost}>
+          <PostInfo>
+            <LikeButton
+              postId={postId}
+              likedPost={likes.includes(userId)}
+              likeCount={likes.length}
+              handleLike={handleLike}
+            />
+            <Date>Date of publication: {convertCreationDateToDateAndTime(createdAt)}</Date>
+          </PostInfo>
+          {isCurrentUserPost && 
+            <DeleteButton onClick={toggleConfirmModal}>
+              <TrashBinIc />
+            </DeleteButton>}
+        </PostFooter>
       </ContentBlock>
     </BoxCard>
+    {showConfirmModal && (
+      <ConfirmDeleteModal
+        id={postId}
+        onClose={toggleConfirmModal}
+        deleteFunction={handleDelete}
+        deleteEntityName={title}
+      />
+    )}
+    {isLoading && <Loader />}
+    </>
   );
 };
