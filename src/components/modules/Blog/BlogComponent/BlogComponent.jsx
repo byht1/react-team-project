@@ -1,25 +1,18 @@
-import React from 'react';
-import { useState, useEffect } from 'react';
 import { useInfiniteQuery } from '@tanstack/react-query';
-import { BlogCategoriesNav } from './BlogCategoriesNav';
-import { PostsList } from './PostsList';
 import { fetchPosts } from 'api/posts';
-import { Loader } from 'components/global/Loader';
-import { Title, LoadMoreBtn, ListBox } from './BlogComponent.styled';
-import { InputSearch } from 'components/global/InputSearch';
-import { Container } from 'components/global/Container';
 import { Box } from 'components/global/Box';
+import { Container } from 'components/global/Container';
+import { InputSearch } from 'components/global/InputSearch';
+import { Loader } from 'components/global/Loader';
+import React, { useState } from 'react';
+import { BlogCategoriesNav } from './BlogCategoriesNav';
+import { ListBox, LoadMoreBtn, Title } from './BlogComponent.styled';
+import { PostsList } from './PostsList';
 
 const PAGE_SIZE = 5; // number of items per page
 
 export const BlogComponent = () => {
   const [searchQuery, setSearchQuery] = useState('');
-
-  useEffect(() => {
-    setSearchQuery(searchQuery);
-
-    return () => {};
-  }, [searchQuery]);
 
   const {
     data,
@@ -31,7 +24,7 @@ export const BlogComponent = () => {
     hasNextPage,
     isFetchingNextPage,
   } = useInfiniteQuery(
-    ['posts'],
+    ['posts', searchQuery],
     async ({ pageParam = 0 }) =>
       await fetchPosts({ offset: pageParam, count: PAGE_SIZE, search: searchQuery }),
     {
@@ -49,7 +42,9 @@ export const BlogComponent = () => {
     <Container pb={100} pt={64}>
       <Box display="flex" flexDirection="column" justifyContent="center">
         <Title>Community</Title>
+
         <InputSearch change={setSearchQuery} value={searchQuery} debounceDelay={300} />
+
         <BlogCategoriesNav />
 
         {isLoading && <Loader />}
