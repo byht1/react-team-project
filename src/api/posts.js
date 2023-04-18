@@ -66,3 +66,12 @@ export const addNewCommentToPost = async (postId, comment) => {
     throw error;
   }
 };
+
+export const deleteCommentFromPost = async (postId, commentId) => {
+  try {
+    const { data } = await server.delete(`${UrlRegister.posts}/${postId}/${UrlRegister.comments}/${commentId}`);
+    return data;
+  } catch (error) {
+    throw error;
+  }
+};

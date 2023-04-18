@@ -18,6 +18,7 @@ import {
 
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { addNewCommentToPost } from 'api';
+import { Loader } from 'components/global/Loader';
 
 const validationComment = {
   minLength: {
@@ -43,7 +44,7 @@ export const CommentForm = ({ postId }) => {
   const userPhoto = useSelector(getUserPhoto);
   const userName = useSelector(getName);
 
-  const { mutate: addComment } = useMutation({
+  const { mutate: addComment, isLoading } = useMutation({
     mutationKey: ['posts', postId],
     mutationFn: data => addNewCommentToPost(postId, data),
     onSuccess: () => {
@@ -75,6 +76,7 @@ export const CommentForm = ({ postId }) => {
           </Button>
         </Form>
       </Content>
+      {isLoading && <Loader />}
     </Box>
   );
 };

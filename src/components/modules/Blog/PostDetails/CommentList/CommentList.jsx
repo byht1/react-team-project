@@ -6,8 +6,8 @@ export const CommentList = ({ comments }) => {
   return (
     <Box pl={6}>
       <List>
-        {comments.map(({ _id, author, text, createdAt }) => {
-          return <CommentItem key={_id} author={author} text={text} createDate={createdAt} />;
+        {comments.map((comment, _id) => {
+          return <CommentItem key={_id} comment={comment} />;
         })}
       </List>
     </Box>
