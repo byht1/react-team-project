@@ -22,7 +22,7 @@ import { LoginPage } from 'page/LoginPage';
 import { RestrictedRoute } from 'components/global/RestrictedRoute';
 import { PrivateRoute } from 'components/global/PrivateRoute';
 // import { register } from 'redux/auth';
-import { Loader } from 'components/global/Loader';
+// import { Loader } from 'components/global/Loader';
 import FormAddNoticePage from 'page/AddNoticePage/AddNoticePage';
 import { FormStepOne } from 'components/modules/FormAddNotice';
 import { FormStepTwo } from 'components/modules/FormAddNotice';
